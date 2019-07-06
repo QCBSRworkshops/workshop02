@@ -12,9 +12,13 @@ Le contenu de cet atelier a été révisé par plusieurs membres du CSBQ. Si vou
 
 # Workshop 2: Loading and manipulating data
 
+[![Build Status](https://travis-ci.org/QCBSRworkshops/workshop02.svg?branch=dev)](https://travis-ci.org/QCBSRworkshops/workshop02)
+
  In this workshop, you will learn how to load, view, and manipulate your data in R. You will learn basic commands to inspect and visualize your data, and learn how to fix errors that may have occurred while loading your data into R. In addition, you will learn how to write an R script, which is a text file that contains your R commands and allows you to rerun your analyses in one simple touch of a key (or maybe two, or three…)! We will then introduce `tidyr` and `dplyr`, two powerful tools to manage and re-format your dataset, as well as apply simple or complex functions on subsets of your data. This workshop will be useful for those progressing through the entire workshop series, but also for those who already have some experience in R and would like to become proficient with new tools and packages.
 
 # Atelier 2: Charger et manipuler des données
+
+[![Build Status](https://travis-ci.org/QCBSRworkshops/workshop02.svg?branch=dev)](https://travis-ci.org/QCBSRworkshops/workshop02)
 
 Durant cet atelier, vous apprendrez comment charger et visualiser des données dans R. Vous apprendrez certaines fonctions permettant d’examiner vos données et vous apprendrez comment corriger certaines erreurs communes se produisant lors du chargement des données. Finalement, vous verrez l’importance de sauvegarder votre travail dans un script R, soit un fichier texte contenant tous vos codes et permettant de refaire toutes vos analyses en appuyant sur une seule touche (ou deux, ou trois peut-être…). Ensuite, nous présenterons `tidyr` et `dplyr` pour vous aider à transformer et à gérer le format de vos données ainsi que pour appliquer des fonctions simples ou complexes sur des sous-groupes de vos jeux de données. Cet atelier s’avérera utile non seulement pour les participants suivant notre série d’ateliers, mais également pour ceux et celles d’entre vous connaissant déjà le langage R et cherchant à maîtriser des outils plus avancés pour l'analyse et la visualisation de vos données.
 
