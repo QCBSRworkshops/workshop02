@@ -1,7 +1,7 @@
 ---
 title: "Workshop 2: Loading and Manipulating Data"
 subtitle: "QCBS R Workshop Series"
-author: "Qu?bec Centre for Biodiversity Science"
+author: "Québec Centre for Biodiversity Science"
 output:
   xaringan::moon_reader:
     includes:
@@ -344,7 +344,7 @@ It helps to:
 Import data into R using `read.csv`:
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_good.csv", header=TRUE)
+CO2 <- read.csv("data/co2_good.csv", header=TRUE)
 ```
 
 Note that this will:
@@ -454,11 +454,11 @@ Very useful to check data type (mode) of all columns to make sure R loaded data 
 Load the data with:
 
 ```{r, eval = FALSE}
-CO2 <- read.csv("co2_good.csv", header = FALSE)
+CO2 <- read.csv("data/co2_good.csv", header = FALSE)
 ```
 
 Check data types with `str()` again. What is wrong here?
-.comment[Do not forget to re-load data with* `header = T` *afterwards]
+.comment[Do not forget to re-load data with `header = T` afterwards]
 
 ---
 ## Reminder from Workshop 1: Accessing data
@@ -617,7 +617,7 @@ apply(CO2[,4:5],
 
 ```{r, eval = F}
 # Saving an R workspace file that stores all your objects
-save.image(file="co2_project_Data.RData")
+save.image(file="data/co2_project_Data.RData")
 
 
 # Clear your memory
@@ -625,7 +625,7 @@ rm(list = ls())
 
 
 # Reload your data
-load("co2_project_Data.RData")
+load("data/co2_project_Data.RData")
 head(CO2) # Looking good!
 ```
 
@@ -639,7 +639,7 @@ head(CO2)
 R disposes of `write` functions that allow you to write objects directly to files in your computer. Let us use the `write.csv` function to save our CO2 data into a .CSV file:
 
 ```{r, eval = FALSE}
-write.csv(CO2, file = "co2_new.csv")
+write.csv(CO2, file = "data/co2_new.csv")
 ```
 
 Note that our arguments are both:
@@ -678,7 +678,7 @@ Let's practice how to solve these common errors.
 Read the file `co2_broken.csv`
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv")
+CO2 <- read.csv("data/co2_broken.csv")
 head(CO2)
 ```
 
@@ -731,7 +731,7 @@ head(CO2)
 * Here, "TAB" was used instead of ","
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv",sep = "")
+CO2 <- read.csv("data/co2_broken.csv",sep = "")
 ```
 
 ---
@@ -752,7 +752,7 @@ head(CO2)
 Skip two lines when loading the file using the "skip" argument:
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv", sep = "", skip = 2)
+CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2)
 head(CO2)
 ```
 
@@ -787,7 +787,7 @@ Tell R that all of NA, "na", and "cannot_read_notes" should be considered NA. Th
 
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv", sep = "", skip = 2,
+CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2,
                 na.strings = c("NA","na","cannot_read_notes"))
 str(CO2)
 ```

@@ -338,7 +338,7 @@ Vous pouvez vérifier:
 Utilisez la fonction `read.csv()` pour importer des données provenant d'un fichier .csv dans R.
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_good.csv", header=TRUE)
+CO2 <- read.csv("data/co2_good.csv", header=TRUE)
 ```
 
 Cette commande spécifie que vous créez un objet nommé "CO2" en chargeant un fichier .csv nommé "co2_good.csv". Ce fichier doit se trouver dans votre répertoire de travail.
@@ -361,7 +361,7 @@ Rappelez-vous que vous pouvez obtenir de l'aide pour une fonction avec `?`
 La page d'aide nous informe que l'argument `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes.
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_good.csv", header = TRUE)
+CO2 <- read.csv("data/co2_good.csv", header = TRUE)
 ```
 
 .alert[NOTE] Si vous utilisez un système d'exploitation en français ou un éditeur CSV, il est possible que vous deviez utiliser la fonction `read.csv2()` pour importer correctement un fichier.
@@ -422,7 +422,7 @@ Chargez les données de nouveau en utilisant le script suivant :
 
 
 ```{r, eval = FALSE}
-CO2 <- read.csv("co2_good.csv", header = FALSE)
+CO2 <- read.csv("data/co2_good.csv", header = FALSE)
 ```
 
 Vérifiez la structure des données avec la fonction `str()`.
@@ -585,11 +585,11 @@ apply(CO2[,4:5], MARGIN = 2, FUN = mean)
 
 ```{r, eval = FALSE}
 # Sauver l'espace de travail avec tous les objets
-save.image(file="co2_project_Data.RData")
+save.image(file="data/co2_project_Data.RData")
 
 rm(list = ls()) # Nettoyer l'espace de travail
 
-load("co2_project_Data.RData") # Charger tout ce qui se trouvait dans l'espace de travail
+load("data/co2_project_Data.RData") # Charger tout ce qui se trouvait dans l'espace de travail
 head(CO2) # cela fonctionne! :)
 ```
 
@@ -602,7 +602,7 @@ head(CO2)
 Pour enregistrer dans le répertoire de travail des données que vous avez créées ou modifiées dans R, utilisez la fonction `write.csv()`.
 
 ```{r, eval = FALSE}
-write.csv(CO2, file = "co2_new.csv")
+write.csv(CO2, file = "data/co2_new.csv")
 ```
 
 `CO2` ![:faic](arrow-right) Nom de l'objet dans R
@@ -640,7 +640,7 @@ Pratiquons-nous à réparer certains problèmes communs.
 Importez un jeu de données "endommagé" dans R et trouvez les problèmes.
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv")
+CO2 <- read.csv("data/co2_broken.csv")
 ```
 
 ---
@@ -701,7 +701,7 @@ head(CO2)
 * Ici, une tabulation sépare les valeurs au lieu d'une virgule.
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv", sep = "")
+CO2 <- read.csv("data/co2_broken.csv", sep = "")
 ```
 
 ---
@@ -722,7 +722,7 @@ head(CO2)
 Pour régler ce problème, vous devez indiquer à R de sauter les deux premières lignes avec l'argument "skip".
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv", sep = "", skip = 2)
+CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2)
 head(CO2)
 ```
 
@@ -755,7 +755,7 @@ unique(CO2$uptake)
 Indiquez à R que tous les éléments NA, "na" et "cannot_read_notes" doivent être considérés comme des NA. Ensuite, comme toutes les autres valeurs de ces colonnes sont des nombres, `conc` et` uptake` seront chargés sous forme numérique / entier.
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("co2_broken.csv", sep = "", skip = 2,
+CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2,
                 na.strings = c("NA", "na", "cannot_read_notes"))
 str(CO2)
 ```

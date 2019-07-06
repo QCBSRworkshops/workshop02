@@ -1,0 +1,6 @@
+cran_pkgs:
+    - DiagrammeR
+    - widgetframe
+    - knitr
+    - tidyverse
+    - magrittr
