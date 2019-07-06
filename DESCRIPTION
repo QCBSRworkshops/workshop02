@@ -1,0 +1,18 @@
+Package: placeholder
+Type: Tutorial
+Title: Workshop 01
+Version: 0.0.1
+Authors@R: c(
+  person("Team", "QCBS", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
+  )
+Imports:
+  DiagrammeR,
+  ggplot2,
+  knitr,
+  magrittr,
+  qcbsRworkshops,
+  tidyverse,
+  widgetframe,
+  xaringan
+Remotes:
+  QCBSRworkshops/qcbsRworkshops

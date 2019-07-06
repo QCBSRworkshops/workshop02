@@ -17,3 +17,22 @@ Le contenu de cet atelier a été révisé par plusieurs membres du CSBQ. Si vou
 # Atelier 2: Charger et manipuler des données
 
 Durant cet atelier, vous apprendrez comment charger et visualiser des données dans R. Vous apprendrez certaines fonctions permettant d’examiner vos données et vous apprendrez comment corriger certaines erreurs communes se produisant lors du chargement des données. Finalement, vous verrez l’importance de sauvegarder votre travail dans un script R, soit un fichier texte contenant tous vos codes et permettant de refaire toutes vos analyses en appuyant sur une seule touche (ou deux, ou trois peut-être…). Ensuite, nous présenterons `tidyr` et `dplyr` pour vous aider à transformer et à gérer le format de vos données ainsi que pour appliquer des fonctions simples ou complexes sur des sous-groupes de vos jeux de données. Cet atelier s’avérera utile non seulement pour les participants suivant notre série d’ateliers, mais également pour ceux et celles d’entre vous connaissant déjà le langage R et cherchant à maîtriser des outils plus avancés pour l'analyse et la visualisation de vos données.
+
+
+# Links
+
+#### [English](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.html)
+
+#### [Français](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.html)
+
+# Developers
+
+1. Set the working directory set to this folder.
+2. then use:
+
+``` r
+install.packages("remotes")
+remotes::install_github("QCBSRworkshops/qcbsRworkshops")
+library("qcbsRworkshops")
+build_workshops()
+```
