@@ -52,7 +52,7 @@ library(magrittr)
 3. Loading, exploring, and saving data
 <br>
 <br>
-4. Learn to manipulate data frames with tidyr, dplyr, maggritr
+4. Learn to manipulate data frames with tidyr, dplyr, maggritr *(For more advanced users)*
 
 
 ---
