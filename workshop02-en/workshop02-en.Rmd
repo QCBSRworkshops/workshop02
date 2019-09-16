@@ -350,18 +350,6 @@ Tells R where your scripts and data are. You need to set the right working direc
 getwd()
 ```
 
-If this is not the directory you would like to work with, you can set your own using:
-
-```{r, eval = FALSE}
-setwd()
-```
-
-Within the parenthesis, you will write the *extension of the directory* you would like to work with. See the example below:
-
-```{r, eval = FALSE}
-setwd("C:/Users/Luigi/Documents") # We use slashes "/", and not backslashes "\"
-```
-
 ---
 ## Display contents of the directory
 <br>
