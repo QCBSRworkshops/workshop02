@@ -61,7 +61,7 @@ library(magrittr)
 
 <br>
 <br>
-- Projects make easy to keep your work organized.  
+- Projects make easy to keep your work organized.
 <br>
 <br>
 - All files, scripts, and documentation related to a specific project are bound together with a .Rproj file
@@ -76,7 +76,7 @@ library(magrittr)
 ---
 ## Creating a new project
 
-Use the **Create project** command 
+Use the **Create project** command
 
 (available in the Projects menu and the global toolbar)
 
@@ -84,7 +84,7 @@ Use the **Create project** command
 ![:scale 60%](images/0_Create_a_new_project.png)]
 
 ---
-## One project = one folder 
+## One project = one folder
 
 Keep your files organized!
 
@@ -109,7 +109,7 @@ Dataset should be stored as comma-separated value files (.csv) in the working di
 ---
 ## Naming files
 
-Avoid using spaces, accents or spetial characters for your names. 
+Avoid using spaces, accents or special characters for your names.
 
 <br>
 .pull-left[
@@ -121,17 +121,17 @@ Avoid using spaces, accents or spetial characters for your names.
 <br>
 .pull-right[
 **not-wise**
-- final.csv 
-- safnnejs.csv 
-- 1-4.csv 
+- final.csv
+- safnnejs.csv
+- 1-4.csv
 ]
 
 
 ---
-## Naming variables 
+## Naming variables
 
-Avoid using spaces, accents or spetial characters for your names
-Use separators (e.g. "_") to add details
+Avoid using spaces, accents or special characters for your names
+Use separators (e.g. "\_") to add details
 
 <br>
 .pull-left[
@@ -200,7 +200,7 @@ class: inverse, center, middle
 ## R Scripts
 <br>
 <br>
-* What is a script? 
+* What is a script?
    - A text file storing the commands used for a particular analysis
 
 * Once written and saved, your script file allows you to make changes and re-run analyses with minimal effort!
@@ -272,7 +272,7 @@ You can make a section heading in R Studio four `#` signs
 This allows you to move quickly between sections and hide sections
 
 .center[
-![:scale 70%](images/4_Section_headings_Mod_arrow 2.png)
+![:scale 70%](images/4_Section_headings_Mod_arrow_2.png)
 ]
 
 
@@ -452,8 +452,8 @@ Very useful to check data type (mode) of all columns to make sure R loaded data 
 ## Working with datasets in R
 
 <br>
-<br> 
-Exercise: 
+<br>
+Exercise:
 
 Load the data with:
 
@@ -524,7 +524,7 @@ Creating new variables works for numbers and mathematical operations as well!
 
 ```{r, eval = FALSE}
 # Let's standardize our variable "absortion" to relative values
-CO2copy$absortionRel <- CO2copy$absortion/max(CO2copy$absortion)  
+CO2copy$absortionRel <- CO2copy$absortion/max(CO2copy$absortion)
 
 # Observe the results
 head(CO2copy$absortionRel)
@@ -554,7 +554,7 @@ CO2copy[1:50,]
 CO2copy[CO2copy$Traitement == "nonchilled",]
 
 # Select observations with absortion higher or equal to 20
-CO2copy[CO2copy$absortion >= 20, ]  
+CO2copy[CO2copy$absortion >= 20, ]
 
 # Select observations with absortion higher or equal to 20
 CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absortion >= 20, ]
@@ -896,9 +896,9 @@ library(tidyr)
 `gather(data, key, value, ...)`
 
 <span style="font-size: 21px;">
-  - `data` A data frame (e.g. `wide`)   
-  - `key` name of the new column containing variable names (e.g. `Measurement`)  
-  - `value` name of the new column containing variable values (e.g. `Value`)   
+  - `data` A data frame (e.g. `wide`)
+  - `key` name of the new column containing variable names (e.g. `Measurement`)
+  - `value` name of the new column containing variable values (e.g. `Value`)
   - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
 </span>
 
@@ -922,9 +922,9 @@ long
 `spread(data, key, value)`
 
 <span style="font-size: 21px;">
-  - `data` A data frame (e.g. `long`)   
-  - `key` Name of the column containing variable names (e.g. `Measurement`)  
-  - `value` Name of the column containing variable values (e.g. `Value`)   
+  - `data` A data frame (e.g. `long`)
+  - `key` Name of the column containing variable names (e.g. `Measurement`)
+  - `value` Name of the column containing variable values (e.g. `Value`)
 </span>
 
 ---
@@ -947,10 +947,10 @@ wide2
 
 `separate(data, col, into, sep)`
 
-  - `data` A data frame (e.g. `long`)   
+  - `data` A data frame (e.g. `long`)
   - `col` Name of the column you wish to separate
   - `into` Names of new variables to create
-  - `sep` Character which indicates where to separate  
+  - `sep` Character which indicates where to separate
 
 ---
 ## Using `separate()` example
@@ -1068,7 +1068,7 @@ Some corresponding R base functions:
 ---
 ## Intro to `dplyr`
 
-```{r, eval=F}
+```{r, eval = FALSE}
 install.packages("dplyr")
 library(dplyr)
 ```
@@ -1112,7 +1112,7 @@ These 4 core functions tackle the most common manipulations when working with da
 Example: suppose we are only interested in the variation of Ozone over time within the airquality dataset
 
 ```{r}
-ozone <- select(airquality, Ozone, Month, Day)
+ozone <- dplyr::select(airquality, Ozone, Month, Day)
 head(ozone)
 ```
 

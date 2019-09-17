@@ -50,7 +50,7 @@ class: center, middle, inverse, title-slide
 
 &lt;br&gt;
 &lt;br&gt;
-- Projects make easy to keep your work organized.  
+- Projects make easy to keep your work organized.
 &lt;br&gt;
 &lt;br&gt;
 - All files, scripts, and documentation related to a specific project are bound together with a .Rproj file
@@ -65,7 +65,7 @@ class: center, middle, inverse, title-slide
 ---
 ## Creating a new project
 
-Use the **Create project** command 
+Use the **Create project** command
 
 (available in the Projects menu and the global toolbar)
 
@@ -73,7 +73,7 @@ Use the **Create project** command
 ![:scale 60%](images/0_Create_a_new_project.png)]
 
 ---
-## One project = one folder 
+## One project = one folder
 
 Keep your files organized!
 
@@ -98,7 +98,7 @@ Dataset should be stored as comma-separated value files (.csv) in the working di
 ---
 ## Naming files
 
-Avoid using spaces, accents or spetial characters for your names. 
+Avoid using spaces, accents or special characters for your names.
 
 &lt;br&gt;
 .pull-left[
@@ -110,17 +110,17 @@ Avoid using spaces, accents or spetial characters for your names.
 &lt;br&gt;
 .pull-right[
 **not-wise**
-- final.csv 
-- safnnejs.csv 
-- 1-4.csv 
+- final.csv
+- safnnejs.csv
+- 1-4.csv
 ]
 
 
 ---
-## Naming variables 
+## Naming variables
 
-Avoid using spaces, accents or spetial characters for your names
-Use separators (e.g. "_") to add details
+Avoid using spaces, accents or special characters for your names
+Use separators (e.g. "\_") to add details
 
 &lt;br&gt;
 .pull-left[
@@ -189,7 +189,7 @@ class: inverse, center, middle
 ## R Scripts
 &lt;br&gt;
 &lt;br&gt;
-* What is a script? 
+* What is a script?
    - A text file storing the commands used for a particular analysis
 
 * Once written and saved, your script file allows you to make changes and re-run analyses with minimal effort!
@@ -263,7 +263,7 @@ You can make a section heading in R Studio four `#` signs
 This allows you to move quickly between sections and hide sections
 
 .center[
-![:scale 70%](images/4_Section_headings_Mod_arrow 2.png)
+![:scale 70%](images/4_Section_headings_Mod_arrow_2.png)
 ]
 
 
@@ -355,9 +355,9 @@ You can display contents of the working directory using `dir()`:
 
 ```r
 dir()
-# [1] "assets"             "data"               "images"            
-# [4] "qcbsR-fonts.css"    "qcbsR-header.html"  "qcbsR-macros.js"   
-# [7] "qcbsR.css"          "workshop02-en.html" "workshop02-en.Rmd"
+# [1] "data"               "images"             "qcbsR-fonts.css"   
+# [4] "qcbsR-header.html"  "qcbsR-macros.js"    "qcbsR.css"         
+# [7] "workshop02-en.html" "workshop02-en.Rmd"
 ```
 
 It helps to:
@@ -462,8 +462,8 @@ Very useful to check data type (mode) of all columns to make sure R loaded data 
 ## Working with datasets in R
 
 &lt;br&gt;
-&lt;br&gt; 
-Exercise: 
+&lt;br&gt;
+Exercise:
 
 Load the data with:
 
@@ -543,7 +543,7 @@ Creating new variables works for numbers and mathematical operations as well!
 
 ```r
 # Let's standardize our variable "absortion" to relative values
-CO2copy$absortionRel &lt;- CO2copy$absortion/max(CO2copy$absortion)  
+CO2copy$absortionRel &lt;- CO2copy$absortion/max(CO2copy$absortion)
 
 # Observe the results
 head(CO2copy$absortionRel)
@@ -575,7 +575,7 @@ CO2copy[1:50,]
 CO2copy[CO2copy$Traitement == "nonchilled",]
 
 # Select observations with absortion higher or equal to 20
-CO2copy[CO2copy$absortion &gt;= 20, ]  
+CO2copy[CO2copy$absortion &gt;= 20, ]
 
 # Select observations with absortion higher or equal to 20
 CO2copy[CO2copy$Traitement  == "nonchilled" &amp; CO2copy$absortion &gt;= 20, ]
@@ -1017,9 +1017,9 @@ library(tidyr)
 `gather(data, key, value, ...)`
 
 &lt;span style="font-size: 21px;"&gt;
-  - `data` A data frame (e.g. `wide`)   
-  - `key` name of the new column containing variable names (e.g. `Measurement`)  
-  - `value` name of the new column containing variable values (e.g. `Value`)   
+  - `data` A data frame (e.g. `wide`)
+  - `key` name of the new column containing variable names (e.g. `Measurement`)
+  - `value` name of the new column containing variable values (e.g. `Value`)
   - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
 &lt;/span&gt;
 
@@ -1056,9 +1056,9 @@ long
 `spread(data, key, value)`
 
 &lt;span style="font-size: 21px;"&gt;
-  - `data` A data frame (e.g. `long`)   
-  - `key` Name of the column containing variable names (e.g. `Measurement`)  
-  - `value` Name of the column containing variable values (e.g. `Value`)   
+  - `data` A data frame (e.g. `long`)
+  - `key` Name of the column containing variable names (e.g. `Measurement`)
+  - `value` Name of the column containing variable values (e.g. `Value`)
 &lt;/span&gt;
 
 ---
@@ -1093,10 +1093,10 @@ wide2
 
 `separate(data, col, into, sep)`
 
-  - `data` A data frame (e.g. `long`)   
+  - `data` A data frame (e.g. `long`)
   - `col` Name of the column you wish to separate
   - `into` Names of new variables to create
-  - `sep` Character which indicates where to separate  
+  - `sep` Character which indicates where to separate
 
 ---
 ## Using `separate()` example
@@ -1299,7 +1299,7 @@ Example: suppose we are only interested in the variation of Ozone over time with
 
 
 ```r
-ozone &lt;- select(airquality, Ozone, Month, Day)
+ozone &lt;- dplyr::select(airquality, Ozone, Month, Day)
 head(ozone)
 #   Ozone Month Day
 # 1    41     5   1
