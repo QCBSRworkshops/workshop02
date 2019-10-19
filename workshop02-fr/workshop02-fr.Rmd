@@ -1154,7 +1154,7 @@ select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui co
 Par exemple, si on s'intéresse à la variation de la variable Ozone avec le temps.
 
 ```{r}
-ozone <- select(airquality, Ozone, Month, Day)
+ozone <- dplyr::select(airquality, Ozone, Month, Day)
 head(ozone)
 ```
 
@@ -1179,7 +1179,7 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans le jeu de données `airquality`
 
 ```{r}
-aout <- filter(airquality, Month == 8, Temp >= 90)
+aout <- dplyr::filter(airquality, Month == 8, Temp >= 90)
 # ou filter(airquality, Month == 8 & Temp >= 90)
 head(aout)
 ```
@@ -1203,7 +1203,7 @@ Example :
 1) Commençons par créer une version désordonnée de `airquality`:
 
 ```{r}
-air_degat <- sample_frac(airquality, 1)
+air_degat <- dplyr::sample_frac(airquality, 1)
 head(air_degat)
 ```
 
@@ -1215,7 +1215,7 @@ Example :
 2) Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
 
 ```{r}
-air_chron <- arrange(air_degat, Month, Day)
+air_chron <- dplyr::arrange(air_degat, Month, Day)
 head(air_chron)
 ```
 
@@ -1239,7 +1239,7 @@ On peut utiliser la fonction `mutate()` pour créer et transformer des variables
 Par exemple, on veut transformer la variable température `Temp` de degrés Fahrenheit vers degrés Celsius
 
 ```{r}
-airquality_C <- mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
@@ -1267,7 +1267,7 @@ library(magrittr)
 Supposons qu'on veut créer un sous-ensemble de airquality pour le mois de juin, et ensuite convertir la variable de la température en degrés Celsius. On peut créer ce data frame en combinant 2 *verbes* de dplyr
 
 ```{r}
-juin_C <- mutate(filter(airquality, Month == 6),
+juin_C <- dplyr::mutate(dplyr::filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1280,8 +1280,8 @@ juin_C <- mutate(filter(airquality, Month == 6),
 
 ```{r}
 juin_C <- airquality %>%
-    filter(Month == 6) %>%
-    mutate(Temp_C = (Temp-32)*(5/9))
+    dplyr::filter(Month == 6) %>%
+    dplyr::mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Avantages :
@@ -1324,8 +1324,8 @@ Utilisons ces deux fonctions pour générer un sommaire du jeu de données `airq
 
 ```{r}
 mois_moy <- airquality %>%
-      group_by(Month) %>%
-      summarise(mean_temp = mean(Temp),
+      dplyr::group_by(Month) %>%
+      dplyr::summarise(mean_temp = mean(Temp),
                 sd_temp = sd(Temp))
 mois_moy
 ```
