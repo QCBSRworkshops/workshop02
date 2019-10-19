@@ -299,20 +299,28 @@ rm(list = ls())
 
 ---
 ## Housekeeping
-<br>
-<br>
+
 Demo – Try to add some test data to R and then see how `rm(list = ls())` removes it
 
-
-```{r, eval = TRUE, error = TRUE}
+```{r, eval = FALSE}
 A<-"Test" # Put some data in workspace
 A <- "Test" # Note that you can use spaces!
 A = "Test" # <- or = can be used equally
 
 #Note that it is best practice to use "<-" for assigment instead of "="
+
+# Check objects in the workspace
+ls()
+# [1] "A"
+
 A
+# [1] "Test"
+
+# clean workspace
 rm(list=ls())
+
 A
+# Error in eval(expr, envir, enclos): object 'A' not found
 ```
 
 ---
@@ -333,12 +341,22 @@ class: inverse, center, middle
 ---
 ## Download today's data
 <br>
-<br>
 You can download the data and the script for this workshop from the wiki:
 
 .center[http://qcbs.ca/wiki/r/workshop2]
 
 Save the files in the folder where your created your R project.
+
+--
+
+<br>
+
+.alert[NOTE] Many databases are already available on R
+
+```{r, eval = FALSE}
+# Complete list of available data on base R
+library(help = "datasets")
+```
 
 ---
 ## Working Directory
@@ -423,6 +441,7 @@ R Command  					| Action
 `dim(CO2)`          | dimensions of the dataframe
 `ncol(CO2)`					| number of columns
 `nrow(CO2)`					| number of rows
+`summary(CO2)`      | basic statistics for each variables
 
 
 ---
@@ -461,13 +480,17 @@ Load the data with:
 CO2 <- read.csv("data/co2_good.csv", header = FALSE)
 ```
 
-Check data types with `str()` again. What is wrong here?
+Check data types with `str()` again.
+
+What is wrong here?
+
+--
+
 .comment[Do not forget to re-load data with `header = T` afterwards]
 
 ---
 ## Reminder from Workshop 1: Accessing data
-<br>
-<br>
+
 Imagine a data frame called `mydata`:
 
 .center[
@@ -584,20 +607,32 @@ This is also useful to spot some errors you might have missed!
 
 You can also use other functions to calculate basic statistics on parts of your data frame. Let's try the `mean()`, `sd()` and `hist()` functions:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # Calculate the mean and the standard deviation of the CO2 concentration:
 # Assign them to new variables
 meanConc <- mean(CO2$conc)
 sdConc <- sd(CO2$conc)
+```
+
+```{r, eval = TRUE}
 # print() prints any given value to the R console
 print(paste("the mean of concentration is:", meanConc))
+
 print(paste("the standard deviation of concentration is:", sdConc))
 ```
 
-```{r, eval = FALSE}
+---
+## Data exploration
+
+```{r, eval = TRUE, fig.width=6, fig.height=6}
 # Let's plot a histogram to explore the distribution of "uptake"
 hist(CO2$uptake)
+```
 
+---
+## Data exploration
+
+```{r, eval = TRUE, fig.width=6, fig.height=6}
 # Increasing the number of bins to observe better the pattern
 hist(CO2$uptake, breaks = 40)
 ```
@@ -646,13 +681,19 @@ Note that our arguments are both:
 ## Challenge: Use your data ![:cube]()
 <br>
 <br>
-* Try to load, explore, plot, and save your own data in R;*
+* Try to load, explore, plot, and save your own data in R;.comment[*]
 * If it does not load properly, try to make the appropriate changes;
 * When you are finished, try opening your exported data in Excel, Numbers, Notepad or TextEdit.
 
 .comment[*If you don’t have your own data, work with your neighbor]
-.comment[*Remember to clean your workspace]
 
+.comment[Remember to clean your workspace]
+
+
+---
+class: inverse, center, middle
+
+# Database repair
 
 ---
 ## Database repair
@@ -692,11 +733,12 @@ Some useful functions:
 
 add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
+<br>
+.alert[HINT] There are 4 problems!
+
+
 ---
 ## Database repair
-
-
-.alert[HINT] There are 4 problems!
 
 .alert[ERROR 1] The data appears to be lumped into one column
 
@@ -742,12 +784,14 @@ head(CO2)
 ---
 ## Database repair
 
-.alert[ERROR 3]
-
-`conc` and `uptake` variables are considered factors instead of numbers, because there are comments in the numeric columns
+.alert[ERROR 3] `conc` and `uptake` variables are considered factors instead of numbers, because there are comments in the numeric columns
 
 ```{r, eval = TRUE}
 str(CO2)
+```
+
+```{r, eval = TRUE}
+unique(CO2$conc)
 ```
 
 * Due to missing values entered as "cannot_read_notes" and "na"
@@ -803,11 +847,45 @@ CO2$Treatment[CO2$Treatment=="nnchilled"] <- "nonchilled"
 
 # Identify all rows that contain "chiled" and replace with "chilled"
 CO2$Treatment[CO2$Treatment=="chiled"] <- "chilled"
+```
 
-# Drop unused levels from factor
+
+---
+## Database repair
+
+.alert[ERROR 4] - Solution
+
+After repairing the factors, we need to remove the unused factor levels
+
+If not :
+
+```{r}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+
+
+---
+## Database repair
+
+.alert[ERROR 4] - Solution
+
+
+```{r, eval = TRUE}
 CO2 <- droplevels(CO2)
 str(CO2)
 ```
+
+.pull-left[
+```{r, eval = FALSE}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
+.pull-right[
+```{r, echo = FALSE, fig.height = 3.5}
+par(mar = c(4, 4, 0, 0))
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
 
 
 ---
@@ -818,7 +896,9 @@ class: inverse, center, middle
 ---
 class: inverse, center, middle
 
-# Learn to manipulate data with tidyr, dyplr, maggritr
+# Learn to manipulate data with
+
+## tidyr, dyplr, maggritr
 
 ---
 ## Using `tidyr` to reshape data frames
@@ -828,7 +908,7 @@ library(tidyr)
 ```
 
 <div style="text-align:center">
-<img src="images/tidyr_logo.png" height=50% width=50%>
+<img src="images/tidyr_logo.png" height=40% width=40%>
 </div>
 
 ---
@@ -912,7 +992,7 @@ wide
 ```
 
 ```{r}
-long = gather(wide, Measurement, Value, DBH, Height)
+long = tidyr::gather(wide, Measurement, Value, DBH, Height)
 long
 ```
 
@@ -932,7 +1012,10 @@ long
 
 ```{r}
 long
-wide2 = spread(long, Measurement, Value)
+```
+
+```{r}
+wide2 = tidyr::spread(long, Measurement, Value)
 wide2
 ```
 
@@ -973,7 +1056,7 @@ messy
 First convert the messy data frame from wide to long format
 
 ```{r}
-messy.long <- gather(messy, taxa, count, -id, -trt)
+messy.long <- tidyr::gather(messy, taxa, count, -id, -trt)
 head(messy.long)
 ```
 
@@ -983,14 +1066,14 @@ head(messy.long)
 Then we want to split the 2 sampling time (T1 and T2).
 
 ```{r}
-messy.long.sep <- separate(messy.long, taxa,
-                           into = c("species", "time"), sep = "\\.")
+messy.long.sep <- tidyr::separate(messy.long, taxa,
+                                  into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
 ```
 
-<span style="font-size: 18px;">
+.small[.comment[
 The argument `sep = "\\."` tells R to splits the character string around the period (.). We cannot type directly `"."` because it is a regular expression that matches any single character.
-</span>
+]]
 
 ---
 ## Recap of `tidyr`
@@ -1007,10 +1090,9 @@ Split and merge columns with `unite()` and `separate()`
 
 
 ---
-## Challenge with `tidyr` ![:cube]()
+## Challenge #1 ![:cube]()
 
-1. Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
-
+Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
 
 ```{r, eval = FALSE}
 ?airquality
@@ -1019,30 +1101,31 @@ data(airquality)
 ```
 
 ---
-## Solution
+## Solution #1
 
 Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
 
 ```{r}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- tidyr::gather(airquality, variable, value, -Month, -Day)
 head(air.long)
 ```
-<span style="font-size: 18px;">
+.small[.comment[
 Note that the syntax used here indicates that we wish to gather ALL the columns except *Month* and *Day*. It is equivalent to: `gather(airquality, value, Ozone, Solar.R, Temp, Wind)`
-</span>
-
-## Challenge with `tidyr` ![:cube]()
-
-
-2. `spread` the resulting data frame to return to the original data format.
+]]
 
 ---
-## Solution
+## Challenge #2 ![:cube]()
+
+
+`spread` the resulting data frame to return to the original data format.
+
+---
+## Solution #2
 
 `spread` the resulting data frame to return to the original data format.
 
 ```{r}
-air.wide <- spread(air.long, variable, value)
+air.wide <- tidyr::spread(air.long, variable, value)
 head(air.wide)
 ```
 
@@ -1094,10 +1177,14 @@ These 4 core functions tackle the most common manipulations when working with da
 
   * `...`  Can be column names or positions or complex expressions separated by commas
 
-  `select(data, column1, column2)` select columns 1 and 2
-  `select(data, c(2:4,6))` select columns 2 to 4 and 6
-  `select(data, -column1)` select all columns except column 1
-  `select(data, start_with(x.))` select all columns that start with "x."
+Examples:
+
+```r
+select(data, column1, column2) # select columns 1 and 2
+select(data, c(2:4,6)) # select columns 2 to 4 and 6
+select(data, -column1) # select all columns except column 1
+select(data, start_with(x.)) # select all columns that start with "x."
+```
 
 ---
 ## `select` columns
@@ -1135,7 +1222,7 @@ Extract a subset of rows that meet one or more specific conditions
 Example: we are interested in analyses that focus on the month of August during high temperature events
 
 ```{r}
-august <- filter(airquality, Month == 8, Temp >= 90)
+august <- dplyr::filter(airquality, Month == 8, Temp >= 90)
 # same as: filter(airquality, Month == 8 & Temp >= 90)
 head(august)
 ```
@@ -1158,23 +1245,23 @@ Example:
 1. Let's use the following code to create a scrambled version of the airquality dataset
 
 ```{r}
-air_mess <- sample_frac(airquality, 1)
+air_mess <- dplyr::sample_frac(airquality, 1)
 head(air_mess)
 ```
 
 ---
 ## Sort rows with `arrange`
-<br>
+
 <br>
 Example:
 2. Now let's arrange the data frame back into chronological order, sorting by Month then Day
 
 ```{r}
-air_chron <- arrange(air_mess, Month, Day)
+air_chron <- dplyr::arrange(air_mess, Month, Day)
 head(air_chron)
 ```
 
-Try :  `arrange(air_mess, Day, Month)` and see the difference.
+.comment[Try : `arrange(air_mess, Day, Month)` and see the difference.]
 
 ---
 ## Create new columns using `mutate`
@@ -1226,7 +1313,9 @@ june_C <- mutate(filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
+.small[.comment[
 As we add more operations, wrapping functions one inside the other becomes increasingly illegible. But, step by step would be redundant and write a lot of objects to the workspace.
+]]
 
 ---
 ## `magrittr`
@@ -1235,8 +1324,8 @@ Alternatively, we can use maggritr's pipe operator to link these successive oper
 
 ```{r}
 june_C <- airquality %>%
-    filter(Month == 6) %>%
-    mutate(Temp_C = (Temp-32)*(5/9))
+          dplyr::filter(Month == 6) %>%
+          dplyr::mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Advantages :
@@ -1267,7 +1356,7 @@ The `group_by` function is key to the Split-Apply-Combine strategy
 ## `dplyr` - Split-Apply-Combine
 
 <div style="text-align:center">
-<img src="images/summarise.png" height=70% width=70%>
+<img src="images/summarise.png" height=65% width=65%>
 </div>
 
 ---
@@ -1284,43 +1373,57 @@ month_sum
 ```
 
 ---
-## Challenge with `dplyr`and `magrittr` ![:cube]()
+## Challenge - `dplyr` and `magrittr` ![:cube]()
 
 Using the `ChickWeight` dataset, create a summary table which displays the difference in weight between the maximum and minimum weight of each chick in the study.
 
 Employ `dplyr` verbs and the `%>%` operator.
 
+```{r eval = 2}
+?ChickWeight
+data(ChickWeight)
+```
+
+
 ---
 ## Solution
 
-1. Use group_by() to divide the dataset by "Chick"
-2. Use summarise() to calculate the weight gain within each group
+1. Use `group_by()` to divide the dataset by `Chick`
+2. Use `summarise()` to calculate the weight gain within each group
 
 ```{r}
 weight_diff <- ChickWeight %>%
-      group_by(Chick) %>%
-      summarise(weight_diff = max(weight) - min(weight))
+               dplyr::group_by(Chick) %>%
+               dplyr::summarise(weight_diff = max(weight) - min(weight))
+```
+              
+```{r}
 head(weight_diff)
 ```
 
 ---
-## Ninja challenge
+## Ninja challenge ![:cube]()
 
-Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
+- Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
 
-Employ `dplyr` verbs and the `%>%` operator.
+- Employ `dplyr` verbs and the `%>%` operator.
 
-(Hint: `first()` and `last()` may be useful here.)
+<br>
+.alert[Hint]: `first()` and `last()` may be useful here
+
 
 ---
 ## Ninja solution
 
 ```{r}
 diet_summ <- ChickWeight %>%
-      group_by(Diet, Chick) %>%
-      summarise(weight_gain = last(weight) - first(weight)) %>%
-      group_by(Diet) %>%
-      summarise(mean_gain = mean(weight_gain))
+             dplyr::group_by(Diet, Chick) %>%
+             dplyr::summarise(weight_gain = last(weight) - first(weight)) %>%
+             dplyr::group_by(Diet) %>%
+             dplyr::summarise(mean_gain = mean(weight_gain))
+```
+
+```{r}
 diet_summ
 ```
 
