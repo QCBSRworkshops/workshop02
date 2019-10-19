@@ -43,7 +43,7 @@ library(magrittr)
 1. Créer un projet RStudio
 2. Ecrire un script dans R
 3. Charger, explorer et enregistrer des données
-4. Manipuler des jeux de données avec tidyr, dplyr, maggritr
+4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
 
 ---
 ## Les projets RStudio
@@ -52,7 +52,7 @@ library(magrittr)
   - Les projets RStudio permettent l'organisation de son travail et l'accès facile à tous les fichiers requis pour une analyse.
   - Tous les fichiers, scripts, et documentation utilisés pour une analyse sont reliés et regroupés ensemble dans un même projet.
 
-* L'utilisation de projets RStudio facilite aussi la reproducibilité et le partage de données, de scripts, et de leur documentation.
+* L'utilisation de projets RStudio facilite aussi la **reproducibilité** et le partage de données, de scripts, et de leur documentation.
 
 ---
 ## Créer un projet dans RStudio
@@ -86,6 +86,8 @@ Un projet = un dossier :)
 
 ---
 ## Bien nommer les fichiers
+
+Évitez d’utiliser des espaces, des accents ou des caractères spéciaux pour vos noms
 
 .pull-left[
 **Non:**
@@ -214,11 +216,15 @@ Utilisez le symbole `#` pour insérer des commentaires au sein d'un script. Ceci
 # Ceci est un commentaire pas une commande R!
 ```
 
-Annoter son script est un bon moyen de :
+--
+
+**Annoter son script est un bon moyen de** :
 
   * se rappeler ce que vous avez fait
   * dire aux collaborateurs ce que vous avez fait
   * favoriser une science reproductible
+
+.comment[Soyez aussi détaillé que possible]
 
 
 ---
@@ -267,11 +273,25 @@ Cette commande permet d'éviter d'utiliser un vieux jeu de données qui serait r
 On peut tester cette commande en ajoutant des objets dans l'espace de travail pour mieux comprendre comment `rm(list=ls())` fonctionne.
 
 
-```{r, eval = TRUE, error = TRUE}
-A <- "Test" # On crée un objet "A".
+```{r, eval = FALSE, error = TRUE}
+A<-"Test" # On crée un objet "A".
+A <- "Test" # Utilisez des espaces - plus facile à lire
+A = "Test"
+
+# Note: il est recommandé d'utiliser "<-" pour l'assigment au lieu de "="
+
+# Visualiser des objets en mémoire
+ls()
+# [1] "A"
+
 A
+# [1] "Test"
+
+# Nettoyer memoire
 rm(list=ls())
+
 A
+# Error in eval(expr, envir, enclos): object 'A' not found
 ```
 
 ---
