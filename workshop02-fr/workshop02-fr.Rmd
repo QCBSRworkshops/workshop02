@@ -889,7 +889,7 @@ large
 .small[Un data frame en format long contient une colonne par variable, où chaque ligne est une observation]
 
 ```{r, echo=FALSE, eval = T}
-long <- gather(large, dimension, cm, DHP, Haut)
+long <- tidyr::gather(large, dimension, cm, DHP, Haut)
 long
 ```
 ]
@@ -941,7 +941,7 @@ large
 ```
 
 ```{r}
-long <- gather(large, dimension, cm, DHP, Haut)
+long <- tidyr::gather(large, dimension, cm, DHP, Haut)
 long
 ```
 
@@ -964,7 +964,7 @@ long
 ```
 
 ```{r}
-large2 <- spread(long, dimension, cm)
+large2 <- tidyr::spread(long, dimension, cm)
 large2
 ```
 
@@ -1006,7 +1006,7 @@ degat
 On peut commencer par convertir ce jeu de données vers le format long.
 
 ```{r}
-degat.long <- gather(degat, taxa, count, -id, -trt)
+degat.long <- tidyr::gather(degat, taxa, count, -id, -trt)
 head(degat.long)
 ```
 
@@ -1018,8 +1018,8 @@ head(degat.long)
 Ensuite, on veut séparer les 2 temps d'échantillonnage (T1 et T2) dans la colonne "taxa" en utilisant le point comme caractère de séparation
 
 ```{r}
-degat.long.sep <- separate(degat.long, taxa,
-                           into = c("especes", "temps"), sep = "\\.")
+degat.long.sep <- tidyr::separate(degat.long, taxa,
+                                   into = c("especes", "temps"), sep = "\\.")
 head(degat.long.sep)
 ```
 
@@ -1061,7 +1061,7 @@ data(airquality)
 Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
 ```{r}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- tidyr::gather(airquality, variable, value, -Month, -Day)
 head(air.long)
 ```
 
@@ -1078,7 +1078,7 @@ Convertissez-le en format large pour retrouver le format original de `airquality
 Convertissez-le en format large pour retrouver le format original de `airquality`
 
 ```{r}
-air.wide <- spread(air.long, variable, value)
+air.wide <- tidyr::spread(air.long, variable, value)
 head(air.wide)
 ```
 
@@ -1349,10 +1349,13 @@ data(ChickWeight)
 2. Utisez `summarise()` pour calculer la gain de poids par groupe
 
 ```{r}
-mass_diff <- ChickWeight %>%
-      group_by(Chick) %>%
-      summarise(mass_diff = max(weight) - min(weight))
-mass_diff
+weight_diff <- ChickWeight %>%
+               dplyr::group_by(Chick) %>%
+               dplyr::summarise(weight_diff = max(weight) - min(weight))
+```
+              
+```{r}
+head(weight_diff)
 ```
 
 ---
@@ -1372,11 +1375,15 @@ mass_diff
 ## Solution ninja
 
 ```{r}
-diet_mass <- ChickWeight %>%
-      group_by(Diet, Chick) %>%
-      summarise(gain_masse = last(weight) - first(weight)) %>%
-      summarise(gain_moyen = mean(gain_masse))
-diet_mass
+diet_summ <- ChickWeight %>%
+             dplyr::group_by(Diet, Chick) %>%
+             dplyr::summarise(weight_gain = last(weight) - first(weight)) %>%
+             dplyr::group_by(Diet) %>%
+             dplyr::summarise(mean_gain = mean(weight_gain))
+```
+
+```{r}
+diet_summ
 ```
 
 ---
