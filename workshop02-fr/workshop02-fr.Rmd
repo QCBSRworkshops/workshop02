@@ -847,14 +847,24 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Manipulation de données avec `tidyr`, `dplyr`, `magrittr`
+# Section avancée
+
+---
+class: inverse, center, middle
+
+# Manipulation de données avec
+
+## `tidyr`, `dplyr`, `magrittr`
 
 ---
 ## `tidyr` pour réorganiser ses données
 
+```{r, eval = FALSE}
+library(tidyr)
+```
 
 .center[
-![:scale 50%](images/tidyr_logo.png)
+![:scale 40%](images/tidyr_logo.png)
 ]
 
 ---
@@ -863,7 +873,7 @@ class: inverse, center, middle
 .pull-left[
 **Format large (wide)**
 
-Un data frame en format large contient une colonne pour chaque variable ou facteur
+.small[Un data frame en format large contient une colonne pour chaque variable ou facteur]
 
 ```{r, echo=FALSE, eval = T}
 large <- data.frame(Species = c("Chene", "Orme", "Frene"),
@@ -876,7 +886,7 @@ large
 .pull-right[
 **Format long**
 
-Un data frame en format long contient une colonne par variable, où chaque ligne est une observation
+.small[Un data frame en format long contient une colonne par variable, où chaque ligne est une observation]
 
 ```{r, echo=FALSE, eval = T}
 long <- gather(large, dimension, cm, DHP, Haut)
@@ -950,6 +960,10 @@ long
 ## Disperser avec `spread()`
 
 ```{r}
+long
+```
+
+```{r}
 large2 <- spread(long, dimension, cm)
 large2
 ```
@@ -1009,9 +1023,10 @@ degat.long.sep <- separate(degat.long, taxa,
 head(degat.long.sep)
 ```
 
+.small[
 .comment[
 L'argument `sep = " \\."` indique à R de scinder la chaîne de caractères autour du point (.). Nous ne pouvons pas écrire directement `sep = "."` car il s’agit d’une expression régulière qui correspond à n’importe quel caractère (un joker).
-]
+]]
 
 
 ---
@@ -1030,13 +1045,9 @@ Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `
 
 
 ---
-## DÉFI ![:cube]()
+## DÉFI #1 ![:cube]()
 
-#### Utiliser `tidyr` pour convertir le format long en format large
-
-1. Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
-
-2. Ensuite, convertissez-le en format large pour retrouver le format original de `airquality`
+Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
 ```{r, eval = FALSE}
 ?airquality
@@ -1045,9 +1056,10 @@ data(airquality)
 ```
 
 ---
-## Solution
+## Solution #1
 
-1. Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
+Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
+
 ```{r}
 air.long <- gather(airquality, variable, value, -Month, -Day)
 head(air.long)
@@ -1056,9 +1068,14 @@ head(air.long)
 .comment[Notez que la syntaxe utilisée ici indique que nous souhaitons rassembler TOUTES les colonnes sauf *Month* et *Day*. Cela équivaut à: `rassembler (qualité de l'air, valeur, Ozone, Solar.R, température, vent)`]
 
 ---
-## Solution
+## DÉFI #2 ![:cube]()
 
-2. Ensuite, convertissez-le en format large pour retrouver le format original de `airquality`
+Convertissez-le en format large pour retrouver le format original de `airquality`
+
+---
+## Solution #2
+
+Convertissez-le en format large pour retrouver le format original de `airquality`
 
 ```{r}
 air.wide <- spread(air.long, variable, value)
@@ -1082,12 +1099,10 @@ La mission de `dplyr` est de simplifier nos tâches de manipulation.
 - Rapide et efficace avec les grands jeux de données;
 - Peut s’interfacer avec des bases de données externes et traduire votre code R en requêtes SQL
 
+Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `split()`, `subset()`, `apply()`, `sapply()`, `lapply()`, `tapply()` et `aggregate()`
 
 ---
 ## Introduction à `dplyr`
-
-Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `split()`, `subset()`, `apply()`, `sapply()`, `lapply()`, `tapply()` et `aggregate()`
-
 
 Commençons par installer et charger le paquet `dplyr`
 
@@ -1117,6 +1132,8 @@ Voici les 4 *verbes* principaux qui permettent d'exécuter les manipulations les
 
   * `data` : le jeu de données
   * `...` : noms ou positions de colonnes, ou expressions complexes (séparés par des virgules pour désigner les colonnes que l'on veut sélectionner
+
+Examples :
 
 ```{r, eval=F}
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
@@ -1168,7 +1185,7 @@ head(aout)
 ```
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
 Réordonne les lignes selon une ou plusieurs colonnes, par défaut en ordre croissant
 
@@ -1179,9 +1196,11 @@ On peut également réordonner les lignes en ordre décroissant en utilisant la 
 `arrange(data, variable1, desc(variable2), ...)`
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
-1. Commençons par créer une version désordonnée de `airquality`:
+Example :
+
+1) Commençons par créer une version désordonnée de `airquality`:
 
 ```{r}
 air_degat <- sample_frac(airquality, 1)
@@ -1189,16 +1208,18 @@ head(air_degat)
 ```
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
-2. Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
+Example :
+
+2) Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
 
 ```{r}
 air_chron <- arrange(air_degat, Month, Day)
 head(air_chron)
 ```
 
-Essayez `arrange(air_mess, Day, Month)` et voyez la différence.
+.comment[Essayez `arrange(air_mess, Day, Month)` et voyez la différence.]
 
 
 ---
@@ -1225,14 +1246,13 @@ head(airquality_C)
 ---
 ## `magrittr`
 
-.center[
-![:scale 60%](images/magrittr.png)]
+Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%>%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
 
+.center[
+![:scale 40%](images/magrittr.png)]
 
 ---
 ## `magrittr`
-
-Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%>%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
 
 Commençons par installer et charger le paquet :
 
@@ -1346,7 +1366,7 @@ mass_diff
 
 <br>
 
-.comment[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
+.alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
 
 ---
 ## Solution ninja
