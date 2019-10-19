@@ -43,7 +43,7 @@ library(magrittr)
 1. Créer un projet RStudio
 2. Ecrire un script dans R
 3. Charger, explorer et enregistrer des données
-4. Manipuler des jeux de données avec tidyr, dplyr, maggritr
+4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
 
 ---
 ## Les projets RStudio
@@ -52,7 +52,7 @@ library(magrittr)
   - Les projets RStudio permettent l'organisation de son travail et l'accès facile à tous les fichiers requis pour une analyse.
   - Tous les fichiers, scripts, et documentation utilisés pour une analyse sont reliés et regroupés ensemble dans un même projet.
 
-* L'utilisation de projets RStudio facilite aussi la reproducibilité et le partage de données, de scripts, et de leur documentation.
+* L'utilisation de projets RStudio facilite aussi la **reproducibilité** et le partage de données, de scripts, et de leur documentation.
 
 ---
 ## Créer un projet dans RStudio
@@ -86,6 +86,8 @@ Un projet = un dossier :)
 
 ---
 ## Bien nommer les fichiers
+
+Évitez d’utiliser des espaces, des accents ou des caractères spéciaux pour vos noms
 
 .pull-left[
 **Non:**
@@ -214,11 +216,15 @@ Utilisez le symbole `#` pour insérer des commentaires au sein d'un script. Ceci
 # Ceci est un commentaire pas une commande R!
 ```
 
-Annoter son script est un bon moyen de :
+--
+
+**Annoter son script est un bon moyen de** :
 
   * se rappeler ce que vous avez fait
   * dire aux collaborateurs ce que vous avez fait
   * favoriser une science reproductible
+
+.comment[Soyez aussi détaillé que possible]
 
 
 ---
@@ -267,11 +273,25 @@ Cette commande permet d'éviter d'utiliser un vieux jeu de données qui serait r
 On peut tester cette commande en ajoutant des objets dans l'espace de travail pour mieux comprendre comment `rm(list=ls())` fonctionne.
 
 
-```{r, eval = TRUE, error = TRUE}
-A <- "Test" # On crée un objet "A".
+```{r, eval = FALSE, error = TRUE}
+A<-"Test" # On crée un objet "A".
+A <- "Test" # Utilisez des espaces - plus facile à lire
+A = "Test"
+
+# Note: il est recommandé d'utiliser "<-" pour l'assigment au lieu de "="
+
+# Visualiser des objets en mémoire
+ls()
+# [1] "A"
+
 A
+# [1] "Test"
+
+# Nettoyer memoire
 rm(list=ls())
+
 A
+# Error in eval(expr, envir, enclos): object 'A' not found
 ```
 
 ---
@@ -298,14 +318,25 @@ class: inverse, center, middle
 
 Vous pouvez télécharger les données et le script depuis :
 
-http://qcbs.ca/wiki/r/workshop2
+.center[http://qcbs.ca/wiki/r/workshop2]
 
 Enregistrez les fichiers dans le dossier où vous avez crée votre projet R.
+
+--
+
+<br>
+
+.alert[NOTE] Il existe des données déjà disponibles sur R
+
+```{r, eval = FALSE}
+# Liste complete de tous les données disponibles sur base R
+library(help = "datasets")
+```
 
 ---
 ## Répertoire de travail
 
-Vous devez indiquer à R le répertoire où se trouvent les fichiers de données afin de les charger.
+Si vous n'utilisez pas un **projet RStudio**, vous devez indiquer à R le répertoire où se trouvent les fichiers de données afin de les charger.
 
 Pour voir quel répertoire R utilise :
 
@@ -313,9 +344,13 @@ Pour voir quel répertoire R utilise :
 getwd()
 ```
 
-Lorsque vous chargez un script, R définit le répertoire de travail comme étant le dossier qui contient le script.
+Si ce n'est pas le répertoire avec lequel vous souhaitez travailler, vous pouvez définir le vôtre à l'aide de:
 
-Utilisez `setwd()` pour spécifier un nouveau chemin d'accès du répertoire ou cliquez sur session -> Définir le répertoire -> Choisir le répertoire.
+```{r, eval = FALSE}
+setwd("C:/Users/mon_repertoire")
+```
+
+.comment[Il est recommandé de créer un projet RStudio et ne pas utiliser `setwd()` pour faciliter la reproducibilité]
 
 ---
 ## Afficher le contenu du répertoire de travail
@@ -341,13 +376,10 @@ Utilisez la fonction `read.csv()` pour importer des données provenant d'un fich
 CO2 <- read.csv("data/co2_good.csv", header=TRUE)
 ```
 
-Cette commande spécifie que vous créez un objet nommé "CO2" en chargeant un fichier .csv nommé "co2_good.csv". Ce fichier doit se trouver dans votre répertoire de travail.
-
-Il est aussi possible d'utiliser la fonction `file.choose()` pour charger un fichier de manière interactive (non recommandé).
-
-```{r, eval = F}
-CO2 <- read.csv(file.choose())
-```
+- Cette commande va créer un objet nommé `CO2`
+- Le nom du fichier est écrit entre guillemets (`'file'` ou `"file"`)
+- Si vous voulez charger un fichier d'un autre répertoire, vous devrez écrire l'extension complète: `read.csv("C:/Users/Mario/Downloads/co2_good.csv")`
+- `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes
 
 ---
 ## Importer un jeu de données
@@ -358,13 +390,11 @@ Rappelez-vous que vous pouvez obtenir de l'aide pour une fonction avec `?`
 ?read.csv
 ```
 
-La page d'aide nous informe que l'argument `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes.
-
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_good.csv", header = TRUE)
-```
-
 .alert[NOTE] Si vous utilisez un système d'exploitation en français ou un éditeur CSV, il est possible que vous deviez utiliser la fonction `read.csv2()` pour importer correctement un fichier.
+
+```{r, eval = FALSE}
+?read.csv2
+```
 
 ---
 ##  Importer un jeu de données
@@ -379,19 +409,19 @@ Prenez note que RStudio montre maintenant le jeu de données CO2 dans votre espa
 ---
 ## Visualiser les données
 
-Voici quelques fonctions utiles pour visualiser le jeu de données importé :
-
 R code  					| action
 ----------------- | -------------
 `CO2`					  		| Affiche le tableau de données complet dans la console
 `head(CO2)`		  		| Affiche les premières lignes du tableau de données
+`tail(CO2)`         | Affiche les dernières lignes du tableau de données
 `names(CO2)`				| Affiche le nom des colonnes du tableau de données
 `attributes(CO2)`		| Affiche les attributs du tableau de données
+`dim(CO2)`          | Affiche la dimension du tableau de données
 `ncol(CO2)`         | Affiche le nombre de colonnes du tableau de données
 `nrow(CO2)`					| Affiche le nomber de lignes
 `summary(CO2)`			| Calcule quelques statistiques de base sur les variables
-`str(CO2)`					| Affiche la structure du tableau de données
 
+.small[.alert[NOTE] Ces fonctions sont aussi utilisés pour des autres objets tels que `vector`, `matrix`, `list`, `array`, etc.]
 
 ---
 ## Visualiser les données
@@ -401,7 +431,7 @@ str(CO2)
 ```
 La fonction `str()` est très utile pour identifier le type/mode de chaque colonne.
 
-.small[Le jeu de données "CO2" contient des mesures répétées d'absorption de CO2 prises sur 6 plantes du Québec et 9 plantes du Mississippi à différentes concentrations de CO2 ambiant. La moitié des plantes de chaque région a subi un traitement de refroidissement la veille du début de l'expérience.]
+.small[Le jeu de données `CO2` contient des mesures répétées d'absorption de CO2 prises sur 6 plantes du Québec et 9 plantes du Mississippi à différentes concentrations de CO2 ambiant. La moitié des plantes de chaque région a subi un traitement de refroidissement la veille du début de l'expérience.]
 
 
 ---
@@ -428,6 +458,8 @@ CO2 <- read.csv("data/co2_good.csv", header = FALSE)
 Vérifiez la structure des données avec la fonction `str()`.
 
 Quel est le problème ?
+
+--
 
 .comment[N'oubliez pas de recharger les données avec l'argument `header=TRUE` avant de continuer.]
 
@@ -461,7 +493,7 @@ CO2copy <- CO2
 names(CO2copy)
 
 # Changer des noms anglais pour des noms français
-names(CO2copy) <- c("Plante","Categorie", "Traitement", "conc","absorption")
+names(CO2copy) <- c("Plante", "Categorie", "Traitement", "conc", "absorption")
 names(CO2copy)
 ```
 
@@ -498,24 +530,33 @@ head(CO2copy$absorptionRel)
 ---
 ## Sous-ensemble d'un data frame
 
+Il existe plusieurs façons d'en faire :
+
 ```{r, eval = FALSE}
-## Extraire un sous-ensemble par un nom de variable
-CO2copy[,c("Plante", "absorptionRel")]
+# On continue à travailler avec notre jeux de données CO2copy
 
-## Extraire un sous-ensemble de rangées
-CO2copy[1:50,]
+# Extraire un sous-ensemble par un nom de variable
+CO2copy[, c("Plante", "absorptionRel")]
 
-## Extraire les observations du traitement "nonchilled".
-CO2copy[CO2copy$Traitement == "nonchilled",]
+# Extraire un sous-ensemble de rangées
+CO2copy[1:50, ]
+```
 
-## Extraire selon une condition numérique
+---
+## Sous-ensemble d'un data frame
+
+```{r, eval = FALSE}
+# Extraire les observations du traitement "nonchilled"
+CO2copy[CO2copy$Traitement == "nonchilled", ]
+
+# Extraire selon une condition numérique
 CO2copy[CO2copy$absorption >= 20, ]
 
-## Extraire selon plusieurs conditions numériques
+# Extraire selon plusieurs conditions numériques
 CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absorption >= 20, ]
 
-# Nous avons fini de modifier le data frame CO2copy, effaçons-le.
-CO2copy <- NULL
+# Nous avons fini de modifier le data frame CO2copy, effaçons-le
+rm(CO2copy)
 ```
 
 Consultez [ici](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html) pour voir les opérateurs logiques pouvant être utilisés pour extraire des sous-ensembles de données dans R.
@@ -527,26 +568,27 @@ Un bon moyen de commencer votre exploration des données consiste à regarder de
 
 Utilisez la fonction `summary()`.
 
-C'est également utile pour repérer certaines erreurs que vous auriez peut-être manquées!
-
-
-```{r, eval = T}
+```{r, eval = FALSE}
 summary(CO2)
 ```
+
+C'est également utile pour repérer certaines erreurs que vous auriez peut-être manquées!
 
 ---
 ## Explorer les données
 
 Vous pouvez également utiliser d'autres fonctions pour calculer des statistiques de base pour des parties spécifiques de votre trame de données.
 
-Essayons les fonctions `mean()`, `sd()`, `hist()`, `print()`
+Essayons les fonctions `mean()`, `sd()` et `hist()` :
 
 ```{r, eval = T}
 # Calculer la moyenne et l'écart type de la concentration,
 # et l'assigner à de nouvelles variables
 meanConc <- mean(CO2$conc)
 sdConc <- sd(CO2$conc)
+```
 
+```{r, eval = T}
 # print() imprime une valeur données dans la console R
 print(paste("the mean of concentration is:", meanConc))
 
@@ -556,29 +598,18 @@ print(paste("the standard deviation of concentration is:", sdConc))
 ---
 ## Explorer les données
 
-```{r, eval = T}
+```{r, eval = T, fig.width=6, fig.height=6}
 # Créons un histogramme pour explorer la distribution de "uptake"
-hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
+hist(CO2$uptake)
 ```
-
 
 ---
 ## Explorer les données
 
-La fonction `apply()` est utilisée pour appliquer une fonction à plusieurs colonnes ou lignes en même temps.
-
-```{r, eval = FALSE}
-?apply
+```{r, eval = T, fig.width=6, fig.height=6}
+# Créons un histogramme pour explorer la distribution de "uptake"
+hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
 ```
-
-Utilisez `apply ()` pour calculer la moyenne des deux dernières colonnes du data frame (c'est-à-dire les colonnes contenant des données continues)
-
-```{r}
-apply(CO2[,4:5], MARGIN = 2, FUN = mean)
-```
-
-* `MARGIN = 1` ![:faic](arrow-right) si la fonction est appliquée aux lignes
-* `MARGIN = 2` ![:faic](arrow-right) si la fonction est appliquée aux colonnes
 
 ---
 ## Enregistrer son espace de travail
@@ -587,15 +618,18 @@ apply(CO2[,4:5], MARGIN = 2, FUN = mean)
 # Sauver l'espace de travail avec tous les objets
 save.image(file="data/co2_project_Data.RData")
 
-rm(list = ls()) # Nettoyer l'espace de travail
+# Nettoyer l'espace de travail
+rm(list = ls())
 
-load("data/co2_project_Data.RData") # Charger tout ce qui se trouvait dans l'espace de travail
+# Charger tout ce qui se trouvait dans l'espace de travail
+load("data/co2_project_Data.RData")
 head(CO2) # cela fonctionne! :)
 ```
 
 ```{r, echo=F}
 head(CO2)
 ```
+
 ---
 ## Exporter des données
 
@@ -615,12 +649,13 @@ write.csv(CO2, file = "data/co2_new.csv")
 
 #### Utilisez vos données
 
-* Essayez de charger, explorer, et enregistrer vos propres données dans R*.
-  * Est-ce que le chargement fonctionne?
-* Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
-* Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
+- Essayez de charger, explorer, et enregistrer vos propres données dans R.comment[*].
+- Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
+- Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
 
-.comment[* Si vous n'avez pas de données, travaillez avec vos voisins]
+.comment[*Si vous n'avez pas de données, travaillez avec vos voisins]
+
+.comment[N'oubliez pas de nettoyer votre espace de travail]
 
 ---
 class: inverse, center, middle
@@ -629,38 +664,22 @@ class: inverse, center, middle
 
 
 ---
-## DÉFI ![:cube]()
-
 #### Réparer un jeu de données "endommagé"
+
+Charger vos données peut être plus difficile que vous ne le pensez!
 
 Les jeux de données peuvent être désordonnés et incompatibles entre certains systèmes (Mac, Windows) ou entre ordinateurs.
 
 Pratiquons-nous à réparer certains problèmes communs.
 
-Importez un jeu de données "endommagé" dans R et trouvez les problèmes.
+---
+## DÉFI ![:cube]()
+
+Lire le ficher `co2_broken.csv`
 
 ```{r, eval = TRUE}
 CO2 <- read.csv("data/co2_broken.csv")
-```
-
----
-## DÉFI ![:cube]()
-
-```{r, eval = TRUE}
 head(CO2) # C'est le bordel!
-```
-
----
-## DÉFI ![:cube]()
-
-
-* Vos données ou des données téléchargées peuvent souvent ressembler à ça !
-* Réparez le jeu de données dans R
-* Faites un essai avant de regarder la solution
-* Entraidez-vous entre voisins et amusez-vous :)
-
-```{r, eval = TRUE}
-CO2
 ```
 
 ---
@@ -677,7 +696,7 @@ Voici quelques fonctions qui peuvent vous aider :
 * `which()` - pose une question sur votre bloc de données
 * `droplevels()` - supprime les niveaux indésirables après avoir déduit les facteurs
 
-.alert[Indice] T Il y a quatre problèmes avec ce jeu de données!
+.alert[Indice] Il y a quatre problèmes avec ce jeu de données!
 
 
 ---
@@ -694,7 +713,7 @@ head(CO2)
 ---
 ## Jeu de données "endommagé"
 
-.alert[ERREUR 1] - Solution 1
+.alert[ERREUR 1] - Solution
 
 * Importez les données de nouveau, en spécifiant comment chaque valeur est séparée.
 * L'argument `sep` indique à R quel type de caractère sépare les valeurs sur chaque ligne.
@@ -729,16 +748,15 @@ head(CO2)
 ---
 ## Jeu de données "endommagé"
 
-.alert[ERREUR 3]
-
-Les variables `conc` et `uptake` sont considérées commes des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
+.alert[ERREUR 3] Les variables `conc` et `uptake` sont considérées commes des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
 
 ```{r, eval = TRUE}
 str(CO2)
-unique(CO2$conc)
-unique(CO2$uptake)
 ```
 
+```{r, eval = TRUE}
+unique(CO2$conc)
+```
 
 ---
 ## `?read.csv`
@@ -768,8 +786,11 @@ str(CO2)
 
 En réalité, il y a seulement 2 traitements (chilled & non chilled), mais des erreurs d'orthographe créent 2 autres niveaux de traitement.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 str(CO2)
+```
+
+```{r, eval = TRUE}
 levels(CO2$Treatment)
 unique(CO2$Treatment)
 ```
@@ -780,30 +801,70 @@ unique(CO2$Treatment)
 .alert[ERREUR 4] - Solution
 
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # Identifier toutes les lignes contenant "nnchilled" et remplacer par "nonchilled"
 CO2$Treatment[which(CO2$Treatment=="nnchilled")] <- "nonchilled"
 
 # Faisons la même chose pour "chiled" :
 CO2$Treatment[which(CO2$Treatment=="chiled")] <- "chilled"
-
-# Enlever les niveaux de facteur non utilisés
-levels(CO2$Treatment)
-CO2 <- droplevels(CO2)
-levels(CO2$Treatment)
 ```
+
+---
+## Jeu de données "endommagé"
+
+.alert[ERREUR 4] - Solution
+
+Après avoir réparé les facteurs, il faut enlever les niveaux de facteur non utilisés
+
+Sinon :
+
+```{r}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+
+---
+## Jeu de données "endommagé"
+
+.alert[ERREUR 4] - Solution
+
+```{r, eval = TRUE}
+CO2 <- droplevels(CO2)
+str(CO2)
+```
+
+.pull-left[
+```{r, eval = FALSE}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
+.pull-right[
+```{r, echo = FALSE, fig.height = 3.5}
+par(mar = c(4, 4, 0, 0))
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
 
 ---
 class: inverse, center, middle
 
-# Manipulation de données avec `tidyr`, `dplyr`, `magrittr`
+# Section avancée
+
+---
+class: inverse, center, middle
+
+# Manipulation de données avec
+
+## `tidyr`, `dplyr`, `magrittr`
 
 ---
 ## `tidyr` pour réorganiser ses données
 
+```{r, eval = FALSE}
+library(tidyr)
+```
 
 .center[
-![:scale 50%](images/tidyr_logo.png)
+![:scale 40%](images/tidyr_logo.png)
 ]
 
 ---
@@ -812,7 +873,7 @@ class: inverse, center, middle
 .pull-left[
 **Format large (wide)**
 
-Un data frame en format large contient une colonne pour chaque variable ou facteur
+.small[Un data frame en format large contient une colonne pour chaque variable ou facteur]
 
 ```{r, echo=FALSE, eval = T}
 large <- data.frame(Species = c("Chene", "Orme", "Frene"),
@@ -825,7 +886,7 @@ large
 .pull-right[
 **Format long**
 
-Un data frame en format long contient une colonne par variable, où chaque ligne est une observation
+.small[Un data frame en format long contient une colonne par variable, où chaque ligne est une observation]
 
 ```{r, echo=FALSE, eval = T}
 long <- gather(large, dimension, cm, DHP, Haut)
@@ -899,6 +960,10 @@ long
 ## Disperser avec `spread()`
 
 ```{r}
+long
+```
+
+```{r}
 large2 <- spread(long, dimension, cm)
 large2
 ```
@@ -958,9 +1023,10 @@ degat.long.sep <- separate(degat.long, taxa,
 head(degat.long.sep)
 ```
 
+.small[
 .comment[
 L'argument `sep = " \\."` indique à R de scinder la chaîne de caractères autour du point (.). Nous ne pouvons pas écrire directement `sep = "."` car il s’agit d’une expression régulière qui correspond à n’importe quel caractère (un joker).
-]
+]]
 
 
 ---
@@ -979,13 +1045,9 @@ Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `
 
 
 ---
-## DÉFI ![:cube]()
+## DÉFI #1 ![:cube]()
 
-#### Utiliser `tidyr` pour convertir le format long en format large
-
-1. Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
-
-2. Ensuite, convertissez-le en format large pour retrouver le format original de `airquality`
+Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
 ```{r, eval = FALSE}
 ?airquality
@@ -994,9 +1056,10 @@ data(airquality)
 ```
 
 ---
-## Solution
+## Solution #1
 
-1. Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
+Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
+
 ```{r}
 air.long <- gather(airquality, variable, value, -Month, -Day)
 head(air.long)
@@ -1005,9 +1068,14 @@ head(air.long)
 .comment[Notez que la syntaxe utilisée ici indique que nous souhaitons rassembler TOUTES les colonnes sauf *Month* et *Day*. Cela équivaut à: `rassembler (qualité de l'air, valeur, Ozone, Solar.R, température, vent)`]
 
 ---
-## Solution
+## DÉFI #2 ![:cube]()
 
-2. Ensuite, convertissez-le en format large pour retrouver le format original de `airquality`
+Convertissez-le en format large pour retrouver le format original de `airquality`
+
+---
+## Solution #2
+
+Convertissez-le en format large pour retrouver le format original de `airquality`
 
 ```{r}
 air.wide <- spread(air.long, variable, value)
@@ -1031,12 +1099,10 @@ La mission de `dplyr` est de simplifier nos tâches de manipulation.
 - Rapide et efficace avec les grands jeux de données;
 - Peut s’interfacer avec des bases de données externes et traduire votre code R en requêtes SQL
 
+Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `split()`, `subset()`, `apply()`, `sapply()`, `lapply()`, `tapply()` et `aggregate()`
 
 ---
 ## Introduction à `dplyr`
-
-Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `split()`, `subset()`, `apply()`, `sapply()`, `lapply()`, `tapply()` et `aggregate()`
-
 
 Commençons par installer et charger le paquet `dplyr`
 
@@ -1067,6 +1133,8 @@ Voici les 4 *verbes* principaux qui permettent d'exécuter les manipulations les
   * `data` : le jeu de données
   * `...` : noms ou positions de colonnes, ou expressions complexes (séparés par des virgules pour désigner les colonnes que l'on veut sélectionner
 
+Examples :
+
 ```{r, eval=F}
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
 select(données, c(2:4,6) # sélectionne les colonnes 2 à 4, plus la 6ème colonne
@@ -1086,7 +1154,7 @@ select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui co
 Par exemple, si on s'intéresse à la variation de la variable Ozone avec le temps.
 
 ```{r}
-ozone <- select(airquality, Ozone, Month, Day)
+ozone <- dplyr::select(airquality, Ozone, Month, Day)
 head(ozone)
 ```
 
@@ -1111,13 +1179,13 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans le jeu de données `airquality`
 
 ```{r}
-aout <- filter(airquality, Month == 8, Temp >= 90)
+aout <- dplyr::filter(airquality, Month == 8, Temp >= 90)
 # ou filter(airquality, Month == 8 & Temp >= 90)
 head(aout)
 ```
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
 Réordonne les lignes selon une ou plusieurs colonnes, par défaut en ordre croissant
 
@@ -1128,26 +1196,30 @@ On peut également réordonner les lignes en ordre décroissant en utilisant la 
 `arrange(data, variable1, desc(variable2), ...)`
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
-1. Commençons par créer une version désordonnée de `airquality`:
+Example :
+
+1) Commençons par créer une version désordonnée de `airquality`:
 
 ```{r}
-air_degat <- sample_frac(airquality, 1)
+air_degat <- dplyr::sample_frac(airquality, 1)
 head(air_degat)
 ```
 
 ---
-## `arrange()` - Ordonner des lignes
+## Ordonner des lignes avec `arrange()`
 
-2. Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
+Example :
+
+2) Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
 
 ```{r}
-air_chron <- arrange(air_degat, Month, Day)
+air_chron <- dplyr::arrange(air_degat, Month, Day)
 head(air_chron)
 ```
 
-Essayez `arrange(air_mess, Day, Month)` et voyez la différence.
+.comment[Essayez `arrange(air_mess, Day, Month)` et voyez la différence.]
 
 
 ---
@@ -1167,21 +1239,20 @@ On peut utiliser la fonction `mutate()` pour créer et transformer des variables
 Par exemple, on veut transformer la variable température `Temp` de degrés Fahrenheit vers degrés Celsius
 
 ```{r}
-airquality_C <- mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
 ---
 ## `magrittr`
 
-.center[
-![:scale 60%](images/magrittr.png)]
+Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%>%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
 
+.center[
+![:scale 40%](images/magrittr.png)]
 
 ---
 ## `magrittr`
-
-Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%>%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
 
 Commençons par installer et charger le paquet :
 
@@ -1196,7 +1267,7 @@ library(magrittr)
 Supposons qu'on veut créer un sous-ensemble de airquality pour le mois de juin, et ensuite convertir la variable de la température en degrés Celsius. On peut créer ce data frame en combinant 2 *verbes* de dplyr
 
 ```{r}
-juin_C <- mutate(filter(airquality, Month == 6),
+juin_C <- dplyr::mutate(dplyr::filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1209,8 +1280,8 @@ juin_C <- mutate(filter(airquality, Month == 6),
 
 ```{r}
 juin_C <- airquality %>%
-    filter(Month == 6) %>%
-    mutate(Temp_C = (Temp-32)*(5/9))
+    dplyr::filter(Month == 6) %>%
+    dplyr::mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Avantages :
@@ -1253,8 +1324,8 @@ Utilisons ces deux fonctions pour générer un sommaire du jeu de données `airq
 
 ```{r}
 mois_moy <- airquality %>%
-      group_by(Month) %>%
-      summarise(mean_temp = mean(Temp),
+      dplyr::group_by(Month) %>%
+      dplyr::summarise(mean_temp = mean(Temp),
                 sd_temp = sd(Temp))
 mois_moy
 ```
@@ -1295,7 +1366,7 @@ mass_diff
 
 <br>
 
-.comment[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
+.alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
 
 ---
 ## Solution ninja
