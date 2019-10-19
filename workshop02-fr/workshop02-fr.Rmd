@@ -664,38 +664,22 @@ class: inverse, center, middle
 
 
 ---
-## DÉFI ![:cube]()
-
 #### Réparer un jeu de données "endommagé"
+
+Charger vos données peut être plus difficile que vous ne le pensez!
 
 Les jeux de données peuvent être désordonnés et incompatibles entre certains systèmes (Mac, Windows) ou entre ordinateurs.
 
 Pratiquons-nous à réparer certains problèmes communs.
 
-Importez un jeu de données "endommagé" dans R et trouvez les problèmes.
+---
+## DÉFI ![:cube]()
+
+Lire le ficher `co2_broken.csv`
 
 ```{r, eval = TRUE}
 CO2 <- read.csv("data/co2_broken.csv")
-```
-
----
-## DÉFI ![:cube]()
-
-```{r, eval = TRUE}
 head(CO2) # C'est le bordel!
-```
-
----
-## DÉFI ![:cube]()
-
-
-* Vos données ou des données téléchargées peuvent souvent ressembler à ça !
-* Réparez le jeu de données dans R
-* Faites un essai avant de regarder la solution
-* Entraidez-vous entre voisins et amusez-vous :)
-
-```{r, eval = TRUE}
-CO2
 ```
 
 ---
@@ -712,7 +696,7 @@ Voici quelques fonctions qui peuvent vous aider :
 * `which()` - pose une question sur votre bloc de données
 * `droplevels()` - supprime les niveaux indésirables après avoir déduit les facteurs
 
-.alert[Indice] T Il y a quatre problèmes avec ce jeu de données!
+.alert[Indice] Il y a quatre problèmes avec ce jeu de données!
 
 
 ---
@@ -729,7 +713,7 @@ head(CO2)
 ---
 ## Jeu de données "endommagé"
 
-.alert[ERREUR 1] - Solution 1
+.alert[ERREUR 1] - Solution
 
 * Importez les données de nouveau, en spécifiant comment chaque valeur est séparée.
 * L'argument `sep` indique à R quel type de caractère sépare les valeurs sur chaque ligne.
@@ -764,16 +748,15 @@ head(CO2)
 ---
 ## Jeu de données "endommagé"
 
-.alert[ERREUR 3]
-
-Les variables `conc` et `uptake` sont considérées commes des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
+.alert[ERREUR 3] Les variables `conc` et `uptake` sont considérées commes des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
 
 ```{r, eval = TRUE}
 str(CO2)
-unique(CO2$conc)
-unique(CO2$uptake)
 ```
 
+```{r, eval = TRUE}
+unique(CO2$conc)
+```
 
 ---
 ## `?read.csv`
@@ -803,8 +786,11 @@ str(CO2)
 
 En réalité, il y a seulement 2 traitements (chilled & non chilled), mais des erreurs d'orthographe créent 2 autres niveaux de traitement.
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 str(CO2)
+```
+
+```{r, eval = TRUE}
 levels(CO2$Treatment)
 unique(CO2$Treatment)
 ```
@@ -815,18 +801,48 @@ unique(CO2$Treatment)
 .alert[ERREUR 4] - Solution
 
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # Identifier toutes les lignes contenant "nnchilled" et remplacer par "nonchilled"
 CO2$Treatment[which(CO2$Treatment=="nnchilled")] <- "nonchilled"
 
 # Faisons la même chose pour "chiled" :
 CO2$Treatment[which(CO2$Treatment=="chiled")] <- "chilled"
-
-# Enlever les niveaux de facteur non utilisés
-levels(CO2$Treatment)
-CO2 <- droplevels(CO2)
-levels(CO2$Treatment)
 ```
+
+---
+## Jeu de données "endommagé"
+
+.alert[ERREUR 4] - Solution
+
+Après avoir réparé les facteurs, il faut enlever les niveaux de facteur non utilisés
+
+Sinon :
+
+```{r}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+
+---
+## Jeu de données "endommagé"
+
+.alert[ERREUR 4] - Solution
+
+```{r, eval = TRUE}
+CO2 <- droplevels(CO2)
+str(CO2)
+```
+
+.pull-left[
+```{r, eval = FALSE}
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
+.pull-right[
+```{r, echo = FALSE, fig.height = 3.5}
+par(mar = c(4, 4, 0, 0))
+boxplot(uptake ~ Treatment, data = CO2)
+```
+]
 
 ---
 class: inverse, center, middle
