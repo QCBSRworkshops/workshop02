@@ -318,14 +318,25 @@ class: inverse, center, middle
 
 Vous pouvez télécharger les données et le script depuis :
 
-http://qcbs.ca/wiki/r/workshop2
+.center[http://qcbs.ca/wiki/r/workshop2]
 
 Enregistrez les fichiers dans le dossier où vous avez crée votre projet R.
+
+--
+
+<br>
+
+.alert[NOTE] Il existe des données déjà disponibles sur R
+
+```{r, eval = FALSE}
+# Liste complete de tous les données disponibles sur base R
+library(help = "datasets")
+```
 
 ---
 ## Répertoire de travail
 
-Vous devez indiquer à R le répertoire où se trouvent les fichiers de données afin de les charger.
+Si vous n'utilisez pas un **projet RStudio**, vous devez indiquer à R le répertoire où se trouvent les fichiers de données afin de les charger.
 
 Pour voir quel répertoire R utilise :
 
@@ -333,9 +344,13 @@ Pour voir quel répertoire R utilise :
 getwd()
 ```
 
-Lorsque vous chargez un script, R définit le répertoire de travail comme étant le dossier qui contient le script.
+Si ce n'est pas le répertoire avec lequel vous souhaitez travailler, vous pouvez définir le vôtre à l'aide de:
 
-Utilisez `setwd()` pour spécifier un nouveau chemin d'accès du répertoire ou cliquez sur session -> Définir le répertoire -> Choisir le répertoire.
+```{r, eval = FALSE}
+setwd("C:/Users/mon_repertoire")
+```
+
+.comment[Il est recommandé de créer un projet RStudio et ne pas utiliser `setwd()` pour faciliter la reproducibilité]
 
 ---
 ## Afficher le contenu du répertoire de travail
@@ -361,13 +376,10 @@ Utilisez la fonction `read.csv()` pour importer des données provenant d'un fich
 CO2 <- read.csv("data/co2_good.csv", header=TRUE)
 ```
 
-Cette commande spécifie que vous créez un objet nommé "CO2" en chargeant un fichier .csv nommé "co2_good.csv". Ce fichier doit se trouver dans votre répertoire de travail.
-
-Il est aussi possible d'utiliser la fonction `file.choose()` pour charger un fichier de manière interactive (non recommandé).
-
-```{r, eval = F}
-CO2 <- read.csv(file.choose())
-```
+- Cette commande va créer un objet nommé `CO2`
+- Le nom du fichier est écrit entre guillemets (`'file'` ou `"file"`)
+- Si vous voulez charger un fichier d'un autre répertoire, vous devrez écrire l'extension complète: `read.csv("C:/Users/Mario/Downloads/co2_good.csv")`
+- `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes
 
 ---
 ## Importer un jeu de données
@@ -378,13 +390,11 @@ Rappelez-vous que vous pouvez obtenir de l'aide pour une fonction avec `?`
 ?read.csv
 ```
 
-La page d'aide nous informe que l'argument `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes.
-
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_good.csv", header = TRUE)
-```
-
 .alert[NOTE] Si vous utilisez un système d'exploitation en français ou un éditeur CSV, il est possible que vous deviez utiliser la fonction `read.csv2()` pour importer correctement un fichier.
+
+```{r, eval = FALSE}
+?read.csv2
+```
 
 ---
 ##  Importer un jeu de données
@@ -399,19 +409,19 @@ Prenez note que RStudio montre maintenant le jeu de données CO2 dans votre espa
 ---
 ## Visualiser les données
 
-Voici quelques fonctions utiles pour visualiser le jeu de données importé :
-
 R code  					| action
 ----------------- | -------------
 `CO2`					  		| Affiche le tableau de données complet dans la console
 `head(CO2)`		  		| Affiche les premières lignes du tableau de données
+`tail(CO2)`         | Affiche les dernières lignes du tableau de données
 `names(CO2)`				| Affiche le nom des colonnes du tableau de données
 `attributes(CO2)`		| Affiche les attributs du tableau de données
+`dim(CO2)`          | Affiche la dimension du tableau de données
 `ncol(CO2)`         | Affiche le nombre de colonnes du tableau de données
 `nrow(CO2)`					| Affiche le nomber de lignes
 `summary(CO2)`			| Calcule quelques statistiques de base sur les variables
-`str(CO2)`					| Affiche la structure du tableau de données
 
+.small[.alert[NOTE] Ces fonctions sont aussi utilisés pour des autres objets tels que `vector`, `matrix`, `list`, `array`, etc.]
 
 ---
 ## Visualiser les données
@@ -421,7 +431,7 @@ str(CO2)
 ```
 La fonction `str()` est très utile pour identifier le type/mode de chaque colonne.
 
-.small[Le jeu de données "CO2" contient des mesures répétées d'absorption de CO2 prises sur 6 plantes du Québec et 9 plantes du Mississippi à différentes concentrations de CO2 ambiant. La moitié des plantes de chaque région a subi un traitement de refroidissement la veille du début de l'expérience.]
+.small[Le jeu de données `CO2` contient des mesures répétées d'absorption de CO2 prises sur 6 plantes du Québec et 9 plantes du Mississippi à différentes concentrations de CO2 ambiant. La moitié des plantes de chaque région a subi un traitement de refroidissement la veille du début de l'expérience.]
 
 
 ---
@@ -448,6 +458,8 @@ CO2 <- read.csv("data/co2_good.csv", header = FALSE)
 Vérifiez la structure des données avec la fonction `str()`.
 
 Quel est le problème ?
+
+--
 
 .comment[N'oubliez pas de recharger les données avec l'argument `header=TRUE` avant de continuer.]
 
@@ -481,7 +493,7 @@ CO2copy <- CO2
 names(CO2copy)
 
 # Changer des noms anglais pour des noms français
-names(CO2copy) <- c("Plante","Categorie", "Traitement", "conc","absorption")
+names(CO2copy) <- c("Plante", "Categorie", "Traitement", "conc", "absorption")
 names(CO2copy)
 ```
 
@@ -518,24 +530,33 @@ head(CO2copy$absorptionRel)
 ---
 ## Sous-ensemble d'un data frame
 
+Il existe plusieurs façons d'en faire :
+
 ```{r, eval = FALSE}
-## Extraire un sous-ensemble par un nom de variable
-CO2copy[,c("Plante", "absorptionRel")]
+# On continue à travailler avec notre jeux de données CO2copy
 
-## Extraire un sous-ensemble de rangées
-CO2copy[1:50,]
+# Extraire un sous-ensemble par un nom de variable
+CO2copy[, c("Plante", "absorptionRel")]
 
-## Extraire les observations du traitement "nonchilled".
-CO2copy[CO2copy$Traitement == "nonchilled",]
+# Extraire un sous-ensemble de rangées
+CO2copy[1:50, ]
+```
 
-## Extraire selon une condition numérique
+---
+## Sous-ensemble d'un data frame
+
+```{r, eval = FALSE}
+# Extraire les observations du traitement "nonchilled"
+CO2copy[CO2copy$Traitement == "nonchilled", ]
+
+# Extraire selon une condition numérique
 CO2copy[CO2copy$absorption >= 20, ]
 
-## Extraire selon plusieurs conditions numériques
+# Extraire selon plusieurs conditions numériques
 CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absorption >= 20, ]
 
-# Nous avons fini de modifier le data frame CO2copy, effaçons-le.
-CO2copy <- NULL
+# Nous avons fini de modifier le data frame CO2copy, effaçons-le
+rm(CO2copy)
 ```
 
 Consultez [ici](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html) pour voir les opérateurs logiques pouvant être utilisés pour extraire des sous-ensembles de données dans R.
@@ -547,26 +568,27 @@ Un bon moyen de commencer votre exploration des données consiste à regarder de
 
 Utilisez la fonction `summary()`.
 
-C'est également utile pour repérer certaines erreurs que vous auriez peut-être manquées!
-
-
-```{r, eval = T}
+```{r, eval = FALSE}
 summary(CO2)
 ```
+
+C'est également utile pour repérer certaines erreurs que vous auriez peut-être manquées!
 
 ---
 ## Explorer les données
 
 Vous pouvez également utiliser d'autres fonctions pour calculer des statistiques de base pour des parties spécifiques de votre trame de données.
 
-Essayons les fonctions `mean()`, `sd()`, `hist()`, `print()`
+Essayons les fonctions `mean()`, `sd()` et `hist()` :
 
 ```{r, eval = T}
 # Calculer la moyenne et l'écart type de la concentration,
 # et l'assigner à de nouvelles variables
 meanConc <- mean(CO2$conc)
 sdConc <- sd(CO2$conc)
+```
 
+```{r, eval = T}
 # print() imprime une valeur données dans la console R
 print(paste("the mean of concentration is:", meanConc))
 
@@ -576,29 +598,18 @@ print(paste("the standard deviation of concentration is:", sdConc))
 ---
 ## Explorer les données
 
-```{r, eval = T}
+```{r, eval = T, fig.width=6, fig.height=6}
 # Créons un histogramme pour explorer la distribution de "uptake"
-hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
+hist(CO2$uptake)
 ```
-
 
 ---
 ## Explorer les données
 
-La fonction `apply()` est utilisée pour appliquer une fonction à plusieurs colonnes ou lignes en même temps.
-
-```{r, eval = FALSE}
-?apply
+```{r, eval = T, fig.width=6, fig.height=6}
+# Créons un histogramme pour explorer la distribution de "uptake"
+hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
 ```
-
-Utilisez `apply ()` pour calculer la moyenne des deux dernières colonnes du data frame (c'est-à-dire les colonnes contenant des données continues)
-
-```{r}
-apply(CO2[,4:5], MARGIN = 2, FUN = mean)
-```
-
-* `MARGIN = 1` ![:faic](arrow-right) si la fonction est appliquée aux lignes
-* `MARGIN = 2` ![:faic](arrow-right) si la fonction est appliquée aux colonnes
 
 ---
 ## Enregistrer son espace de travail
@@ -607,15 +618,18 @@ apply(CO2[,4:5], MARGIN = 2, FUN = mean)
 # Sauver l'espace de travail avec tous les objets
 save.image(file="data/co2_project_Data.RData")
 
-rm(list = ls()) # Nettoyer l'espace de travail
+# Nettoyer l'espace de travail
+rm(list = ls())
 
-load("data/co2_project_Data.RData") # Charger tout ce qui se trouvait dans l'espace de travail
+# Charger tout ce qui se trouvait dans l'espace de travail
+load("data/co2_project_Data.RData")
 head(CO2) # cela fonctionne! :)
 ```
 
 ```{r, echo=F}
 head(CO2)
 ```
+
 ---
 ## Exporter des données
 
@@ -635,12 +649,13 @@ write.csv(CO2, file = "data/co2_new.csv")
 
 #### Utilisez vos données
 
-* Essayez de charger, explorer, et enregistrer vos propres données dans R*.
-  * Est-ce que le chargement fonctionne?
-* Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
-* Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
+- Essayez de charger, explorer, et enregistrer vos propres données dans R.comment[*].
+- Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
+- Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
 
-.comment[* Si vous n'avez pas de données, travaillez avec vos voisins]
+.comment[*Si vous n'avez pas de données, travaillez avec vos voisins]
+
+.comment[N'oubliez pas de nettoyer votre espace de travail]
 
 ---
 class: inverse, center, middle
