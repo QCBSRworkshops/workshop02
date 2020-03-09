@@ -1,25 +1,15 @@
 Package: placeholder
 Type: Tutorial
 Title: QCBS R Workshop 02
-Version: 0.0.2.9000
+Version: 0.0.3
 Authors@R: c(
   person("Team", "QCBS", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
   )
 Imports:
-  DiagrammeR,
-  ggpubr,
-  ggsignif,
-  grid,
-  gridBase,
-  gridExtra,
-  kableExtra,
   knitr,
-  maps,
+  datasets,
   qcbsRworkshops,
-  RColorBrewer,
   tidyverse,
-  vegan,
-  widgetframe,
   xaringan
 Remotes:
   QCBSRworkshops/qcbsRworkshops

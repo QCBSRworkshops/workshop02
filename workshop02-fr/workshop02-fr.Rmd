@@ -27,13 +27,49 @@ knitr::opts_chunk$set(
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
 ```
 
+class: inverse, center, middle
 
-## Objectifs d'apprentissage
+# Pour cet atelier...
+<hr>
 
-1. Créer un projet RStudio
-2. Écrire un script dans R
-3. Charger, explorer et enregistrer des données
-4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.html)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=02&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.pdf)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.R)
+
+---
+# Packages à installer
+<br>
+
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)
+
+<br>
+
+```{R install_pkgs, eval = FALSE}
+install.packages(c('dplyr', 'tidyr', 'magrittr'))
+```
+
+---
+class: inverse, center, middle
+
+# Créer un projet RStudio
+
+<hr>
+
+
+---
+
+# Objectifs d'apprentissage
+<br>
+
+##### 1. Créer un projet RStudio
+##### 2. Écrire un script dans R
+##### 3. Charger, explorer et enregistrer des données
+##### 4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
+
 
 ---
 # Les projets RStudio
@@ -240,7 +276,7 @@ Par exemple :
 Cela vous permet de passer rapidement d'une section à l'autre et de masquer des sections.
 
 .center[
-![:scale 70%](images/4_Section_headings_Mod_arrow 2.png)
+![:scale 60%](images/4_Section_headings_Mod_arrow 2.png)
 ]
 
 
@@ -874,7 +910,7 @@ library(tidyr)
 
 .small[Un data frame en format large contient une colonne pour chaque variable ou facteur]
 
-```{r, echo=FALSE, eval = TRUE}
+```{r, echo = FALSE, eval = TRUE}
 large <- data.frame(Species = c("Chene", "Orme", "Frene"),
                    DHP = c(12, 20, 13),
                    Haut = c(56, 85, 55))

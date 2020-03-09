@@ -1,8 +1,9 @@
-# version 0.0.2.9000
+# version 0.0.3
 
 * Fix a bunch of typos.
 * Packages load only when needed.
 * Avoid redundancy in the list of packages.
+* Update first slides
 
 # version 0.0.2
 
@@ -12,4 +13,4 @@
 
 # version 0.0.1
 
-* Use Rmarkdown over Prezi as presentation support.
+* Use R Markdown over Prezi as presentation support.

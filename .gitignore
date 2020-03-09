@@ -1,5 +1,6 @@
-# do not upload pdf pres ON GitHub
+# do not upload pdf files nor R scripts pres ON GitHub
 workshop[0-1][0-9]-[ef][nr].pdf
+workshop[0-1][0-9]-[ef][nr].R
 
 assets
 *.html
