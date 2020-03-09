@@ -253,7 +253,7 @@ It is recommended that you start your script with a header using comments:
 You can make a section heading in R Studio four `#` signs
 
 ```{r, eval = FALSE}
-# You can coment using this, but look below how to create section headers:
+# You can comment using this, but look below how to create section headers:
 
 ## Heading name ####
 ```
@@ -645,7 +645,7 @@ load("data/co2_project_Data.RData")
 head(CO2) # Looking good!
 ```
 
-```{r, echo=F}
+```{r, echo = FALSE}
 head(CO2)
 ```
 
@@ -670,11 +670,11 @@ Note that our arguments are both:
 # Challenge: Use your data ![:cube]()
 <br>
 <br>
-* Try to load, explore, plot, and save your own data in R;.comment[*]
+* Try to load, explore, plot, and save your own data in R;
 * If it does not load properly, try to make the appropriate changes;
 * When you are finished, try opening your exported data in Excel, Numbers, Notepad or TextEdit.
 
-.comment[*If you don’t have your own data, work with your neighbor]
+.comment[If you don’t have your own data, work with your neighbor]
 
 .comment[Remember to clean your workspace]
 
@@ -892,7 +892,7 @@ class: inverse, center, middle
 ---
 # Using `tidyr` to reshape data frames
 
-```{r, eval = F}
+```{r tidyr}
 library(tidyr)
 ```
 
@@ -906,7 +906,7 @@ library(tidyr)
 
 .pull-left[
 **Wide format**
-```{r, echo=FALSE, eval = T}
+```{r, echo = FALSE, eval = TRUE}
 # Let's create a new data frame
 wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
                    DBH = c(12, 20, 13),
@@ -917,7 +917,7 @@ wide
 
 .pull-right[
 **Long format**
-```{r, echo=FALSE, eval = T}
+```{r, echo=FALSE, eval = TRUE}
 long = gather(wide, Measurement, Value, DBH, Height)
 long
 ```
@@ -954,7 +954,7 @@ Tidying allows you to manipulate the structure of your data while preserving all
 ---
 # `tidyr` installation
 
-```{r, eval=FALSE}
+```{r, eval = FALSE}
 install.packages("tidyr")
 library(tidyr)
 ```
@@ -974,7 +974,7 @@ library(tidyr)
 ---
 # `gather` columns into rows
 
-```{r, echo = T}
+```{r, echo = TRUE}
 wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
                    DBH = c(12, 20, 13), Height = c(56, 85, 55))
 wide
@@ -1054,7 +1054,7 @@ head(messy.long)
 
 Then we want to split the 2 sampling time (T1 and T2).
 
-```{r}
+```{r separate}
 messy.long.sep <- tidyr::separate(messy.long, taxa,
                                   into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
@@ -1140,8 +1140,7 @@ Some corresponding R base functions:
 ---
 # Intro to `dplyr`
 
-```{r, eval = FALSE}
-install.packages("dplyr")
+```{r, eval = TRUE}
 library(dplyr)
 ```
 
@@ -1270,7 +1269,7 @@ Compute and add new columns
 Example: we want to convert the temperature variable form degrees Fahrenheit to degrees Celsius
 
 ```{r}
-airquality_C <- mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
@@ -1286,9 +1285,8 @@ Usually data manipulation require multiple steps, the magrittr package offers a 
 ---
 # `magrittr`
 
-```{r, eval=F}
-install.packages("magrittr")
-require(magrittr)
+```{r}
+library(magrittr)
 ```
 
 ---

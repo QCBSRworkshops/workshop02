@@ -1,3 +1,9 @@
+# version 0.0.2.9000
+
+* Fix a bunch of typos.
+* Packages load only when needed.
+* Avoid redundancy in the list of packages.
+
 # version 0.0.2
 
 * Update template.

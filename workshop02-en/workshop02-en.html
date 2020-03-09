@@ -251,7 +251,7 @@ You can make a section heading in R Studio four `#` signs
 
 
 ```r
-# You can coment using this, but look below how to create section headers:
+# You can comment using this, but look below how to create section headers:
 
 ## Heading name ####
 ```
@@ -371,7 +371,7 @@ dir()
 #  [1] "assets"              "data"                "images"             
 #  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
 #  [7] "qcbsR.css"           "workshop02-en_files" "workshop02-en.html" 
-# [10] "workshop02-en.Rmd"
+# [10] "workshop02-en.pdf"   "workshop02-en.Rmd"
 ```
 
 It helps to:
@@ -550,8 +550,9 @@ CO2copy$uniqueID &lt;- paste0(CO2copy$Plante,
 
 # observe the results
 head(CO2copy$uniqueID)
-# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
-# [4] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [3] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [5] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
 ```
 
 ---
@@ -718,11 +719,11 @@ Note that our arguments are both:
 # Challenge: Use your data ![:cube]()
 &lt;br&gt;
 &lt;br&gt;
-* Try to load, explore, plot, and save your own data in R;.comment[*]
+* Try to load, explore, plot, and save your own data in R;
 * If it does not load properly, try to make the appropriate changes;
 * When you are finished, try opening your exported data in Excel, Numbers, Notepad or TextEdit.
 
-.comment[*If you don’t have your own data, work with your neighbor]
+.comment[If you don’t have your own data, work with your neighbor]
 
 .comment[Remember to clean your workspace]
 
@@ -753,20 +754,20 @@ Read the file `co2_broken.csv`
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
-# 1 falling on my notebook numerous values can't be read rain               NA NA
-# 2                      Plant\tType\tTreatment\tconc\tuptake               NA NA
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16               NA NA
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
-#   X.1 X.2 X.3
-# 1  NA  NA  NA
-# 2  NA  NA  NA
-# 3  NA  NA  NA
-# 4  NA  NA  NA
-# 5  NA  NA  NA
-# 6  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
+# 1 falling on my notebook numerous values can't be read rain
+# 2                      Plant\tType\tTreatment\tconc\tuptake
+# 3                           Qn1\tQuebec\tnonchilled\t95\t16
+# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
+# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
+# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
+#   due.to.excessive  X X.1 X.2 X.3
+# 1               NA NA  NA  NA  NA
+# 2               NA NA  NA  NA  NA
+# 3               NA NA  NA  NA  NA
+# 4               NA NA  NA  NA  NA
+# 5               NA NA  NA  NA  NA
+# 6               NA NA  NA  NA  NA
 ```
 
 
@@ -797,20 +798,20 @@ add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
 ```r
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
-# 1 falling on my notebook numerous values can't be read rain               NA NA
-# 2                      Plant\tType\tTreatment\tconc\tuptake               NA NA
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16               NA NA
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
-#   X.1 X.2 X.3
-# 1  NA  NA  NA
-# 2  NA  NA  NA
-# 3  NA  NA  NA
-# 4  NA  NA  NA
-# 5  NA  NA  NA
-# 6  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
+# 1 falling on my notebook numerous values can't be read rain
+# 2                      Plant\tType\tTreatment\tconc\tuptake
+# 3                           Qn1\tQuebec\tnonchilled\t95\t16
+# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
+# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
+# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
+#   due.to.excessive  X X.1 X.2 X.3
+# 1               NA NA  NA  NA  NA
+# 2               NA NA  NA  NA  NA
+# 3               NA NA  NA  NA  NA
+# 4               NA NA  NA  NA  NA
+# 5               NA NA  NA  NA  NA
+# 6               NA NA  NA  NA  NA
 ```
 
 ---
@@ -835,20 +836,20 @@ CO2 &lt;- read.csv("data/co2_broken.csv",sep = "")
 
 ```r
 head(CO2)
-#     NOTE.     It       rain        a               lot    in. Quebec during
-# 1 falling     on         my notebook          numerous values  can't     be
-# 2   Plant   Type  Treatment     conc            uptake                     
-# 3     Qn1 Quebec nonchilled       95                16                     
-# 4     Qn1 Quebec nonchilled      175              30.4                     
-# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
-# 6     Qn1 Quebec nonchilled      350              37.2                     
-#   sampling.      due to excessive X....
-# 1      read rain,,,, NA        NA    NA
-# 2                    NA        NA    NA
-# 3                    NA        NA    NA
-# 4                    NA        NA    NA
-# 5                    NA        NA    NA
-# 6                    NA        NA    NA
+#     NOTE.     It       rain        a               lot    in. Quebec
+# 1 falling     on         my notebook          numerous values  can't
+# 2   Plant   Type  Treatment     conc            uptake              
+# 3     Qn1 Quebec nonchilled       95                16              
+# 4     Qn1 Quebec nonchilled      175              30.4              
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes              
+# 6     Qn1 Quebec nonchilled      350              37.2              
+#   during sampling.      due to excessive X....
+# 1     be      read rain,,,, NA        NA    NA
+# 2                           NA        NA    NA
+# 3                           NA        NA    NA
+# 4                           NA        NA    NA
+# 5                           NA        NA    NA
+# 6                           NA        NA    NA
 ```
 
 
@@ -891,8 +892,9 @@ str(CO2)
 
 ```r
 unique(CO2$conc)
-# [1] 95                175               250               350              
-# [5] 500               cannot_read_notes 1000              675              
+# [1] 95                175               250              
+# [4] 350               500               cannot_read_notes
+# [7] 1000              675              
 # Levels: 1000 175 250 350 500 675 95 cannot_read_notes
 ```
 
@@ -1349,7 +1351,6 @@ Some corresponding R base functions:
 
 
 ```r
-install.packages("dplyr")
 library(dplyr)
 ```
 
@@ -1511,7 +1512,7 @@ Example: we want to convert the temperature variable form degrees Fahrenheit to 
 
 
 ```r
-airquality_C &lt;- mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C &lt;- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 #   Ozone Solar.R Wind Temp Month Day   Temp_C
 # 1    41     190  7.4   67     5   1 19.44444
@@ -1536,8 +1537,7 @@ Usually data manipulation require multiple steps, the magrittr package offers a 
 
 
 ```r
-install.packages("magrittr")
-require(magrittr)
+library(magrittr)
 ```
 
 ---

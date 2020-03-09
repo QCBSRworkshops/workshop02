@@ -14,7 +14,7 @@ cache:
     - $HOME/bin
 
 script:
-  - Rscript -e "qcbsRworkshops::build_workshops(update_template = TRUE)"
+  - Rscript -e "qcbsRworkshops::build_workshops(update_template = TRUE, pdf = TRUE)"
 
 before_deploy:
   - mkdir public

@@ -31,7 +31,7 @@ options(repos=structure(c(CRAN="http://cran.r-project.org")))
 ## Objectifs d'apprentissage
 
 1. Créer un projet RStudio
-2. Ecrire un script dans R
+2. Écrire un script dans R
 3. Charger, explorer et enregistrer des données
 4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
 
@@ -220,7 +220,7 @@ Utilisez le symbole `#` pour insérer des commentaires au sein d'un script. Ceci
 ---
 # Entêtes de section
 
-Il est recommandé d'ajouter des commentaires au début de vos scripts pour indiquer des infors importantes: nom du projet, auteur, date, version de R, etc.
+Il est recommandé d'ajouter des commentaires au début de vos scripts pour indiquer des infos importantes: nom du projet, auteur, date, version de R, etc.
 
 .center[
 ![:scale 75%](images/3_Header.Mod_arrow.png)
@@ -277,7 +277,7 @@ ls()
 A
 # [1] "Test"
 
-# Nettoyer memoire
+# Nettoyer la mémoire
 rm(list=ls())
 
 A
@@ -408,7 +408,7 @@ R code  					| action
 `attributes(CO2)`		| Affiche les attributs du tableau de données
 `dim(CO2)`          | Affiche la dimension du tableau de données
 `ncol(CO2)`         | Affiche le nombre de colonnes du tableau de données
-`nrow(CO2)`					| Affiche le nomber de lignes
+`nrow(CO2)`					| Affiche le nombre de lignes
 `summary(CO2)`			| Calcule quelques statistiques de base sur les variables
 
 .small[.alert[NOTE] Ces fonctions sont aussi utilisés pour des autres objets tels que `vector`, `matrix`, `list`, `array`, etc.]
@@ -456,7 +456,7 @@ Quel est le problème ?
 ---
 # Rappel de l'atelier 1 : Accéder aux données
 
-Pusieurs façons d'extraire les données avec les crochets. Considerons un jeu de données nommé mydata.
+Plusieurs façons d'extraire les données avec les crochets. Considérons un jeu de données nommé `mydata`.
 
 .center[
 ![:scale 45%](images/Table_Reminder_from_Workshop_1_Accessing_data.png)
@@ -475,7 +475,7 @@ mydata$Variable1 # Extrait la colonne "Variable1"
 
 On peut renommer les variables (colonnes) dans R.
 
-```{r, eval = T}
+```{r, eval = TRUE}
 # Créer une copie du jeu de données qu'on pourra modifier
 CO2copy <- CO2
 
@@ -571,14 +571,14 @@ Vous pouvez également utiliser d'autres fonctions pour calculer des statistique
 
 Essayons les fonctions `mean()`, `sd()` et `hist()` :
 
-```{r, eval = T}
+```{r, eval = TRUE}
 # Calculer la moyenne et l'écart type de la concentration,
 # et l'assigner à de nouvelles variables
 meanConc <- mean(CO2$conc)
 sdConc <- sd(CO2$conc)
 ```
 
-```{r, eval = T}
+```{r, eval = TRUE}
 # print() imprime une valeur données dans la console R
 print(paste("the mean of concentration is:", meanConc))
 
@@ -588,7 +588,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 ---
 # Explorer les données
 
-```{r, eval = T, fig.width=6, fig.height=6}
+```{r, eval = TRUE, fig.width=6, fig.height=6}
 # Créons un histogramme pour explorer la distribution de "uptake"
 hist(CO2$uptake)
 ```
@@ -596,7 +596,7 @@ hist(CO2$uptake)
 ---
 # Explorer les données
 
-```{r, eval = T, fig.width=6, fig.height=6}
+```{r, eval = TRUE, fig.width=6, fig.height=6}
 # Créons un histogramme pour explorer la distribution de "uptake"
 hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
 ```
@@ -616,7 +616,7 @@ load("data/co2_project_Data.RData")
 head(CO2) # cela fonctionne! :)
 ```
 
-```{r, echo=F}
+```{r, echo = FALSE}
 head(CO2)
 ```
 
@@ -639,13 +639,22 @@ write.csv(CO2, file = "data/co2_new.csv")
 
 #### Utilisez vos données
 
-- Essayez de charger, explorer, et enregistrer vos propres données dans R.comment[*].
-- Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
-- Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
+- Essayez de charger, explorer, et enregistrer vos propres données dans R
 
-.comment[*Si vous n'avez pas de données, travaillez avec vos voisins]
+.comment[
 
-.comment[N'oubliez pas de nettoyer votre espace de travail]
+* Si ce n'est pas le cas, essayez de corriger vos données dans Excel.
+
+* Enregistrez vos données corrigées et ré-essayez de les ouvrir dans R.
+
+* Si vous n'avez pas de données, travaillez avec vos voisins
+
+* N'oubliez pas de nettoyer votre espace de travail
+
+]
+
+
+
 
 ---
 class: inverse, center, middle
@@ -663,7 +672,7 @@ Les jeux de données peuvent être désordonnés et incompatibles entre certains
 Pratiquons-nous à réparer certains problèmes communs.
 
 ---
-# DÉFI ![:cube]()
+# Défi ![:cube]()
 
 Lire le ficher `co2_broken.csv`
 
@@ -673,7 +682,7 @@ head(CO2) # C'est le bordel!
 ```
 
 ---
-# DÉFI ![:cube]()
+# Défi ![:cube]()
 
 Voici quelques fonctions qui peuvent vous aider :
 
@@ -738,7 +747,7 @@ head(CO2)
 ---
 # Jeu de données "endommagé"
 
-.alert[ERREUR 3] Les variables `conc` et `uptake` sont considérées commes des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
+.alert[ERREUR 3] Les variables `conc` et `uptake` sont considérées comme des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
 
 ```{r, eval = TRUE}
 str(CO2)
@@ -849,7 +858,7 @@ class: inverse, center, middle
 ---
 # `tidyr` pour réorganiser ses données
 
-```{r, eval = FALSE}
+```{r}
 library(tidyr)
 ```
 
@@ -865,7 +874,7 @@ library(tidyr)
 
 .small[Un data frame en format large contient une colonne pour chaque variable ou facteur]
 
-```{r, echo=FALSE, eval = T}
+```{r, echo=FALSE, eval = TRUE}
 large <- data.frame(Species = c("Chene", "Orme", "Frene"),
                    DHP = c(12, 20, 13),
                    Haut = c(56, 85, 55))
@@ -878,13 +887,13 @@ large
 
 .small[Un data frame en format long contient une colonne par variable, où chaque ligne est une observation]
 
-```{r, echo=FALSE, eval = T}
+```{r, echo=FALSE, eval = TRUE}
 long <- gather(large, dimension, cm, DHP, Haut)
 long
 ```
 ]
 
-`ggplot2` peut utiliser le format large pour des visualisations simples, mais des visualisations plus complexes requierent le format long.
+`ggplot2` peut utiliser le format large pour des visualisations simples, mais des visualisations plus complexes requièrent le format long.
 
 `dplyr`, `lm()`, `glm()`, `gam()` nécessitent le format long.
 
@@ -904,8 +913,7 @@ Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservan
 ---
 # Installation du paquet `tidyr`
 
-```{r, eval=FALSE}
-install.packages("tidyr")
+```{r}
 library(tidyr)
 ```
 
@@ -1035,7 +1043,7 @@ Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `
 
 
 ---
-# DÉFI #1 ![:cube]()
+# Défi #1 ![:cube]()
 
 Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
@@ -1058,7 +1066,7 @@ head(air.long)
 .comment[Notez que la syntaxe utilisée ici indique que nous souhaitons rassembler TOUTES les colonnes sauf *Month* et *Day*. Cela équivaut à: `rassembler (qualité de l'air, valeur, Ozone, Solar.R, température, vent)`]
 
 ---
-# DÉFI #2 ![:cube]()
+# Défi #2 ![:cube]()
 
 Convertissez-le en format large pour retrouver le format original de `airquality`
 
@@ -1096,8 +1104,7 @@ Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `s
 
 Commençons par installer et charger le paquet `dplyr`
 
-```{r, eval=F}
-install.packages("dplyr")
+```{r}
 library(dplyr)
 ```
 
@@ -1125,7 +1132,7 @@ Voici les 4 *verbes* principaux qui permettent d'exécuter les manipulations les
 
 Examples :
 
-```{r, eval=F}
+```{r, eval = FALSE}
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
 select(données, c(2:4,6) # sélectionne les colonnes 2 à 4, plus la 6ème colonne
 select(données, -colonne1) # sélectionne toutes les colonnes sauf la 1ère
@@ -1141,7 +1148,7 @@ select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui co
 ---
 # `select()` - Sélection de colonnes
 
-Par exemple, si on s'intéresse à la variation de la variable Ozone avec le temps.
+Par exemple, si on analyse la variation de la variable Ozone avec le temps.
 
 ```{r}
 ozone <- dplyr::select(airquality, Ozone, Month, Day)
@@ -1168,7 +1175,7 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 
 Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans le jeu de données `airquality`
 
-```{r}
+```{r airquality}
 aout <- dplyr::filter(airquality, Month == 8, Temp >= 90)
 # ou filter(airquality, Month == 8 & Temp >= 90)
 head(aout)
@@ -1246,8 +1253,7 @@ Habituellement, la manipulation de données nécessite plusieurs étapes, le pac
 
 Commençons par installer et charger le paquet :
 
-```{r, eval=F}
-install.packages("magrittr")
+```{r, eval=FALSE}
 library(magrittr)
 ```
 
@@ -1277,16 +1283,16 @@ juin_C <- airquality %>%
 Avantages :
 
   * le code est moins redondant
-  * le code est facile à lire et à écrire parce que les fonctions sont executées dans l'ordre
+  * le code est facile à lire et à écrire parce que les fonctions sont exécutées dans l'ordre
 
 ---
 # `dplyr::group_by` et `dplyr::summarise`
 
 Les verbes `dplyr` que nous avons appris dans cet atelier deviennent particulièrement puissants quand ils sont reliés par le "pipe" (%>%).
 
-Les fonctions `dplyr` suivantes nous permettent de séparer nos jeu de données en groupes distincts sur lesquels on peut exécuter des opérations individuelles, comme des fonctions d'aggrégation et de sommaire:
+Les fonctions `dplyr` suivantes nous permettent de séparer nos jeu de données en groupes distincts sur lesquels on peut exécuter des opérations individuelles, comme des fonctions d’agrégation et de sommaire:
 
-`group_by()` ![:faic](arrow-right) regrouper le jeu de données par un facteur pour les opérations en aval (comme `summarise`)
+`group_by()` ![:faic](arrow-right) regrouper le jeu de données par un facteur pour les opérations en aval (comme `summarise()`)
 
 `summarise()` ![:faic](arrow-right) créer un sommaire de variables au sein de groupes distincts dans un jeu de données en utilisant des fonctions d'aggrégation (e.g. `min()`, `max()`, `mean()`)
 
@@ -1321,7 +1327,7 @@ mois_moy
 ```
 
 ---
-# DÉFI - `dplyr` et `magrittr` ![:cube]()
+# Défi - `dplyr` et `magrittr` ![:cube]()
 
 En utilisant le jeu de données `ChickWeight`, créez un tableau sommaire dans lequel on retrouve la différence de masse entre le maximum et le minimum de la masse enregistré pour chaque poussin dans l'étude.
 
@@ -1335,8 +1341,8 @@ data(ChickWeight)
 ---
 # Solution
 
-1. Utisez `group_by()` pour grouper le jeu de données `ChickWeight`
-2. Utisez `summarise()` pour calculer la gain de poids par groupe
+1. Utilisez `group_by()` pour grouper le jeu de données `ChickWeight`
+2. Utilisez `summarise()` pour calculer la gain de poids par groupe
 
 ```{r}
 mass_diff <- ChickWeight %>%
@@ -1346,7 +1352,7 @@ mass_diff
 ```
 
 ---
-# NINJA DÉFI - `dplyr` et `magrittr` ![:cube]()
+# NINJA Défi - `dplyr` et `magrittr` ![:cube]()
 
 <br>
 
