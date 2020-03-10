@@ -1,3 +1,8 @@
+# version 0.1.0.9000
+
+* Fix a couple of typos. 
+
+
 # version 0.1.0
 
 * Use `first_slides()` from the helper package to generate the 2 first slides.
@@ -8,7 +13,7 @@
 
 # version 0.0.2
 
-* Update template.
+* Update new template.
 * Remove pkgs.yaml.
 * Update README.
 
