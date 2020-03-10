@@ -23,22 +23,18 @@ class: center, middle, inverse, title-slide
 
 
 
-
 class: inverse, center, middle
 
-# For this workshop...
-&lt;hr&gt;
-[![Build Status](https://img.shields.io/travis/QCBSRworkshops/workshop02/dev?style=for-the-badge&amp;logo=travis)](https://travis-ci.org/QCBSRworkshops/workshop02)
+# About this workshop
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop02)
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=wiki&amp;message=02&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2)
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=02&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.html)
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=02&amp;color=red&amp;logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.pdf)
 [![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=script&amp;message=02&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.R)
 
-
 ---
-# Packages to be installed
-&lt;br&gt;
+
+# Required packages
 
 * [dplyr](https://cran.r-project.org/package=dplyr)
 * [tidyr](https://cran.r-project.org/package=tidyr)
@@ -46,12 +42,11 @@ class: inverse, center, middle
 
 &lt;br&gt;
 
-
-```r
+```R
 install.packages(c('dplyr', 'tidyr', 'magrittr'))
 ```
 
-
+---
 
 # Learning Objectives
 
@@ -579,9 +574,8 @@ CO2copy$uniqueID &lt;- paste0(CO2copy$Plante,
 
 # observe the results
 head(CO2copy$uniqueID)
-# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
-# [3] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
-# [5] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [4] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
 ```
 
 ---
@@ -921,9 +915,8 @@ str(CO2)
 
 ```r
 unique(CO2$conc)
-# [1] 95                175               250              
-# [4] 350               500               cannot_read_notes
-# [7] 1000              675              
+# [1] 95                175               250               350              
+# [5] 500               cannot_read_notes 1000              675              
 # Levels: 1000 175 250 350 500 675 95 cannot_read_notes
 ```
 

@@ -29,36 +29,11 @@ options(repos=structure(c(CRAN="http://cran.r-project.org")))
 
 class: inverse, center, middle
 
-# Pour cet atelier...
-<hr>
-
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.html)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Diapos&message=02&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.pdf)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.R)
-
----
-# Packages à installer
-<br>
-
-* [dplyr](https://cran.r-project.org/package=dplyr)
-* [tidyr](https://cran.r-project.org/package=tidyr)
-* [magrittr](https://cran.r-project.org/package=magrittr)
-
-<br>
-
-```{R install_pkgs, eval = FALSE}
-install.packages(c('dplyr', 'tidyr', 'magrittr'))
+```{R install_pkgs, echo = FALSE, results = "asis"}
+cat(
+  qcbsRworkshops::first_slides(2, c('dplyr', 'tidyr', 'magrittr'), lang = "fr")
+)
 ```
-
----
-class: inverse, center, middle
-
-# Créer un projet RStudio
-
-<hr>
-
 
 ---
 
@@ -70,6 +45,13 @@ class: inverse, center, middle
 ##### 3. Charger, explorer et enregistrer des données
 ##### 4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
 
+
+---
+class: inverse, center, middle
+
+# Créer un projet RStudio
+
+<hr>
 
 ---
 # Les projets RStudio
