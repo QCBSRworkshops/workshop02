@@ -61,36 +61,34 @@ install.packages(c('dplyr', 'tidyr', 'magrittr'))
 3. Loading, exploring, and saving data
 &lt;br&gt;
 &lt;br&gt;
-4. Learn to manipulate data frames with tidyr, dplyr, maggritr *(For more advanced users)*
+4. Learn to manipulate data frames with `tidyr`, `dplyr`, and `maggritr`
 
 
 ---
 # RStudio projects
-
 
 &lt;br&gt;
 &lt;br&gt;
 - Projects make easy to keep your work organized.
 &lt;br&gt;
 &lt;br&gt;
-- All files, scripts, and documentation related to a specific project are bound together with a .Rproj file
+- All files, scripts, and documentation related to a specific project are bound together with a *.Rproj* file
 &lt;br&gt;
 &lt;br&gt;
 
-.alert[
-  Encourages reproducible code!
-  ]
+.alert[Encourages reproducible code!]
 
 
 ---
 # Creating a new project
 
-Use the **Create project** command
+Use the **New project** command
 
-(available in the Projects menu and the global toolbar)
+(available in the global toolbar: *File* -&gt; *New Project*)
 
 .center[
 ![:scale 60%](images/0_Create_a_new_project.png)]
+
 
 ---
 # One project = one folder
@@ -104,15 +102,13 @@ Keep your files organized!
 ---
 # Preparing data for R
 
-Dataset should be stored as comma-separated value files (.csv) in the working directory
+Dataset should be stored as *comma-separated value* files (.csv) in the working directory
 
 * Can be created from almost all applications (Excel, LibreOffice, Google Docs)
 * File -&gt; Save as **.csv**…
 
 .center[
-![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)
-]
-
+![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)]
 
 
 ---
@@ -121,19 +117,18 @@ Dataset should be stored as comma-separated value files (.csv) in the working di
 Avoid using spaces, accents or special characters for your names.
 
 &lt;br&gt;
+&lt;br&gt;
 .pull-left[
 **Wise**
 - rawDatasetAgo2017.csv
 - co2_concentrations_QB.csv
 - 01_figIntro.R]
-&lt;br&gt;
-&lt;br&gt;
+
 .pull-right[
-**not-wise**
+**Not-wise**
 - final.csv
 - safnnejs.csv
-- 1-4.csv
-]
+- 1-4.csv]
 
 
 ---
@@ -143,18 +138,23 @@ Avoid using spaces, accents or special characters for your names
 Use separators (e.g. "\_") to add details
 
 &lt;br&gt;
+&lt;br&gt;
 .pull-left[
 **Wise**
   - Measurements
   - speciesNames
-  - Site_001_Rep_002 ]
-&lt;br&gt;
-&lt;br&gt;
+  - Site_001_Rep_002]
+  
 .pull-right[
-**not-wise**
+**Not-wise**
  - a
  - 3
  - complicatedverylongname]
+
+&lt;br&gt;
+&lt;br&gt;
+Check the [tidyverse style guide](https://style.tidyverse.org/) for good coding habits.
+
 
 ---
 # Common data preparation mistakes
@@ -186,6 +186,10 @@ Not the best practices for data preservation and interoperability
 .center[
 ![:scale 85%](images/HorribleData.png)]
 
+&lt;br&gt;
+&lt;br&gt;
+Check-out the paper by [Broman &amp; Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+for useful tips on data organization in spreadsheets.  
 
 ---
 # Preparing data in R
@@ -394,8 +398,8 @@ You can display contents of the working directory using `dir()`:
 dir()
 #  [1] "assets"              "data"                "images"             
 #  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
-#  [7] "qcbsR.css"           "workshop02-en_files" "workshop02-en.html" 
-# [10] "workshop02-en.pdf"   "workshop02-en.R"     "workshop02-en.Rmd"
+#  [7] "qcbsR.css"           "workshop02-en.html"  "workshop02-en.Rmd"  
+# [10] "workshop02-en_files"
 ```
 
 It helps to:
@@ -475,9 +479,9 @@ R Command  					| Action
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 675 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -777,20 +781,20 @@ Read the file `co2_broken.csv`
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 
@@ -821,20 +825,20 @@ add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
 ```r
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 ---
@@ -859,20 +863,20 @@ CO2 &lt;- read.csv("data/co2_broken.csv",sep = "")
 
 ```r
 head(CO2)
-#     NOTE.     It       rain        a               lot    in. Quebec
-# 1 falling     on         my notebook          numerous values  can't
-# 2   Plant   Type  Treatment     conc            uptake              
-# 3     Qn1 Quebec nonchilled       95                16              
-# 4     Qn1 Quebec nonchilled      175              30.4              
-# 5     Qn1 Quebec nonchilled      250 cannot_read_notes              
-# 6     Qn1 Quebec nonchilled      350              37.2              
-#   during sampling.      due to excessive X....
-# 1     be      read rain,,,, NA        NA    NA
-# 2                           NA        NA    NA
-# 3                           NA        NA    NA
-# 4                           NA        NA    NA
-# 5                           NA        NA    NA
-# 6                           NA        NA    NA
+#     NOTE.     It       rain        a               lot    in. Quebec during
+# 1 falling     on         my notebook          numerous values  can't     be
+# 2   Plant   Type  Treatment     conc            uptake                     
+# 3     Qn1 Quebec nonchilled       95                16                     
+# 4     Qn1 Quebec nonchilled      175              30.4                     
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
+# 6     Qn1 Quebec nonchilled      350              37.2                     
+#   sampling.      due to excessive X....
+# 1      read rain,,,, NA        NA    NA
+# 2                    NA        NA    NA
+# 3                    NA        NA    NA
+# 4                    NA        NA    NA
+# 5                    NA        NA    NA
+# 6                    NA        NA    NA
 ```
 
 
@@ -905,19 +909,19 @@ head(CO2)
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
-#  $ conc     : Factor w/ 8 levels "1000","175","250",..: 7 2 3 4 5 8 1 7 2 3 ...
-#  $ uptake   : Factor w/ 77 levels "10.5","10.6",..: 15 39 76 54 50 61 63 9 32 53 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : chr  "95" "175" "250" "350" ...
+#  $ uptake   : chr  "16" "30.4" "cannot_read_notes" "37.2" ...
 ```
 
 
 ```r
 unique(CO2$conc)
-# [1] 95                175               250               350              
-# [5] 500               cannot_read_notes 1000              675              
-# Levels: 1000 175 250 350 500 675 95 cannot_read_notes
+# [1] "95"                "175"               "250"              
+# [4] "350"               "500"               "cannot_read_notes"
+# [7] "1000"              "675"
 ```
 
 * Due to missing values entered as "cannot_read_notes" and "na"
@@ -945,9 +949,9 @@ CO2 &lt;- read.csv("data/co2_broken.csv", sep = "", skip = 2,
                 na.strings = c("NA","na","cannot_read_notes"))
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -967,10 +971,9 @@ str(CO2)
 
 ```r
 levels(CO2$Treatment)
-# [1] "chiled"     "chilled"    "nnchilled"  "nonchilled"
+# NULL
 unique(CO2$Treatment)
-# [1] nonchilled nnchilled  chilled    chiled    
-# Levels: chiled chilled nnchilled nonchilled
+# [1] "nonchilled" "nnchilled"  "chilled"    "chiled"
 ```
 
 ---
@@ -1017,9 +1020,9 @@ boxplot(uptake ~ Treatment, data = CO2)
 CO2 &lt;- droplevels(CO2)
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -1784,30 +1787,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  /* Replace <script> tags in slides area to make them executable
-   *
-   * Runs after post-processing of markdown source into slides and replaces only
-   * <script>s on the last slide of continued slides using the .has-continuation
-   * class added by xaringan. Finally, any <script>s in the slides area that
-   * aren't executed are commented out.
-   */
+  // Replace <script> tags in slides area to make them executable
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+    '.remark-slides-area .remark-slide-container script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-  var scriptsNotExecuted = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container.has-continuation script'
-  );
-  if (!scriptsNotExecuted.length) return;
-  for (var i = 0; i < scriptsNotExecuted.length; i++) {
-    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
-    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {
