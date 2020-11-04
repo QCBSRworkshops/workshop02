@@ -259,7 +259,7 @@ It is recommended that you start your script with a header using comments:
 ---
 # Section Headings
 <br>
-You can make a section heading in R Studio four `#` signs
+You can make a section heading in R Studio with four `#` signs
 
 ```{r, eval = FALSE}
 # You can comment using this, but look below how to create section headers:
