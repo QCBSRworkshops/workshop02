@@ -484,7 +484,7 @@ What is wrong here?
 
 --
 
-.comment[Do not forget to re-load data with `header = T` afterwards]
+.comment[Do not forget to re-load data with `header = TRUE` afterwards]
 
 ---
 # Reminder from Workshop 1: Accessing data
@@ -889,7 +889,26 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Advanced users section
+# Welcome to the tidyverse world!
+
+---
+# What is Tidyverse?
+
+[`Tidyverse`](https://www.tidyverse.org/) is a collection of packages designed for data science.
+
+`Tidyverse` provides more efficient and user-friendly tools that you are likely to use in everyday data analyses. 
+
+All packages included in `tidyverse` are automatically installed when installing the `tidyverse` package: `install.packages("tidyverse")`
+<br>
+<br>
+`Tidyverse` includes: 
+* [`tidyr`](https://tidyr.tidyverse.org/): tidy data
+* [`dplyr`](https://dplyr.tidyverse.org/): data manipulation
+* [`maggritr`](https://magrittr.tidyverse.org/): provide piping operators
+* [`ggplot2`](https://ggplot2.tidyverse.org/): make graphics
+* [`readr`](https://readr.tidyverse.org/): read data (faster!)
+* [`lubridate`](https://lubridate.tidyverse.org/): manipulate data-time data
+* [and more!](https://www.tidyverse.org/packages/)
 
 ---
 class: inverse, center, middle
@@ -1132,7 +1151,7 @@ head(air.wide)
 # Data manipulation with `dplyr`
 
 <div style="text-align:center">
-<img src="images/dplyr.png" height=50% width=50%>
+<img src="images/dplyr_logo.png" height=50% width=50%>
 </div>
 
 ---
