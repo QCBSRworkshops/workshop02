@@ -1063,7 +1063,7 @@ class: inverse, center, middle
 
 # Learn to manipulate data with
 
-## tidyr, dyplr, maggritr
+## tidyr, dyplr, and maggritr
 
 ---
 # Using `tidyr` to reshape data frames
@@ -1171,7 +1171,7 @@ wide
 
 
 ```r
-long = tidyr::gather(wide, Measurement, Value, DBH, Height)
+long = gather(wide, Measurement, Value, DBH, Height)
 long
 #   Species Measurement Value
 # 1     Oak         DBH    12
@@ -1210,7 +1210,7 @@ long
 
 
 ```r
-wide2 = tidyr::spread(long, Measurement, Value)
+wide2 = spread(long, Measurement, Value)
 wide2
 #   Species DBH Height
 # 1     Ash  13     55
@@ -1262,7 +1262,7 @@ First convert the messy data frame from wide to long format
 
 
 ```r
-messy.long &lt;- tidyr::gather(messy, taxa, count, -id, -trt)
+messy.long &lt;- gather(messy, taxa, count, -id, -trt)
 head(messy.long)
 #   id     trt           taxa     count
 # 1  1    farm zooplankton.T1 0.7189275
@@ -1280,8 +1280,8 @@ Then we want to split the 2 sampling time (T1 and T2).
 
 
 ```r
-messy.long.sep &lt;- tidyr::separate(messy.long, taxa,
-                                  into = c("species", "time"), sep = "\\.")
+messy.long.sep &lt;- separate(messy.long, taxa,
+                           into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
 #   id     trt     species time     count
 # 1  1    farm zooplankton   T1 0.7189275
@@ -1329,7 +1329,7 @@ Using the airquality dataset, `gather` all the columns (except Month and Day) in
 
 
 ```r
-air.long &lt;- tidyr::gather(airquality, variable, value, -Month, -Day)
+air.long &lt;- gather(airquality, variable, value, -Month, -Day)
 head(air.long)
 #   Month Day variable value
 # 1     5   1    Ozone    41
@@ -1356,7 +1356,7 @@ Note that the syntax used here indicates that we wish to gather ALL the columns 
 
 
 ```r
-air.wide &lt;- tidyr::spread(air.long, variable, value)
+air.wide &lt;- spread(air.long, variable, value)
 head(air.wide)
 #   Month Day Ozone Solar.R Temp Wind
 # 1     5   1    41     190   67  7.4
@@ -1438,7 +1438,7 @@ Example: suppose we are only interested in the variation of Ozone over time with
 
 
 ```r
-ozone &lt;- dplyr::select(airquality, Ozone, Month, Day)
+ozone &lt;- select(airquality, Ozone, Month, Day)
 head(ozone)
 #   Ozone Month Day
 # 1    41     5   1
@@ -1469,7 +1469,7 @@ Example: we are interested in analyses that focus on the month of August during 
 
 
 ```r
-august &lt;- dplyr::filter(airquality, Month == 8, Temp &gt;= 90)
+august &lt;- filter(airquality, Month == 8, Temp &gt;= 90)
 # same as: filter(airquality, Month == 8 &amp; Temp &gt;= 90)
 head(august)
 #   Ozone Solar.R Wind Temp Month Day
@@ -1500,7 +1500,7 @@ Example:
 
 
 ```r
-air_mess &lt;- dplyr::sample_frac(airquality, 1)
+air_mess &lt;- sample_frac(airquality, 1)
 head(air_mess)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    23     115  7.4   76     8  18
@@ -1520,7 +1520,7 @@ Example:
 
 
 ```r
-air_chron &lt;- dplyr::arrange(air_mess, Month, Day)
+air_chron &lt;- arrange(air_mess, Month, Day)
 head(air_chron)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    41     190  7.4   67     5   1
@@ -1552,7 +1552,7 @@ Example: we want to convert the temperature variable form degrees Fahrenheit to 
 
 
 ```r
-airquality_C &lt;- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C &lt;- mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 #   Ozone Solar.R Wind Temp Month Day   Temp_C
 # 1    41     190  7.4   67     5   1 19.44444
@@ -1604,8 +1604,8 @@ Alternatively, we can use maggritr's pipe operator to link these successive oper
 
 ```r
 june_C &lt;- airquality %&gt;%
-          dplyr::filter(Month == 6) %&gt;%
-          dplyr::mutate(Temp_C = (Temp-32)*(5/9))
+          filter(Month == 6) %&gt;%
+          mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Advantages :
@@ -1614,7 +1614,7 @@ Advantages :
   * easy to read and write because functions are executed in order
 
 ---
-# `dplyr::group_by` and `summarise`
+# `group_by` and `summarise`
 
 The `dplyr` verbs become especially powerful when they are are combined using the pipe operator `%&gt;%`.
 The following `dplyr` functions allow us to split our data frame into groups on which we can perform operations individually
@@ -1684,8 +1684,8 @@ data(ChickWeight)
 
 ```r
 weight_diff &lt;- ChickWeight %&gt;%
-               dplyr::group_by(Chick) %&gt;%
-               dplyr::summarise(weight_diff = max(weight) - min(weight))
+               group_by(Chick) %&gt;%
+               summarise(weight_diff = max(weight) - min(weight))
 ```
 
 
@@ -1703,6 +1703,40 @@ head(weight_diff)
 ```
 
 ---
+# R base challenge ![:cube]()
+&lt;br&gt;
+Now try to redo the previous challenge **only with functions from the R base!** 
+&lt;br&gt;
+&lt;br&gt;
+Note that several solutions are possible.
+&lt;br&gt;
+&lt;br&gt;
+.alert[Hint]: the function `?aggregate()` or `?by()` may be useful here.
+
+---
+
+# R base solution
+
+
+```r
+
+weight_diff_rbase &lt;- aggregate(formula = weight ~ Chick, 
+                               data    = ChickWeight,
+                               FUN     = function(x) weight_diff = max(x) - min(x))
+names(weight_diff_rbase) &lt;- c("Chick", "weight_diff")
+```
+
+
+```r
+# Is the r base output identical to the dplyr output?
+identical(weight_diff_rbase, as.data.frame(weight_diff))
+# [1] TRUE
+```
+
+---
+
+exclude: true
+
 # Ninja challenge ![:cube]()
 
 - Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
@@ -1714,15 +1748,18 @@ head(weight_diff)
 
 
 ---
+
+exclude: true
+
 # Ninja solution
 
 
 ```r
 diet_summ &lt;- ChickWeight %&gt;%
-             dplyr::group_by(Diet, Chick) %&gt;%
-             dplyr::summarise(weight_gain = last(weight) - first(weight)) %&gt;%
-             dplyr::group_by(Diet) %&gt;%
-             dplyr::summarise(mean_gain = mean(weight_gain))
+             group_by(Diet, Chick) %&gt;%
+             summarise(weight_gain = last(weight) - first(weight)) %&gt;%
+             group_by(Diet) %&gt;%
+             summarise(mean_gain = mean(weight_gain))
 ```
 
 
