@@ -949,10 +949,32 @@ wide
 .pull-right[
 **Long format**
 ```{r, echo=FALSE, eval = TRUE}
-long = gather(wide, Measurement, Value, DBH, Height)
+long = pivot_wider(wide, Measurement, Value, DBH, Height)
 long
 ```
 ]
+
+
+
+---
+#  A `tibble` structure for your data
+
+Tibble is an alternate, more convenient, version for a data frame. Using tibble ensures good coding practices that can be missed using `data.frame`. For instance, it does not change the type of inputs (e.g. string to factors). 
+
+```{r}
+tidyr::tibble(x = 1:3, y = c("a","b","c"))
+```
+
+
+In addition, it simplify the use of nested lists. 
+Example: 
+```{r}
+tidyr::tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+
+```
+
+you can use with a tibble all the functions applied to a data.frame 
+
 
 ---
 # long vs wide format
@@ -975,9 +997,9 @@ Wide data frame can be used for some basic plotting in `ggplot2`, but more compl
 <br>
 Tidying allows you to manipulate the structure of your data while preserving all original information
 
-`gather()` - convert from wide to long format
+`pivot_wider()` - convert from wide to long format
 
-`spread()` - convert from long to wide format
+`pivot_longer()` - convert from long to wide format
 
 .center[
 ![scale:90%](images/gather-spread.png)]
@@ -993,12 +1015,12 @@ library(tidyr)
 ---
 # `gather` columns into rows
 
-`gather(data, key, value, ...)`
+`pivot_wider(data, cols, values_to, ...)`
 
 <span style="font-size: 21px;">
   - `data` A data frame (e.g. `wide`)
-  - `key` name of the new column containing variable names (e.g. `Measurement`)
-  - `value` name of the new column containing variable values (e.g. `Value`)
+  - `cols` name of the new column containing variable names (e.g. `Measurement`)
+  - `values_to` name of the new column containing variable values (e.g. `Value`)
   - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
 </span>
 
@@ -1012,19 +1034,19 @@ wide
 ```
 
 ```{r}
-long = gather(wide, Measurement, Value, DBH, Height)
+long = pivot_wider(wide, Measurement, Value, DBH, Height)
 long
 ```
 
 ---
 # `spread` rows into columns
 
-`spread(data, key, value)`
+`pivot_longer(data, cols, values_to)`
 
 <span style="font-size: 21px;">
   - `data` A data frame (e.g. `long`)
-  - `key` Name of the column containing variable names (e.g. `Measurement`)
-  - `value` Name of the column containing variable values (e.g. `Value`)
+  - `cols` Name of the column containing variable names (e.g. `Measurement`)
+  - `values_to` Name of the column containing variable values (e.g. `Value`)
 </span>
 
 ---
@@ -1035,7 +1057,7 @@ long
 ```
 
 ```{r}
-wide2 = spread(long, Measurement, Value)
+wide2 = pivot_longer(long, Measurement, Value)
 wide2
 ```
 
@@ -1076,7 +1098,7 @@ messy
 First convert the messy data frame from wide to long format
 
 ```{r}
-messy.long <- gather(messy, taxa, count, -id, -trt)
+messy.long <- pivot_wider(messy, taxa, count, -id, -trt)
 head(messy.long)
 ```
 
@@ -1100,9 +1122,9 @@ The argument `sep = "\\."` tells R to splits the character string around the per
 
 A package that reshapes the layout of data sets.
 
-Converting from wide to long format using `gather()`
+Converting from wide to long format using `pivot_wider()`
 
-Converting from long format to wide format using `spread()`
+Converting from long format to wide format using `pivot_longer()`
 
 Split and merge columns with `unite()` and `separate()`
 
@@ -1126,11 +1148,11 @@ data(airquality)
 Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
 
 ```{r}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- pivot_wider(airquality, variable, value, -Month, -Day)
 head(air.long)
 ```
 .small[.comment[
-Note that the syntax used here indicates that we wish to gather ALL the columns except *Month* and *Day*. It is equivalent to: `gather(airquality, value, Ozone, Solar.R, Temp, Wind)`
+Note that the syntax used here indicates that we wish to gather ALL the columns except *Month* and *Day*. It is equivalent to: `pivot_wider(airquality, value, Ozone, Solar.R, Temp, Wind)`
 ]]
 
 ---
@@ -1145,7 +1167,7 @@ Note that the syntax used here indicates that we wish to gather ALL the columns 
 `spread` the resulting data frame to return to the original data format.
 
 ```{r}
-air.wide <- spread(air.long, variable, value)
+air.wide <- pivot_longer(air.long, variable, value)
 head(air.wide)
 ```
 
