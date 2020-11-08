@@ -394,8 +394,8 @@ You can display contents of the working directory using `dir()`:
 dir()
 #  [1] "assets"              "data"                "images"             
 #  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
-#  [7] "qcbsR.css"           "workshop02-en_files" "workshop02-en.html" 
-# [10] "workshop02-en.pdf"   "workshop02-en.R"     "workshop02-en.Rmd"
+#  [7] "qcbsR.css"           "workshop02-en.html"  "workshop02-en.Rmd"  
+# [10] "workshop02-en_files"
 ```
 
 It helps to:
@@ -475,9 +475,9 @@ R Command  					| Action
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 675 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -517,7 +517,7 @@ What is wrong here?
 
 --
 
-.comment[Do not forget to re-load data with `header = T` afterwards]
+.comment[Do not forget to re-load data with `header = TRUE` afterwards]
 
 ---
 # Reminder from Workshop 1: Accessing data
@@ -777,20 +777,20 @@ Read the file `co2_broken.csv`
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 
@@ -821,20 +821,20 @@ add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
 ```r
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 ---
@@ -859,20 +859,20 @@ CO2 &lt;- read.csv("data/co2_broken.csv",sep = "")
 
 ```r
 head(CO2)
-#     NOTE.     It       rain        a               lot    in. Quebec
-# 1 falling     on         my notebook          numerous values  can't
-# 2   Plant   Type  Treatment     conc            uptake              
-# 3     Qn1 Quebec nonchilled       95                16              
-# 4     Qn1 Quebec nonchilled      175              30.4              
-# 5     Qn1 Quebec nonchilled      250 cannot_read_notes              
-# 6     Qn1 Quebec nonchilled      350              37.2              
-#   during sampling.      due to excessive X....
-# 1     be      read rain,,,, NA        NA    NA
-# 2                           NA        NA    NA
-# 3                           NA        NA    NA
-# 4                           NA        NA    NA
-# 5                           NA        NA    NA
-# 6                           NA        NA    NA
+#     NOTE.     It       rain        a               lot    in. Quebec during
+# 1 falling     on         my notebook          numerous values  can't     be
+# 2   Plant   Type  Treatment     conc            uptake                     
+# 3     Qn1 Quebec nonchilled       95                16                     
+# 4     Qn1 Quebec nonchilled      175              30.4                     
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
+# 6     Qn1 Quebec nonchilled      350              37.2                     
+#   sampling.      due to excessive X....
+# 1      read rain,,,, NA        NA    NA
+# 2                    NA        NA    NA
+# 3                    NA        NA    NA
+# 4                    NA        NA    NA
+# 5                    NA        NA    NA
+# 6                    NA        NA    NA
 ```
 
 
@@ -905,19 +905,19 @@ head(CO2)
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
-#  $ conc     : Factor w/ 8 levels "1000","175","250",..: 7 2 3 4 5 8 1 7 2 3 ...
-#  $ uptake   : Factor w/ 77 levels "10.5","10.6",..: 15 39 76 54 50 61 63 9 32 53 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : chr  "95" "175" "250" "350" ...
+#  $ uptake   : chr  "16" "30.4" "cannot_read_notes" "37.2" ...
 ```
 
 
 ```r
 unique(CO2$conc)
-# [1] 95                175               250               350              
-# [5] 500               cannot_read_notes 1000              675              
-# Levels: 1000 175 250 350 500 675 95 cannot_read_notes
+# [1] "95"                "175"               "250"              
+# [4] "350"               "500"               "cannot_read_notes"
+# [7] "1000"              "675"
 ```
 
 * Due to missing values entered as "cannot_read_notes" and "na"
@@ -945,9 +945,9 @@ CO2 &lt;- read.csv("data/co2_broken.csv", sep = "", skip = 2,
                 na.strings = c("NA","na","cannot_read_notes"))
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -967,10 +967,9 @@ str(CO2)
 
 ```r
 levels(CO2$Treatment)
-# [1] "chiled"     "chilled"    "nnchilled"  "nonchilled"
+# NULL
 unique(CO2$Treatment)
-# [1] nonchilled nnchilled  chilled    chiled    
-# Levels: chiled chilled nnchilled nonchilled
+# [1] "nonchilled" "nnchilled"  "chilled"    "chiled"
 ```
 
 ---
@@ -1017,9 +1016,9 @@ boxplot(uptake ~ Treatment, data = CO2)
 CO2 &lt;- droplevels(CO2)
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -1038,14 +1037,33 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Advanced users section
+# Welcome to the tidyverse world!
+
+---
+# What is Tidyverse?
+
+[`Tidyverse`](https://www.tidyverse.org/) is a collection of packages designed for data science.
+
+`Tidyverse` provides more efficient and user-friendly tools that you are likely to use in everyday data analyses. 
+
+All packages included in `tidyverse` are automatically installed when installing the `tidyverse` package: `install.packages("tidyverse")`
+&lt;br&gt;
+&lt;br&gt;
+`Tidyverse` includes: 
+* [`tidyr`](https://tidyr.tidyverse.org/): tidy data
+* [`dplyr`](https://dplyr.tidyverse.org/): data manipulation
+* [`maggritr`](https://magrittr.tidyverse.org/): provide piping operators
+* [`ggplot2`](https://ggplot2.tidyverse.org/): make graphics
+* [`readr`](https://readr.tidyverse.org/): read data (faster!)
+* [`lubridate`](https://lubridate.tidyverse.org/): manipulate data-time data
+* [and more!](https://www.tidyverse.org/packages/)
 
 ---
 class: inverse, center, middle
 
 # Learn to manipulate data with
 
-## tidyr, dyplr, maggritr
+## tidyr, dyplr, and maggritr
 
 ---
 # Using `tidyr` to reshape data frames
@@ -1153,7 +1171,7 @@ wide
 
 
 ```r
-long = tidyr::gather(wide, Measurement, Value, DBH, Height)
+long = gather(wide, Measurement, Value, DBH, Height)
 long
 #   Species Measurement Value
 # 1     Oak         DBH    12
@@ -1192,7 +1210,7 @@ long
 
 
 ```r
-wide2 = tidyr::spread(long, Measurement, Value)
+wide2 = spread(long, Measurement, Value)
 wide2
 #   Species DBH Height
 # 1     Ash  13     55
@@ -1244,7 +1262,7 @@ First convert the messy data frame from wide to long format
 
 
 ```r
-messy.long &lt;- tidyr::gather(messy, taxa, count, -id, -trt)
+messy.long &lt;- gather(messy, taxa, count, -id, -trt)
 head(messy.long)
 #   id     trt           taxa     count
 # 1  1    farm zooplankton.T1 0.7189275
@@ -1262,8 +1280,8 @@ Then we want to split the 2 sampling time (T1 and T2).
 
 
 ```r
-messy.long.sep &lt;- tidyr::separate(messy.long, taxa,
-                                  into = c("species", "time"), sep = "\\.")
+messy.long.sep &lt;- separate(messy.long, taxa,
+                           into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
 #   id     trt     species time     count
 # 1  1    farm zooplankton   T1 0.7189275
@@ -1311,7 +1329,7 @@ Using the airquality dataset, `gather` all the columns (except Month and Day) in
 
 
 ```r
-air.long &lt;- tidyr::gather(airquality, variable, value, -Month, -Day)
+air.long &lt;- gather(airquality, variable, value, -Month, -Day)
 head(air.long)
 #   Month Day variable value
 # 1     5   1    Ozone    41
@@ -1338,7 +1356,7 @@ Note that the syntax used here indicates that we wish to gather ALL the columns 
 
 
 ```r
-air.wide &lt;- tidyr::spread(air.long, variable, value)
+air.wide &lt;- spread(air.long, variable, value)
 head(air.wide)
 #   Month Day Ozone Solar.R Temp Wind
 # 1     5   1    41     190   67  7.4
@@ -1354,7 +1372,7 @@ head(air.wide)
 # Data manipulation with `dplyr`
 
 &lt;div style="text-align:center"&gt;
-&lt;img src="images/dplyr.png" height=50% width=50%&gt;
+&lt;img src="images/dplyr_logo.png" height=50% width=50%&gt;
 &lt;/div&gt;
 
 ---
@@ -1420,7 +1438,7 @@ Example: suppose we are only interested in the variation of Ozone over time with
 
 
 ```r
-ozone &lt;- dplyr::select(airquality, Ozone, Month, Day)
+ozone &lt;- select(airquality, Ozone, Month, Day)
 head(ozone)
 #   Ozone Month Day
 # 1    41     5   1
@@ -1451,7 +1469,7 @@ Example: we are interested in analyses that focus on the month of August during 
 
 
 ```r
-august &lt;- dplyr::filter(airquality, Month == 8, Temp &gt;= 90)
+august &lt;- filter(airquality, Month == 8, Temp &gt;= 90)
 # same as: filter(airquality, Month == 8 &amp; Temp &gt;= 90)
 head(august)
 #   Ozone Solar.R Wind Temp Month Day
@@ -1482,7 +1500,7 @@ Example:
 
 
 ```r
-air_mess &lt;- dplyr::sample_frac(airquality, 1)
+air_mess &lt;- sample_frac(airquality, 1)
 head(air_mess)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    23     115  7.4   76     8  18
@@ -1502,7 +1520,7 @@ Example:
 
 
 ```r
-air_chron &lt;- dplyr::arrange(air_mess, Month, Day)
+air_chron &lt;- arrange(air_mess, Month, Day)
 head(air_chron)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    41     190  7.4   67     5   1
@@ -1534,7 +1552,7 @@ Example: we want to convert the temperature variable form degrees Fahrenheit to 
 
 
 ```r
-airquality_C &lt;- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C &lt;- mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 #   Ozone Solar.R Wind Temp Month Day   Temp_C
 # 1    41     190  7.4   67     5   1 19.44444
@@ -1586,8 +1604,8 @@ Alternatively, we can use maggritr's pipe operator to link these successive oper
 
 ```r
 june_C &lt;- airquality %&gt;%
-          dplyr::filter(Month == 6) %&gt;%
-          dplyr::mutate(Temp_C = (Temp-32)*(5/9))
+          filter(Month == 6) %&gt;%
+          mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Advantages :
@@ -1596,7 +1614,7 @@ Advantages :
   * easy to read and write because functions are executed in order
 
 ---
-# `dplyr::group_by` and `summarise`
+# `group_by` and `summarise`
 
 The `dplyr` verbs become especially powerful when they are are combined using the pipe operator `%&gt;%`.
 The following `dplyr` functions allow us to split our data frame into groups on which we can perform operations individually
@@ -1666,8 +1684,8 @@ data(ChickWeight)
 
 ```r
 weight_diff &lt;- ChickWeight %&gt;%
-               dplyr::group_by(Chick) %&gt;%
-               dplyr::summarise(weight_diff = max(weight) - min(weight))
+               group_by(Chick) %&gt;%
+               summarise(weight_diff = max(weight) - min(weight))
 ```
 
 
@@ -1685,6 +1703,40 @@ head(weight_diff)
 ```
 
 ---
+# R base challenge ![:cube]()
+&lt;br&gt;
+Now try to redo the previous challenge **only with functions from the R base!** 
+&lt;br&gt;
+&lt;br&gt;
+Note that several solutions are possible.
+&lt;br&gt;
+&lt;br&gt;
+.alert[Hint]: the function `?aggregate()` or `?by()` may be useful here.
+
+---
+
+# R base solution
+
+
+```r
+
+weight_diff_rbase &lt;- aggregate(formula = weight ~ Chick, 
+                               data    = ChickWeight,
+                               FUN     = function(x) weight_diff = max(x) - min(x))
+names(weight_diff_rbase) &lt;- c("Chick", "weight_diff")
+```
+
+
+```r
+# Is the r base output identical to the dplyr output?
+identical(weight_diff_rbase, as.data.frame(weight_diff))
+# [1] TRUE
+```
+
+---
+
+exclude: true
+
 # Ninja challenge ![:cube]()
 
 - Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
@@ -1696,15 +1748,18 @@ head(weight_diff)
 
 
 ---
+
+exclude: true
+
 # Ninja solution
 
 
 ```r
 diet_summ &lt;- ChickWeight %&gt;%
-             dplyr::group_by(Diet, Chick) %&gt;%
-             dplyr::summarise(weight_gain = last(weight) - first(weight)) %&gt;%
-             dplyr::group_by(Diet) %&gt;%
-             dplyr::summarise(mean_gain = mean(weight_gain))
+             group_by(Diet, Chick) %&gt;%
+             summarise(weight_gain = last(weight) - first(weight)) %&gt;%
+             group_by(Diet) %&gt;%
+             summarise(mean_gain = mean(weight_gain))
 ```
 
 
@@ -1784,30 +1839,20 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })();
 (function() {
   "use strict"
-  /* Replace <script> tags in slides area to make them executable
-   *
-   * Runs after post-processing of markdown source into slides and replaces only
-   * <script>s on the last slide of continued slides using the .has-continuation
-   * class added by xaringan. Finally, any <script>s in the slides area that
-   * aren't executed are commented out.
-   */
+  // Replace <script> tags in slides area to make them executable
   var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+    '.remark-slides-area .remark-slide-container script'
   );
   if (!scripts.length) return;
   for (var i = 0; i < scripts.length; i++) {
     var s = document.createElement('script');
     var code = document.createTextNode(scripts[i].textContent);
     s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
     scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-  var scriptsNotExecuted = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container.has-continuation script'
-  );
-  if (!scriptsNotExecuted.length) return;
-  for (var i = 0; i < scriptsNotExecuted.length; i++) {
-    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
-    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
   }
 })();
 (function() {

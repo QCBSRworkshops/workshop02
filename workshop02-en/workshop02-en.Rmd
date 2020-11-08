@@ -484,7 +484,7 @@ What is wrong here?
 
 --
 
-.comment[Do not forget to re-load data with `header = T` afterwards]
+.comment[Do not forget to re-load data with `header = TRUE` afterwards]
 
 ---
 # Reminder from Workshop 1: Accessing data
@@ -889,14 +889,33 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Advanced users section
+# Welcome to the tidyverse world!
+
+---
+# What is Tidyverse?
+
+[`Tidyverse`](https://www.tidyverse.org/) is a collection of packages designed for data science.
+
+`Tidyverse` provides more efficient and user-friendly tools that you are likely to use in everyday data analyses. 
+
+All packages included in `tidyverse` are automatically installed when installing the `tidyverse` package: `install.packages("tidyverse")`
+<br>
+<br>
+`Tidyverse` includes: 
+* [`tidyr`](https://tidyr.tidyverse.org/): tidy data
+* [`dplyr`](https://dplyr.tidyverse.org/): data manipulation
+* [`maggritr`](https://magrittr.tidyverse.org/): provide piping operators
+* [`ggplot2`](https://ggplot2.tidyverse.org/): make graphics
+* [`readr`](https://readr.tidyverse.org/): read data (faster!)
+* [`lubridate`](https://lubridate.tidyverse.org/): manipulate data-time data
+* [and more!](https://www.tidyverse.org/packages/)
 
 ---
 class: inverse, center, middle
 
 # Learn to manipulate data with
 
-## tidyr, dyplr, maggritr
+## tidyr, dyplr, and maggritr
 
 ---
 # Using `tidyr` to reshape data frames
@@ -990,7 +1009,7 @@ wide
 ```
 
 ```{r}
-long = tidyr::gather(wide, Measurement, Value, DBH, Height)
+long = gather(wide, Measurement, Value, DBH, Height)
 long
 ```
 
@@ -1013,7 +1032,7 @@ long
 ```
 
 ```{r}
-wide2 = tidyr::spread(long, Measurement, Value)
+wide2 = spread(long, Measurement, Value)
 wide2
 ```
 
@@ -1054,7 +1073,7 @@ messy
 First convert the messy data frame from wide to long format
 
 ```{r}
-messy.long <- tidyr::gather(messy, taxa, count, -id, -trt)
+messy.long <- gather(messy, taxa, count, -id, -trt)
 head(messy.long)
 ```
 
@@ -1064,8 +1083,8 @@ head(messy.long)
 Then we want to split the 2 sampling time (T1 and T2).
 
 ```{r separate}
-messy.long.sep <- tidyr::separate(messy.long, taxa,
-                                  into = c("species", "time"), sep = "\\.")
+messy.long.sep <- separate(messy.long, taxa,
+                           into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
 ```
 
@@ -1104,7 +1123,7 @@ data(airquality)
 Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
 
 ```{r}
-air.long <- tidyr::gather(airquality, variable, value, -Month, -Day)
+air.long <- gather(airquality, variable, value, -Month, -Day)
 head(air.long)
 ```
 .small[.comment[
@@ -1123,7 +1142,7 @@ Note that the syntax used here indicates that we wish to gather ALL the columns 
 `spread` the resulting data frame to return to the original data format.
 
 ```{r}
-air.wide <- tidyr::spread(air.long, variable, value)
+air.wide <- spread(air.long, variable, value)
 head(air.wide)
 ```
 
@@ -1132,7 +1151,7 @@ head(air.wide)
 # Data manipulation with `dplyr`
 
 <div style="text-align:center">
-<img src="images/dplyr.png" height=50% width=50%>
+<img src="images/dplyr_logo.png" height=50% width=50%>
 </div>
 
 ---
@@ -1196,7 +1215,7 @@ select(data, start_with(x.)) # select all columns that start with "x."
 Example: suppose we are only interested in the variation of Ozone over time within the airquality dataset
 
 ```{r}
-ozone <- dplyr::select(airquality, Ozone, Month, Day)
+ozone <- select(airquality, Ozone, Month, Day)
 head(ozone)
 ```
 
@@ -1219,7 +1238,7 @@ Extract a subset of rows that meet one or more specific conditions
 Example: we are interested in analyses that focus on the month of August during high temperature events
 
 ```{r}
-august <- dplyr::filter(airquality, Month == 8, Temp >= 90)
+august <- filter(airquality, Month == 8, Temp >= 90)
 # same as: filter(airquality, Month == 8 & Temp >= 90)
 head(august)
 ```
@@ -1242,7 +1261,7 @@ Example:
 1. Let's use the following code to create a scrambled version of the airquality dataset
 
 ```{r}
-air_mess <- dplyr::sample_frac(airquality, 1)
+air_mess <- sample_frac(airquality, 1)
 head(air_mess)
 ```
 
@@ -1254,7 +1273,7 @@ Example:
 2. Now let's arrange the data frame back into chronological order, sorting by Month then Day
 
 ```{r}
-air_chron <- dplyr::arrange(air_mess, Month, Day)
+air_chron <- arrange(air_mess, Month, Day)
 head(air_chron)
 ```
 
@@ -1278,7 +1297,7 @@ Compute and add new columns
 Example: we want to convert the temperature variable form degrees Fahrenheit to degrees Celsius
 
 ```{r}
-airquality_C <- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- mutate(airquality, Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
@@ -1320,8 +1339,8 @@ Alternatively, we can use maggritr's pipe operator to link these successive oper
 
 ```{r}
 june_C <- airquality %>%
-          dplyr::filter(Month == 6) %>%
-          dplyr::mutate(Temp_C = (Temp-32)*(5/9))
+          filter(Month == 6) %>%
+          mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Advantages :
@@ -1330,7 +1349,7 @@ Advantages :
   * easy to read and write because functions are executed in order
 
 ---
-# `dplyr::group_by` and `summarise`
+# `group_by` and `summarise`
 
 The `dplyr` verbs become especially powerful when they are are combined using the pipe operator `%>%`.
 The following `dplyr` functions allow us to split our data frame into groups on which we can perform operations individually
@@ -1389,8 +1408,8 @@ data(ChickWeight)
 
 ```{r}
 weight_diff <- ChickWeight %>%
-               dplyr::group_by(Chick) %>%
-               dplyr::summarise(weight_diff = max(weight) - min(weight))
+               group_by(Chick) %>%
+               summarise(weight_diff = max(weight) - min(weight))
 ```
 
 ```{r}
@@ -1398,6 +1417,39 @@ head(weight_diff)
 ```
 
 ---
+# R base challenge ![:cube]()
+<br>
+Now try to redo the previous challenge **only with functions from the R base!** 
+<br>
+<br>
+Note that several solutions are possible.
+<br>
+<br>
+.alert[Hint]: the function `?aggregate()` or `?by()` may be useful here.
+
+---
+
+# R base solution
+
+```{r}
+
+weight_diff_rbase <- aggregate(formula = weight ~ Chick, 
+                               data    = ChickWeight,
+                               FUN     = function(x) weight_diff = max(x) - min(x))
+names(weight_diff_rbase) <- c("Chick", "weight_diff")
+
+```
+
+```{r}
+# Is the r base output identical to the dplyr output?
+identical(weight_diff_rbase, as.data.frame(weight_diff))
+
+```
+
+---
+
+exclude: true
+
 # Ninja challenge ![:cube]()
 
 - Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
@@ -1409,14 +1461,17 @@ head(weight_diff)
 
 
 ---
+
+exclude: true
+
 # Ninja solution
 
 ```{r}
 diet_summ <- ChickWeight %>%
-             dplyr::group_by(Diet, Chick) %>%
-             dplyr::summarise(weight_gain = last(weight) - first(weight)) %>%
-             dplyr::group_by(Diet) %>%
-             dplyr::summarise(mean_gain = mean(weight_gain))
+             group_by(Diet, Chick) %>%
+             summarise(weight_gain = last(weight) - first(weight)) %>%
+             group_by(Diet) %>%
+             summarise(mean_gain = mean(weight_gain))
 ```
 
 ```{r}
