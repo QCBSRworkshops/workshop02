@@ -195,16 +195,16 @@ class: inverse, center, middle
 # Écrire un script dans R
 
 ---
-# Écrire un script dans R
+# Les scripts R
 
 * Un script R c'est
   * un fichier texte contenant toutes les commandes nécessaires pour réaliser un projet.
   * Une fois écrit et enregistré, votre script R vous permettra d'apporter des changements et de refaire des analyses avec un minimum d'effort.
-  * Surlignez simplement une commande et appuyez sur "Run" ou sur 'command-enter' (Mac) ou 'ctrl-enter' (PC).
+  * Sélectionnez simplement une commande et appuyez sur "Run" ou sur 'command-enter' (Mac) ou 'ctrl-enter' (PC).
 
 
 ---
-# Écrire un script dans R
+# Créer un script dans R
 
 .center[
 ![:scale 80%](images/1_Create_an_R_script.png)
@@ -252,7 +252,7 @@ Il est recommandé d'ajouter des commentaires au début de vos scripts pour indi
 ---
 # Entêtes de section
 
-Vous pouvez utiliser quatre symboles `#` de suite pour créer un entête de section.
+Sur R studio, Vous pouvez utiliser quatre symboles `#` de suite pour créer un entête de section.
 
 Par exemple :
 ```{r, eval = FALSE}
