@@ -40,46 +40,43 @@ cat(
 # Learning Objectives
 
 <br>
-<br>
-1. Creating an R project
-<br>
-<br>
-2. Writing a script
-<br>
-<br>
-3. Loading, exploring, and saving data
-<br>
-<br>
-4. Learn to manipulate data frames with tidyr, dplyr, maggritr *(For more advanced users)*
+##### 1. Creating an R project
+##### 2. Writing a script
+##### 3. Loading, exploring, and saving data
+##### 4. Learn to manipulate data frames with `tidyr`, `dplyr`, and `maggritr`
 
+---
+class: inverse, center, middle
+
+# Creating an R project
+
+<hr>
 
 ---
 # RStudio projects
-
 
 <br>
 <br>
 - Projects make easy to keep your work organized.
 <br>
 <br>
-- All files, scripts, and documentation related to a specific project are bound together with a .Rproj file
+- All files, scripts, and documentation related to a specific project are bound together with a *.Rproj* file
 <br>
 <br>
 
-.alert[
-  Encourages reproducible code!
-  ]
+.alert[Encourages reproducible code!]
 
 
 ---
 # Creating a new project
 
-Use the **Create project** command
+Use the **New project** command
 
-(available in the Projects menu and the global toolbar)
+(available in the global toolbar: *File* -> *New Project*)
 
 .center[
 ![:scale 60%](images/0_Create_a_new_project.png)]
+
 
 ---
 # One project = one folder
@@ -93,15 +90,13 @@ Keep your files organized!
 ---
 # Preparing data for R
 
-Dataset should be stored as comma-separated value files (.csv) in the working directory
+Dataset should be stored as *comma-separated value* files (.csv) in the working directory
 
 * Can be created from almost all applications (Excel, LibreOffice, Google Docs)
 * File -> Save as **.csv**…
 
 .center[
-![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)
-]
-
+![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)]
 
 
 ---
@@ -110,19 +105,18 @@ Dataset should be stored as comma-separated value files (.csv) in the working di
 Avoid using spaces, accents or special characters for your names.
 
 <br>
+<br>
 .pull-left[
 **Wise**
 - rawDatasetAgo2017.csv
 - co2_concentrations_QB.csv
 - 01_figIntro.R]
-<br>
-<br>
+
 .pull-right[
-**not-wise**
+**Not-wise**
 - final.csv
 - safnnejs.csv
-- 1-4.csv
-]
+- 1-4.csv]
 
 
 ---
@@ -132,18 +126,23 @@ Avoid using spaces, accents or special characters for your names
 Use separators (e.g. "\_") to add details
 
 <br>
+<br>
 .pull-left[
 **Wise**
   - Measurements
   - speciesNames
-  - Site_001_Rep_002 ]
-<br>
-<br>
+  - Site_001_Rep_002]
+  
 .pull-right[
-**not-wise**
+**Not-wise**
  - a
  - 3
  - complicatedverylongname]
+
+<br>
+<br>
+Check the [tidyverse style guide](https://style.tidyverse.org/) for good coding habits.
+
 
 ---
 # Common data preparation mistakes
@@ -156,6 +155,11 @@ Use separators (e.g. "\_") to add details
 * inconsistent formats for dates, numbers, metrics, etc.
 * incorrect headings
 * merged cells
+
+<br>
+<br>
+Check-out the paper by [Broman & Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+for useful tips on data organization in spreadsheets. 
 
 ---
 # Bad data sheets:
@@ -175,7 +179,6 @@ Not the best practices for data preservation and interoperability
 .center[
 ![:scale 85%](images/HorribleData.png)]
 
-
 ---
 # Preparing data in R
 <br>
@@ -185,7 +188,7 @@ It is possible to do all your data preparation work within R
 * Saves time for large datasets
 * Keeps original data intact
 * Keeps track of the manipulation and transformation you did
-* Can switch between long- and wide-formats easily (more on this in future workshops)
+* Can switch between long- and wide-formats easily (more details later)
 
 * Useful tips on data preparation can be found here: https://www.zoology.ubc.ca/~schluter/R/data/
 

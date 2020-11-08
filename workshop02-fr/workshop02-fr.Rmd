@@ -38,12 +38,12 @@ cat(
 ---
 
 # Objectifs d'apprentissage
-<br>
 
+<br>
 ##### 1. Créer un projet RStudio
 ##### 2. Écrire un script dans R
 ##### 3. Charger, explorer et enregistrer des données
-##### 4. Manipuler des jeux de données avec tidyr, dplyr, maggritr (*Section avancée*)
+##### 4. Manipuler des jeux de données avec `tidyr`, `dplyr`, `maggritr`
 
 
 ---
@@ -58,7 +58,7 @@ class: inverse, center, middle
 
 * Qu'est-ce qu'un projet RStudio ?
   - Les projets RStudio permettent l'organisation de son travail et l'accès facile à tous les fichiers requis pour une analyse.
-  - Tous les fichiers, scripts, et documentation utilisés pour une analyse sont reliés et regroupés ensemble dans un même projet.
+  - Tous les fichiers, scripts, et documentation utilisés pour une analyse sont reliés ensemble dans un même projet par un fichier *.Rproj*.
 
 * L'utilisation de projets RStudio facilite aussi la **reproducibilité** et le partage de données, de scripts, et de leur documentation.
 
@@ -71,10 +71,9 @@ Pour créer un projet dans RStudio, allez dans le menu Fichier puis sélectionne
 ![:scale 60%](images/0_Create_a_new_project.png)]
 
 ---
-# Organiser ses fichiers
+# Un projet = un dossier
 
-
-Un projet = un dossier :)
+Organisez vos fichiers !
 
 .center[
 ![:scale 60%](images/0_folderData1.png)]
@@ -83,7 +82,7 @@ Un projet = un dossier :)
 ---
 # Préparer des données pour l'importation dans R
 
-* Vous devriez enregistrer les fichiers à importer dans R en tant que fichiers "comma separated values" (.csv)
+* Vous devriez enregistrer les fichiers à importer dans R en tant que fichiers "*comma separated values*" (**.csv**)
 * Les fichiers .csv peuvent être créés par presque toutes les applications (Excel, GoogleDocs, LibreOffice, etc.)
 
 .center[
@@ -132,14 +131,14 @@ Un projet = un dossier :)
 **Pas bien !**
  - a
  - 3
- - supernomunpeutroplong
-]
+ - supernomunpeutroplong]
 
-
+<br>
+<br>
+Regardez le guide [tidyverse](https://style.tidyverse.org/) pour plus de conseils.
 
 ---
 # Conseils pour préparer les données
-
 
 .pull-left[
 * Pas de texte dans les colonnes de mode numérique
@@ -153,6 +152,11 @@ Un projet = un dossier :)
 * Utilisez un format uniforme pour les dates, les chiffres, etc.
 * N'ajoutez pas de notes, d'entêtes supplémentaires, ou de cellules fusionnées!
 * Une variable par colonne! ]
+
+<br>
+<br>
+Lire le paper de [Broman & Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+pour plus de conseils sur l'organisation des données. 
 
 ---
 # Exemples de mauvaises habitudes:
