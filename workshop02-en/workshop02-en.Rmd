@@ -328,7 +328,7 @@ A
 # Remember
 <br>
 <br>
-* R is ready for commands when you see the chevron `>` in the console. If you don't see it, press ESC
+* R is ready for commands when you see the chevron `>` in the console. If you do not see it, press ESC
 <br>
 <br>
 * R is case sensitive!
@@ -514,11 +514,15 @@ Variables names can be changed within R.
 ```{r, eval = TRUE}
 # First lets make a copy of the dataset to play with
 CO2copy <- CO2
-# names() gives you the names of the variables present in the data frame
+# names() gives you the names of
+# the variables present in the data frame
 names(CO2copy)
 
-# Changing from English to French names (make sure you have the same levels!)
-names(CO2copy) <- c("Plante","Categorie", "Traitement", "conc", "absortion")
+# Changing from English to French names 
+# (make sure you have the same levels!)
+names(CO2copy) <- c("Plante","Categorie", 
+                    "Traitement", "conc",
+                    "absortion")
 names(CO2copy)
 ```
 
@@ -531,8 +535,8 @@ See `?paste` and `?paste0`.
 
 
 ```{r, eval = TRUE}
-# Let's create an unique id for our samples:
-# Don't forget to use "" for strings
+# Let us create an unique id for our samples:
+# Do not forget to use "" for strings
 CO2copy$uniqueID <- paste0(CO2copy$Plante,
                            "_",CO2copy$Categorie,
                            "_", CO2copy$Traitement)
@@ -547,7 +551,7 @@ head(CO2copy$uniqueID)
 Creating new variables works for numbers and mathematical operations as well!
 
 ```{r, eval = FALSE}
-# Let's standardize our variable "absortion" to relative values
+# Let us standardize our variable "absortion" to relative values
 CO2copy$absortionRel <- CO2copy$absortion/max(CO2copy$absortion)
 
 # Observe the results
@@ -560,9 +564,11 @@ head(CO2copy$absortionRel)
 There are many ways to subset a data frame
 
 ```{r, eval = FALSE}
-# Let's keep working with our CO2copy data frame
+# Let us keep working with our CO2copy data frame
 
-# Select only "Plante" and "absortionRel" columns. (Don't forget the ","!)
+# Select only "Plante" and "absortionRel" columns.
+# (Do not forget the ","!)
+
 CO2copy[,c("Plante", "absortionRel")]
 
 # Subset data frame from rows from 1 to 50
@@ -577,11 +583,14 @@ CO2copy[1:50,]
 # Select observations matching only the nonchilled Traitement.
 CO2copy[CO2copy$Traitement == "nonchilled",]
 
-# Select observations with absortion higher or equal to 20
+# Select observations with absortion 
+# higher or equal to 20
 CO2copy[CO2copy$absortion >= 20, ]
 
-# Select observations with absortion higher or equal to 20
-CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absortion >= 20, ]
+# Select observations with absortion 
+# higher or equal to 20
+CO2copy[CO2copy$Traitement  == "nonchilled" &
+          CO2copy$absortion >= 20, ]
 
 # We are done playing with the Dataset copy, lets erase it.
 CO2copy <- NULL
@@ -606,10 +615,11 @@ This is also useful to spot some errors you might have missed!
 ---
 # Data exploration
 
-You can also use other functions to calculate basic statistics on parts of your data frame. Let's try the `mean()`, `sd()` and `hist()` functions:
+You can also use other functions to calculate basic statistics on parts of your data frame. Let us try the `mean()`, `sd()` and `hist()` functions:
 
 ```{r, eval = TRUE}
-# Calculate the mean and the standard deviation of the CO2 concentration:
+# Calculate the mean and the standard deviation 
+# of the CO2 concentration:
 # Assign them to new variables
 meanConc <- mean(CO2$conc)
 sdConc <- sd(CO2$conc)
@@ -626,7 +636,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 # Data exploration
 
 ```{r, eval = TRUE, fig.width=6, fig.height=6}
-# Let's plot a histogram to explore the distribution of "uptake"
+# Let us plot a histogram to explore the distribution of "uptake"
 hist(CO2$uptake)
 ```
 
@@ -679,6 +689,8 @@ Note that our arguments are both:
 
 
 ---
+instruction: hidden_remote
+
 # Challenge: Use your data ![:cube]()
 <br>
 <br>
@@ -704,7 +716,7 @@ Getting your data working properly can be tougher than you think!
 
 For example, sharing data from an Apple computer to Windows, or between computers set up in different continents can lead to incompatible files (e.g. different decimal separators).
 
-Let's practice how to solve these common errors.
+Let us practice how to solve these common errors.
 
 ---
 # Database repair
@@ -815,8 +827,10 @@ Tell R that all of NA, "na", and "cannot_read_notes" should be considered NA. Th
 
 
 ```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2,
-                na.strings = c("NA","na","cannot_read_notes"))
+CO2 <- read.csv("data/co2_broken.csv",
+                sep = "", skip = 2,
+                na.strings = c("NA","na",
+                               "cannot_read_notes"))
 str(CO2)
 ```
 
@@ -843,10 +857,12 @@ unique(CO2$Treatment)
 
 
 ```{r, eval = TRUE}
-# Identify all rows that contain "nnchilled" and replace with "nonchilled"
+# Identify all rows that contain "nnchilled" 
+# and replace with "nonchilled"
 CO2$Treatment[CO2$Treatment=="nnchilled"] <- "nonchilled"
 
-# Identify all rows that contain "chiled" and replace with "chilled"
+# Identify all rows that contain "chiled" 
+# and replace with "chilled"
 CO2$Treatment[CO2$Treatment=="chiled"] <- "chilled"
 ```
 
@@ -870,23 +886,25 @@ boxplot(uptake ~ Treatment, data = CO2)
 
 .alert[ERROR 4] - Solution
 
-
 ```{r, eval = TRUE}
 CO2 <- droplevels(CO2)
 str(CO2)
 ```
 
-.pull-left[
+
+---
+# Database repair
+
+
 ```{r, eval = FALSE}
 boxplot(uptake ~ Treatment, data = CO2)
 ```
-]
-.pull-right[
+
 ```{r, echo = FALSE, fig.height = 3.5}
 par(mar = c(4, 4, 0, 0))
 boxplot(uptake ~ Treatment, data = CO2)
 ```
-]
+
 
 
 ---
@@ -920,6 +938,7 @@ class: inverse, center, middle
 
 ## tidyr, dyplr, and maggritr
 
+
 ---
 # Using `tidyr` to reshape data frames
 
@@ -931,6 +950,44 @@ library(tidyr)
 <img src="images/tidyr_logo.png" height=40% width=40%>
 </div>
 
+
+
+
+---
+# Tidying your data
+<br>
+<br>
+Tidying allows you to manipulate the structure of your data while preserving all original information
+
+`pivot_longer()` - convert from wide to long format (gather)
+
+`pivot_wider()` - convert from long to wide format (spread)
+
+.center[
+![scale:90%](images/gather-spread.png)]
+
+---
+# `tidyr` installation
+
+```{r, eval = FALSE}
+install.packages("tidyr")
+library(tidyr)
+```
+
+---
+# `gather` columns into rows
+
+`pivot_wider(data, cols, values_to, ...)`
+
+<span style="font-size: 21px;">
+  - `data` A data frame (e.g. `wide`)
+  - `cols` name of the new column containing variable names (e.g. `Measurement`)
+  - `values_to` name of the new column containing variable values (e.g. `Value`)
+  - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
+</span>
+
+
+
 ---
 # Data formats
 
@@ -938,7 +995,7 @@ library(tidyr)
 .pull-left[
 **Wide format**
 ```{r, echo = FALSE, eval = TRUE}
-# Let's create a new data frame
+# Let us create a new data frame
 wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
                    DBH = c(12, 20, 13),
                    Height = c(56, 85, 55))
@@ -949,8 +1006,10 @@ wide
 .pull-right[
 **Long format**
 ```{r, echo=FALSE, eval = TRUE}
-long = gather(wide, Measurement, Value, DBH, Height)
+long <- pivot_longer(wide, cols = c("DBH", "Height"))
 long
+
+
 ```
 ]
 
@@ -970,74 +1029,24 @@ Wide data frame can be used for some basic plotting in `ggplot2`, but more compl
 `dplyr`, `lm()`, `glm()`, `gam()` all require long data format
 
 ---
-# Tidying your data
-<br>
-<br>
-Tidying allows you to manipulate the structure of your data while preserving all original information
+#  A `tibble` structure for your data
 
-`gather()` - convert from wide to long format
-
-`spread()` - convert from long to wide format
-
-.center[
-![scale:90%](images/gather-spread.png)]
-
----
-# `tidyr` installation
-
-```{r, eval = FALSE}
-install.packages("tidyr")
-library(tidyr)
-```
-
----
-# `gather` columns into rows
-
-`gather(data, key, value, ...)`
-
-<span style="font-size: 21px;">
-  - `data` A data frame (e.g. `wide`)
-  - `key` name of the new column containing variable names (e.g. `Measurement`)
-  - `value` name of the new column containing variable values (e.g. `Value`)
-  - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
-</span>
-
----
-# `gather` columns into rows
-
-```{r, echo = TRUE}
-wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
-                   DBH = c(12, 20, 13), Height = c(56, 85, 55))
-wide
-```
+Tibble is an alternate, more convenient, version for a data frame. Using tibble ensures good coding practices that can be missed using `data.frame`. For instance, it does not change the type of inputs (e.g. string to factors). 
 
 ```{r}
-long = gather(wide, Measurement, Value, DBH, Height)
-long
+tidyr::tibble(x = 1:3, y = c("a","b","c"))
 ```
 
----
-# `spread` rows into columns
 
-`spread(data, key, value)`
-
-<span style="font-size: 21px;">
-  - `data` A data frame (e.g. `long`)
-  - `key` Name of the column containing variable names (e.g. `Measurement`)
-  - `value` Name of the column containing variable values (e.g. `Value`)
-</span>
-
----
-# `spread` rows into columns
-
+In addition, it simplify the use of nested lists. 
+Example: 
 ```{r}
-long
+tidyr::tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+
 ```
 
-```{r}
-wide2 = spread(long, Measurement, Value)
-wide2
-```
+you can use with a tibble all the functions applied to a data.frame 
+
 
 ---
 # `separate` columns
@@ -1076,7 +1085,13 @@ messy
 First convert the messy data frame from wide to long format
 
 ```{r}
-messy.long <- gather(messy, taxa, count, -id, -trt)
+messy.long <- pivot_longer(messy,names_to = "taxa",
+                           cols   = c("zooplankton.T1", 
+                                            "fish.T1",
+                                            "zooplankton.T2",
+                                            "fish.T2"))
+
+
 head(messy.long)
 ```
 
@@ -1100,9 +1115,9 @@ The argument `sep = "\\."` tells R to splits the character string around the per
 
 A package that reshapes the layout of data sets.
 
-Converting from wide to long format using `gather()`
+Converting from wide to long format using `pivot_wider()`
 
-Converting from long format to wide format using `spread()`
+Converting from long format to wide format using `pivot_longer()`
 
 Split and merge columns with `unite()` and `separate()`
 
@@ -1123,15 +1138,16 @@ data(airquality)
 ---
 # Solution #1
 
-Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
+Using the airquality dataset, `pivot_wider` all the columns (except Month and Day) into rows.
 
 ```{r}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- pivot_longer(airquality,
+                         cols =  c("Solar.R", "Wind", "Temp"), 
+                         names_to = c("variable") )
+
 head(air.long)
 ```
-.small[.comment[
-Note that the syntax used here indicates that we wish to gather ALL the columns except *Month* and *Day*. It is equivalent to: `gather(airquality, value, Ozone, Solar.R, Temp, Wind)`
-]]
+
 
 ---
 # Challenge #2 ![:cube]()
@@ -1142,10 +1158,12 @@ Note that the syntax used here indicates that we wish to gather ALL the columns 
 ---
 # Solution #2
 
-`spread` the resulting data frame to return to the original data format.
+`pivot_wider` the resulting data frame to return to the original data format.
 
 ```{r}
-air.wide <- spread(air.long, variable, value)
+air.wide <- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from = "variable")
 head(air.wide)
 ```
 
@@ -1261,7 +1279,7 @@ Use `desc()` for descending order.
 <br>
 <br>
 Example:
-1. Let's use the following code to create a scrambled version of the airquality dataset
+1. Let us use the following code to create a scrambled version of the airquality dataset
 
 ```{r}
 air_mess <- sample_frac(airquality, 1)
@@ -1273,7 +1291,7 @@ head(air_mess)
 
 <br>
 Example:
-2. Now let's arrange the data frame back into chronological order, sorting by Month then Day
+2. Now let us arrange the data frame back into chronological order, sorting by Month then Day
 
 ```{r}
 air_chron <- arrange(air_mess, Month, Day)
@@ -1300,7 +1318,8 @@ Compute and add new columns
 Example: we want to convert the temperature variable form degrees Fahrenheit to degrees Celsius
 
 ```{r}
-airquality_C <- mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- mutate(airquality,
+                       Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
@@ -1327,7 +1346,8 @@ library(magrittr)
 Suppose we want to analyse only the month of June, then convert the temperature variable to degrees Celsius. We can create the required data frame by combining 2 dplyr verbs we learned
 
 ```{r}
-june_C <- mutate(filter(airquality, Month == 6),
+june_C <- mutate(filter(airquality, 
+                        Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1438,14 +1458,17 @@ Note that several solutions are possible.
 
 weight_diff_rbase <- aggregate(formula = weight ~ Chick, 
                                data    = ChickWeight,
-                               FUN     = function(x) weight_diff = max(x) - min(x))
+                               FUN     = function(x) 
+                                 weight_diff = max(x) - min(x))
 names(weight_diff_rbase) <- c("Chick", "weight_diff")
 
 ```
 
 ```{r}
 # Is the r base output identical to the dplyr output?
-identical(weight_diff_rbase, as.data.frame(weight_diff))
+
+
+table(weight_diff_rbase ==  as.data.frame(weight_diff))
 
 ```
 
@@ -1487,8 +1510,6 @@ diet_summ
 [Learn more on dplyr](http://r4ds.had.co.nz/transform.html)
 
 [dplyr and tidyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
-
-
 
 
 ---
