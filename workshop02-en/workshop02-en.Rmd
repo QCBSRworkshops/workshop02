@@ -328,7 +328,7 @@ A
 # Remember
 <br>
 <br>
-* R is ready for commands when you see the chevron `>` in the console. If you don't see it, press ESC
+* R is ready for commands when you see the chevron `>` in the console. If you do not see it, press ESC
 <br>
 <br>
 * R is case sensitive!
@@ -535,8 +535,8 @@ See `?paste` and `?paste0`.
 
 
 ```{r, eval = TRUE}
-# Let's create an unique id for our samples:
-# Don't forget to use "" for strings
+# Let us create an unique id for our samples:
+# Do not forget to use "" for strings
 CO2copy$uniqueID <- paste0(CO2copy$Plante,
                            "_",CO2copy$Categorie,
                            "_", CO2copy$Traitement)
@@ -551,7 +551,7 @@ head(CO2copy$uniqueID)
 Creating new variables works for numbers and mathematical operations as well!
 
 ```{r, eval = FALSE}
-# Let's standardize our variable "absortion" to relative values
+# Let us standardize our variable "absortion" to relative values
 CO2copy$absortionRel <- CO2copy$absortion/max(CO2copy$absortion)
 
 # Observe the results
@@ -564,10 +564,10 @@ head(CO2copy$absortionRel)
 There are many ways to subset a data frame
 
 ```{r, eval = FALSE}
-# Let's keep working with our CO2copy data frame
+# Let us keep working with our CO2copy data frame
 
 # Select only "Plante" and "absortionRel" columns.
-# (Don't forget the ","!)
+# (Do not forget the ","!)
 
 CO2copy[,c("Plante", "absortionRel")]
 
@@ -615,7 +615,7 @@ This is also useful to spot some errors you might have missed!
 ---
 # Data exploration
 
-You can also use other functions to calculate basic statistics on parts of your data frame. Let's try the `mean()`, `sd()` and `hist()` functions:
+You can also use other functions to calculate basic statistics on parts of your data frame. Let us try the `mean()`, `sd()` and `hist()` functions:
 
 ```{r, eval = TRUE}
 # Calculate the mean and the standard deviation 
@@ -636,7 +636,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 # Data exploration
 
 ```{r, eval = TRUE, fig.width=6, fig.height=6}
-# Let's plot a histogram to explore the distribution of "uptake"
+# Let us plot a histogram to explore the distribution of "uptake"
 hist(CO2$uptake)
 ```
 
@@ -716,7 +716,7 @@ Getting your data working properly can be tougher than you think!
 
 For example, sharing data from an Apple computer to Windows, or between computers set up in different continents can lead to incompatible files (e.g. different decimal separators).
 
-Let's practice how to solve these common errors.
+Let us practice how to solve these common errors.
 
 ---
 # Database repair
@@ -995,7 +995,7 @@ library(tidyr)
 .pull-left[
 **Wide format**
 ```{r, echo = FALSE, eval = TRUE}
-# Let's create a new data frame
+# Let us create a new data frame
 wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
                    DBH = c(12, 20, 13),
                    Height = c(56, 85, 55))
@@ -1279,7 +1279,7 @@ Use `desc()` for descending order.
 <br>
 <br>
 Example:
-1. Let's use the following code to create a scrambled version of the airquality dataset
+1. Let us use the following code to create a scrambled version of the airquality dataset
 
 ```{r}
 air_mess <- sample_frac(airquality, 1)
@@ -1291,7 +1291,7 @@ head(air_mess)
 
 <br>
 Example:
-2. Now let's arrange the data frame back into chronological order, sorting by Month then Day
+2. Now let us arrange the data frame back into chronological order, sorting by Month then Day
 
 ```{r}
 air_chron <- arrange(air_mess, Month, Day)
