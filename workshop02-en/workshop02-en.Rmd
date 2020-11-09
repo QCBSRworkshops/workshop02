@@ -361,13 +361,20 @@ library(help = "datasets")
 
 ---
 # Working Directory
-<br>
-<br>
-Tells R where your scripts and data are. You need to set the right working directory to load a data file. Type `getwd()` in the console to see your working directory:
+
+If you are not using an RStudio project, you have to tell R where your scripts and data are.Type `getwd()` in the console to see your current working directory:
 
 ```{r, eval = FALSE}
 getwd()
 ```
+
+If you want to change your working directory use `setwd()`: 
+
+```{r, eval = FALSE}
+setwd("C:/Users/my_new_path")
+```
+
+.comment[It is recommended to create an RStudio project and avoid using `setwd()` to promote reproducibility]
 
 ---
 # Display contents of the directory
@@ -444,6 +451,7 @@ R Command  					| Action
 `nrow(CO2)`					| number of rows
 `summary(CO2)`      | basic statistics for each variables
 
+.small[.alert[NOTE] These functions could also be used with other objects such as `vector`, `matrix`, `list`, `array`, etc.]
 
 ---
 # Inspecting the data
@@ -464,17 +472,15 @@ Very useful to check data type (mode) of all columns to make sure R loaded data 
 <br>
 **Common problems:**
 
-* Factors loaded as text (character) or viceversa;
+* Factors loaded as text (character) or viceversa
 * Factors includes too many (and unexpected) levels because of typos
 * Data (integer or numeric) is loaded as character because of typos (*e.g.* a space or a "," instead of a "." to separate decimal numbers)
 
 ---
-# Working with datasets in R
+# Exercise
 
 <br>
 <br>
-Exercise:
-
 Load the data with:
 
 ```{r, eval = FALSE}

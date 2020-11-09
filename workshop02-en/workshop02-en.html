@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Workshop 2: Loading and Manipulating Data</title>
     <meta charset="utf-8" />
@@ -377,14 +377,22 @@ library(help = "datasets")
 
 ---
 # Working Directory
-&lt;br&gt;
-&lt;br&gt;
-Tells R where your scripts and data are. You need to set the right working directory to load a data file. Type `getwd()` in the console to see your working directory:
+
+If you are not using an RStudio project, you have to tell R where your scripts and data are.Type `getwd()` in the console to see your current working directory:
 
 
 ```r
 getwd()
 ```
+
+If you want to change your working directory use `setwd()`: 
+
+
+```r
+setwd("C:/Users/my_new_path")
+```
+
+.comment[It is recommended to create an RStudio project and avoid using `setwd()` to promote reproducibility]
 
 ---
 # Display contents of the directory
@@ -397,8 +405,8 @@ You can display contents of the working directory using `dir()`:
 dir()
 #  [1] "assets"              "data"                "images"             
 #  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
-#  [7] "qcbsR.css"           "workshop02-en_files" "workshop02-en.html" 
-# [10] "workshop02-en.Rmd"
+#  [7] "qcbsR.css"           "workshop02-en.html"  "workshop02-en.Rmd"  
+# [10] "workshop02-en_files"
 ```
 
 It helps to:
@@ -469,6 +477,7 @@ R Command  					| Action
 `nrow(CO2)`					| number of rows
 `summary(CO2)`      | basic statistics for each variables
 
+.small[.alert[NOTE] These functions could also be used with other objects such as `vector`, `matrix`, `list`, `array`, etc.]
 
 ---
 # Inspecting the data
@@ -478,9 +487,9 @@ R Command  					| Action
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 675 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -496,17 +505,15 @@ Very useful to check data type (mode) of all columns to make sure R loaded data 
 &lt;br&gt;
 **Common problems:**
 
-* Factors loaded as text (character) or viceversa;
+* Factors loaded as text (character) or viceversa
 * Factors includes too many (and unexpected) levels because of typos
 * Data (integer or numeric) is loaded as character because of typos (*e.g.* a space or a "," instead of a "." to separate decimal numbers)
 
 ---
-# Working with datasets in R
+# Exercise
 
 &lt;br&gt;
 &lt;br&gt;
-Exercise:
-
 Load the data with:
 
 
@@ -689,7 +696,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 hist(CO2$uptake)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-22-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-23-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ---
 # Data exploration
@@ -700,7 +707,7 @@ hist(CO2$uptake)
 hist(CO2$uptake, breaks = 40)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-23-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-24-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -792,20 +799,20 @@ Read the file `co2_broken.csv`
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 
@@ -836,20 +843,20 @@ add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
 ```r
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
-# 1 falling on my notebook numerous values can't be read rain
-# 2                      Plant\tType\tTreatment\tconc\tuptake
-# 3                           Qn1\tQuebec\tnonchilled\t95\t16
-# 4                        Qn1\tQuebec\tnonchilled\t175\t30.4
-# 5           Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
-# 6                        Qn1\tQuebec\tnonchilled\t350\t37.2
-#   due.to.excessive  X X.1 X.2 X.3
-# 1               NA NA  NA  NA  NA
-# 2               NA NA  NA  NA  NA
-# 3               NA NA  NA  NA  NA
-# 4               NA NA  NA  NA  NA
-# 5               NA NA  NA  NA  NA
-# 6               NA NA  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 ---
@@ -874,20 +881,20 @@ CO2 &lt;- read.csv("data/co2_broken.csv",sep = "")
 
 ```r
 head(CO2)
-#     NOTE.     It       rain        a               lot    in. Quebec
-# 1 falling     on         my notebook          numerous values  can't
-# 2   Plant   Type  Treatment     conc            uptake              
-# 3     Qn1 Quebec nonchilled       95                16              
-# 4     Qn1 Quebec nonchilled      175              30.4              
-# 5     Qn1 Quebec nonchilled      250 cannot_read_notes              
-# 6     Qn1 Quebec nonchilled      350              37.2              
-#   during sampling.      due to excessive X....
-# 1     be      read rain,,,, NA        NA    NA
-# 2                           NA        NA    NA
-# 3                           NA        NA    NA
-# 4                           NA        NA    NA
-# 5                           NA        NA    NA
-# 6                           NA        NA    NA
+#     NOTE.     It       rain        a               lot    in. Quebec during
+# 1 falling     on         my notebook          numerous values  can't     be
+# 2   Plant   Type  Treatment     conc            uptake                     
+# 3     Qn1 Quebec nonchilled       95                16                     
+# 4     Qn1 Quebec nonchilled      175              30.4                     
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
+# 6     Qn1 Quebec nonchilled      350              37.2                     
+#   sampling.      due to excessive X....
+# 1      read rain,,,, NA        NA    NA
+# 2                    NA        NA    NA
+# 3                    NA        NA    NA
+# 4                    NA        NA    NA
+# 5                    NA        NA    NA
+# 6                    NA        NA    NA
 ```
 
 
@@ -920,19 +927,19 @@ head(CO2)
 ```r
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
-#  $ conc     : Factor w/ 8 levels "1000","175","250",..: 7 2 3 4 5 8 1 7 2 3 ...
-#  $ uptake   : Factor w/ 77 levels "10.5","10.6",..: 15 39 76 54 50 61 63 9 32 53 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : chr  "95" "175" "250" "350" ...
+#  $ uptake   : chr  "16" "30.4" "cannot_read_notes" "37.2" ...
 ```
 
 
 ```r
 unique(CO2$conc)
-# [1] 95                175               250               350              
-# [5] 500               cannot_read_notes 1000              675              
-# Levels: 1000 175 250 350 500 675 95 cannot_read_notes
+# [1] "95"                "175"               "250"              
+# [4] "350"               "500"               "cannot_read_notes"
+# [7] "1000"              "675"
 ```
 
 * Due to missing values entered as "cannot_read_notes" and "na"
@@ -962,9 +969,9 @@ CO2 &lt;- read.csv("data/co2_broken.csv",
                                "cannot_read_notes"))
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 4 levels "chiled","chilled",..: 4 4 4 4 4 4 4 4 4 3 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -984,10 +991,9 @@ str(CO2)
 
 ```r
 levels(CO2$Treatment)
-# [1] "chiled"     "chilled"    "nnchilled"  "nonchilled"
+# NULL
 unique(CO2$Treatment)
-# [1] nonchilled nnchilled  chilled    chiled    
-# Levels: chiled chilled nnchilled nonchilled
+# [1] "nonchilled" "nnchilled"  "chilled"    "chiled"
 ```
 
 ---
@@ -1022,7 +1028,7 @@ If not :
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-38-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-39-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -1035,9 +1041,9 @@ boxplot(uptake ~ Treatment, data = CO2)
 CO2 &lt;- droplevels(CO2)
 str(CO2)
 # 'data.frame':	84 obs. of  5 variables:
-#  $ Plant    : Factor w/ 12 levels "Mc1","Mc2","Mc3",..: 10 10 10 10 10 10 10 11 11 11 ...
-#  $ Type     : Factor w/ 2 levels "Mississippi",..: 2 2 2 2 2 2 2 2 2 2 ...
-#  $ Treatment: Factor w/ 2 levels "chilled","nonchilled": 2 2 2 2 2 2 2 2 2 2 ...
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
 #  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
@@ -1052,7 +1058,7 @@ str(CO2)
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-41-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-42-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -1160,7 +1166,7 @@ library(tidyr)
 ```
 # # A tibble: 6 x 3
 #   Species name   value
-#   &lt;fct&gt;   &lt;chr&gt;  &lt;dbl&gt;
+#   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
 # 1 Oak     DBH       12
 # 2 Oak     Height    56
 # 3 Elm     DBH       20
@@ -1272,7 +1278,7 @@ messy.long &lt;- pivot_longer(messy,names_to = "taxa",
 head(messy.long)
 # # A tibble: 6 x 4
 #      id trt   taxa           value
-#   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;
+#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;
 # 1     1 farm  zooplankton.T1 0.719
 # 2     1 farm  fish.T1        0.644
 # 3     1 farm  zooplankton.T2 0.545
@@ -1293,7 +1299,7 @@ messy.long.sep &lt;- separate(messy.long, taxa,
 head(messy.long.sep)
 # # A tibble: 6 x 5
 #      id trt   species     time  value
-#   &lt;int&gt; &lt;fct&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
 # 1     1 farm  zooplankton T1    0.719
 # 2     1 farm  fish        T1    0.644
 # 3     1 farm  zooplankton T2    0.545
@@ -1859,6 +1865,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1876,17 +1908,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
