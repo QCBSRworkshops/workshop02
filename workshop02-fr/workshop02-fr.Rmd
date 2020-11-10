@@ -869,14 +869,33 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Section avancée
+# Bienvenue dans le monde de tidyverse !
+
+---
+# Qu'est ce que Tidyverse?
+
+[`Tidyverse`](https://www.tidyverse.org/) est un ensemble de packages conçus pour la manipulation de données en science.
+
+`Tidyverse` contient des outils plus efficaces et conviviales très utiles pour toutes sortes d’analyses.  
+
+Tous les packages inclus dans `tidyverse` sont automatiquement installés lors de l'installation de `tidyverse` : `install.packages("tidyverse")`
+<br>
+<br>
+Par exemple : 
+* [`tidyr`](https://tidyr.tidyverse.org/): réorganiser les tables de données
+* [`dplyr`](https://dplyr.tidyverse.org/): manipuler les données
+* [`maggritr`](https://magrittr.tidyverse.org/): lier plusieurs opérations
+* [`ggplot2`](https://ggplot2.tidyverse.org/): faire des graphiques
+* [`readr`](https://readr.tidyverse.org/): lire les données (plus rapide !)
+* [`lubridate`](https://lubridate.tidyverse.org/): manipuler des données de dates et de temps
+* [et plus !](https://www.tidyverse.org/packages/)
 
 ---
 class: inverse, center, middle
 
 # Manipulation de données avec
 
-## `tidyr`, `dplyr`, `magrittr`
+## tidyr, dplyr, magrittr
 
 ---
 # `tidyr` pour réorganiser ses données
@@ -916,6 +935,8 @@ long
 ```
 ]
 
+------------
+
 `ggplot2` peut utiliser le format large pour des visualisations simples, mais des visualisations plus complexes requièrent le format long.
 
 `dplyr`, `lm()`, `glm()`, `gam()` nécessitent le format long.
@@ -925,9 +946,9 @@ long
 
 Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservant les informations d'origine
 
-`gather()` ![:faic](arrow-right) "rassembler" les données (large -> long)
+`pivot_longer()` ![:faic](arrow-right) "rassembler" les données (large -> long)
 
-`spread()` ![:faic](arrow-right) "disperser" les données (long -> large)
+`pivot_wider()` ![:faic](arrow-right) "disperser" les données (long -> large)
 
 
 .center[
@@ -937,57 +958,86 @@ Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservan
 # Installation du paquet `tidyr`
 
 ```{r}
+install.packages("tidyr")
 library(tidyr)
 ```
 
 ---
-# Rassembler avec `gather()`
+# Rassembler les colonnes en lignes
 
-`gather(data, key, value, ...)`
+`pivot_longer(data, cols, names_to, values_to, ...)`
 
-  - `data` ![:faic](arrow-right) le jeu de données (e.g. 'large')
-  - `key` ![:faic](arrow-right) le nom de la nouvelle colonne spécifiant la variable mesurée (e.g. `dimension`)
-  - `value` ![:faic](arrow-right) le nom de la nouvelle colonne spécifiant la mesure associée (e.g. `cm`)
-  - `...` ![:faic](arrow-right) les colonnes qu'on veut empiler dans le jeu de données (e.g. `DHP`, `Haut`)
-
+<span style="font-size: 21px;">
+  - `data` le jeu de données (e.g. 'large')
+  - `cols` les colonnes qu'on veut empiler dans le jeu de données (e.g. `DHP`, `Haut`)
+  - `names_to` le nom de la nouvelle colonne spécifiant la variable mesurée (e.g. `dimension`)
+  - `values_to` le nom de la nouvelle colonne spécifiant la mesure associée (e.g. `cm`)
+</span>
 
 ---
-# Rassembler avec `gather()`
+# Rassembler avec `pivot_longer()`
 
 ```{r, echo = T}
 large <- data.frame(Species = c("Chene", "Orme", "Frene"),
-                   DHP = c(12, 20, 13),
-                   Haut = c(56, 85, 55))
+                   DHP      = c(12, 20, 13),
+                   Haut     = c(56, 85, 55))
 large
 ```
 
 ```{r}
-long <- gather(large, dimension, cm, DHP, Haut)
+long <- pivot_longer(data      = large, 
+                     cols      = c("DHP", "Haut"),
+                     names_to  = "dimension", 
+                     values_to = "cm")
 long
 ```
 
+---
+# Disperser avec les lignes en colonnes
+
+`pivot_wider(data, names_from, values_from, ...)`
+
+<span style="font-size: 21px;">
+  - `data` le jeu de données (e.g. `long`)
+  - `names_from` nom de la colonne contenant les noms des variables (e.g. `dimension`)
+  - `values_from` nom de la colonne contenant les mesures associées aux variables (e.g. `cm`)
+</span>
 
 ---
-# Disperser avec `spread()`
-
-`spread(data, key, value)`
-
-  - `data` ![:faic](arrow-right) le jeu de données (e.g. `long`)
-  - `key` ![:faic](arrow-right) nom de la colonne contenant les noms des variables (e.g. `dimension`)
-  - `value` ![:faic](arrow-right) nom de la colonne contenant les mesures associées aux variables (e.g. `cm`)
-
-
----
-# Disperser avec `spread()`
+# Disperser avec `pivot_wider()`
 
 ```{r}
 long
 ```
 
 ```{r}
-large2 <- spread(long, dimension, cm)
+large2 <- pivot_wider(data        = long, 
+                      names_from  = "dimension", 
+                      values_from = "cm")
 large2
 ```
+
+---
+#  La structure `tibble` pour des tables de données
+
+`Tibble` est un format alternatif et plus pratique que celui d'un data frame. L'utilisation d'un tribble favorise de bonnes habitudes de programmation. Par exemple, il ne change pas une variable de chaine de caractère en facteur.  
+
+```{r}
+tibble(x = 1:3, y = c("a","b","c"))
+```
+
+---
+#  La structure `tibble` pour des tables de données
+
+En plus, `tibble` simplifie l'utilisation de lists imbriqués dans la table de données.
+
+Exemple: 
+```{r}
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+
+```
+
+Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisées sur un tibble 
 
 ---
 # `separate()` des colonnes
@@ -1027,11 +1077,14 @@ degat
 On peut commencer par convertir ce jeu de données vers le format long.
 
 ```{r}
-degat.long <- gather(degat, taxa, count, -id, -trt)
+degat.long <- pivot_longer(degat,
+                           names_to = "taxa",
+                           cols     = c("zooplancton.T1", 
+                                        "poisson.T1",
+                                        "zooplancton.T2",
+                                        "poisson.T2"))
 head(degat.long)
 ```
-
-.alert[Petit rappel] ici, nous utilisons `-id` et `-trt`, qui est interprété par la fonction comme étant TOUTES les colonnes sauf `id` et `trt`.
 
 ---
 # Utiliser `separate()`
@@ -1056,9 +1109,9 @@ L'argument `sep = " \\."` indique à R de scinder la chaîne de caractères auto
 `tidyr` est un paquet qui réorganise la structure de jeux de données.
 
 
-Convertir de format large en format long à l'aide de `gather()`
+Convertir de format large en format long à l'aide de `pivot_longer()`
 
-Convertir de format long en format large à l'aide de `spread()`
+Convertir de format long en format large à l'aide de `pivot_wider()`
 
 Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `unite()`
 
@@ -1082,11 +1135,12 @@ data(airquality)
 Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
 ```{r}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- pivot_longer(airquality,
+                         cols     = c("Ozone", "Solar.R", "Wind", "Temp"), 
+                         names_to = c("variable"))
+
 head(air.long)
 ```
-
-.comment[Notez que la syntaxe utilisée ici indique que nous souhaitons rassembler TOUTES les colonnes sauf *Month* et *Day*. Cela équivaut à: `rassembler (qualité de l'air, valeur, Ozone, Solar.R, température, vent)`]
 
 ---
 # Défi #2 ![:cube]()
@@ -1099,7 +1153,9 @@ Convertissez-le en format large pour retrouver le format original de `airquality
 Convertissez-le en format large pour retrouver le format original de `airquality`
 
 ```{r}
-air.wide <- spread(air.long, variable, value)
+air.wide <- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from  = "variable")
 head(air.wide)
 ```
 
@@ -1107,7 +1163,7 @@ head(air.wide)
 # Manipulation avec `dplyr`
 
 .center[
-![:scale 50%](images/dplyr.png)]
+![:scale 50%](images/dplyr_logo.png)]
 
 
 ---
@@ -1127,7 +1183,7 @@ Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `s
 
 Commençons par installer et charger le paquet `dplyr`
 
-```{r}
+```{r, eval = TRUE}
 library(dplyr)
 ```
 
@@ -1174,7 +1230,7 @@ select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui co
 Par exemple, si on analyse la variation de la variable Ozone avec le temps.
 
 ```{r}
-ozone <- dplyr::select(airquality, Ozone, Month, Day)
+ozone <- select(airquality, Ozone, Month, Day)
 head(ozone)
 ```
 
@@ -1199,7 +1255,7 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans le jeu de données `airquality`
 
 ```{r airquality}
-aout <- dplyr::filter(airquality, Month == 8, Temp >= 90)
+aout <- filter(airquality, Month == 8, Temp >= 90)
 # ou filter(airquality, Month == 8 & Temp >= 90)
 head(aout)
 ```
@@ -1223,7 +1279,7 @@ Example :
 1) Commençons par créer une version désordonnée de `airquality`:
 
 ```{r}
-air_degat <- dplyr::sample_frac(airquality, 1)
+air_degat <- sample_frac(airquality, 1)
 head(air_degat)
 ```
 
@@ -1235,7 +1291,7 @@ Example :
 2) Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
 
 ```{r}
-air_chron <- dplyr::arrange(air_degat, Month, Day)
+air_chron <- arrange(air_degat, Month, Day)
 head(air_chron)
 ```
 
@@ -1259,7 +1315,8 @@ On peut utiliser la fonction `mutate()` pour créer et transformer des variables
 Par exemple, on veut transformer la variable température `Temp` de degrés Fahrenheit vers degrés Celsius
 
 ```{r}
-airquality_C <- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C <- mutate(airquality, 
+                       Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 ```
 
@@ -1286,7 +1343,7 @@ library(magrittr)
 Supposons qu'on veut créer un sous-ensemble de airquality pour le mois de juin, et ensuite convertir la variable de la température en degrés Celsius. On peut créer ce data frame en combinant 2 *verbes* de dplyr
 
 ```{r}
-juin_C <- dplyr::mutate(dplyr::filter(airquality, Month == 6),
+juin_C <- mutate(filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1295,12 +1352,12 @@ juin_C <- dplyr::mutate(dplyr::filter(airquality, Month == 6),
 ---
 # `magrittr`
 
- Au lieu d'envelopper tous les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %>% :
+ Au lieu d'envelopper toutes les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %>% :
 
 ```{r}
 juin_C <- airquality %>%
-    dplyr::filter(Month == 6) %>%
-    dplyr::mutate(Temp_C = (Temp-32)*(5/9))
+            filter(Month == 6) %>%
+            mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Avantages :
@@ -1343,9 +1400,9 @@ Utilisons ces deux fonctions pour générer un sommaire du jeu de données `airq
 
 ```{r}
 mois_moy <- airquality %>%
-      dplyr::group_by(Month) %>%
-      dplyr::summarise(mean_temp = mean(Temp),
-                sd_temp = sd(Temp))
+             group_by(Month) %>%
+             summarise(mean_temp = mean(Temp),
+                       sd_temp   = sd(Temp))
 mois_moy
 ```
 
@@ -1369,12 +1426,45 @@ data(ChickWeight)
 
 ```{r}
 mass_diff <- ChickWeight %>%
-      group_by(Chick) %>%
-      summarise(mass_diff = max(weight) - min(weight))
-mass_diff
+              group_by(Chick) %>%
+              summarise(mass_diff = max(weight) - min(weight))
+head(mass_diff)
 ```
 
 ---
+# Défi R base ![:cube]()
+<br>
+Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R !** 
+<br>
+<br>
+Prenez note qu'il existe plusieurs solutions.
+<br>
+<br>
+.alert[Indice]: Les fonction `?aggregate()` ou `?by()` pourraient s'avérer utiles.
+
+---
+
+# Défi R base - Solution
+
+```{r}
+
+mass_diff_rbase <- aggregate(formula = weight ~ Chick, 
+                             data    = ChickWeight,
+                             FUN     = function(x) weight_diff = max(x) - min(x))
+names(mass_diff_rbase) <- c("Chick", "weight_diff")
+
+```
+
+```{r}
+# Est ce que les deux résultats sont identiques (c-a-d avec et sans dplyr)
+
+table(mass_diff_rbase ==  as.data.frame(mass_diff))
+
+```
+
+---
+exclude: true
+
 # NINJA Défi - `dplyr` et `magrittr` ![:cube]()
 
 <br>
@@ -1388,6 +1478,8 @@ mass_diff
 .alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
 
 ---
+exclude: true
+
 # Solution ninja
 
 ```{r}

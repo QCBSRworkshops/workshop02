@@ -1022,14 +1022,33 @@ boxplot(uptake ~ Treatment, data = CO2)
 ---
 class: inverse, center, middle
 
-# Section avancée
+# Bienvenue dans le monde de tidyverse !
+
+---
+# Qu'est ce que Tidyverse?
+
+[`Tidyverse`](https://www.tidyverse.org/) est un ensemble de packages conçus pour la manipulation de données en science.
+
+`Tidyverse` contient des outils plus efficaces et conviviales très utiles pour toutes sortes d’analyses.  
+
+Tous les packages inclus dans `tidyverse` sont automatiquement installés lors de l'installation de `tidyverse` : `install.packages("tidyverse")`
+&lt;br&gt;
+&lt;br&gt;
+Par exemple : 
+* [`tidyr`](https://tidyr.tidyverse.org/): réorganiser les tables de données
+* [`dplyr`](https://dplyr.tidyverse.org/): manipuler les données
+* [`maggritr`](https://magrittr.tidyverse.org/): lier plusieurs opérations
+* [`ggplot2`](https://ggplot2.tidyverse.org/): faire des graphiques
+* [`readr`](https://readr.tidyverse.org/): lire les données (plus rapide !)
+* [`lubridate`](https://lubridate.tidyverse.org/): manipuler des données de dates et de temps
+* [et plus !](https://www.tidyverse.org/packages/)
 
 ---
 class: inverse, center, middle
 
 # Manipulation de données avec
 
-## `tidyr`, `dplyr`, `magrittr`
+## tidyr, dplyr, magrittr
 
 ---
 # `tidyr` pour réorganiser ses données
@@ -1077,6 +1096,8 @@ library(tidyr)
 ```
 ]
 
+------------
+
 `ggplot2` peut utiliser le format large pour des visualisations simples, mais des visualisations plus complexes requièrent le format long.
 
 `dplyr`, `lm()`, `glm()`, `gam()` nécessitent le format long.
@@ -1086,9 +1107,9 @@ library(tidyr)
 
 Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservant les informations d'origine
 
-`gather()` ![:faic](arrow-right) "rassembler" les données (large -&gt; long)
+`pivot_longer()` ![:faic](arrow-right) "rassembler" les données (large -&gt; long)
 
-`spread()` ![:faic](arrow-right) "disperser" les données (long -&gt; large)
+`pivot_wider()` ![:faic](arrow-right) "disperser" les données (long -&gt; large)
 
 
 .center[
@@ -1099,28 +1120,30 @@ Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservan
 
 
 ```r
+install.packages("tidyr")
 library(tidyr)
 ```
 
 ---
-# Rassembler avec `gather()`
+# Rassembler les colonnes en lignes
 
-`gather(data, key, value, ...)`
+`pivot_longer(data, cols, names_to, values_to, ...)`
 
-  - `data` ![:faic](arrow-right) le jeu de données (e.g. 'large')
-  - `key` ![:faic](arrow-right) le nom de la nouvelle colonne spécifiant la variable mesurée (e.g. `dimension`)
-  - `value` ![:faic](arrow-right) le nom de la nouvelle colonne spécifiant la mesure associée (e.g. `cm`)
-  - `...` ![:faic](arrow-right) les colonnes qu'on veut empiler dans le jeu de données (e.g. `DHP`, `Haut`)
-
+&lt;span style="font-size: 21px;"&gt;
+  - `data` le jeu de données (e.g. 'large')
+  - `cols` les colonnes qu'on veut empiler dans le jeu de données (e.g. `DHP`, `Haut`)
+  - `names_to` le nom de la nouvelle colonne spécifiant la variable mesurée (e.g. `dimension`)
+  - `values_to` le nom de la nouvelle colonne spécifiant la mesure associée (e.g. `cm`)
+&lt;/span&gt;
 
 ---
-# Rassembler avec `gather()`
+# Rassembler avec `pivot_longer()`
 
 
 ```r
 large &lt;- data.frame(Species = c("Chene", "Orme", "Frene"),
-                   DHP = c(12, 20, 13),
-                   Haut = c(56, 85, 55))
+                   DHP      = c(12, 20, 13),
+                   Haut     = c(56, 85, 55))
 large
 #   Species DHP Haut
 # 1   Chene  12   56
@@ -1130,52 +1153,98 @@ large
 
 
 ```r
-long &lt;- gather(large, dimension, cm, DHP, Haut)
+long &lt;- pivot_longer(data      = large, 
+                     cols      = c("DHP", "Haut"),
+                     names_to  = "dimension", 
+                     values_to = "cm")
 long
-#   Species dimension cm
-# 1   Chene       DHP 12
-# 2    Orme       DHP 20
-# 3   Frene       DHP 13
-# 4   Chene      Haut 56
-# 5    Orme      Haut 85
-# 6   Frene      Haut 55
+# # A tibble: 6 x 3
+#   Species dimension    cm
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Chene   DHP          12
+# 2 Chene   Haut         56
+# 3 Orme    DHP          20
+# 4 Orme    Haut         85
+# 5 Frene   DHP          13
+# 6 Frene   Haut         55
 ```
 
+---
+# Disperser avec les lignes en colonnes
+
+`pivot_wider(data, names_from, values_from, ...)`
+
+&lt;span style="font-size: 21px;"&gt;
+  - `data` le jeu de données (e.g. `long`)
+  - `names_from` nom de la colonne contenant les noms des variables (e.g. `dimension`)
+  - `values_from` nom de la colonne contenant les mesures associées aux variables (e.g. `cm`)
+&lt;/span&gt;
 
 ---
-# Disperser avec `spread()`
-
-`spread(data, key, value)`
-
-  - `data` ![:faic](arrow-right) le jeu de données (e.g. `long`)
-  - `key` ![:faic](arrow-right) nom de la colonne contenant les noms des variables (e.g. `dimension`)
-  - `value` ![:faic](arrow-right) nom de la colonne contenant les mesures associées aux variables (e.g. `cm`)
-
-
----
-# Disperser avec `spread()`
+# Disperser avec `pivot_wider()`
 
 
 ```r
 long
-#   Species dimension cm
-# 1   Chene       DHP 12
-# 2    Orme       DHP 20
-# 3   Frene       DHP 13
-# 4   Chene      Haut 56
-# 5    Orme      Haut 85
-# 6   Frene      Haut 55
+# # A tibble: 6 x 3
+#   Species dimension    cm
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Chene   DHP          12
+# 2 Chene   Haut         56
+# 3 Orme    DHP          20
+# 4 Orme    Haut         85
+# 5 Frene   DHP          13
+# 6 Frene   Haut         55
 ```
 
 
 ```r
-large2 &lt;- spread(long, dimension, cm)
+large2 &lt;- pivot_wider(data        = long, 
+                      names_from  = "dimension", 
+                      values_from = "cm")
 large2
-#   Species DHP Haut
-# 1   Chene  12   56
-# 2   Frene  13   55
-# 3    Orme  20   85
+# # A tibble: 3 x 3
+#   Species   DHP  Haut
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 Chene      12    56
+# 2 Orme       20    85
+# 3 Frene      13    55
 ```
+
+---
+#  La structure `tibble` pour des tables de données
+
+`Tibble` est un format alternatif et plus pratique que celui d'un data frame. L'utilisation d'un tribble favorise de bonnes habitudes de programmation. Par exemple, il ne change pas une variable de chaine de caractère en facteur.  
+
+
+```r
+tibble(x = 1:3, y = c("a","b","c"))
+# # A tibble: 3 x 2
+#       x y    
+#   &lt;int&gt; &lt;chr&gt;
+# 1     1 a    
+# 2     2 b    
+# 3     3 c
+```
+
+---
+#  La structure `tibble` pour des tables de données
+
+En plus, `tibble` simplifie l'utilisation de lists imbriqués dans la table de données.
+
+Exemple: 
+
+```r
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+# # A tibble: 3 x 2
+#       x y         
+#   &lt;int&gt; &lt;list&gt;    
+# 1     1 &lt;int [5]&gt; 
+# 2     2 &lt;int [10]&gt;
+# 3     3 &lt;int [20]&gt;
+```
+
+Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisées sur un tibble 
 
 ---
 # `separate()` des colonnes
@@ -1222,18 +1291,23 @@ On peut commencer par convertir ce jeu de données vers le format long.
 
 
 ```r
-degat.long &lt;- gather(degat, taxa, count, -id, -trt)
+degat.long &lt;- pivot_longer(degat,
+                           names_to = "taxa",
+                           cols     = c("zooplancton.T1", 
+                                        "poisson.T1",
+                                        "zooplancton.T2",
+                                        "poisson.T2"))
 head(degat.long)
-#   id     trt           taxa     count
-# 1  1 culture zooplancton.T1 0.7189275
-# 2  2 culture zooplancton.T1 0.2908734
-# 3  3 control zooplancton.T1 0.9322698
-# 4  4 control zooplancton.T1 0.7691470
-# 5  1 culture     poisson.T1 0.6444911
-# 6  2 culture     poisson.T1 0.4570449
+# # A tibble: 6 x 4
+#      id trt     taxa           value
+#   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+# 1     1 culture zooplancton.T1 0.719
+# 2     1 culture poisson.T1     0.644
+# 3     1 culture zooplancton.T2 0.545
+# 4     1 culture poisson.T2     0.264
+# 5     2 culture zooplancton.T1 0.291
+# 6     2 culture poisson.T1     0.457
 ```
-
-.alert[Petit rappel] ici, nous utilisons `-id` et `-trt`, qui est interprété par la fonction comme étant TOUTES les colonnes sauf `id` et `trt`.
 
 ---
 # Utiliser `separate()`
@@ -1245,13 +1319,15 @@ Ensuite, on veut séparer les 2 temps d'échantillonnage (T1 et T2) dans la colo
 degat.long.sep &lt;- separate(degat.long, taxa,
                            into = c("especes", "temps"), sep = "\\.")
 head(degat.long.sep)
-#   id     trt     especes temps     count
-# 1  1 culture zooplancton    T1 0.7189275
-# 2  2 culture zooplancton    T1 0.2908734
-# 3  3 control zooplancton    T1 0.9322698
-# 4  4 control zooplancton    T1 0.7691470
-# 5  1 culture     poisson    T1 0.6444911
-# 6  2 culture     poisson    T1 0.4570449
+# # A tibble: 6 x 5
+#      id trt     especes     temps value
+#   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+# 1     1 culture zooplancton T1    0.719
+# 2     1 culture poisson     T1    0.644
+# 3     1 culture zooplancton T2    0.545
+# 4     1 culture poisson     T2    0.264
+# 5     2 culture zooplancton T1    0.291
+# 6     2 culture poisson     T1    0.457
 ```
 
 .small[
@@ -1266,9 +1342,9 @@ L'argument `sep = " \\."` indique à R de scinder la chaîne de caractères auto
 `tidyr` est un paquet qui réorganise la structure de jeux de données.
 
 
-Convertir de format large en format long à l'aide de `gather()`
+Convertir de format large en format long à l'aide de `pivot_longer()`
 
-Convertir de format long en format large à l'aide de `spread()`
+Convertir de format long en format large à l'aide de `pivot_wider()`
 
 Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `unite()`
 
@@ -1294,18 +1370,21 @@ Réorganisez le jeu de données `airquality` en format long (en rassemblant tout
 
 
 ```r
-air.long &lt;- gather(airquality, variable, value, -Month, -Day)
-head(air.long)
-#   Month Day variable value
-# 1     5   1    Ozone    41
-# 2     5   2    Ozone    36
-# 3     5   3    Ozone    12
-# 4     5   4    Ozone    18
-# 5     5   5    Ozone    NA
-# 6     5   6    Ozone    28
-```
+air.long &lt;- pivot_longer(airquality,
+                         cols     = c("Ozone", "Solar.R", "Wind", "Temp"), 
+                         names_to = c("variable"))
 
-.comment[Notez que la syntaxe utilisée ici indique que nous souhaitons rassembler TOUTES les colonnes sauf *Month* et *Day*. Cela équivaut à: `rassembler (qualité de l'air, valeur, Ozone, Solar.R, température, vent)`]
+head(air.long)
+# # A tibble: 6 x 4
+#   Month   Day variable value
+#   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
+# 1     5     1 Ozone     41  
+# 2     5     1 Solar.R  190  
+# 3     5     1 Wind       7.4
+# 4     5     1 Temp      67  
+# 5     5     2 Ozone     36  
+# 6     5     2 Solar.R  118
+```
 
 ---
 # Défi #2 ![:cube]()
@@ -1319,22 +1398,26 @@ Convertissez-le en format large pour retrouver le format original de `airquality
 
 
 ```r
-air.wide &lt;- spread(air.long, variable, value)
+air.wide &lt;- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from  = "variable")
 head(air.wide)
-#   Month Day Ozone Solar.R Temp Wind
-# 1     5   1    41     190   67  7.4
-# 2     5   2    36     118   72  8.0
-# 3     5   3    12     149   74 12.6
-# 4     5   4    18     313   62 11.5
-# 5     5   5    NA      NA   56 14.3
-# 6     5   6    28      NA   66 14.9
+# # A tibble: 6 x 6
+#   Month   Day Ozone Solar.R  Wind  Temp
+#   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+# 1     5     1    41     190   7.4    67
+# 2     5     2    36     118   8      72
+# 3     5     3    12     149  12.6    74
+# 4     5     4    18     313  11.5    62
+# 5     5     5    NA      NA  14.3    56
+# 6     5     6    28      NA  14.9    66
 ```
 
 ---
 # Manipulation avec `dplyr`
 
 .center[
-![:scale 50%](images/dplyr.png)]
+![:scale 50%](images/dplyr_logo.png)]
 
 
 ---
@@ -1404,7 +1487,7 @@ Par exemple, si on analyse la variation de la variable Ozone avec le temps.
 
 
 ```r
-ozone &lt;- dplyr::select(airquality, Ozone, Month, Day)
+ozone &lt;- select(airquality, Ozone, Month, Day)
 head(ozone)
 #   Ozone Month Day
 # 1    41     5   1
@@ -1437,7 +1520,7 @@ Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans 
 
 
 ```r
-aout &lt;- dplyr::filter(airquality, Month == 8, Temp &gt;= 90)
+aout &lt;- filter(airquality, Month == 8, Temp &gt;= 90)
 # ou filter(airquality, Month == 8 &amp; Temp &gt;= 90)
 head(aout)
 #   Ozone Solar.R Wind Temp Month Day
@@ -1469,7 +1552,7 @@ Example :
 
 
 ```r
-air_degat &lt;- dplyr::sample_frac(airquality, 1)
+air_degat &lt;- sample_frac(airquality, 1)
 head(air_degat)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    23     115  7.4   76     8  18
@@ -1489,7 +1572,7 @@ Example :
 
 
 ```r
-air_chron &lt;- dplyr::arrange(air_degat, Month, Day)
+air_chron &lt;- arrange(air_degat, Month, Day)
 head(air_chron)
 #   Ozone Solar.R Wind Temp Month Day
 # 1    41     190  7.4   67     5   1
@@ -1521,7 +1604,8 @@ Par exemple, on veut transformer la variable température `Temp` de degrés Fahr
 
 
 ```r
-airquality_C &lt;- dplyr::mutate(airquality, Temp_C = (Temp-32)*(5/9))
+airquality_C &lt;- mutate(airquality, 
+                       Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
 #   Ozone Solar.R Wind Temp Month Day   Temp_C
 # 1    41     190  7.4   67     5   1 19.44444
@@ -1557,7 +1641,7 @@ Supposons qu'on veut créer un sous-ensemble de airquality pour le mois de juin,
 
 
 ```r
-juin_C &lt;- dplyr::mutate(dplyr::filter(airquality, Month == 6),
+juin_C &lt;- mutate(filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1566,13 +1650,13 @@ juin_C &lt;- dplyr::mutate(dplyr::filter(airquality, Month == 6),
 ---
 # `magrittr`
 
- Au lieu d'envelopper tous les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %&gt;% :
+ Au lieu d'envelopper toutes les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %&gt;% :
 
 
 ```r
 juin_C &lt;- airquality %&gt;%
-    dplyr::filter(Month == 6) %&gt;%
-    dplyr::mutate(Temp_C = (Temp-32)*(5/9))
+            filter(Month == 6) %&gt;%
+            mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
 Avantages :
@@ -1616,9 +1700,9 @@ Utilisons ces deux fonctions pour générer un sommaire du jeu de données `airq
 
 ```r
 mois_moy &lt;- airquality %&gt;%
-      dplyr::group_by(Month) %&gt;%
-      dplyr::summarise(mean_temp = mean(Temp),
-                sd_temp = sd(Temp))
+             group_by(Month) %&gt;%
+             summarise(mean_temp = mean(Temp),
+                       sd_temp   = sd(Temp))
 mois_moy
 # # A tibble: 5 x 3
 #   Month mean_temp sd_temp
@@ -1652,26 +1736,57 @@ data(ChickWeight)
 
 ```r
 mass_diff &lt;- ChickWeight %&gt;%
-      group_by(Chick) %&gt;%
-      summarise(mass_diff = max(weight) - min(weight))
-mass_diff
-# # A tibble: 50 x 2
-#    Chick mass_diff
-#    &lt;ord&gt;     &lt;dbl&gt;
-#  1 18            4
-#  2 16           16
-#  3 15           27
-#  4 13           55
-#  5 9            58
-#  6 20           76
-#  7 10           83
-#  8 8            92
-#  9 17          100
-# 10 19          114
-# # ... with 40 more rows
+              group_by(Chick) %&gt;%
+              summarise(mass_diff = max(weight) - min(weight))
+head(mass_diff)
+# # A tibble: 6 x 2
+#   Chick mass_diff
+#   &lt;ord&gt;     &lt;dbl&gt;
+# 1 18            4
+# 2 16           16
+# 3 15           27
+# 4 13           55
+# 5 9            58
+# 6 20           76
 ```
 
 ---
+# Défi R base ![:cube]()
+&lt;br&gt;
+Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R !** 
+&lt;br&gt;
+&lt;br&gt;
+Prenez note qu'il existe plusieurs solutions.
+&lt;br&gt;
+&lt;br&gt;
+.alert[Indice]: Les fonction `?aggregate()` ou `?by()` pourraient s'avérer utiles.
+
+---
+
+# Défi R base - Solution
+
+
+```r
+
+mass_diff_rbase &lt;- aggregate(formula = weight ~ Chick, 
+                             data    = ChickWeight,
+                             FUN     = function(x) weight_diff = max(x) - min(x))
+names(mass_diff_rbase) &lt;- c("Chick", "weight_diff")
+```
+
+
+```r
+# Est ce que les deux résultats sont identiques (c-a-d avec et sans dplyr)
+
+table(mass_diff_rbase ==  as.data.frame(mass_diff))
+# 
+# TRUE 
+#  100
+```
+
+---
+exclude: true
+
 # NINJA Défi - `dplyr` et `magrittr` ![:cube]()
 
 &lt;br&gt;
@@ -1685,6 +1800,8 @@ mass_diff
 .alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
 
 ---
+exclude: true
+
 # Solution ninja
 
 

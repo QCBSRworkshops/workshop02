@@ -956,7 +956,41 @@ library(tidyr)
 <img src="images/tidyr_logo.png" height=40% width=40%>
 </div>
 
+---
+# Data formats
 
+.pull-left[
+**Wide format**
+
+.small[Data format has a separate column for each variable or each factor in your study]
+
+```{r, echo = FALSE, eval = TRUE}
+# Let us create a new data frame
+wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
+                   DBH = c(12, 20, 13),
+                   Height = c(56, 85, 55))
+wide
+```
+]
+
+.pull-right[
+**Long format**
+
+.small[Data format has a column for possible variables and a column for the values of those variables]
+
+```{r, echo=FALSE, eval = TRUE}
+long <- pivot_longer(wide, cols = c("DBH", "Height"))
+long
+
+
+```
+]
+
+------------
+
+Wide data frame can be used for some basic plotting in `ggplot2`, but more complex plots require long format (example to come)
+
+`dplyr`, `lm()`, `glm()`, `gam()` all require long data format
 
 
 ---
@@ -981,78 +1015,81 @@ library(tidyr)
 ```
 
 ---
-# `gather` columns into rows
+# Gather columns into rows
 
-`pivot_wider(data, cols, values_to, ...)`
+`pivot_longer(data, cols, names_to, values_to, ...)`
 
 <span style="font-size: 21px;">
   - `data` A data frame (e.g. `wide`)
-  - `cols` name of the new column containing variable names (e.g. `Measurement`)
-  - `values_to` name of the new column containing variable values (e.g. `Value`)
-  - `...` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
+  - `cols` name or numeric index of the columns we wish to gather (e.g. `DBH`, `Height`)
+  - `names_to` name of the new column containing variable names (e.g. `Dimension`)
+  - `values_to` name of the new column containing variable values (e.g. `cm`)
 </span>
 
-
-
 ---
-# Data formats
+# Example of `pivot_longer` 
 
-
-.pull-left[
-**Wide format**
-```{r, echo = FALSE, eval = TRUE}
-# Let us create a new data frame
+```{r, echo = T}
 wide <- data.frame(Species = c("Oak", "Elm", "Ash"),
-                   DBH = c(12, 20, 13),
-                   Height = c(56, 85, 55))
+                   DBH     = c(12, 20, 13),
+                   Height  = c(56, 85, 55))
 wide
 ```
-]
 
-.pull-right[
-**Long format**
-```{r, echo=FALSE, eval = TRUE}
-long <- pivot_longer(wide, cols = c("DBH", "Height"))
+```{r}
+long <- pivot_longer(data      = wide, 
+                     cols      = c("DBH", "Height"),
+                     names_to  = "dimension", 
+                     values_to = "cm")
 long
-
-
 ```
-]
 
 ---
-# long vs wide format
+# Spread rows into columns
 
-.pull-left[
-**Wide** data format has a separate column for each variable or each factor in your study]
+`pivot_wider(data, names_from, values_from, ...)`
 
-.pull-right[
-**Long** data format has a column for possible variables and a column for the values of those variables]
+<span style="font-size: 21px;">
+  - `data` A data frame (e.g. `long`)
+  - `names_from` name of the column containing the variable names (e.g. `dimension`)
+  - `values_from` name of the column containing variable values (e.g. `cm`)
+</span>
 
-------------
+---
+# Disperser avec `pivot_wider()`
 
-Wide data frame can be used for some basic plotting in `ggplot2`, but more complex plots require long format (example to come)
+```{r}
+long
+```
 
-`dplyr`, `lm()`, `glm()`, `gam()` all require long data format
+```{r}
+large2 <- pivot_wider(data        = long, 
+                      names_from  = "dimension", 
+                      values_from = "cm")
+large2
+```
 
 ---
 #  A `tibble` structure for your data
 
-Tibble is an alternate, more convenient, version for a data frame. Using tibble ensures good coding practices that can be missed using `data.frame`. For instance, it does not change the type of inputs (e.g. string to factors). 
+`Tibble` is an alternate, more convenient, version for a data frame. Using tibble ensures good coding practices that can be missed using `data.frame`. For instance, it does not change the type of inputs (e.g. string to factors). 
 
 ```{r}
-tidyr::tibble(x = 1:3, y = c("a","b","c"))
+tibble(x = 1:3, y = c("a","b","c"))
 ```
 
+---
+#  A `tibble` structure for your data
 
-In addition, it simplify the use of nested lists. 
+In addition, `tibble` simplifies the use of nested lists.
+
 Example: 
 ```{r}
-tidyr::tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
 
 ```
 
 you can use with a tibble all the functions applied to a data.frame 
-
 
 ---
 # `separate` columns
@@ -1091,11 +1128,12 @@ messy
 First convert the messy data frame from wide to long format
 
 ```{r}
-messy.long <- pivot_longer(messy,names_to = "taxa",
-                           cols   = c("zooplankton.T1", 
-                                            "fish.T1",
-                                            "zooplankton.T2",
-                                            "fish.T2"))
+messy.long <- pivot_longer(messy,
+                           names_to = "taxa",
+                           cols     = c("zooplankton.T1", 
+                                        "fish.T1",
+                                        "zooplankton.T2",
+                                        "fish.T2"))
 
 
 head(messy.long)
@@ -1121,9 +1159,9 @@ The argument `sep = "\\."` tells R to splits the character string around the per
 
 A package that reshapes the layout of data sets.
 
-Converting from wide to long format using `pivot_wider()`
+Converting from wide to long format using `pivot_longer()`
 
-Converting from long format to wide format using `pivot_longer()`
+Converting from long format to wide format using `pivot_wider()`
 
 Split and merge columns with `unite()` and `separate()`
 
@@ -1133,7 +1171,7 @@ Split and merge columns with `unite()` and `separate()`
 ---
 # Challenge #1 ![:cube]()
 
-Using the airquality dataset, `gather` all the columns (except Month and Day) into rows.
+Using the `airquality` dataset, gather all the columns (except Month and Day) into rows.
 
 ```{r, eval = FALSE}
 ?airquality
@@ -1144,11 +1182,11 @@ data(airquality)
 ---
 # Solution #1
 
-Using the airquality dataset, `pivot_wider` all the columns (except Month and Day) into rows.
+Using the `airquality` dataset, gather all the columns (except Month and Day) into rows.
 
 ```{r}
 air.long <- pivot_longer(airquality,
-                         cols =  c("Solar.R", "Wind", "Temp"), 
+                         cols     =  c("Ozone", "Solar.R", "Wind", "Temp"), 
                          names_to = c("variable") )
 
 head(air.long)
@@ -1158,21 +1196,19 @@ head(air.long)
 ---
 # Challenge #2 ![:cube]()
 
-
-`spread` the resulting data frame to return to the original data format.
+Spread the resulting data frame to return to the original data format.
 
 ---
 # Solution #2
 
-`pivot_wider` the resulting data frame to return to the original data format.
+Spread the resulting data frame to return to the original data format.
 
 ```{r}
 air.wide <- pivot_wider(air.long,
                         values_from = "value",
-                        names_from = "variable")
+                        names_from  = "variable")
 head(air.wide)
 ```
-
 
 ---
 # Data manipulation with `dplyr`
@@ -1464,15 +1500,13 @@ Note that several solutions are possible.
 
 weight_diff_rbase <- aggregate(formula = weight ~ Chick, 
                                data    = ChickWeight,
-                               FUN     = function(x) 
-                                 weight_diff = max(x) - min(x))
+                               FUN     = function(x) weight_diff = max(x) - min(x))
 names(weight_diff_rbase) <- c("Chick", "weight_diff")
 
 ```
 
 ```{r}
 # Is the r base output identical to the dplyr output?
-
 
 table(weight_diff_rbase ==  as.data.frame(weight_diff))
 
