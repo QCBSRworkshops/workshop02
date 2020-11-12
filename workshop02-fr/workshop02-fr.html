@@ -1,45 +1,56 @@
----
-title: "Atelier 2: Charger et manipuler des données"
-subtitle: "Série d'ateliers R du CSBQ "
-author: "Centre de la science de la biodiversité du Québec"
-output:
-  xaringan::moon_reader:
-    includes:
-      in_header: qcbsR-header.html
-    lib_dir: assets
-    seal: true
-    css: ["default", "qcbsR.css", "qcbsR-fonts.css"]
-    nature:
-      beforeInit: "qcbsR-macros.js"
-      highlightLines: true
-      highlightStyle: github
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Atelier 2: Charger et manipuler des données</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Centre de la science de la biodiversité du Québec" />
+    <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+    <link rel="stylesheet" href="qcbsR.css" type="text/css" />
+    <link rel="stylesheet" href="qcbsR-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Atelier 2: Charger et manipuler des données
+## Série d’ateliers R du CSBQ
+### Centre de la science de la biodiversité du Québec
+
 ---
 
-```{r setup, echo = FALSE}
-knitr::opts_chunk$set(
-  comment = "#",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width=5, fig.height=5, fig.retina=3,
-  fig.align = 'center'
-)
-options(repos=structure(c(CRAN="http://cran.r-project.org")))
-```
+
+
 
 class: inverse, center, middle
 
-```{R install_pkgs, echo = FALSE, results = "asis"}
-cat(
-  qcbsRworkshops::first_slides(2, c('dplyr', 'tidyr', 'magrittr'), lang = "fr")
-)
+# À propos de cet atelier
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop02)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=wiki&amp;message=02&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Diapos&amp;message=02&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.html)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Diapos&amp;message=02&amp;color=red&amp;logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.pdf)
+[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=script&amp;message=02&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.R)
+
+---
+
+# Packages requis
+
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)
+
+&lt;br&gt;
+
+```R
+install.packages(c('dplyr', 'tidyr', 'magrittr'))
 ```
 
 ---
 
 # Objectifs d'apprentissage
 
-<br>
+&lt;br&gt;
 ##### 1. Créer un projet RStudio
 ##### 2. Écrire un script dans R
 ##### 3. Charger, explorer et enregistrer des données
@@ -51,7 +62,7 @@ class: inverse, center, middle
 
 # Créer un projet RStudio
 
-<hr>
+&lt;hr&gt;
 
 ---
 # Les projets RStudio
@@ -65,7 +76,7 @@ class: inverse, center, middle
 ---
 # Créer un projet dans RStudio
 
-Pour créer un projet dans RStudio, allez dans le menu Fichier puis sélectionnez **Nouveau projet** (*File* -> *New Project*).
+Pour créer un projet dans RStudio, allez dans le menu Fichier puis sélectionnez **Nouveau projet** (*File* -&gt; *New Project*).
 
 .center[
 ![:scale 60%](images/0_Create_a_new_project.png)]
@@ -84,7 +95,7 @@ Organisez vos fichiers !
 
 * Vous devriez enregistrer les fichiers à importer dans R en tant que fichiers "*comma separated values*" (**.csv**)
 * Les fichiers .csv peuvent être créés par presque toutes les applications (Excel, GoogleDocs, LibreOffice, etc.)
-* Fichier -> Enregistrer sous **.csv**…
+* Fichier -&gt; Enregistrer sous **.csv**…
 
 .center[
 ![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)
@@ -134,8 +145,8 @@ Organisez vos fichiers !
  - 3
  - supernomunpeutroplong]
 
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 Regardez le guide [tidyverse](https://style.tidyverse.org/) pour plus de conseils.
 
 ---
@@ -154,15 +165,15 @@ Regardez le guide [tidyverse](https://style.tidyverse.org/) pour plus de conseil
 * N'ajoutez pas de notes, d'entêtes supplémentaires, ou de cellules fusionnées!
 * Une variable par colonne! ]
 
-<br>
-<br>
-Lire le paper de [Broman & Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+&lt;br&gt;
+&lt;br&gt;
+Lire le paper de [Broman &amp; Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
 pour plus de conseils sur l'organisation des données. 
 
 ---
 # Exemples de mauvaises habitudes:
 
-<br>
+&lt;br&gt;
 
 .pull-left[
 ![:scale 115%](images/Excel_csv_good_bad/excel_values.png)
@@ -221,16 +232,17 @@ class: inverse, center, middle
 
 
 ---
-# Commandes & Commentaires
+# Commandes &amp; Commentaires
 
 Utilisez le symbole `#` pour insérer des commentaires au sein d'un script. Ceci indique à R d'ignorer tout ce qui se trouve à la suite du symbole `#` lors de l'exécution de commandes.
 
-```{r, eval = FALSE}
+
+```r
 # Ceci est un commentaire pas une commande R!
 ```
 
 ---
-# Commandes & Commentaires
+# Commandes &amp; Commentaires
 
 **Annoter son script est un bon moyen de** :
 
@@ -257,7 +269,8 @@ Il est recommandé de commencer vos scripts avec un entête pour indiquer des in
 Sur R studio, Vous pouvez utiliser quatre symboles `#` de suite pour créer un entête de section.
 
 Par exemple :
-```{r, eval = FALSE}
+
+```r
 #### Chargement du fichier de données ####
 ```
 
@@ -273,7 +286,8 @@ Cela vous permet de passer rapidement d'une section à l'autre et de masquer des
 
 C'est une bonne habitude de maintenir son espace de travail propre en effaçant la mémoire de R à l'aide de `rm(list=ls())`.
 
-```{r, eval = FALSE}
+
+```r
 rm(list = ls()) # Efface ce qui se trouve dans l'espace de travail
 ?rm
 ?ls
@@ -287,12 +301,13 @@ Cette commande permet d'éviter d'utiliser un vieux jeu de données qui serait r
 On peut tester cette commande en ajoutant des objets dans l'espace de travail pour mieux comprendre comment `rm(list=ls())` fonctionne.
 
 
-```{r, eval = FALSE, error = TRUE}
-A<-"Test" # On crée un objet "A".
-A <- "Test" # Utilisez des espaces - plus facile à lire
+
+```r
+A&lt;-"Test" # On crée un objet "A".
+A &lt;- "Test" # Utilisez des espaces - plus facile à lire
 A = "Test"
 
-# Note: il est recommandé d'utiliser "<-" pour l'assigment au lieu de "="
+# Note: il est recommandé d'utiliser "&lt;-" pour l'assigment au lieu de "="
 
 # Visualiser des objets en mémoire
 ls()
@@ -311,14 +326,17 @@ A
 ---
 # Petit rappel important
 
-* R est prêt à exécuter une commande lorsque vous voyez le chevron `>` affiché dans la console. Si le chevron n'apparaît pas, c'est qu'une commande est incomplète. Appuyez sur 'ESC' pour sortir de cette commande.
+* R est prêt à exécuter une commande lorsque vous voyez le chevron `&gt;` affiché dans la console. Si le chevron n'apparaît pas, c'est qu'une commande est incomplète. Appuyez sur 'ESC' pour sortir de cette commande.
 * R est sensible à la casse, i.e. `A` est différent de `a`.
 
-```{r, eval = TRUE, error = TRUE}
-a <- 10
-A <- 5
+
+```r
+a &lt;- 10
+A &lt;- 5
 a
+# [1] 10
 A
+# [1] 5
 rm(list=ls())  # On nettoie l'espace de travail à nouveau !
 ```
 
@@ -338,11 +356,12 @@ Enregistrez les fichiers dans le dossier où vous avez crée votre projet R.
 
 --
 
-<br>
+&lt;br&gt;
 
 .alert[NOTE] Il existe des données déjà disponibles sur R
 
-```{r, eval = FALSE}
+
+```r
 # Liste complete de tous les données disponibles sur base R
 library(help = "datasets")
 ```
@@ -354,13 +373,15 @@ Si vous n'utilisez pas un **projet RStudio**, vous devez indiquer à R le réper
 
 Pour voir quel répertoire R utilise :
 
-```{r, eval = FALSE}
+
+```r
 getwd()
 ```
 
 Si ce n'est pas le répertoire avec lequel vous souhaitez travailler, vous pouvez définir le vôtre à l'aide de:
 
-```{r, eval = FALSE}
+
+```r
 setwd("C:/Users/mon_repertoire")
 ```
 
@@ -371,8 +392,13 @@ setwd("C:/Users/mon_repertoire")
 
 La fonction `dir()` affiche le contenu du répertoire de travail.
 
-```{r, eval = TRUE}
+
+```r
 dir()
+#  [1] "assets"              "data"                "images"             
+#  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
+#  [7] "qcbsR.css"           "workshop02-fr.html"  "workshop02-fr.Rmd"  
+# [10] "workshop02-fr_files"
 ```
 
 Vous pouvez vérifier:
@@ -386,8 +412,9 @@ Vous pouvez vérifier:
 
 Utilisez la fonction `read.csv()` pour importer des données provenant d'un fichier .csv dans R.
 
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_good.csv", header=TRUE)
+
+```r
+CO2 &lt;- read.csv("data/co2_good.csv", header=TRUE)
 ```
 
 - Cette commande va créer un objet nommé `CO2`
@@ -400,13 +427,15 @@ CO2 <- read.csv("data/co2_good.csv", header=TRUE)
 
 Rappelez-vous que vous pouvez obtenir de l'aide pour une fonction avec `?`
 
-```{r, eval = FALSE}
+
+```r
 ?read.csv
 ```
 
 .alert[NOTE] Si vous utilisez un système d'exploitation en français ou un éditeur CSV, il est possible que vous deviez utiliser la fonction `read.csv2()` pour importer correctement un fichier.
 
-```{r, eval = FALSE}
+
+```r
 ?read.csv2
 ```
 
@@ -442,8 +471,15 @@ R code  					| action
 ---
 # Visualiser les données
 
-```{r, eval = TRUE}
+
+```r
 str(CO2)
+# 'data.frame':	84 obs. of  5 variables:
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : int  95 175 250 350 500 675 1000 95 175 250 ...
+#  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
 La fonction `str()` est très utile pour identifier le type/mode de chaque colonne.
 
@@ -467,8 +503,9 @@ Problèmes fréquents lors de l'importation des données :
 Chargez les données de nouveau en utilisant le script suivant :
 
 
-```{r, eval = FALSE}
-CO2 <- read.csv("data/co2_good.csv", header = FALSE)
+
+```r
+CO2 &lt;- read.csv("data/co2_good.csv", header = FALSE)
 ```
 
 Vérifiez la structure des données avec la fonction `str()`.
@@ -488,7 +525,8 @@ Plusieurs façons d'extraire les données avec les crochets. Considérons un jeu
 ![:scale 45%](images/Table_Reminder_from_Workshop_1_Accessing_data.png)
 ]
 
-```{r, eval = FALSE}
+
+```r
 mydata[1,] # Extrait la 1ère ligne
 mydata[2,3] # Extrait la 2ème ligne / 3ème colonne
 mydata[,1] # Extrait la 1ère colonne
@@ -501,16 +539,19 @@ mydata$Variable1 # Extrait la colonne "Variable1"
 
 On peut renommer les variables (colonnes) dans R.
 
-```{r, eval = TRUE}
+
+```r
 # Créer une copie du jeu de données qu'on pourra modifier
-CO2copy <- CO2
+CO2copy &lt;- CO2
 
 # names() donne les noms des variables présentes dans le jeu de données
 names(CO2copy)
+# [1] "Plant"     "Type"      "Treatment" "conc"      "uptake"
 
 # Changer des noms anglais pour des noms français
-names(CO2copy) <- c("Plante", "Categorie", "Traitement", "conc", "absorption")
+names(CO2copy) &lt;- c("Plante", "Categorie", "Traitement", "conc", "absorption")
 names(CO2copy)
+# [1] "Plante"     "Categorie"  "Traitement" "conc"       "absorption"
 ```
 
 ---
@@ -520,14 +561,17 @@ On peut facilement créer et produire des nouvelles variables. Par exemple, la f
 
 Créer un ID unique pour les échantillons avec la fonction `paste0()`
 
-```{r, eval = T}
+
+```r
 # N'oubliez pas d'utiliser "" pour les chaînes de caractères
-CO2copy$uniqueID <- paste0(CO2copy$Plante,
+CO2copy$uniqueID &lt;- paste0(CO2copy$Plante,
                            "_", CO2copy$Categorie,
                            "_", CO2copy$Traitement)
 
 # Observer les résultats
 head(CO2copy$uniqueID)
+# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [4] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
 ```
 
 ---
@@ -535,12 +579,14 @@ head(CO2copy$uniqueID)
 
 On peut aussi créer des nouvelles variables à partir de chiffres et d'opérations mathématiques!
 
-```{r, eval = T}
+
+```r
 # Standardizer la variable "absorption" en valeurs relatives
-CO2copy$absorptionRel <- CO2copy$absorption/max(CO2copy$absorption)
+CO2copy$absorptionRel &lt;- CO2copy$absorption/max(CO2copy$absorption)
 
 # Observer les résultats
 head(CO2copy$absorptionRel)
+# [1] 0.3516484 0.6681319 0.7648352 0.8175824 0.7758242 0.8615385
 ```
 
 ---
@@ -548,7 +594,8 @@ head(CO2copy$absorptionRel)
 
 Il existe plusieurs façons d'en faire :
 
-```{r, eval = FALSE}
+
+```r
 # On continue à travailler avec notre jeux de données CO2copy
 
 # Extraire un sous-ensemble par un nom de variable
@@ -561,15 +608,16 @@ CO2copy[1:50, ]
 ---
 # Sous-ensemble d'un data frame
 
-```{r, eval = FALSE}
+
+```r
 # Extraire les observations du traitement "nonchilled"
 CO2copy[CO2copy$Traitement == "nonchilled", ]
 
 # Extraire selon une condition numérique
-CO2copy[CO2copy$absorption >= 20, ]
+CO2copy[CO2copy$absorption &gt;= 20, ]
 
 # Extraire selon plusieurs conditions numériques
-CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absorption >= 20, ]
+CO2copy[CO2copy$Traitement  == "nonchilled" &amp; CO2copy$absorption &gt;= 20, ]
 
 # Nous avons fini de modifier le data frame CO2copy, effaçons-le
 rm(CO2copy)
@@ -584,7 +632,8 @@ Un bon moyen de commencer votre exploration des données consiste à regarder de
 
 Utilisez la fonction `summary()`.
 
-```{r, eval = FALSE}
+
+```r
 summary(CO2)
 ```
 
@@ -597,40 +646,51 @@ Vous pouvez également utiliser d'autres fonctions pour calculer des statistique
 
 Essayons les fonctions `mean()`, `sd()` et `hist()` :
 
-```{r, eval = TRUE}
+
+```r
 # Calculer la moyenne et l'écart type de la concentration,
 # et les assigner à de nouvelles variables
-meanConc <- mean(CO2$conc)
-sdConc <- sd(CO2$conc)
+meanConc &lt;- mean(CO2$conc)
+sdConc &lt;- sd(CO2$conc)
 ```
 
-```{r, eval = TRUE}
+
+```r
 # print() imprime une valeur donnée dans la console R
 print(paste("the mean of concentration is:", meanConc))
+# [1] "the mean of concentration is: 435"
 
 print(paste("the standard deviation of concentration is:", sdConc))
+# [1] "the standard deviation of concentration is: 295.924119222056"
 ```
 
 ---
 # Explorer les données
 
-```{r, eval = TRUE, fig.width=6, fig.height=6}
+
+```r
 # Créons un histogramme pour explorer la distribution de "uptake"
 hist(CO2$uptake)
 ```
 
+&lt;img src="workshop02-fr_files/figure-html/unnamed-chunk-24-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
 ---
 # Explorer les données
 
-```{r, eval = TRUE, fig.width=6, fig.height=6}
+
+```r
 # Créons un histogramme pour explorer la distribution de "uptake"
 hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
 ```
 
+&lt;img src="workshop02-fr_files/figure-html/unnamed-chunk-25-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
 ---
 # Enregistrer son espace de travail
 
-```{r, eval = FALSE}
+
+```r
 # Sauver l'espace de travail avec tous les objets
 save.image(file="data/co2_project_Data.RData")
 
@@ -642,8 +702,15 @@ load("data/co2_project_Data.RData")
 head(CO2) # cela fonctionne! :)
 ```
 
-```{r, echo = FALSE}
-head(CO2)
+
+```
+#   Plant   Type  Treatment conc uptake
+# 1   Qn1 Quebec nonchilled   95   16.0
+# 2   Qn1 Quebec nonchilled  175   30.4
+# 3   Qn1 Quebec nonchilled  250   34.8
+# 4   Qn1 Quebec nonchilled  350   37.2
+# 5   Qn1 Quebec nonchilled  500   35.3
+# 6   Qn1 Quebec nonchilled  675   39.2
 ```
 
 ---
@@ -651,7 +718,8 @@ head(CO2)
 
 Pour enregistrer dans le répertoire de travail des données que vous avez créées ou modifiées dans R, utilisez la fonction `write.csv()`.
 
-```{r, eval = FALSE}
+
+```r
 write.csv(CO2, file = "data/co2_new.csv")
 ```
 
@@ -699,9 +767,24 @@ Pratiquons-nous à réparer certains problèmes communs.
 
 Lire le ficher `co2_broken.csv`
 
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_broken.csv")
+
+```r
+CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2) # C'est le bordel!
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 ---
@@ -728,8 +811,23 @@ Voici quelques fonctions qui peuvent vous aider :
 
 Les données sont contenues dans une seule colonne
 
-```{r, eval = TRUE}
+
+```r
 head(CO2)
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
+# 1 falling on my notebook numerous values can't be read rain               NA NA
+# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
+#   X.1 X.2 X.3
+# 1  NA  NA  NA
+# 2  NA  NA  NA
+# 3  NA  NA  NA
+# 4  NA  NA  NA
+# 5  NA  NA  NA
+# 6  NA  NA  NA
 ```
 
 ---
@@ -741,8 +839,9 @@ head(CO2)
 * L'argument `sep` indique à R quel type de caractère sépare les valeurs sur chaque ligne.
 * Ici, une tabulation sépare les valeurs au lieu d'une virgule.
 
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_broken.csv", sep = "")
+
+```r
+CO2 &lt;- read.csv("data/co2_broken.csv", sep = "")
 ```
 
 ---
@@ -752,8 +851,23 @@ CO2 <- read.csv("data/co2_broken.csv", sep = "")
 
 Les données ne commencent pas avant la 3ème ligne. Les entêtes de colonnes sont remplacés par des notes.
 
-```{r, eval = TRUE}
+
+```r
 head(CO2)
+#     NOTE.     It       rain        a               lot    in. Quebec during
+# 1 falling     on         my notebook          numerous values  can't     be
+# 2   Plant   Type  Treatment     conc            uptake                     
+# 3     Qn1 Quebec nonchilled       95                16                     
+# 4     Qn1 Quebec nonchilled      175              30.4                     
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
+# 6     Qn1 Quebec nonchilled      350              37.2                     
+#   sampling.      due to excessive X....
+# 1      read rain,,,, NA        NA    NA
+# 2                    NA        NA    NA
+# 3                    NA        NA    NA
+# 4                    NA        NA    NA
+# 5                    NA        NA    NA
+# 6                    NA        NA    NA
 ```
 
 ---
@@ -762,9 +876,17 @@ head(CO2)
 
 Pour régler ce problème, vous devez indiquer à R de sauter les deux premières lignes avec l'argument "skip".
 
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2)
+
+```r
+CO2 &lt;- read.csv("data/co2_broken.csv", sep = "", skip = 2)
 head(CO2)
+#   Plant   Type  Treatment              conc            uptake
+# 1   Qn1 Quebec nonchilled                95                16
+# 2   Qn1 Quebec nonchilled               175              30.4
+# 3   Qn1 Quebec nonchilled               250 cannot_read_notes
+# 4   Qn1 Quebec nonchilled               350              37.2
+# 5   Qn1 Quebec nonchilled               500              35.3
+# 6   Qn1 Quebec nonchilled cannot_read_notes              39.2
 ```
 
 ---
@@ -772,12 +894,23 @@ head(CO2)
 
 .alert[ERREUR 3] Les variables `conc` et `uptake` sont considérées comme des facteurs au lieu de nombres, car il y a du texte dans ces colonnes.
 
-```{r, eval = TRUE}
+
+```r
 str(CO2)
+# 'data.frame':	84 obs. of  5 variables:
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : chr  "95" "175" "250" "350" ...
+#  $ uptake   : chr  "16" "30.4" "cannot_read_notes" "37.2" ...
 ```
 
-```{r, eval = TRUE}
+
+```r
 unique(CO2$conc)
+# [1] "95"                "175"               "250"              
+# [4] "350"               "500"               "cannot_read_notes"
+# [7] "1000"              "675"
 ```
 
 ---
@@ -794,10 +927,17 @@ unique(CO2$conc)
 
 Indiquez à R que tous les éléments NA, "na" et "cannot_read_notes" doivent être considérés comme des NA. Ensuite, comme toutes les autres valeurs de ces colonnes sont des nombres, `conc` et` uptake` seront chargés sous forme numérique / entier.
 
-```{r, eval = TRUE}
-CO2 <- read.csv("data/co2_broken.csv", sep = "", skip = 2,
+
+```r
+CO2 &lt;- read.csv("data/co2_broken.csv", sep = "", skip = 2,
                 na.strings = c("NA", "na", "cannot_read_notes"))
 str(CO2)
+# 'data.frame':	84 obs. of  5 variables:
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
+#  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
 
 
@@ -806,15 +946,19 @@ str(CO2)
 
 .alert[ERREUR 4]
 
-En réalité, il y a seulement 2 traitements (chilled & non chilled), mais des erreurs d'orthographe créent 2 autres niveaux de traitement.
+En réalité, il y a seulement 2 traitements (chilled &amp; non chilled), mais des erreurs d'orthographe créent 2 autres niveaux de traitement.
 
-```{r, eval = FALSE}
+
+```r
 str(CO2)
 ```
 
-```{r, eval = TRUE}
+
+```r
 levels(CO2$Treatment)
+# NULL
 unique(CO2$Treatment)
+# [1] "nonchilled" "nnchilled"  "chilled"    "chiled"
 ```
 
 ---
@@ -823,12 +967,13 @@ unique(CO2$Treatment)
 .alert[ERREUR 4] - Solution
 
 
-```{r, eval = TRUE}
+
+```r
 # Identifier toutes les lignes contenant "nnchilled" et remplacer par "nonchilled"
-CO2$Treatment[which(CO2$Treatment=="nnchilled")] <- "nonchilled"
+CO2$Treatment[which(CO2$Treatment=="nnchilled")] &lt;- "nonchilled"
 
 # Faisons la même chose pour "chiled" :
-CO2$Treatment[which(CO2$Treatment=="chiled")] <- "chilled"
+CO2$Treatment[which(CO2$Treatment=="chiled")] &lt;- "chilled"
 ```
 
 ---
@@ -840,30 +985,38 @@ Après avoir réparé les facteurs, il faut enlever les niveaux de facteur non u
 
 Sinon :
 
-```{r}
+
+```r
 boxplot(uptake ~ Treatment, data = CO2)
 ```
+
+&lt;img src="workshop02-fr_files/figure-html/unnamed-chunk-40-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 ---
 # Jeu de données "endommagé"
 
 .alert[ERREUR 4] - Solution
 
-```{r, eval = TRUE}
-CO2 <- droplevels(CO2)
+
+```r
+CO2 &lt;- droplevels(CO2)
 str(CO2)
+# 'data.frame':	84 obs. of  5 variables:
+#  $ Plant    : chr  "Qn1" "Qn1" "Qn1" "Qn1" ...
+#  $ Type     : chr  "Quebec" "Quebec" "Quebec" "Quebec" ...
+#  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
+#  $ conc     : int  95 175 250 350 500 NA 1000 95 175 250 ...
+#  $ uptake   : num  16 30.4 NA 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
 ```
 
 .pull-left[
-```{r, eval = FALSE}
+
+```r
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 ]
 .pull-right[
-```{r, echo = FALSE, fig.height = 3.5}
-par(mar = c(4, 4, 0, 0))
-boxplot(uptake ~ Treatment, data = CO2)
-```
+&lt;img src="workshop02-fr_files/figure-html/unnamed-chunk-43-1.png" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -879,8 +1032,8 @@ class: inverse, center, middle
 `Tidyverse` contient des outils plus efficaces et conviviales très utiles pour toutes sortes d’analyses.  
 
 Tous les packages inclus dans `tidyverse` sont automatiquement installés lors de l'installation de `tidyverse` : `install.packages("tidyverse")`
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 Par exemple : 
 * [`tidyr`](https://tidyr.tidyverse.org/): réorganiser les tables de données
 * [`dplyr`](https://dplyr.tidyverse.org/): manipuler les données
@@ -900,7 +1053,8 @@ class: inverse, center, middle
 ---
 # `tidyr` pour réorganiser ses données
 
-```{r}
+
+```r
 library(tidyr)
 ```
 
@@ -916,11 +1070,12 @@ library(tidyr)
 
 .small[Un data frame en format large contient une colonne pour chaque variable ou facteur]
 
-```{r, echo = FALSE, eval = TRUE}
-large <- data.frame(Species = c("Chene", "Orme", "Frene"),
-                   DHP = c(12, 20, 13),
-                   Haut = c(56, 85, 55))
-large
+
+```
+#   Species DHP Haut
+# 1   Chene  12   56
+# 2    Orme  20   85
+# 3   Frene  13   55
 ```
 ]
 
@@ -929,9 +1084,15 @@ large
 
 .small[Un data frame en format long contient une colonne par variable, où chaque ligne est une observation]
 
-```{r, echo=FALSE, eval = TRUE}
-long <- gather(large, dimension, cm, DHP, Haut)
-long
+
+```
+#   Species dimension cm
+# 1   Chene       DHP 12
+# 2    Orme       DHP 20
+# 3   Frene       DHP 13
+# 4   Chene      Haut 56
+# 5    Orme      Haut 85
+# 6   Frene      Haut 55
 ```
 ]
 
@@ -946,9 +1107,9 @@ long
 
 Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservant les informations d'origine
 
-`pivot_longer()` ![:faic](arrow-right) "rassembler" les données (large -> long)
+`pivot_longer()` ![:faic](arrow-right) "rassembler" les données (large -&gt; long)
 
-`pivot_wider()` ![:faic](arrow-right) "disperser" les données (long -> large)
+`pivot_wider()` ![:faic](arrow-right) "disperser" les données (long -&gt; large)
 
 
 .center[
@@ -957,7 +1118,8 @@ Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservan
 ---
 # Installation du paquet `tidyr`
 
-```{r}
+
+```r
 install.packages("tidyr")
 library(tidyr)
 ```
@@ -967,29 +1129,44 @@ library(tidyr)
 
 `pivot_longer(data, cols, names_to, values_to, ...)`
 
-<span style="font-size: 21px;">
+&lt;span style="font-size: 21px;"&gt;
   - `data` le jeu de données (e.g. 'large')
   - `cols` les colonnes qu'on veut empiler dans le jeu de données (e.g. `DHP`, `Haut`)
   - `names_to` le nom de la nouvelle colonne spécifiant la variable mesurée (e.g. `dimension`)
   - `values_to` le nom de la nouvelle colonne spécifiant la mesure associée (e.g. `cm`)
-</span>
+&lt;/span&gt;
 
 ---
 # Rassembler avec `pivot_longer()`
 
-```{r, echo = T}
-large <- data.frame(Species = c("Chene", "Orme", "Frene"),
+
+```r
+large &lt;- data.frame(Species = c("Chene", "Orme", "Frene"),
                    DHP      = c(12, 20, 13),
                    Haut     = c(56, 85, 55))
 large
+#   Species DHP Haut
+# 1   Chene  12   56
+# 2    Orme  20   85
+# 3   Frene  13   55
 ```
 
-```{r}
-long <- pivot_longer(data      = large, 
+
+```r
+long &lt;- pivot_longer(data      = large, 
                      cols      = c("DHP", "Haut"),
                      names_to  = "dimension", 
                      values_to = "cm")
 long
+# # A tibble: 6 x 3
+#   Species dimension    cm
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Chene   DHP          12
+# 2 Chene   Haut         56
+# 3 Orme    DHP          20
+# 4 Orme    Haut         85
+# 5 Frene   DHP          13
+# 6 Frene   Haut         55
 ```
 
 ---
@@ -997,24 +1174,41 @@ long
 
 `pivot_wider(data, names_from, values_from, ...)`
 
-<span style="font-size: 21px;">
+&lt;span style="font-size: 21px;"&gt;
   - `data` le jeu de données (e.g. `long`)
   - `names_from` nom de la colonne contenant les noms des variables (e.g. `dimension`)
   - `values_from` nom de la colonne contenant les mesures associées aux variables (e.g. `cm`)
-</span>
+&lt;/span&gt;
 
 ---
 # Disperser avec `pivot_wider()`
 
-```{r}
+
+```r
 long
+# # A tibble: 6 x 3
+#   Species dimension    cm
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Chene   DHP          12
+# 2 Chene   Haut         56
+# 3 Orme    DHP          20
+# 4 Orme    Haut         85
+# 5 Frene   DHP          13
+# 6 Frene   Haut         55
 ```
 
-```{r}
-large2 <- pivot_wider(data        = long, 
+
+```r
+large2 &lt;- pivot_wider(data        = long, 
                       names_from  = "dimension", 
                       values_from = "cm")
 large2
+# # A tibble: 3 x 3
+#   Species   DHP  Haut
+#   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
+# 1 Chene      12    56
+# 2 Orme       20    85
+# 3 Frene      13    55
 ```
 
 ---
@@ -1022,8 +1216,15 @@ large2
 
 `Tibble` est un format alternatif et plus pratique que celui d'un data frame. L'utilisation d'un tribble favorise de bonnes habitudes de programmation. Par exemple, il ne change pas une variable de chaine de caractère en facteur.  
 
-```{r}
+
+```r
 tibble(x = 1:3, y = c("a","b","c"))
+# # A tibble: 3 x 2
+#       x y    
+#   &lt;int&gt; &lt;chr&gt;
+# 1     1 a    
+# 2     2 b    
+# 3     3 c
 ```
 
 ---
@@ -1032,9 +1233,15 @@ tibble(x = 1:3, y = c("a","b","c"))
 En plus, `tibble` simplifie l'utilisation de lists imbriqués dans la table de données.
 
 Exemple: 
-```{r}
-tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
 
+```r
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+# # A tibble: 3 x 2
+#       x y         
+#   &lt;int&gt; &lt;list&gt;    
+# 1     1 &lt;int [5]&gt; 
+# 2     2 &lt;int [10]&gt;
+# 3     3 &lt;int [20]&gt;
 ```
 
 Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisées sur un tibble 
@@ -1060,15 +1267,21 @@ Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisée
 
 Créons un jeu de données fictif sur les poissons et le zooplancton :
 
-```{r}
+
+```r
 set.seed(8)
-degat <- data.frame(id = 1:4,
+degat &lt;- data.frame(id = 1:4,
                     trt = sample(rep(c('control', 'culture'), each = 2)),
                     zooplancton.T1 = runif(4),
                     poisson.T1 = runif(4),
                     zooplancton.T2 = runif(4),
                     poisson.T2 = runif(4))
 degat
+#   id     trt zooplancton.T1 poisson.T1 zooplancton.T2 poisson.T2
+# 1  1 culture      0.7189275 0.64449114    0.544962116  0.2644589
+# 2  2 culture      0.2908734 0.45704489    0.138224346  0.2765322
+# 3  3 control      0.9322698 0.08930101    0.927812252  0.5211070
+# 4  4 control      0.7691470 0.43239137    0.001301721  0.2236889
 ```
 
 ---
@@ -1076,14 +1289,24 @@ degat
 
 On peut commencer par convertir ce jeu de données vers le format long.
 
-```{r}
-degat.long <- pivot_longer(degat,
+
+```r
+degat.long &lt;- pivot_longer(degat,
                            names_to = "taxa",
                            cols     = c("zooplancton.T1", 
                                         "poisson.T1",
                                         "zooplancton.T2",
                                         "poisson.T2"))
 head(degat.long)
+# # A tibble: 6 x 4
+#      id trt     taxa           value
+#   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+# 1     1 culture zooplancton.T1 0.719
+# 2     1 culture poisson.T1     0.644
+# 3     1 culture zooplancton.T2 0.545
+# 4     1 culture poisson.T2     0.264
+# 5     2 culture zooplancton.T1 0.291
+# 6     2 culture poisson.T1     0.457
 ```
 
 ---
@@ -1091,10 +1314,20 @@ head(degat.long)
 
 Ensuite, on veut séparer les 2 temps d'échantillonnage (T1 et T2) dans la colonne "taxa" en utilisant le point comme caractère de séparation
 
-```{r}
-degat.long.sep <- separate(degat.long, taxa,
+
+```r
+degat.long.sep &lt;- separate(degat.long, taxa,
                            into = c("especes", "temps"), sep = "\\.")
 head(degat.long.sep)
+# # A tibble: 6 x 5
+#      id trt     especes     temps value
+#   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+# 1     1 culture zooplancton T1    0.719
+# 2     1 culture poisson     T1    0.644
+# 3     1 culture zooplancton T2    0.545
+# 4     1 culture poisson     T2    0.264
+# 5     2 culture zooplancton T1    0.291
+# 6     2 culture poisson     T1    0.457
 ```
 
 .small[
@@ -1123,7 +1356,8 @@ Séparer et regrouper des colonnes à l'aide de `separate()` et de son inverse `
 
 Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
-```{r, eval = FALSE}
+
+```r
 ?airquality
 
 data(airquality)
@@ -1134,12 +1368,22 @@ data(airquality)
 
 Réorganisez le jeu de données `airquality` en format long (en rassemblant toutes les colonnes sauf "Month" et "Day").
 
-```{r}
-air.long <- pivot_longer(airquality,
+
+```r
+air.long &lt;- pivot_longer(airquality,
                          cols     = c("Ozone", "Solar.R", "Wind", "Temp"), 
                          names_to = c("variable"))
 
 head(air.long)
+# # A tibble: 6 x 4
+#   Month   Day variable value
+#   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
+# 1     5     1 Ozone     41  
+# 2     5     1 Solar.R  190  
+# 3     5     1 Wind       7.4
+# 4     5     1 Temp      67  
+# 5     5     2 Ozone     36  
+# 6     5     2 Solar.R  118
 ```
 
 ---
@@ -1152,11 +1396,21 @@ Convertissez-le en format large pour retrouver le format original de `airquality
 
 Convertissez-le en format large pour retrouver le format original de `airquality`
 
-```{r}
-air.wide <- pivot_wider(air.long,
+
+```r
+air.wide &lt;- pivot_wider(air.long,
                         values_from = "value",
                         names_from  = "variable")
 head(air.wide)
+# # A tibble: 6 x 6
+#   Month   Day Ozone Solar.R  Wind  Temp
+#   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+# 1     5     1    41     190   7.4    67
+# 2     5     2    36     118   8      72
+# 3     5     3    12     149  12.6    74
+# 4     5     4    18     313  11.5    62
+# 5     5     5    NA      NA  14.3    56
+# 6     5     6    28      NA  14.9    66
 ```
 
 ---
@@ -1183,7 +1437,8 @@ Certaines fonctions de base dans R ressemblent à des fonctions dans `dplyr`: `s
 
 Commençons par installer et charger le paquet `dplyr`
 
-```{r, eval = TRUE}
+
+```r
 library(dplyr)
 ```
 
@@ -1211,7 +1466,8 @@ Voici les 4 *verbes* principaux qui permettent d'exécuter les manipulations les
 
 Examples :
 
-```{r, eval = FALSE}
+
+```r
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
 select(données, c(2:4,6) # sélectionne les colonnes 2 à 4, plus la 6ème colonne
 select(données, -colonne1) # sélectionne toutes les colonnes sauf la 1ère
@@ -1229,9 +1485,17 @@ select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui co
 
 Par exemple, si on analyse la variation de la variable Ozone avec le temps.
 
-```{r}
-ozone <- select(airquality, Ozone, Month, Day)
+
+```r
+ozone &lt;- select(airquality, Ozone, Month, Day)
 head(ozone)
+#   Ozone Month Day
+# 1    41     5   1
+# 2    36     5   2
+# 3    12     5   3
+# 4    18     5   4
+# 5    NA     5   5
+# 6    28     5   6
 ```
 
 ---
@@ -1241,7 +1505,7 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 
 `filter(dataframe, propostion logique 1, propostion logique 2, ...)`
 
-<br>
+&lt;br&gt;
 
 .center[![:scale 90%](images/filter.png)]
 
@@ -1254,10 +1518,18 @@ Pour extraire un sous-ensemble de rangées selon une condition, on peut utiliser
 
 Par exemple, si on s'intéresse aux périodes de canicules du mois d'août dans le jeu de données `airquality`
 
-```{r airquality}
-aout <- filter(airquality, Month == 8, Temp >= 90)
-# ou filter(airquality, Month == 8 & Temp >= 90)
+
+```r
+aout &lt;- filter(airquality, Month == 8, Temp &gt;= 90)
+# ou filter(airquality, Month == 8 &amp; Temp &gt;= 90)
 head(aout)
+#   Ozone Solar.R Wind Temp Month Day
+# 1    89     229 10.3   90     8   8
+# 2   110     207  8.0   90     8   9
+# 3    NA     222  8.6   92     8  10
+# 4    76     203  9.7   97     8  28
+# 5   118     225  2.3   94     8  29
+# 6    84     237  6.3   96     8  30
 ```
 
 ---
@@ -1278,9 +1550,17 @@ Example :
 
 1) Commençons par créer une version désordonnée de `airquality`:
 
-```{r}
-air_degat <- sample_frac(airquality, 1)
+
+```r
+air_degat &lt;- sample_frac(airquality, 1)
 head(air_degat)
+#   Ozone Solar.R Wind Temp Month Day
+# 1    23     115  7.4   76     8  18
+# 2    28     273 11.5   82     8  13
+# 3     8      19 20.1   61     5   9
+# 4   135     269  4.1   84     7   1
+# 5    23     299  8.6   65     5   7
+# 6    30     322 11.5   68     5  19
 ```
 
 ---
@@ -1290,9 +1570,17 @@ Example :
 
 2) Maintenant, on réarrange le data frame en ordre chronologique, soit en ordre croissant selon `Month` et ensuite selon `Day`
 
-```{r}
-air_chron <- arrange(air_degat, Month, Day)
+
+```r
+air_chron &lt;- arrange(air_degat, Month, Day)
 head(air_chron)
+#   Ozone Solar.R Wind Temp Month Day
+# 1    41     190  7.4   67     5   1
+# 2    36     118  8.0   72     5   2
+# 3    12     149 12.6   74     5   3
+# 4    18     313 11.5   62     5   4
+# 5    NA      NA 14.3   56     5   5
+# 6    28      NA 14.9   66     5   6
 ```
 
 .comment[Essayez `arrange(air_mess, Day, Month)` et voyez la différence.]
@@ -1314,16 +1602,24 @@ On peut utiliser la fonction `mutate()` pour créer et transformer des variables
 
 Par exemple, on veut transformer la variable température `Temp` de degrés Fahrenheit vers degrés Celsius
 
-```{r}
-airquality_C <- mutate(airquality, 
+
+```r
+airquality_C &lt;- mutate(airquality, 
                        Temp_C = (Temp-32)*(5/9))
 head(airquality_C)
+#   Ozone Solar.R Wind Temp Month Day   Temp_C
+# 1    41     190  7.4   67     5   1 19.44444
+# 2    36     118  8.0   72     5   2 22.22222
+# 3    12     149 12.6   74     5   3 23.33333
+# 4    18     313 11.5   62     5   4 16.66667
+# 5    NA      NA 14.3   56     5   5 13.33333
+# 6    28      NA 14.9   66     5   6 18.88889
 ```
 
 ---
 # `magrittr`
 
-Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%>%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
+Habituellement, la manipulation de données nécessite plusieurs étapes, le package `magrittr` propose l'opérateur `%&gt;%` (*pipe operator*) qui nous permet de lier plusieurs opérations.
 
 .center[
 ![:scale 40%](images/magrittr.png)]
@@ -1333,7 +1629,8 @@ Habituellement, la manipulation de données nécessite plusieurs étapes, le pac
 
 Commençons par installer et charger le paquet :
 
-```{r, eval=FALSE}
+
+```r
 library(magrittr)
 ```
 
@@ -1342,8 +1639,9 @@ library(magrittr)
 
 Supposons qu'on veut créer un sous-ensemble de airquality pour le mois de juin, et ensuite convertir la variable de la température en degrés Celsius. On peut créer ce data frame en combinant 2 *verbes* de dplyr
 
-```{r}
-juin_C <- mutate(filter(airquality, Month == 6),
+
+```r
+juin_C &lt;- mutate(filter(airquality, Month == 6),
                  Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1352,11 +1650,12 @@ juin_C <- mutate(filter(airquality, Month == 6),
 ---
 # `magrittr`
 
- Au lieu d'envelopper toutes les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %>% :
+ Au lieu d'envelopper toutes les fonctions, on peut écrire les opérations en ordre d'exécutions et les relier à l'aide du *pipe* %&gt;% :
 
-```{r}
-juin_C <- airquality %>%
-            filter(Month == 6) %>%
+
+```r
+juin_C &lt;- airquality %&gt;%
+            filter(Month == 6) %&gt;%
             mutate(Temp_C = (Temp-32)*(5/9))
 ```
 
@@ -1368,7 +1667,7 @@ Avantages :
 ---
 # `dplyr::group_by` et `dplyr::summarise`
 
-Les verbes `dplyr` que nous avons appris dans cet atelier deviennent particulièrement puissants quand ils sont reliés par le "pipe" (%>%).
+Les verbes `dplyr` que nous avons appris dans cet atelier deviennent particulièrement puissants quand ils sont reliés par le "pipe" (%&gt;%).
 
 Les fonctions `dplyr` suivantes nous permettent de séparer nos jeu de données en groupes distincts sur lesquels on peut exécuter des opérations individuelles, comme des fonctions d’agrégation et de sommaire:
 
@@ -1398,12 +1697,21 @@ La fonction `group_by` est la base de la stratégie  Séparer-Appliquer-Combiner
 
 Utilisons ces deux fonctions pour générer un sommaire du jeu de données `airquality` qui montre la température moyenne et l'écart type pour chaque mois:
 
-```{r}
-mois_moy <- airquality %>%
-             group_by(Month) %>%
+
+```r
+mois_moy &lt;- airquality %&gt;%
+             group_by(Month) %&gt;%
              summarise(mean_temp = mean(Temp),
                        sd_temp   = sd(Temp))
 mois_moy
+# # A tibble: 5 x 3
+#   Month mean_temp sd_temp
+#   &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+# 1     5      65.5    6.85
+# 2     6      79.1    6.60
+# 3     7      83.9    4.32
+# 4     8      84.0    6.59
+# 5     9      76.9    8.36
 ```
 
 ---
@@ -1411,10 +1719,11 @@ mois_moy
 
 En utilisant le jeu de données `ChickWeight`, créez un tableau sommaire dans lequel on retrouve la différence de masse entre le maximum et le minimum de la masse enregistré pour chaque poussin dans l'étude.
 
-Utilisez les verbes dplyr et le "pipe" `%>%`.
+Utilisez les verbes dplyr et le "pipe" `%&gt;%`.
 
-```{r eval = 2}
-?ChickWeight
+
+```r
+## ?ChickWeight
 data(ChickWeight)
 ```
 
@@ -1424,42 +1733,55 @@ data(ChickWeight)
 1. Utilisez `group_by()` pour grouper le jeu de données `ChickWeight`
 2. Utilisez `summarise()` pour calculer la gain de poids par groupe
 
-```{r}
-mass_diff <- ChickWeight %>%
-              group_by(Chick) %>%
+
+```r
+mass_diff &lt;- ChickWeight %&gt;%
+              group_by(Chick) %&gt;%
               summarise(mass_diff = max(weight) - min(weight))
 head(mass_diff)
+# # A tibble: 6 x 2
+#   Chick mass_diff
+#   &lt;ord&gt;     &lt;dbl&gt;
+# 1 18            4
+# 2 16           16
+# 3 15           27
+# 4 13           55
+# 5 9            58
+# 6 20           76
 ```
 
 ---
 # Défi R base ![:cube]()
-<br>
+&lt;br&gt;
 Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R !** 
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 Prenez note qu'il existe plusieurs solutions.
-<br>
-<br>
+&lt;br&gt;
+&lt;br&gt;
 .alert[Indice]: Les fonction `?aggregate()` ou `?by()` pourraient s'avérer utiles.
 
 ---
 
 # Défi R base - Solution
 
-```{r}
 
-mass_diff_rbase <- aggregate(formula = weight ~ Chick, 
+```r
+
+mass_diff_rbase &lt;- aggregate(formula = weight ~ Chick, 
                              data    = ChickWeight,
                              FUN     = function(x) weight_diff = max(x) - min(x))
-names(mass_diff_rbase) <- c("Chick", "weight_diff")
-
+names(mass_diff_rbase) &lt;- c("Chick", "weight_diff")
 ```
 
-```{r}
+
+```r
 # Est ce que les deux résultats sont identiques (c-a-d avec et sans dplyr)
 
 table(mass_diff_rbase ==  as.data.frame(mass_diff))
-
+# 
+# TRUE 
+#  100
 ```
 
 ---
@@ -1467,13 +1789,13 @@ exclude: true
 
 # NINJA Défi - `dplyr` et `magrittr` ![:cube]()
 
-<br>
+&lt;br&gt;
 
 - En utilisant le jeu de données `ChickWeight`, créez un tableau sommaire qui indique pour chaque `diet`, la moyenne de la différence de masse entre la fin et le début de l'étude pour chaque poussin.
 
-- Utilisez les verbes `dplyr` et la "pipe" `%>%`.
+- Utilisez les verbes `dplyr` et la "pipe" `%&gt;%`.
 
-<br>
+&lt;br&gt;
 
 .alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
 
@@ -1482,12 +1804,20 @@ exclude: true
 
 # Solution ninja
 
-```{r}
-diet_mass <- ChickWeight %>%
-      group_by(Diet, Chick) %>%
-      summarise(gain_masse = last(weight) - first(weight)) %>%
+
+```r
+diet_mass &lt;- ChickWeight %&gt;%
+      group_by(Diet, Chick) %&gt;%
+      summarise(gain_masse = last(weight) - first(weight)) %&gt;%
       summarise(gain_moyen = mean(gain_masse))
 diet_mass
+# # A tibble: 4 x 2
+#   Diet  gain_moyen
+#   &lt;fct&gt;      &lt;dbl&gt;
+# 1 1           115.
+# 2 2           174 
+# 3 3           230.
+# 4 4           188.
 ```
 
 ---
@@ -1504,3 +1834,126 @@ class: inverse, center, bottom
 # Merci pour votre participation! :)
 
 ![:scale 50%](images/qcbs_logo.png)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="qcbsR-macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
