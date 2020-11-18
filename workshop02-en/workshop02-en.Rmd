@@ -22,7 +22,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   fig.width=5, fig.height=5, fig.retina=3,
-  fig.align = 'center'
+  fig.align = 'center',
+  cache = TRUE
 )
 options(repos=structure(c(CRAN="http://cran.r-project.org")))
 ```
@@ -31,7 +32,9 @@ class: inverse, center, middle
 
 ```{R install_pkgs, echo = FALSE, results = "asis"}
 cat(
-  qcbsRworkshops::first_slides(2, c('dplyr', 'tidyr', 'magrittr'))
+  qcbsRworkshops::first_slides(2, c('dplyr',
+                                    'tidyr', 
+                                    'magrittr'))
 )
 ```
 
@@ -90,10 +93,10 @@ Keep your files organized!
 ---
 # Preparing data for R
 
-Dataset should be stored as *comma-separated value* files (.csv) in the working directory
+Dataset should be stored as *comma-separated value* files (`.csv`) in the working directory
 
 * Can be created from almost all applications (Excel, LibreOffice, Google Docs)
-* File -> Save as **.csv**…
+* `File -> Save as .csv…`
 
 .center[
 ![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)]
@@ -102,67 +105,77 @@ Dataset should be stored as *comma-separated value* files (.csv) in the working 
 ---
 # Naming files
 
-Avoid using spaces, accents or special characters for your names.
+Avoid using spaces, accents or special characters within filenames.
 
 <br>
 <br>
 .pull-left[
-**Wise**
-- rawDatasetAgo2017.csv
-- co2_concentrations_QB.csv
-- 01_figIntro.R]
+**Recommended**
+- `rawDatasetAgo2017.csv`
+- `co2_concentrations_QB.csv`
+- `01_figIntro.R`
+]
 
 .pull-right[
-**Not-wise**
-- final.csv
-- safnnejs.csv
-- 1-4.csv]
+**Not recommended**
+- `final.csv`
+- `safnnejs.csv`
+- `1-4.csv`
+]
 
 
 ---
 # Naming variables
 
-Avoid using spaces, accents or special characters for your names
+Avoid using spaces, accents or special characters within variable names.
+
 Use separators (e.g. "\_") to add details
 
 <br>
 <br>
 .pull-left[
-**Wise**
-  - Measurements
-  - speciesNames
-  - Site_001_Rep_002]
+**Recommended**
+  - `Measurements`
+  - `speciesNames`
+  - `Site_001_Rep_002`
+  ]
   
 .pull-right[
-**Not-wise**
- - a
- - 3
- - complicatedverylongname]
+**Not recommended**
+ - `a`
+ - `3`
+ - `complicatedverylongname`
+ ]
 
 <br>
 <br>
-Check the [tidyverse style guide](https://style.tidyverse.org/) for good coding habits.
+.center[Check the [tidyverse style guide](https://style.tidyverse.org/) for recommended coding habits.]
 
 
 ---
 # Common data preparation mistakes
 
 <br>
-<br>
-* text in numeric columns
-* typos
-* numeric names for non-numeric data
-* inconsistent formats for dates, numbers, metrics, etc.
-* incorrect headings
-* merged cells
+Here are a few examples of mistakes that originate confusion when preparing and manipulating data:
+
+.pull-left[
+* text in numeric columns;
+* typos;
+* numeric names for non-numeric data;]
+
+.pull-right[
+* inconsistent formats for dates, numbers, metrics, and other units;
+* incorrect headings;
+* merged cells.
+]
 
 <br>
 <br>
-Check-out the paper by [Broman & Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
-for useful tips on data organization in spreadsheets. 
+Read the publication by [Broman & Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+on useful tips on data organization in spreadsheets. 
 
 ---
-# Bad data sheets:
+# Non-recommended data tables
 
 .pull-left[
 ![:scale 120%](images/Excel_csv_good_bad/excel_values.png)]
@@ -172,7 +185,7 @@ for useful tips on data organization in spreadsheets.
 ]
 
 ---
-# Horrible data sheets:
+# **Horrible** data sheets
 
 Not the best practices for data preservation and interoperability
 
@@ -180,17 +193,18 @@ Not the best practices for data preservation and interoperability
 ![:scale 85%](images/HorribleData.png)]
 
 ---
-# Preparing data in R
+# Preparing data in `R`
 <br>
 <br>
-It is possible to do all your data preparation work within R
+It is possible to prepare your data entirely within `R` as it:
 
-* Saves time for large datasets
-* Keeps original data intact
-* Keeps track of the manipulation and transformation you did
-* Can switch between long- and wide-formats easily (more details later)
+* Saves time for large datasets;
+* Keeps original data intact;
+* Keeps track of the manipulation and transformation you did; and,
+* Can switch between long- and wide-formats easily (more details later).
 
-* Useful tips on data preparation can be found here: https://www.zoology.ubc.ca/~schluter/R/data/
+
+.center[Useful tips on data preparation can be found here: https://www.zoology.ubc.ca/~schluter/R/data/]
 
 ---
 class: inverse, center, middle
@@ -198,25 +212,25 @@ class: inverse, center, middle
 # Writing a Script
 
 ---
-# R Scripts
+# `R` Scripts
 <br>
 <br>
 * What is a script?
    - A text file storing the commands used for a particular analysis
 
 * Once written and saved, your script file allows you to make changes and re-run analyses with minimal effort!
-  - Just highlight text and click "Run" or press Command + Enter (Apple) or Ctrl + Enter (Windows and Linux)
+  - Just highlight text and click "Run" or press `Command + Enter` (Apple) or `Ctrl + Enter` / `Ctrl + R` (Windows and Linux)
 
 
 ---
-# Creating a R script
+# Creating an `R` script
 
 .center[
 ![:scale 80%](images/1_Create_an_R_script.png)
 ]
 
 ---
-# Creating a R script
+# Creating an `R` script
 
 
 .center[
@@ -227,26 +241,35 @@ class: inverse, center, middle
 ---
 # Commands and comments
 <br>
-<br>
-The `#` symbol in a script tells R to ignore anything remaining on this line of the script when running commands
+The `#` symbol in a script tells `R` to **not run** and ignore anything written past it within the same line
 
 <br>
 <br>
 
+.pull-left[
 ```{r, eval = FALSE}
-# This is a comment not a command
+a <- 1 + 1
+# This is a comment
 ```
+]
 
+.pull-right[
+```{r, eval = FALSE}
+b <- 2 + 2 # This is a comment
+```
+]
 
 ---
 # Why should I use `#`?
 <br>
 <br>
-* Annotating someone’s script is a good way to learn
-* Tell collaborators what you did
-* Good step towards reproducible science
+* Annotating someone’s script is a good way to learn;
+* Tell collaborators what you did;
+* Good step towards reproducible science.
 
-Be as detailed as possible!
+<br>
+
+.center[Be as detailed as possible!]
 
 
 ---
@@ -265,9 +288,18 @@ It is recommended that you start your script with a header using comments:
 You can make a section heading in R Studio with four `#` signs
 
 ```{r, eval = FALSE}
-# You can comment using this, but look below how to create section headers:
+# You can comment using this. 
 
-## Heading name ####
+# Look below how to create section headers:
+
+#### Heading name ####
+
+# You can also do this:
+
+# Section One ---------------------------------
+# Section Two =================================
+### Section Three #############################
+
 ```
 
 This allows you to move quickly between sections and hide sections
@@ -278,37 +310,35 @@ This allows you to move quickly between sections and hide sections
 
 
 ---
-# Housekeeping
+# Preparing your `R` Environment: Housekeeping
 <br>
-<br>
+
 The first command at the top of all scripts may be: `rm(list = ls())`.
+
 This command:
 
-* Clears R memory
-* Prevents errors related to the use of older data
+* Clears objects from the memory and the disk;
+* Prevents errors related to the use of out-dated data.
 
----
-# Clearing the workspace
 <br>
-<br>
+
 ```{r, eval = FALSE}
-# Clear the R workspace
+# Clear the R Workspace
 rm(list = ls())
+
 ?rm
 ?ls
 ```
 
 ---
-# Housekeeping
+# Preparing your `R` Environment: Housekeeping
 
-Demo – Try to add some test data to R and then see how `rm(list = ls())` removes it
+**DIY**: Try adding some test data to `R` and then see how `rm(list = ls())` removes it
 
 ```{r, eval = FALSE}
 A<-"Test" # Put some data in workspace
-A <- "Test" # Note that you can use spaces!
-A = "Test" # <- or = can be used equally
-
-#Note that it is best practice to use "<-" for assigment instead of "="
+A <- "Test" # Add some spaces to organize your data!
+A = "Test" # You can do this, but it does not mean you should
 
 # Check objects in the workspace
 ls()
@@ -317,21 +347,25 @@ ls()
 A
 # [1] "Test"
 
-# clean workspace
+# Clean Workspace
 rm(list=ls())
 
 A
+```
+
+```{r, eval = FALSE}
 # Error in eval(expr, envir, enclos): object 'A' not found
 ```
+
 
 ---
 # Remember
 <br>
 <br>
-* R is ready for commands when you see the chevron `>` in the console. If you do not see it, press ESC
+* `R` is ready for commands when you see the chevron `>` in the console. If you do not see it, press `Esc`
 <br>
 <br>
-* R is case sensitive!
+* `R` is case sensitive!
 
 
 ---
@@ -346,13 +380,13 @@ You can download the data and the script for this workshop from the wiki:
 
 .center[http://qcbs.ca/wiki/r/workshop2]
 
-Save the files in the folder where your created your R project.
+Save the files in the folder where your created your `R` project.
 
 --
 
 <br>
 
-.alert[NOTE] Many databases are already available on R
+.alert[NOTE] Many databases are already available within `R`
 
 ```{r, eval = FALSE}
 # Complete list of available data on base R
@@ -389,13 +423,13 @@ dir()
 It helps to:
 
 * Check that the file you plan to open is present in the folder that R is currently working in
-* Check for correct spelling (e.g. "co2_good.csv" instead of "CO2_good.csv")
+* Check for correct spelling (e.g. `co2_good.csv` instead of `CO2_good.csv`)
 
 ---
 # Importing Data
 <br>
 <br>
-Import data into R using `read.csv`:
+Import data into `R` using `read.csv()`:
 
 ```{r, eval = TRUE}
 CO2 <- read.csv("data/co2_good.csv", header=TRUE)
@@ -417,7 +451,7 @@ I
 ?read.csv
 ```
 
-.alert[Note] that if your operating system or .CSV editor (e.g. Excel) is in French, you may have to use `read.csv2`
+.alert[Note] that if your operating system or `CSV` editor (e.g. Excel) is in French, you may have to use `read.csv2()`
 
 ```{r, eval = FALSE}
 ?read.csv2
@@ -680,7 +714,7 @@ head(CO2)
 ---
 # Exporting data
 
-R disposes of `write` functions that allow you to write objects directly to files in your computer. Let us use the `write.csv` function to save our CO2 data into a .CSV file:
+R disposes of `write` functions that allow you to write objects directly to files in your computer. Let us use the `write.csv()` function to save our CO2 data into a .CSV file:
 
 ```{r, eval = FALSE}
 write.csv(CO2, file = "data/co2_new.csv")
@@ -1246,7 +1280,7 @@ These 4 core functions tackle the most common manipulations when working with da
   * `mutate()`: create or transform values in a column
 
 ---
-# `select` columns
+# `select()` columns
 
 <div style="text-align:center">
 <img src="images/select.png" height=60% width=60%></img>
@@ -1266,14 +1300,14 @@ select(data, start_with(x.)) # select all columns that start with "x."
 ```
 
 ---
-# `select` columns
+# `select()` columns
 
 <div style="text-align:center">
 <img src="images/select.helper.png" height=70% width=70%>
 </div>
 
 ---
-# `select` columns
+# `select()` columns
 
 Example: suppose we are only interested in the variation of Ozone over time within the airquality dataset
 
@@ -1283,7 +1317,7 @@ head(ozone)
 ```
 
 ---
-# `filter` rows
+# `filter()` rows
 
 Extract a subset of rows that meet one or more specific conditions
 
@@ -1296,7 +1330,7 @@ Extract a subset of rows that meet one or more specific conditions
 </div>
 
 ---
-# `filter` rows
+# `filter()` rows
 
 Example: we are interested in analyses that focus on the month of August during high temperature events
 
@@ -1317,7 +1351,7 @@ Use `desc()` for descending order.
 `arrange(data, variable1, desc(variable2), ...)`
 
 ---
-# Sort rows with `arrange`
+# Sort rows with `arrange()`
 <br>
 <br>
 Example:
@@ -1329,7 +1363,7 @@ head(air_mess)
 ```
 
 ---
-# Sort rows with `arrange`
+# Sort rows with `arrange()`
 
 <br>
 Example:
@@ -1343,7 +1377,7 @@ head(air_chron)
 .comment[Try : `arrange(air_mess, Day, Month)` and see the difference.]
 
 ---
-# Create new columns using `mutate`
+# Create new columns using `mutate()`
 
 Compute and add new columns
 
@@ -1354,7 +1388,7 @@ Compute and add new columns
 </div>
 
 ---
-# Create new columns using `mutate`
+# Create new columns using `mutate()`
 <br>
 <br>
 Example: we want to convert the temperature variable form degrees Fahrenheit to degrees Celsius
@@ -1414,7 +1448,7 @@ Advantages :
   * easy to read and write because functions are executed in order
 
 ---
-# `group_by` and `summarise`
+# `group_by()` and `summarise()`
 
 The `dplyr` verbs become especially powerful when they are are combined using the pipe operator `%>%`.
 The following `dplyr` functions allow us to split our data frame into groups on which we can perform operations individually

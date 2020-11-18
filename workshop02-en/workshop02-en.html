@@ -4,6 +4,7 @@
     <title>Workshop 2: Loading and Manipulating Data</title>
     <meta charset="utf-8" />
     <meta name="author" content="Québec Centre for Biodiversity Science" />
+    <script src="assets/header-attrs-2.5/header-attrs.js"></script>
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
@@ -101,10 +102,10 @@ Keep your files organized!
 ---
 # Preparing data for R
 
-Dataset should be stored as *comma-separated value* files (.csv) in the working directory
+Dataset should be stored as *comma-separated value* files (`.csv`) in the working directory
 
 * Can be created from almost all applications (Excel, LibreOffice, Google Docs)
-* File -&gt; Save as **.csv**…
+* `File -&gt; Save as .csv…`
 
 .center[
 ![:scale 45%](images/Excel_csv_good_bad/excel_vs_csv.png)]
@@ -113,67 +114,77 @@ Dataset should be stored as *comma-separated value* files (.csv) in the working 
 ---
 # Naming files
 
-Avoid using spaces, accents or special characters for your names.
+Avoid using spaces, accents or special characters within filenames.
 
 &lt;br&gt;
 &lt;br&gt;
 .pull-left[
-**Wise**
-- rawDatasetAgo2017.csv
-- co2_concentrations_QB.csv
-- 01_figIntro.R]
+**Recommended**
+- `rawDatasetAgo2017.csv`
+- `co2_concentrations_QB.csv`
+- `01_figIntro.R`
+]
 
 .pull-right[
-**Not-wise**
-- final.csv
-- safnnejs.csv
-- 1-4.csv]
+**Not recommended**
+- `final.csv`
+- `safnnejs.csv`
+- `1-4.csv`
+]
 
 
 ---
 # Naming variables
 
-Avoid using spaces, accents or special characters for your names
+Avoid using spaces, accents or special characters within variable names.
+
 Use separators (e.g. "\_") to add details
 
 &lt;br&gt;
 &lt;br&gt;
 .pull-left[
-**Wise**
-  - Measurements
-  - speciesNames
-  - Site_001_Rep_002]
+**Recommended**
+  - `Measurements`
+  - `speciesNames`
+  - `Site_001_Rep_002`
+  ]
   
 .pull-right[
-**Not-wise**
- - a
- - 3
- - complicatedverylongname]
+**Not recommended**
+ - `a`
+ - `3`
+ - `complicatedverylongname`
+ ]
 
 &lt;br&gt;
 &lt;br&gt;
-Check the [tidyverse style guide](https://style.tidyverse.org/) for good coding habits.
+.center[Check the [tidyverse style guide](https://style.tidyverse.org/) for recommended coding habits.]
 
 
 ---
 # Common data preparation mistakes
 
 &lt;br&gt;
-&lt;br&gt;
-* text in numeric columns
-* typos
-* numeric names for non-numeric data
-* inconsistent formats for dates, numbers, metrics, etc.
-* incorrect headings
-* merged cells
+Here are a few examples of mistakes that originate confusion when preparing and manipulating data:
+
+.pull-left[
+* text in numeric columns;
+* typos;
+* numeric names for non-numeric data;]
+
+.pull-right[
+* inconsistent formats for dates, numbers, metrics, and other units;
+* incorrect headings;
+* merged cells.
+]
 
 &lt;br&gt;
 &lt;br&gt;
-Check-out the paper by [Broman &amp; Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
-for useful tips on data organization in spreadsheets. 
+Read the publication by [Broman &amp; Woo (2017)](https://doi.org/10.1080/00031305.2017.1375989) 
+on useful tips on data organization in spreadsheets. 
 
 ---
-# Bad data sheets:
+# Non-recommended data tables
 
 .pull-left[
 ![:scale 120%](images/Excel_csv_good_bad/excel_values.png)]
@@ -183,7 +194,7 @@ for useful tips on data organization in spreadsheets.
 ]
 
 ---
-# Horrible data sheets:
+# **Horrible** data sheets
 
 Not the best practices for data preservation and interoperability
 
@@ -191,17 +202,18 @@ Not the best practices for data preservation and interoperability
 ![:scale 85%](images/HorribleData.png)]
 
 ---
-# Preparing data in R
+# Preparing data in `R`
 &lt;br&gt;
 &lt;br&gt;
-It is possible to do all your data preparation work within R
+It is possible to prepare your data entirely within `R` as it:
 
-* Saves time for large datasets
-* Keeps original data intact
-* Keeps track of the manipulation and transformation you did
-* Can switch between long- and wide-formats easily (more details later)
+* Saves time for large datasets;
+* Keeps original data intact;
+* Keeps track of the manipulation and transformation you did; and,
+* Can switch between long- and wide-formats easily (more details later).
 
-* Useful tips on data preparation can be found here: https://www.zoology.ubc.ca/~schluter/R/data/
+
+.center[Useful tips on data preparation can be found here: https://www.zoology.ubc.ca/~schluter/R/data/]
 
 ---
 class: inverse, center, middle
@@ -209,25 +221,25 @@ class: inverse, center, middle
 # Writing a Script
 
 ---
-# R Scripts
+# `R` Scripts
 &lt;br&gt;
 &lt;br&gt;
 * What is a script?
    - A text file storing the commands used for a particular analysis
 
 * Once written and saved, your script file allows you to make changes and re-run analyses with minimal effort!
-  - Just highlight text and click "Run" or press Command + Enter (Apple) or Ctrl + Enter (Windows and Linux)
+  - Just highlight text and click "Run" or press `Command + Enter` (Apple) or `Ctrl + Enter` / `Ctrl + R` (Windows and Linux)
 
 
 ---
-# Creating a R script
+# Creating an `R` script
 
 .center[
 ![:scale 80%](images/1_Create_an_R_script.png)
 ]
 
 ---
-# Creating a R script
+# Creating an `R` script
 
 
 .center[
@@ -238,27 +250,37 @@ class: inverse, center, middle
 ---
 # Commands and comments
 &lt;br&gt;
-&lt;br&gt;
-The `#` symbol in a script tells R to ignore anything remaining on this line of the script when running commands
+The `#` symbol in a script tells `R` to **not run** and ignore anything written past it within the same line
 
 &lt;br&gt;
 &lt;br&gt;
 
+.pull-left[
 
 ```r
-# This is a comment not a command
+a &lt;- 1 + 1
+# This is a comment
 ```
+]
 
+.pull-right[
+
+```r
+b &lt;- 2 + 2 # This is a comment
+```
+]
 
 ---
 # Why should I use `#`?
 &lt;br&gt;
 &lt;br&gt;
-* Annotating someone’s script is a good way to learn
-* Tell collaborators what you did
-* Good step towards reproducible science
+* Annotating someone’s script is a good way to learn;
+* Tell collaborators what you did;
+* Good step towards reproducible science.
 
-Be as detailed as possible!
+&lt;br&gt;
+
+.center[Be as detailed as possible!]
 
 
 ---
@@ -278,9 +300,18 @@ You can make a section heading in R Studio with four `#` signs
 
 
 ```r
-# You can comment using this, but look below how to create section headers:
+# You can comment using this. 
 
-## Heading name ####
+# Look below how to create section headers:
+
+#### Heading name ####
+
+# You can also do this:
+
+# Section One ---------------------------------
+# Section Two =================================
+### Section Three #############################
+
 ```
 
 This allows you to move quickly between sections and hide sections
@@ -291,39 +322,37 @@ This allows you to move quickly between sections and hide sections
 
 
 ---
-# Housekeeping
+# Preparing your `R` Environment: Housekeeping
 &lt;br&gt;
-&lt;br&gt;
+
 The first command at the top of all scripts may be: `rm(list = ls())`.
+
 This command:
 
-* Clears R memory
-* Prevents errors related to the use of older data
+* Clears objects from the memory and the disk;
+* Prevents errors related to the use of out-dated data.
 
----
-# Clearing the workspace
 &lt;br&gt;
-&lt;br&gt;
+
 
 ```r
-# Clear the R workspace
+# Clear the R Workspace
 rm(list = ls())
+
 ?rm
 ?ls
 ```
 
 ---
-# Housekeeping
+# Preparing your `R` Environment: Housekeeping
 
-Demo – Try to add some test data to R and then see how `rm(list = ls())` removes it
+**DIY**: Try adding some test data to `R` and then see how `rm(list = ls())` removes it
 
 
 ```r
 A&lt;-"Test" # Put some data in workspace
-A &lt;- "Test" # Note that you can use spaces!
-A = "Test" # &lt;- or = can be used equally
-
-#Note that it is best practice to use "&lt;-" for assigment instead of "="
+A &lt;- "Test" # Add some spaces to organize your data!
+A = "Test" # You can do this, but it does not mean you should
 
 # Check objects in the workspace
 ls()
@@ -332,21 +361,26 @@ ls()
 A
 # [1] "Test"
 
-# clean workspace
+# Clean Workspace
 rm(list=ls())
 
 A
+```
+
+
+```r
 # Error in eval(expr, envir, enclos): object 'A' not found
 ```
+
 
 ---
 # Remember
 &lt;br&gt;
 &lt;br&gt;
-* R is ready for commands when you see the chevron `&gt;` in the console. If you do not see it, press ESC
+* `R` is ready for commands when you see the chevron `&gt;` in the console. If you do not see it, press `Esc`
 &lt;br&gt;
 &lt;br&gt;
-* R is case sensitive!
+* `R` is case sensitive!
 
 
 ---
@@ -361,13 +395,13 @@ You can download the data and the script for this workshop from the wiki:
 
 .center[http://qcbs.ca/wiki/r/workshop2]
 
-Save the files in the folder where your created your R project.
+Save the files in the folder where your created your `R` project.
 
 --
 
 &lt;br&gt;
 
-.alert[NOTE] Many databases are already available on R
+.alert[NOTE] Many databases are already available within `R`
 
 
 ```r
@@ -406,19 +440,19 @@ dir()
 #  [1] "assets"              "data"                "images"             
 #  [4] "qcbsR-fonts.css"     "qcbsR-header.html"   "qcbsR-macros.js"    
 #  [7] "qcbsR.css"           "workshop02-en.html"  "workshop02-en.Rmd"  
-# [10] "workshop02-en_files"
+# [10] "workshop02-en.Rproj" "workshop02-en_cache" "workshop02-en_files"
 ```
 
 It helps to:
 
 * Check that the file you plan to open is present in the folder that R is currently working in
-* Check for correct spelling (e.g. "co2_good.csv" instead of "CO2_good.csv")
+* Check for correct spelling (e.g. `co2_good.csv` instead of `CO2_good.csv`)
 
 ---
 # Importing Data
 &lt;br&gt;
 &lt;br&gt;
-Import data into R using `read.csv`:
+Import data into `R` using `read.csv()`:
 
 
 ```r
@@ -442,7 +476,7 @@ I
 ?read.csv
 ```
 
-.alert[Note] that if your operating system or .CSV editor (e.g. Excel) is in French, you may have to use `read.csv2`
+.alert[Note] that if your operating system or `CSV` editor (e.g. Excel) is in French, you may have to use `read.csv2()`
 
 
 ```r
@@ -588,8 +622,9 @@ CO2copy$uniqueID &lt;- paste0(CO2copy$Plante,
 
 # observe the results
 head(CO2copy$uniqueID)
-# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
-# [4] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [1] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [3] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
+# [5] "Qn1_Quebec_nonchilled" "Qn1_Quebec_nonchilled"
 ```
 
 ---
@@ -696,7 +731,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 hist(CO2$uptake)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-23-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-25-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ---
 # Data exploration
@@ -707,7 +742,7 @@ hist(CO2$uptake)
 hist(CO2$uptake, breaks = 40)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-24-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-26-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -743,7 +778,7 @@ head(CO2) # Looking good!
 ---
 # Exporting data
 
-R disposes of `write` functions that allow you to write objects directly to files in your computer. Let us use the `write.csv` function to save our CO2 data into a .CSV file:
+R disposes of `write` functions that allow you to write objects directly to files in your computer. Let us use the `write.csv()` function to save our CO2 data into a .CSV file:
 
 
 ```r
@@ -799,20 +834,20 @@ Read the file `co2_broken.csv`
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
-# 1 falling on my notebook numerous values can't be read rain               NA NA
-# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
-# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
-# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
-# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
-# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
-#   X.1 X.2 X.3
-# 1  NA  NA  NA
-# 2  NA  NA  NA
-# 3  NA  NA  NA
-# 4  NA  NA  NA
-# 5  NA  NA  NA
-# 6  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
+# 1 falling on my notebook numerous values can't be read rain
+# 2                          Plant\tType\tTreatment\tconc\tuptake
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2
+#   due.to.excessive  X X.1 X.2 X.3
+# 1               NA NA  NA  NA  NA
+# 2               NA NA  NA  NA  NA
+# 3               NA NA  NA  NA  NA
+# 4               NA NA  NA  NA  NA
+# 5               NA NA  NA  NA  NA
+# 6               NA NA  NA  NA  NA
 ```
 
 
@@ -843,20 +878,20 @@ add "?" (e.g. `?read.csv` to the function name to access the function help page)
 
 ```r
 head(CO2)
-#               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
-# 1 falling on my notebook numerous values can't be read rain               NA NA
-# 2                          Plant\tType\tTreatment\tconc\tuptake               NA NA
-# 3                               Qn1\tQuebec\tnonchilled\t95\t16               NA NA
-# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4               NA NA
-# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes               NA NA
-# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2               NA NA
-#   X.1 X.2 X.3
-# 1  NA  NA  NA
-# 2  NA  NA  NA
-# 3  NA  NA  NA
-# 4  NA  NA  NA
-# 5  NA  NA  NA
-# 6  NA  NA  NA
+#               NOTE..It.rain.a.lot.in.Quebec.during.sampling
+# 1 falling on my notebook numerous values can't be read rain
+# 2                          Plant\tType\tTreatment\tconc\tuptake
+# 3                               Qn1\tQuebec\tnonchilled\t95\t16
+# 4                            Qn1\tQuebec\tnonchilled\t175\t30.4
+# 5               Qn1\tQuebec\tnonchilled\t250\tcannot_read_notes
+# 6                            Qn1\tQuebec\tnonchilled\t350\t37.2
+#   due.to.excessive  X X.1 X.2 X.3
+# 1               NA NA  NA  NA  NA
+# 2               NA NA  NA  NA  NA
+# 3               NA NA  NA  NA  NA
+# 4               NA NA  NA  NA  NA
+# 5               NA NA  NA  NA  NA
+# 6               NA NA  NA  NA  NA
 ```
 
 ---
@@ -881,20 +916,20 @@ CO2 &lt;- read.csv("data/co2_broken.csv",sep = "")
 
 ```r
 head(CO2)
-#     NOTE.     It       rain        a               lot    in. Quebec during
-# 1 falling     on         my notebook          numerous values  can't     be
-# 2   Plant   Type  Treatment     conc            uptake                     
-# 3     Qn1 Quebec nonchilled       95                16                     
-# 4     Qn1 Quebec nonchilled      175              30.4                     
-# 5     Qn1 Quebec nonchilled      250 cannot_read_notes                     
-# 6     Qn1 Quebec nonchilled      350              37.2                     
-#   sampling.      due to excessive X....
-# 1      read rain,,,, NA        NA    NA
-# 2                    NA        NA    NA
-# 3                    NA        NA    NA
-# 4                    NA        NA    NA
-# 5                    NA        NA    NA
-# 6                    NA        NA    NA
+#     NOTE.     It       rain        a               lot    in. Quebec
+# 1 falling     on         my notebook          numerous values  can't
+# 2   Plant   Type  Treatment     conc            uptake              
+# 3     Qn1 Quebec nonchilled       95                16              
+# 4     Qn1 Quebec nonchilled      175              30.4              
+# 5     Qn1 Quebec nonchilled      250 cannot_read_notes              
+# 6     Qn1 Quebec nonchilled      350              37.2              
+#   during sampling.      due to excessive X....
+# 1     be      read rain,,,, NA        NA    NA
+# 2                           NA        NA    NA
+# 3                           NA        NA    NA
+# 4                           NA        NA    NA
+# 5                           NA        NA    NA
+# 6                           NA        NA    NA
 ```
 
 
@@ -1028,7 +1063,7 @@ If not :
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-39-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-41-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -1058,7 +1093,7 @@ str(CO2)
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 
-&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-42-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-en_files/figure-html/unnamed-chunk-44-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -1496,7 +1531,7 @@ These 4 core functions tackle the most common manipulations when working with da
   * `mutate()`: create or transform values in a column
 
 ---
-# `select` columns
+# `select()` columns
 
 &lt;div style="text-align:center"&gt;
 &lt;img src="images/select.png" height=60% width=60%&gt;&lt;/img&gt;
@@ -1516,14 +1551,14 @@ select(data, start_with(x.)) # select all columns that start with "x."
 ```
 
 ---
-# `select` columns
+# `select()` columns
 
 &lt;div style="text-align:center"&gt;
 &lt;img src="images/select.helper.png" height=70% width=70%&gt;
 &lt;/div&gt;
 
 ---
-# `select` columns
+# `select()` columns
 
 Example: suppose we are only interested in the variation of Ozone over time within the airquality dataset
 
@@ -1541,7 +1576,7 @@ head(ozone)
 ```
 
 ---
-# `filter` rows
+# `filter()` rows
 
 Extract a subset of rows that meet one or more specific conditions
 
@@ -1554,7 +1589,7 @@ Extract a subset of rows that meet one or more specific conditions
 &lt;/div&gt;
 
 ---
-# `filter` rows
+# `filter()` rows
 
 Example: we are interested in analyses that focus on the month of August during high temperature events
 
@@ -1583,7 +1618,7 @@ Use `desc()` for descending order.
 `arrange(data, variable1, desc(variable2), ...)`
 
 ---
-# Sort rows with `arrange`
+# Sort rows with `arrange()`
 &lt;br&gt;
 &lt;br&gt;
 Example:
@@ -1603,7 +1638,7 @@ head(air_mess)
 ```
 
 ---
-# Sort rows with `arrange`
+# Sort rows with `arrange()`
 
 &lt;br&gt;
 Example:
@@ -1625,7 +1660,7 @@ head(air_chron)
 .comment[Try : `arrange(air_mess, Day, Month)` and see the difference.]
 
 ---
-# Create new columns using `mutate`
+# Create new columns using `mutate()`
 
 Compute and add new columns
 
@@ -1636,7 +1671,7 @@ Compute and add new columns
 &lt;/div&gt;
 
 ---
-# Create new columns using `mutate`
+# Create new columns using `mutate()`
 &lt;br&gt;
 &lt;br&gt;
 Example: we want to convert the temperature variable form degrees Fahrenheit to degrees Celsius
@@ -1707,7 +1742,7 @@ Advantages :
   * easy to read and write because functions are executed in order
 
 ---
-# `group_by` and `summarise`
+# `group_by()` and `summarise()`
 
 The `dplyr` verbs become especially powerful when they are are combined using the pipe operator `%&gt;%`.
 The following `dplyr` functions allow us to split our data frame into groups on which we can perform operations individually
