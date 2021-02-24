@@ -1167,15 +1167,15 @@ library(tidyr)
 
 
 ```
-# [90m# A tibble: 6 x 3[39m
+# # A tibble: 6 x 3
 #   Species name   value
-#   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m Oak     DBH       12
-# [90m2[39m Oak     Height    56
-# [90m3[39m Elm     DBH       20
-# [90m4[39m Elm     Height    85
-# [90m5[39m Ash     DBH       13
-# [90m6[39m Ash     Height    55
+#   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
+# 1 Oak     DBH       12
+# 2 Oak     Height    56
+# 3 Elm     DBH       20
+# 4 Elm     Height    85
+# 5 Ash     DBH       13
+# 6 Ash     Height    55
 ```
 ]
 
@@ -1242,15 +1242,15 @@ long &lt;- pivot_longer(data      = wide,
                      names_to  = "dimension", 
                      values_to = "cm")
 long
-# [90m# A tibble: 6 x 3[39m
+# # A tibble: 6 x 3
 #   Species dimension    cm
-#   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m Oak     DBH          12
-# [90m2[39m Oak     Height       56
-# [90m3[39m Elm     DBH          20
-# [90m4[39m Elm     Height       85
-# [90m5[39m Ash     DBH          13
-# [90m6[39m Ash     Height       55
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Oak     DBH          12
+# 2 Oak     Height       56
+# 3 Elm     DBH          20
+# 4 Elm     Height       85
+# 5 Ash     DBH          13
+# 6 Ash     Height       55
 ```
 
 ---
@@ -1270,15 +1270,15 @@ long
 
 ```r
 long
-# [90m# A tibble: 6 x 3[39m
+# # A tibble: 6 x 3
 #   Species dimension    cm
-#   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m Oak     DBH          12
-# [90m2[39m Oak     Height       56
-# [90m3[39m Elm     DBH          20
-# [90m4[39m Elm     Height       85
-# [90m5[39m Ash     DBH          13
-# [90m6[39m Ash     Height       55
+#   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
+# 1 Oak     DBH          12
+# 2 Oak     Height       56
+# 3 Elm     DBH          20
+# 4 Elm     Height       85
+# 5 Ash     DBH          13
+# 6 Ash     Height       55
 ```
 
 
@@ -1287,12 +1287,12 @@ large2 &lt;- pivot_wider(data        = long,
                       names_from  = "dimension", 
                       values_from = "cm")
 large2
-# [90m# A tibble: 3 x 3[39m
+# # A tibble: 3 x 3
 #   Species   DBH Height
-#   [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m Oak        12     56
-# [90m2[39m Elm        20     85
-# [90m3[39m Ash        13     55
+#   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+# 1 Oak        12     56
+# 2 Elm        20     85
+# 3 Ash        13     55
 ```
 
 ---
@@ -1303,12 +1303,12 @@ large2
 
 ```r
 tibble(x = 1:3, y = c("a","b","c"))
-# [90m# A tibble: 3 x 2[39m
+# # A tibble: 3 x 2
 #       x y    
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m
-# [90m1[39m     1 a    
-# [90m2[39m     2 b    
-# [90m3[39m     3 c
+#   &lt;int&gt; &lt;chr&gt;
+# 1     1 a    
+# 2     2 b    
+# 3     3 c
 ```
 
 ---
@@ -1320,12 +1320,12 @@ Example:
 
 ```r
 tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
-# [90m# A tibble: 3 x 2[39m
+# # A tibble: 3 x 2
 #       x y         
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;list&gt;[39m[23m    
-# [90m1[39m     1 [90m&lt;int [5]&gt;[39m 
-# [90m2[39m     2 [90m&lt;int [10]&gt;[39m
-# [90m3[39m     3 [90m&lt;int [20]&gt;[39m
+#   &lt;int&gt; &lt;list&gt;    
+# 1     1 &lt;int [5]&gt; 
+# 2     2 &lt;int [10]&gt;
+# 3     3 &lt;int [20]&gt;
 ```
 
 you can use with a tibble all the functions applied to a data.frame 
@@ -1383,15 +1383,15 @@ messy.long &lt;- pivot_longer(messy,
 
 
 head(messy.long)
-# [90m# A tibble: 6 x 4[39m
+# # A tibble: 6 x 4
 #      id trt   taxa           value
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m     1 farm  zooplankton.T1 0.719
-# [90m2[39m     1 farm  fish.T1        0.644
-# [90m3[39m     1 farm  zooplankton.T2 0.545
-# [90m4[39m     1 farm  fish.T2        0.264
-# [90m5[39m     2 farm  zooplankton.T1 0.291
-# [90m6[39m     2 farm  fish.T1        0.457
+#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;
+# 1     1 farm  zooplankton.T1 0.719
+# 2     1 farm  fish.T1        0.644
+# 3     1 farm  zooplankton.T2 0.545
+# 4     1 farm  fish.T2        0.264
+# 5     2 farm  zooplankton.T1 0.291
+# 6     2 farm  fish.T1        0.457
 ```
 
 ---
@@ -1404,15 +1404,15 @@ Then we want to split the 2 sampling time (T1 and T2).
 messy.long.sep &lt;- separate(messy.long, taxa,
                            into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
-# [90m# A tibble: 6 x 5[39m
+# # A tibble: 6 x 5
 #      id trt   species     time  value
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;chr&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m     1 farm  zooplankton T1    0.719
-# [90m2[39m     1 farm  fish        T1    0.644
-# [90m3[39m     1 farm  zooplankton T2    0.545
-# [90m4[39m     1 farm  fish        T2    0.264
-# [90m5[39m     2 farm  zooplankton T1    0.291
-# [90m6[39m     2 farm  fish        T1    0.457
+#   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+# 1     1 farm  zooplankton T1    0.719
+# 2     1 farm  fish        T1    0.644
+# 3     1 farm  zooplankton T2    0.545
+# 4     1 farm  fish        T2    0.264
+# 5     2 farm  zooplankton T1    0.291
+# 6     2 farm  fish        T1    0.457
 ```
 
 .small[.comment[
@@ -1457,15 +1457,15 @@ air.long &lt;- pivot_longer(airquality,
                          names_to = c("variable") )
 
 head(air.long)
-# [90m# A tibble: 6 x 4[39m
+# # A tibble: 6 x 4
 #   Month   Day variable value
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m     5     1 Ozone     41  
-# [90m2[39m     5     1 Solar.R  190  
-# [90m3[39m     5     1 Wind       7.4
-# [90m4[39m     5     1 Temp      67  
-# [90m5[39m     5     2 Ozone     36  
-# [90m6[39m     5     2 Solar.R  118
+#   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
+# 1     5     1 Ozone     41  
+# 2     5     1 Solar.R  190  
+# 3     5     1 Wind       7.4
+# 4     5     1 Temp      67  
+# 5     5     2 Ozone     36  
+# 6     5     2 Solar.R  118
 ```
 
 
@@ -1485,15 +1485,15 @@ air.wide &lt;- pivot_wider(air.long,
                         values_from = "value",
                         names_from  = "variable")
 head(air.wide)
-# [90m# A tibble: 6 x 6[39m
+# # A tibble: 6 x 6
 #   Month   Day Ozone Solar.R  Wind  Temp
-#   [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m     5     1    41     190   7.4    67
-# [90m2[39m     5     2    36     118   8      72
-# [90m3[39m     5     3    12     149  12.6    74
-# [90m4[39m     5     4    18     313  11.5    62
-# [90m5[39m     5     5    [31mNA[39m      [31mNA[39m  14.3    56
-# [90m6[39m     5     6    28      [31mNA[39m  14.9    66
+#   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+# 1     5     1    41     190   7.4    67
+# 2     5     2    36     118   8      72
+# 3     5     3    12     149  12.6    74
+# 4     5     4    18     313  11.5    62
+# 5     5     5    NA      NA  14.3    56
+# 6     5     6    28      NA  14.9    66
 ```
 
 ---
@@ -1781,14 +1781,14 @@ month_sum &lt;- airquality %&gt;%
       summarise(mean_temp = mean(Temp),
                 sd_temp = sd(Temp))
 month_sum
-# [90m# A tibble: 5 x 3[39m
+# # A tibble: 5 x 3
 #   Month mean_temp sd_temp
-# [90m*[39m [3m[90m&lt;int&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m     5      65.5    6.85
-# [90m2[39m     6      79.1    6.60
-# [90m3[39m     7      83.9    4.32
-# [90m4[39m     8      84.0    6.59
-# [90m5[39m     9      76.9    8.36
+# * &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+# 1     5      65.5    6.85
+# 2     6      79.1    6.60
+# 3     7      83.9    4.32
+# 4     8      84.0    6.59
+# 5     9      76.9    8.36
 ```
 
 ---
@@ -1821,15 +1821,15 @@ weight_diff &lt;- ChickWeight %&gt;%
 
 ```r
 head(weight_diff)
-# [90m# A tibble: 6 x 2[39m
+# # A tibble: 6 x 2
 #   Chick weight_diff
-#   [3m[90m&lt;ord&gt;[39m[23m       [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m 18              4
-# [90m2[39m 16             16
-# [90m3[39m 15             27
-# [90m4[39m 13             55
-# [90m5[39m 9              58
-# [90m6[39m 20             76
+#   &lt;ord&gt;       &lt;dbl&gt;
+# 1 18              4
+# 2 16             16
+# 3 15             27
+# 4 13             55
+# 5 9              58
+# 6 20             76
 ```
 
 ---
@@ -1898,13 +1898,13 @@ diet_summ &lt;- ChickWeight %&gt;%
 
 ```r
 diet_summ
-# [90m# A tibble: 4 x 2[39m
+# # A tibble: 4 x 2
 #   Diet  mean_gain
-# [90m*[39m [3m[90m&lt;fct&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m
-# [90m1[39m 1          115.
-# [90m2[39m 2          174 
-# [90m3[39m 3          230.
-# [90m4[39m 4          188.
+# * &lt;fct&gt;     &lt;dbl&gt;
+# 1 1          115.
+# 2 2          174 
+# 3 3          230.
+# 4 4          188.
 ```
 
 ---
