@@ -1167,7 +1167,7 @@ library(tidyr)
 
 
 ```
-# # A tibble: 6 x 3
+# # A tibble: 6 × 3
 #   Species name   value
 #   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
 # 1 Oak     DBH       12
@@ -1242,7 +1242,7 @@ long &lt;- pivot_longer(data      = wide,
                      names_to  = "dimension", 
                      values_to = "cm")
 long
-# # A tibble: 6 x 3
+# # A tibble: 6 × 3
 #   Species dimension    cm
 #   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
 # 1 Oak     DBH          12
@@ -1270,7 +1270,7 @@ long
 
 ```r
 long
-# # A tibble: 6 x 3
+# # A tibble: 6 × 3
 #   Species dimension    cm
 #   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
 # 1 Oak     DBH          12
@@ -1287,7 +1287,7 @@ large2 &lt;- pivot_wider(data        = long,
                       names_from  = "dimension", 
                       values_from = "cm")
 large2
-# # A tibble: 3 x 3
+# # A tibble: 3 × 3
 #   Species   DBH Height
 #   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 # 1 Oak        12     56
@@ -1303,7 +1303,7 @@ large2
 
 ```r
 tibble(x = 1:3, y = c("a","b","c"))
-# # A tibble: 3 x 2
+# # A tibble: 3 × 2
 #       x y    
 #   &lt;int&gt; &lt;chr&gt;
 # 1     1 a    
@@ -1320,7 +1320,7 @@ Example:
 
 ```r
 tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
-# # A tibble: 3 x 2
+# # A tibble: 3 × 2
 #       x y         
 #   &lt;int&gt; &lt;list&gt;    
 # 1     1 &lt;int [5]&gt; 
@@ -1383,7 +1383,7 @@ messy.long &lt;- pivot_longer(messy,
 
 
 head(messy.long)
-# # A tibble: 6 x 4
+# # A tibble: 6 × 4
 #      id trt   taxa           value
 #   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;
 # 1     1 farm  zooplankton.T1 0.719
@@ -1404,7 +1404,7 @@ Then we want to split the 2 sampling time (T1 and T2).
 messy.long.sep &lt;- separate(messy.long, taxa,
                            into = c("species", "time"), sep = "\\.")
 head(messy.long.sep)
-# # A tibble: 6 x 5
+# # A tibble: 6 × 5
 #      id trt   species     time  value
 #   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
 # 1     1 farm  zooplankton T1    0.719
@@ -1457,7 +1457,7 @@ air.long &lt;- pivot_longer(airquality,
                          names_to = c("variable") )
 
 head(air.long)
-# # A tibble: 6 x 4
+# # A tibble: 6 × 4
 #   Month   Day variable value
 #   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
 # 1     5     1 Ozone     41  
@@ -1485,7 +1485,7 @@ air.wide &lt;- pivot_wider(air.long,
                         values_from = "value",
                         names_from  = "variable")
 head(air.wide)
-# # A tibble: 6 x 6
+# # A tibble: 6 × 6
 #   Month   Day Ozone Solar.R  Wind  Temp
 #   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 # 1     5     1    41     190   7.4    67
@@ -1781,7 +1781,7 @@ month_sum &lt;- airquality %&gt;%
       summarise(mean_temp = mean(Temp),
                 sd_temp = sd(Temp))
 month_sum
-# # A tibble: 5 x 3
+# # A tibble: 5 × 3
 #   Month mean_temp sd_temp
 #   &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 # 1     5      65.5    6.85
@@ -1821,7 +1821,7 @@ weight_diff &lt;- ChickWeight %&gt;%
 
 ```r
 head(weight_diff)
-# # A tibble: 6 x 2
+# # A tibble: 6 × 2
 #   Chick weight_diff
 #   &lt;ord&gt;       &lt;dbl&gt;
 # 1 18              4
@@ -1898,7 +1898,7 @@ diet_summ &lt;- ChickWeight %&gt;%
 
 ```r
 diet_summ
-# # A tibble: 4 x 2
+# # A tibble: 4 × 2
 #   Diet  mean_gain
 #   &lt;fct&gt;     &lt;dbl&gt;
 # 1 1          115.
