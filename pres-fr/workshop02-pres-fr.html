@@ -1159,7 +1159,7 @@ long &lt;- pivot_longer(data      = large,
                      names_to  = "dimension", 
                      values_to = "cm")
 long
-# # A tibble: 6 x 3
+# # A tibble: 6 × 3
 #   Species dimension    cm
 #   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
 # 1 Chene   DHP          12
@@ -1187,7 +1187,7 @@ long
 
 ```r
 long
-# # A tibble: 6 x 3
+# # A tibble: 6 × 3
 #   Species dimension    cm
 #   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;
 # 1 Chene   DHP          12
@@ -1204,7 +1204,7 @@ large2 &lt;- pivot_wider(data        = long,
                       names_from  = "dimension", 
                       values_from = "cm")
 large2
-# # A tibble: 3 x 3
+# # A tibble: 3 × 3
 #   Species   DHP  Haut
 #   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
 # 1 Chene      12    56
@@ -1220,7 +1220,7 @@ large2
 
 ```r
 tibble(x = 1:3, y = c("a","b","c"))
-# # A tibble: 3 x 2
+# # A tibble: 3 × 2
 #       x y    
 #   &lt;int&gt; &lt;chr&gt;
 # 1     1 a    
@@ -1237,7 +1237,7 @@ Exemple:
 
 ```r
 tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
-# # A tibble: 3 x 2
+# # A tibble: 3 × 2
 #       x y         
 #   &lt;int&gt; &lt;list&gt;    
 # 1     1 &lt;int [5]&gt; 
@@ -1299,7 +1299,7 @@ degat.long &lt;- pivot_longer(degat,
                                         "zooplancton.T2",
                                         "poisson.T2"))
 head(degat.long)
-# # A tibble: 6 x 4
+# # A tibble: 6 × 4
 #      id trt     taxa           value
 #   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 # 1     1 culture zooplancton.T1 0.719
@@ -1320,7 +1320,7 @@ Ensuite, on veut séparer les 2 temps d'échantillonnage (T1 et T2) dans la colo
 degat.long.sep &lt;- separate(degat.long, taxa,
                            into = c("especes", "temps"), sep = "\\.")
 head(degat.long.sep)
-# # A tibble: 6 x 5
+# # A tibble: 6 × 5
 #      id trt     especes     temps value
 #   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
 # 1     1 culture zooplancton T1    0.719
@@ -1376,7 +1376,7 @@ air.long &lt;- pivot_longer(airquality,
                          names_to = c("variable"))
 
 head(air.long)
-# # A tibble: 6 x 4
+# # A tibble: 6 × 4
 #   Month   Day variable value
 #   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;dbl&gt;
 # 1     5     1 Ozone     41  
@@ -1403,7 +1403,7 @@ air.wide &lt;- pivot_wider(air.long,
                         values_from = "value",
                         names_from  = "variable")
 head(air.wide)
-# # A tibble: 6 x 6
+# # A tibble: 6 × 6
 #   Month   Day Ozone Solar.R  Wind  Temp
 #   &lt;int&gt; &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 # 1     5     1    41     190   7.4    67
@@ -1705,7 +1705,7 @@ mois_moy &lt;- airquality %&gt;%
              summarise(mean_temp = mean(Temp),
                        sd_temp   = sd(Temp))
 mois_moy
-# # A tibble: 5 x 3
+# # A tibble: 5 × 3
 #   Month mean_temp sd_temp
 #   &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 # 1     5      65.5    6.85
@@ -1740,7 +1740,7 @@ mass_diff &lt;- ChickWeight %&gt;%
               group_by(Chick) %&gt;%
               summarise(mass_diff = max(weight) - min(weight))
 head(mass_diff)
-# # A tibble: 6 x 2
+# # A tibble: 6 × 2
 #   Chick mass_diff
 #   &lt;ord&gt;     &lt;dbl&gt;
 # 1 18            4
@@ -1812,7 +1812,7 @@ diet_mass &lt;- ChickWeight %&gt;%
       summarise(gain_masse = last(weight) - first(weight)) %&gt;%
       summarise(gain_moyen = mean(gain_masse))
 diet_mass
-# # A tibble: 4 x 2
+# # A tibble: 4 × 2
 #   Diet  gain_moyen
 #   &lt;fct&gt;      &lt;dbl&gt;
 # 1 1           115.
