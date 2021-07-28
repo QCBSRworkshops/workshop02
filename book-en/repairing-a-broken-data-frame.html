@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Workshop 2: Loading and Manipulating Data</title>
+  <title>Chapter 6 Repairing a Broken Data Frame | Workshop 2: Loading and Manipulating Data</title>
   <meta name="description" content="Loading and Manipulating Data" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:title" content="Chapter 6 Repairing a Broken Data Frame | Workshop 2: Loading and Manipulating Data" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop02" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Workshop 2: Loading and Manipulating Data" />
+  <meta name="twitter:title" content="Chapter 6 Repairing a Broken Data Frame | Workshop 2: Loading and Manipulating Data" />
   
   <meta name="twitter:description" content="Loading and Manipulating Data" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="learning-objectives.html"/>
+<link rel="prev" href="loading-exploring-and-saving-data.html"/>
+<link rel="next" href="manipulate-data-with-the-tidyverse.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -244,73 +244,95 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
-<div id="header">
-<h1 class="title">Workshop 2: Loading and Manipulating Data</h1>
-<h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
-<p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-28 23:04:23</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
-<p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
-<div id="code-of-conduct" class="section level2">
-<h2><span class="header-section-number">0.1</span> Code of conduct</h2>
-<p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
-<p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
-<p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
-<p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
-<p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
-<div id="expected-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Expected behaviour</h3>
-<p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
+<div id="repairing-a-broken-data-frame" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Repairing a Broken Data Frame</h1>
+<p>Data can be messy, there are compatibility issues. For example, sharing
+data from a Mac to Windows or between computers set up in different
+continents can lead to weird datasets.</p>
+<p>Let’s practice how to solve some common errors.</p>
+<div id="fix-a-broken-dataframe" class="section level3">
+<h3><span class="header-section-number">6.0.1</span> Fix a broken dataframe</h3>
+<p># Read co2_broken.csv file into R and find the problems</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="repairing-a-broken-data-frame.html#cb27-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_broken.csv&quot;</span>)  <span class="co"># Overwrite CO2 object with broken CO2 data</span></span>
+<span id="cb27-2"><a href="repairing-a-broken-data-frame.html#cb27-2"></a><span class="kw">head</span>(CO2)  <span class="co"># Looks messy</span></span>
+<span id="cb27-3"><a href="repairing-a-broken-data-frame.html#cb27-3"></a>CO2  <span class="co"># Indeed!</span></span></code></pre></div>
 <ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
+<li>This is probably what your data or downloaded data looks like.</li>
+<li>You can fix the data frame in R (or not…)</li>
+<li>Give it a try before looking at the solution!</li>
+<li>Work with your neighbours and have fun :)</li>
 </ul>
-</div>
-<div id="unacceptable-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour</h3>
-<p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
+<p>Some useful functions:</p>
 <ul>
-<li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
-<li>causing someone to fear for their safety, such as through stalking or intimidation;</li>
-<li>violent threats or language directed against another person;</li>
-<li>the display of sexual or violent images;</li>
-<li>unwelcome sexual attention;</li>
-<li>nonconsensual or unwelcome physical contact;</li>
-<li>insults or put-downs;</li>
-<li>sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes;</li>
-<li>incitement to violence, suicide, or self-harm;</li>
-<li>continuing to initiate interaction (including photography or recording) with - someone after being asked to stop;</li>
-<li>publication of private communication without consent.</li>
+<li><code>?read.csv</code></li>
+<li><code>head()</code></li>
+<li><code>str()</code></li>
+<li><code>class()</code></li>
+<li><code>unique()</code></li>
+<li><code>levels()</code></li>
+<li><code>which()</code></li>
+<li><code>droplevels()</code></li>
 </ul>
-</div>
-</div>
-<div id="contributors" class="section level2">
-<h2><span class="header-section-number">0.2</span> Contributors</h2>
-<p>Originally developed by: Johanna Bradie, Vincent Fugère, Thomas Lamy.</p>
-<p>Contributed with changes to the presentation:</p>
-<p>Contributed with changes to the written material:</p>
-<p>Contributed by reporting issues and suggesting modifications:</p>
-</div>
-<div id="contributing" class="section level2">
-<h2><span class="header-section-number">0.3</span> Contributing</h2>
-<p>Under construction.</p>
+<p>Note: For these functions you have to put the name of the data object in
+the parentheses (i.e. <code>head(CO2)</code>). Also remember that you can use “?”
+to look up help for a function (i.e. <code>?str</code>).</p>
+<p><strong>HINT: There are 4 problems!</strong></p>
+<p>Problem #1: The data appears to be lumped into one column</p>
+<p>Solution:</p>
+<p>Re-import the data, but specify the separation among entries. The sep
+argument tells R what character separates the values on each line of the
+file. Here, “TAB” was used instead of “,”.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="repairing-a-broken-data-frame.html#cb28-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb28-2"><a href="repairing-a-broken-data-frame.html#cb28-2"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
+<p>Problem #2: The data does not start until the third line of the txt
+file, so you end up with notes on the file as the headings.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="repairing-a-broken-data-frame.html#cb29-1"></a><span class="kw">head</span>(CO2)  <span class="co"># The head() command allows you to see that the data has not been read in with the proper headings</span></span></code></pre></div>
+<p>Solution:</p>
+<p>To fix this problem, you can tell R to skip the first two rows when
+reading in this file.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="repairing-a-broken-data-frame.html#cb30-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)  <span class="co"># By adding the skip argument into the read.csv function, R knows to skip the first two rows</span></span>
+<span id="cb30-2"><a href="repairing-a-broken-data-frame.html#cb30-2"></a><span class="kw">head</span>(CO2)  <span class="co"># You can now see that the CO2 object has the appropriate headings</span></span></code></pre></div>
+<p>Answer #3</p>
+<p>Problem #3: “conc” and “uptake” variables are considered factors
+instead of numbers, because there are comments/text in the numeric
+columns.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="repairing-a-broken-data-frame.html#cb31-1"></a><span class="kw">str</span>(CO2)  <span class="co"># The str() command shows you that both &#39;conc&#39; and &#39;uptake&#39; are labelled as factors</span></span>
+<span id="cb31-2"><a href="repairing-a-broken-data-frame.html#cb31-2"></a><span class="kw">class</span>(CO2<span class="op">$</span>conc)</span>
+<span id="cb31-3"><a href="repairing-a-broken-data-frame.html#cb31-3"></a><span class="kw">unique</span>(CO2<span class="op">$</span>conc)  <span class="co"># By looking at the unique values in this column, you see that both columns contain &#39;cannot_read_notes&#39;</span></span>
+<span id="cb31-4"><a href="repairing-a-broken-data-frame.html#cb31-4"></a><span class="kw">unique</span>(CO2<span class="op">$</span>uptake)</span>
+<span id="cb31-5"><a href="repairing-a-broken-data-frame.html#cb31-5"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(unique)</span></code></pre></div>
+<p>Solution:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="repairing-a-broken-data-frame.html#cb32-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
+<p><img src="images/read_table_help1.png" /> <img src="images/read_table_help2.png" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="repairing-a-broken-data-frame.html#cb33-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;NA&quot;</span>,</span>
+<span id="cb33-2"><a href="repairing-a-broken-data-frame.html#cb33-2"></a>    <span class="st">&quot;na&quot;</span>, <span class="st">&quot;cannot_read_notes&quot;</span>))</span></code></pre></div>
+<p>By identifying “cannot_read_notes” as NA data, R reads these columns
+properly. Remember that NA (capital!) stands for not available.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="repairing-a-broken-data-frame.html#cb34-1"></a><span class="kw">head</span>(CO2)</span>
+<span id="cb34-2"><a href="repairing-a-broken-data-frame.html#cb34-2"></a><span class="kw">str</span>(CO2)  <span class="co"># You can see that conc variable is now an integer and the uptake variable is now treated as numeric</span></span></code></pre></div>
+<p>Problem #4: There are only two treatments (chilled and nonchilled) but
+there are spelling errors causing it to look like 4 different
+treatments.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="repairing-a-broken-data-frame.html#cb35-1"></a><span class="kw">str</span>(CO2)  <span class="co"># You can see that 4 levels are listed for Treatment</span></span>
+<span id="cb35-2"><a href="repairing-a-broken-data-frame.html#cb35-2"></a><span class="kw">levels</span>(CO2<span class="op">$</span>Treatment)</span>
+<span id="cb35-3"><a href="repairing-a-broken-data-frame.html#cb35-3"></a><span class="kw">unique</span>(CO2<span class="op">$</span>Treatment)  <span class="co"># The 4 different treatments are &#39;nonchilled&#39;, &#39;nnchilled&#39;, &#39;chilled&#39;, and &#39;chiled&#39;</span></span></code></pre></div>
+<p>Solution:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="repairing-a-broken-data-frame.html#cb36-1"></a><span class="co"># You can use which() to find rows with the typo</span></span>
+<span id="cb36-2"><a href="repairing-a-broken-data-frame.html#cb36-2"></a><span class="co"># &#39;nnchilled&#39;</span></span>
+<span id="cb36-3"><a href="repairing-a-broken-data-frame.html#cb36-3"></a><span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;nnchilled&quot;</span>)  <span class="co"># Row number ten</span></span>
+<span id="cb36-4"><a href="repairing-a-broken-data-frame.html#cb36-4"></a><span class="co"># You can then correct the error using indexing:</span></span>
+<span id="cb36-5"><a href="repairing-a-broken-data-frame.html#cb36-5"></a>CO2<span class="op">$</span>Treatment[<span class="dv">10</span>] &lt;-<span class="st"> &quot;nonchilled&quot;</span></span>
+<span id="cb36-6"><a href="repairing-a-broken-data-frame.html#cb36-6"></a><span class="co"># Alternatively, doing it with a single command:</span></span>
+<span id="cb36-7"><a href="repairing-a-broken-data-frame.html#cb36-7"></a>CO2<span class="op">$</span>Treatment[<span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;nnchilled&quot;</span>)] &lt;-<span class="st"> &quot;nonchilled&quot;</span></span>
+<span id="cb36-8"><a href="repairing-a-broken-data-frame.html#cb36-8"></a><span class="co"># Now doing the same for &#39;chiled&#39;:</span></span>
+<span id="cb36-9"><a href="repairing-a-broken-data-frame.html#cb36-9"></a>CO2<span class="op">$</span>Treatment[<span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;chiled&quot;</span>)] &lt;-<span class="st"> &quot;chilled&quot;</span></span></code></pre></div>
+<p>Have we fixed the problem?</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="repairing-a-broken-data-frame.html#cb37-1"></a><span class="kw">str</span>(CO2)  <span class="co"># Structure still identifies 4 levels of the factor</span></span>
+<span id="cb37-2"><a href="repairing-a-broken-data-frame.html#cb37-2"></a><span class="kw">unique</span>(CO2<span class="op">$</span>Treatment)  <span class="co"># But, unique says that only two are used</span></span>
+<span id="cb37-3"><a href="repairing-a-broken-data-frame.html#cb37-3"></a>CO2 &lt;-<span class="st"> </span><span class="kw">droplevels</span>(CO2)  <span class="co"># This command drops the unused levels from all factors in the data frame</span></span>
+<span id="cb37-4"><a href="repairing-a-broken-data-frame.html#cb37-4"></a><span class="kw">str</span>(CO2)  <span class="co"># Fixed!</span></span></code></pre></div>
 
 </div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>The QCBS R Workshop Series is part of the <a href="https://www.qcbs.ca">Québec Centre for Biodiversity Science</a>, and is maintained by the series coordinators and graduent student, postdoctoral, and research professional members. <strong>The contributors for this workshop can be accessed <a href="link">here</a></strong>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 <hr>
 <center> 
@@ -323,8 +345,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="learning-objectives.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loading-exploring-and-saving-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulate-data-with-the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

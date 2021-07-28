@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Workshop 2: Loading and Manipulating Data</title>
+  <title>Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data</title>
   <meta name="description" content="Loading and Manipulating Data" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:title" content="Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="qcbsRworkshops/workshop02" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Workshop 2: Loading and Manipulating Data" />
+  <meta name="twitter:title" content="Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data" />
   
   <meta name="twitter:description" content="Loading and Manipulating Data" />
   <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="learning-objectives.html"/>
+<link rel="prev" href="rstudio-projects.html"/>
+<link rel="next" href="loading-exploring-and-saving-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -244,73 +244,90 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
-<div id="header">
-<h1 class="title">Workshop 2: Loading and Manipulating Data</h1>
-<h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
-<p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-28 23:04:23</em></p>
+<div id="writing-a-script" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Writing a script</h1>
+<p>An R script is a text file that contains all of the commands you will
+use. Once written and saved, your R script will allow you to make
+changes and re-run analyses with little effort.</p>
+<p>To use a script, just highlight commands and press “Run” or press
+command-enter (Mac) or ctrl-enter (PC).</p>
+<div id="creating-an-r-script" class="section level3">
+<h3><span class="header-section-number">4.0.1</span> Creating an R script</h3>
+<p><img src="images/1_create_an_r_script.png" width="500" />
+<img src="images/2_create_an_r_script2.mod_arrow.png" width="600" /></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
-<p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
-<div id="code-of-conduct" class="section level2">
-<h2><span class="header-section-number">0.1</span> Code of conduct</h2>
-<p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
-<p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
-<p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
-<p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
-<p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
-<div id="expected-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Expected behaviour</h3>
-<p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
-<ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Gracefully accept constructive criticism</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
-</ul>
+<div id="commands-comments" class="section level3">
+<h3><span class="header-section-number">4.0.2</span> Commands &amp; Comments</h3>
+<p>Use the ‘# symbol’ to denote comments in scripts. The ‘# symbol’
+tells R to ignore anything remaining on a given line of the script when
+running commands.</p>
+<p>Since comments are ignored when running script, they allow you to leave
+yourself notes in your code or tell collaborators what you did. A script
+with comments is a good step towards reproducible science, and
+annotating someone’s script is a good way to learn. Try to be as
+detailed as possible!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="writing-a-script.html#cb1-1"></a><span class="co"># This is a comment, not a command</span></span></code></pre></div>
 </div>
-<div id="unacceptable-behaviour" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour</h3>
-<p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
-<ul>
-<li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
-<li>causing someone to fear for their safety, such as through stalking or intimidation;</li>
-<li>violent threats or language directed against another person;</li>
-<li>the display of sexual or violent images;</li>
-<li>unwelcome sexual attention;</li>
-<li>nonconsensual or unwelcome physical contact;</li>
-<li>insults or put-downs;</li>
-<li>sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes;</li>
-<li>incitement to violence, suicide, or self-harm;</li>
-<li>continuing to initiate interaction (including photography or recording) with - someone after being asked to stop;</li>
-<li>publication of private communication without consent.</li>
-</ul>
+<div id="header" class="section level3">
+<h3><span class="header-section-number">4.0.3</span> Header</h3>
+<p>It is recommended that you use comments to put a header at the beginning
+of your script with essential information: project name, author, date,
+version of R</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="writing-a-script.html#cb2-1"></a><span class="co">## QCBS R Workshop ## Workshop 2 - Loading and manipulating</span></span>
+<span id="cb2-2"><a href="writing-a-script.html#cb2-2"></a><span class="co">## data Author: Quebec Center for Biodiversity Science</span></span>
+<span id="cb2-3"><a href="writing-a-script.html#cb2-3"></a><span class="co">## Date: Fall 2014 R version 2.15.0</span></span></code></pre></div>
 </div>
+<div id="section-heading" class="section level3">
+<h3><span class="header-section-number">4.0.4</span> Section Heading</h3>
+<p>You can use four # signs in a row to create section headings to help
+organize your script. This allows you to move quickly between sections
+and hide sections. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="writing-a-script.html#cb3-1"></a><span class="co">#### Housekeeping ####</span></span></code></pre></div>
+<p>RStudio displays a small arrow next to the line number where the section
+heading was created. If you click on the arrow, you will hide this
+section of the script.</p>
+<p>You can also move quickly between sections using the drop-down menu at
+the bottom of the script window.</p>
+<p><img src="images/4_section_headings_mod_arrow_2.png" width="600" /></p>
 </div>
-<div id="contributors" class="section level2">
-<h2><span class="header-section-number">0.2</span> Contributors</h2>
-<p>Originally developed by: Johanna Bradie, Vincent Fugère, Thomas Lamy.</p>
-<p>Contributed with changes to the presentation:</p>
-<p>Contributed with changes to the written material:</p>
-<p>Contributed by reporting issues and suggesting modifications:</p>
+<div id="housekeeping" class="section level3">
+<h3><span class="header-section-number">4.0.5</span> Housekeeping</h3>
+<p>The first command at the top of all scripts should be <code>rm(list=ls())</code>.
+This will clear R’s memory, and will help prevent errors such as using
+old data that has been left in your workspace.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="writing-a-script.html#cb4-1"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())  <span class="co"># Clears R workspace</span></span>
+<span id="cb4-2"><a href="writing-a-script.html#cb4-2"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(rm)</span>
+<span id="cb4-3"><a href="writing-a-script.html#cb4-3"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(ls)</span></code></pre></div>
+<p>We can test this command by adding data to the workspace and seeing how
+<code>rm(list=ls())</code> will remove it.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="writing-a-script.html#cb5-1"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Put some data into workspace, to see how rm(list=ls()) removes it</span></span>
+<span id="cb5-2"><a href="writing-a-script.html#cb5-2"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Note that you can use a space before or after &lt;-</span></span>
+<span id="cb5-3"><a href="writing-a-script.html#cb5-3"></a>A =<span class="st"> &quot;Test&quot;</span>  <span class="co"># &lt;- or = can be used equally</span></span>
+<span id="cb5-4"><a href="writing-a-script.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="writing-a-script.html#cb5-5"></a><span class="co"># Note that it is best practice to use &#39;&lt;-&#39; for assignment</span></span>
+<span id="cb5-6"><a href="writing-a-script.html#cb5-6"></a><span class="co"># instead of &#39;=&#39;</span></span>
+<span id="cb5-7"><a href="writing-a-script.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="writing-a-script.html#cb5-8"></a>A</span>
+<span id="cb5-9"><a href="writing-a-script.html#cb5-9"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</span>
+<span id="cb5-10"><a href="writing-a-script.html#cb5-10"></a>A</span></code></pre></div>
 </div>
-<div id="contributing" class="section level2">
-<h2><span class="header-section-number">0.3</span> Contributing</h2>
-<p>Under construction.</p>
-
-</div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>The QCBS R Workshop Series is part of the <a href="https://www.qcbs.ca">Québec Centre for Biodiversity Science</a>, and is maintained by the series coordinators and graduent student, postdoctoral, and research professional members. <strong>The contributors for this workshop can be accessed <a href="link">here</a></strong>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<div id="important-reminders" class="section level3">
+<h3><span class="header-section-number">4.0.6</span> Important Reminders</h3>
+<ol style="list-style-type: decimal">
+<li>R is ready for commands when you see the chevron ‘&gt;’ displayed in
+the terminal. If the chevron isn’t displayed, it means you typed an
+incomplete command and R is waiting for more input. Press ESC to
+exit and get R ready for a new command.</li>
+<li>R is case sensitive. i.e. “A” is a different object than “a”</li>
 </ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="writing-a-script.html#cb6-1"></a>a &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb6-2"><a href="writing-a-script.html#cb6-2"></a>A &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb6-3"><a href="writing-a-script.html#cb6-3"></a>a</span>
+<span id="cb6-4"><a href="writing-a-script.html#cb6-4"></a>A</span>
+<span id="cb6-5"><a href="writing-a-script.html#cb6-5"></a></span>
+<span id="cb6-6"><a href="writing-a-script.html#cb6-6"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())  <span class="co"># Clears R workspace again</span></span></code></pre></div>
+
+</div>
 </div>
 <hr>
 <center> 
@@ -323,8 +340,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="learning-objectives.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rstudio-projects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loading-exploring-and-saving-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

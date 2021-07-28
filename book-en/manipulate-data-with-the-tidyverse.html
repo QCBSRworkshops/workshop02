@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Manipulate data with the tidyverse | Workshop 2: Loading and Manipulating Data</title>
+  <meta name="description" content="Loading and Manipulating Data" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Manipulate data with the tidyverse | Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Loading and Manipulating Data" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop02" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Manipulate data with the tidyverse | Workshop 2: Loading and Manipulating Data" />
+  
+  <meta name="twitter:description" content="Loading and Manipulating Data" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="repairing-a-broken-data-frame.html"/>
+<link rel="next" href="summary.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+</ul></li>
+<li class="part"><span><b>Loading and manipulating data in <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a></li>
+<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects</a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script</a></li>
+<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments</a></li>
+<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header</a></li>
+<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading</a></li>
+<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping</a></li>
+<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory</a></li>
+<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory</a></li>
+<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data</a></li>
+<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data</a></li>
+<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data</a></li>
+<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration</a></li>
+<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace</a></li>
+<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data</a></li>
+<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse</a><ul>
+<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
+<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
+<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#gather-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> gather(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#spread-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> spread(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.6</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.7</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.8</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.4</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.5</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.6</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.7</b> dplyr - Merging data frames</a></li>
+</ul></li>
+<li class="part"><span><b>Final considerations</b></span></li>
+<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
+<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop 2: Loading and Manipulating Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+<div id="manipulate-data-with-the-tidyverse" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Manipulate data with the tidyverse</h1>
+<div id="using-tidyr-to-reshape-data-frames" class="section level3">
+<h3><span class="header-section-number">7.0.1</span> Using tidyr to reshape data frames</h3>
+<p><img src="images/tidyrsticker.png" width="200" /></p>
+</div>
+<div id="why-tidy-your-data" class="section level3">
+<h3><span class="header-section-number">7.0.2</span> Why “tidy” your data?</h3>
+<p>Tidying allows you to manipulate the structure of your data while
+preserving all original information. Many functions in R require (or
+work better) with a data structure that isn’t always easily readable by
+people.</p>
+<p>In contrast to aggregation, which reduces many cells in the original
+data set to one cell in the new dataset, tidying preserves a one-to-one
+connection. Although aggregation can be done with many functions in R,
+the <code>tidyr</code> package allows you to both reshape and aggregate within a
+single syntax.</p>
+<p>Install / Load the <code>tidyr()</code> package:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="manipulate-data-with-the-tidyverse.html#cb38-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(tidyr)) {</span>
+<span id="cb38-2"><a href="manipulate-data-with-the-tidyverse.html#cb38-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
+<span id="cb38-3"><a href="manipulate-data-with-the-tidyverse.html#cb38-3"></a>}</span>
+<span id="cb38-4"><a href="manipulate-data-with-the-tidyverse.html#cb38-4"></a><span class="kw">library</span>(tidyr)</span></code></pre></div>
+</div>
+<div id="wide-vs.-long-data" class="section level3">
+<h3><span class="header-section-number">7.0.3</span> Wide vs. long data</h3>
+<p><strong>Wide</strong> format data has a separate column for each variable or each
+factor in your study. One row therefore can therefore include several
+different observations.</p>
+<p><strong>Long</strong> format data has a column stating the measured variable types
+and a column containing the values associated to those variables (each
+column is a variable, each row is one observation). This is considered
+“tidy” data because it is easily interpreted by most packages for
+visualization and analysis in <code>R</code>.</p>
+<p>The format of your data depends on your specific needs, but some
+functions and packages such as <code>dplyr</code>, <code>lm()</code>, <code>glm()</code>, <code>gam()</code> require
+long format data. The <code>ggplot2</code> package can use wide data format for
+some basic plotting, but more complex plots require the long format
+(example to come).</p>
+<p>Additionally, long form data can more easily be aggregated and converted
+back into wide form data to provide summaries, or to check the balance
+of sampling designs.</p>
+<p>We can use the <code>tidyr</code> package to to manipulate the structure of your
+data while preserving all original information, using the following
+functions:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li><code>gather()</code> our data (wide --&gt; long)</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li><code>spread()</code> our data (long --&gt; wide)</li>
+</ol></li>
+</ul>
+<p><img src="images/gather-spread.png" width="600" /></p>
+<p>Let’s pretend you send out your field assistant to measure the diameter
+at breast height (DBH) and height of three tree species for you. The
+result is this “wide” data set.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="manipulate-data-with-the-tidyverse.html#cb39-1"></a><span class="op">&gt;</span><span class="st"> </span>wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Species =</span> <span class="kw">c</span>(<span class="st">&quot;Oak&quot;</span>, <span class="st">&quot;Elm&quot;</span>, <span class="st">&quot;Ash&quot;</span>),</span>
+<span id="cb39-2"><a href="manipulate-data-with-the-tidyverse.html#cb39-2"></a>                          <span class="dt">DBH =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">13</span>),</span>
+<span id="cb39-3"><a href="manipulate-data-with-the-tidyverse.html#cb39-3"></a>                       <span class="dt">Height =</span> <span class="kw">c</span>(<span class="dv">56</span>, <span class="dv">85</span>, <span class="dv">55</span>))</span>
+<span id="cb39-4"><a href="manipulate-data-with-the-tidyverse.html#cb39-4"></a><span class="op">&gt;</span><span class="st"> </span>wide</span>
+<span id="cb39-5"><a href="manipulate-data-with-the-tidyverse.html#cb39-5"></a>  Species DBH Height</span>
+<span id="cb39-6"><a href="manipulate-data-with-the-tidyverse.html#cb39-6"></a><span class="dv">1</span>     Oak  <span class="dv">12</span>     <span class="dv">56</span></span>
+<span id="cb39-7"><a href="manipulate-data-with-the-tidyverse.html#cb39-7"></a><span class="dv">2</span>     Elm  <span class="dv">20</span>     <span class="dv">85</span></span>
+<span id="cb39-8"><a href="manipulate-data-with-the-tidyverse.html#cb39-8"></a><span class="dv">3</span>     Ash  <span class="dv">13</span>     <span class="dv">55</span></span></code></pre></div>
+</div>
+<div id="gather-making-your-data-long" class="section level3">
+<h3><span class="header-section-number">7.0.4</span> gather(): Making your data long</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="manipulate-data-with-the-tidyverse.html#cb40-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(gather)</span></code></pre></div>
+<p>Most of the packages in the Hadleyverse will require long format data
+where each row is an entry and each column is a variable. Let’s try to
+“gather” the this wide data using the <code>gather()</code> function in tidyr.
+<code>gather()</code> takes multiple columns, and gathers them into key-value
+pairs.</p>
+<p>The function requires at least 3 arguments:</p>
+<ul>
+<li><strong>data</strong>: a data frame (e.g. “wide”)</li>
+<li><strong>key</strong>: name of the new column containing variable names (e.g.
+“Measurement”)</li>
+<li><strong>value</strong>: name of the new column containing variable values (e.g.
+“Value”)</li>
+<li><strong>…</strong>: name or numeric index of the columns we wish to gather
+(e.g. “DBH” or “Height”)</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="manipulate-data-with-the-tidyverse.html#cb41-1"></a><span class="co"># Gathering columns into rows</span></span>
+<span id="cb41-2"><a href="manipulate-data-with-the-tidyverse.html#cb41-2"></a></span>
+<span id="cb41-3"><a href="manipulate-data-with-the-tidyverse.html#cb41-3"></a><span class="op">&gt;</span><span class="st"> </span>long &lt;-<span class="st"> </span><span class="kw">gather</span>(wide, Measurement, Value, DBH, Height)</span>
+<span id="cb41-4"><a href="manipulate-data-with-the-tidyverse.html#cb41-4"></a><span class="op">&gt;</span><span class="st"> </span>long</span>
+<span id="cb41-5"><a href="manipulate-data-with-the-tidyverse.html#cb41-5"></a>  Species Measurement Value</span>
+<span id="cb41-6"><a href="manipulate-data-with-the-tidyverse.html#cb41-6"></a><span class="dv">1</span>     Oak         DBH <span class="dv">12</span></span>
+<span id="cb41-7"><a href="manipulate-data-with-the-tidyverse.html#cb41-7"></a><span class="dv">2</span>     Elm         DBH <span class="dv">20</span></span>
+<span id="cb41-8"><a href="manipulate-data-with-the-tidyverse.html#cb41-8"></a><span class="dv">3</span>     Ash         DBH <span class="dv">13</span></span>
+<span id="cb41-9"><a href="manipulate-data-with-the-tidyverse.html#cb41-9"></a><span class="dv">4</span>     Oak      Height <span class="dv">56</span></span>
+<span id="cb41-10"><a href="manipulate-data-with-the-tidyverse.html#cb41-10"></a><span class="dv">5</span>     Elm      Height <span class="dv">85</span></span>
+<span id="cb41-11"><a href="manipulate-data-with-the-tidyverse.html#cb41-11"></a><span class="dv">6</span>     Ash      Height <span class="dv">55</span></span></code></pre></div>
+<p>Let’s try this with the C02 dataset. Here we might want to collapse the
+last two quantitative variables:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="manipulate-data-with-the-tidyverse.html#cb42-1"></a>CO2.long &lt;-<span class="st"> </span><span class="kw">gather</span>(CO2, response, value, conc, uptake)</span>
+<span id="cb42-2"><a href="manipulate-data-with-the-tidyverse.html#cb42-2"></a><span class="kw">head</span>(CO2)</span>
+<span id="cb42-3"><a href="manipulate-data-with-the-tidyverse.html#cb42-3"></a><span class="kw">head</span>(CO2.long)</span>
+<span id="cb42-4"><a href="manipulate-data-with-the-tidyverse.html#cb42-4"></a><span class="kw">tail</span>(CO2.long)</span></code></pre></div>
+</div>
+<div id="spread-making-your-data-wide" class="section level3">
+<h3><span class="header-section-number">7.0.5</span> spread(): Making your data wide</h3>
+<p><code>spread()</code> uses the same syntax as <code>gather()</code>. The function requires 3
+arguments:</p>
+<ul>
+<li><strong>data</strong>: A data frame (e.g. “long”)</li>
+<li><strong>key</strong>: Name of the column containing variable names (e.g.
+“Measurement”)</li>
+<li><strong>value</strong>: Name of the column containing variable values (e.g.
+“Value”)</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="manipulate-data-with-the-tidyverse.html#cb43-1"></a><span class="co"># Spreading rows into columns</span></span>
+<span id="cb43-2"><a href="manipulate-data-with-the-tidyverse.html#cb43-2"></a><span class="op">&gt;</span><span class="st"> </span>wide2 &lt;-<span class="st"> </span><span class="kw">spread</span>(long, Measurement, Value)</span>
+<span id="cb43-3"><a href="manipulate-data-with-the-tidyverse.html#cb43-3"></a><span class="op">&gt;</span><span class="st"> </span>wide2</span>
+<span id="cb43-4"><a href="manipulate-data-with-the-tidyverse.html#cb43-4"></a>  Species DBH Height</span>
+<span id="cb43-5"><a href="manipulate-data-with-the-tidyverse.html#cb43-5"></a><span class="dv">1</span>     Ash  <span class="dv">13</span>     <span class="dv">55</span></span>
+<span id="cb43-6"><a href="manipulate-data-with-the-tidyverse.html#cb43-6"></a><span class="dv">2</span>     Elm  <span class="dv">20</span>     <span class="dv">85</span></span>
+<span id="cb43-7"><a href="manipulate-data-with-the-tidyverse.html#cb43-7"></a><span class="dv">3</span>     Oak  <span class="dv">12</span>     <span class="dv">56</span></span></code></pre></div>
+</div>
+<div id="separate-separate-two-or-more-variables-in-a-single-column" class="section level3">
+<h3><span class="header-section-number">7.0.6</span> separate(): Separate two (or more) variables in a single column</h3>
+<p>Some times you might have really messy data that has two variables in
+one column. Thankfully the <code>separate()</code> function can (wait for it)
+separate the two variables into two columns.</p>
+<p>The <code>separate()</code> function splits a columns by a character string
+separator. It requires 4 arguments:</p>
+<ul>
+<li><strong>data</strong>: A data frame (e.g. “long”)</li>
+<li><strong>col</strong>: Name of the column you wish to separate</li>
+<li><strong>into</strong>: Names of new variables to create</li>
+<li><strong>sep</strong>: Character which indicates where to separate</li>
+</ul>
+<p>Let’s create a really messy data set:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="manipulate-data-with-the-tidyverse.html#cb44-1"></a><span class="kw">set.seed</span>(<span class="dv">8</span>)</span>
+<span id="cb44-2"><a href="manipulate-data-with-the-tidyverse.html#cb44-2"></a>messy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">trt =</span> <span class="kw">sample</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;farm&quot;</span>),</span>
+<span id="cb44-3"><a href="manipulate-data-with-the-tidyverse.html#cb44-3"></a>    <span class="dt">each =</span> <span class="dv">2</span>)), <span class="dt">zooplankton.T1 =</span> <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">fish.T1 =</span> <span class="kw">runif</span>(<span class="dv">4</span>),</span>
+<span id="cb44-4"><a href="manipulate-data-with-the-tidyverse.html#cb44-4"></a>    <span class="dt">zooplankton.T2 =</span> <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">fish.T2 =</span> <span class="kw">runif</span>(<span class="dv">4</span>))</span>
+<span id="cb44-5"><a href="manipulate-data-with-the-tidyverse.html#cb44-5"></a>messy</span></code></pre></div>
+<p>First, we want to convert this wide dataset to long format.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="manipulate-data-with-the-tidyverse.html#cb45-1"></a>messy.long &lt;-<span class="st"> </span><span class="kw">gather</span>(messy, taxa, count, <span class="op">-</span>id, <span class="op">-</span>trt)</span>
+<span id="cb45-2"><a href="manipulate-data-with-the-tidyverse.html#cb45-2"></a><span class="kw">head</span>(messy.long)</span></code></pre></div>
+<p>Then, we want to split those two sampling times (T1 &amp; T2). The syntax we
+use here is to tell R <code>separate(data, what column, into what, by what)</code>.
+The tricky part here is telling R where to separate the character string
+in your column entry using a regular expression to describe the
+character that separates them. Here, the string should be separated by
+the period <code>"."</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="manipulate-data-with-the-tidyverse.html#cb46-1"></a>messy.long.sep &lt;-<span class="st"> </span><span class="kw">separate</span>(messy.long, taxa, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;time&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;\.&quot;</span>)</span>
+<span id="cb46-2"><a href="manipulate-data-with-the-tidyverse.html#cb46-2"></a><span class="kw">head</span>(messy.long.sep)</span></code></pre></div>
+<p>The argument <code>sep = "\."</code> tells R to splits the character string around
+the period (.). We cannot type directly <code>"."</code> because it is a regular
+expression that matches any single character.</p>
+</div>
+<div id="recap-tidyr" class="section level3">
+<h3><span class="header-section-number">7.0.7</span> Recap: tidyr</h3>
+<p><code>tidyr</code> is a package that reshapes the layout of data sets.</p>
+<ul>
+<li>Convert from <strong>wide format to long format</strong> using <code>gather()</code></li>
+<li>Convert from <strong>long format to wide format</strong> using <code>spread()</code></li>
+<li>Split and merge columns with <code>unite()</code> and <code>separate()</code></li>
+</ul>
+<p>Here’s cheat sheet to help you use <code>tidyr</code> and <code>dplyr</code> for more data
+wrangling:
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
+</div>
+<div id="tidyr-challenge" class="section level3">
+<h3><span class="header-section-number">7.0.8</span> tidyr CHALLENGE</h3>
+<p><em>Using the <code>airquality</code> dataset, <code>gather()</code> all the columns (except
+Month and Day) into rows. Then <code>spread()</code> the resulting dataset to
+return the same data format as the original data.</em></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="manipulate-data-with-the-tidyverse.html#cb47-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(air.quality)</span>
+<span id="cb47-2"><a href="manipulate-data-with-the-tidyverse.html#cb47-2"></a><span class="kw">data</span>(airquality)</span></code></pre></div>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="manipulate-data-with-the-tidyverse.html#cb48-1"></a><span class="co"># Use gather() to convert the dataset to long format</span></span>
+<span id="cb48-2"><a href="manipulate-data-with-the-tidyverse.html#cb48-2"></a>air.long &lt;-<span class="st"> </span><span class="kw">gather</span>(airquality, variable, value, <span class="op">-</span>Month, <span class="op">-</span>Day)</span>
+<span id="cb48-3"><a href="manipulate-data-with-the-tidyverse.html#cb48-3"></a><span class="kw">head</span>(air.long)</span>
+<span id="cb48-4"><a href="manipulate-data-with-the-tidyverse.html#cb48-4"></a><span class="co"># Note that the syntax used here indicates we wish to</span></span>
+<span id="cb48-5"><a href="manipulate-data-with-the-tidyverse.html#cb48-5"></a><span class="co"># gather ALL the columns except &#39;Month&#39; and &#39;Day&#39;</span></span>
+<span id="cb48-6"><a href="manipulate-data-with-the-tidyverse.html#cb48-6"></a></span>
+<span id="cb48-7"><a href="manipulate-data-with-the-tidyverse.html#cb48-7"></a><span class="co"># Then, use spread() to convert the dataset back to wide</span></span>
+<span id="cb48-8"><a href="manipulate-data-with-the-tidyverse.html#cb48-8"></a><span class="co"># format</span></span>
+<span id="cb48-9"><a href="manipulate-data-with-the-tidyverse.html#cb48-9"></a>air.wide &lt;-<span class="st"> </span><span class="kw">spread</span>(air.long, variable, value)</span>
+<span id="cb48-10"><a href="manipulate-data-with-the-tidyverse.html#cb48-10"></a><span class="kw">head</span>(air.wide)</span></code></pre></div>
+<p>++++</p>
+<hr />
+</div>
+<div id="data-manipulation-with-dplyr" class="section level2">
+<h2><span class="header-section-number">7.1</span> Data manipulation with dplyr</h2>
+<p><img src="images/dplyrsticker.png" width="200" /></p>
+<div id="intro-to-dplyr" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Intro to dplyr</h3>
+<p>The vision of the <code>dplyr</code> package is to simplify data manipulation by
+distilling all the common data manipulation tasks to a set of intuitive
+functions (or “verbs”). The result is a comprehensive set of tools
+that facilitates data manipulation, such as filtering rows, selecting
+specific columns, re-ordering rows, adding new columns and summarizing
+data.</p>
+<p>In addition to ease of use, it is also an amazing package because:</p>
+<ul>
+<li>it can crunch huge datasets wicked fast (written in <code>Cpp</code>)</li>
+<li>it plays nice with the RStudio IDE and other packages in the
+Hadleyverse</li>
+<li>it can interface with external databases and translate your R code
+into SQL queries</li>
+<li>if Batman was an R package, he would be <code>dplyr</code> (mastering fear of
+data, adopting cool technologies)</li>
+</ul>
+<p>Certain R base functions work similarly to dplyr functions, including:
+<code>split()</code>, <code>subset()</code>, <code>apply()</code>, <code>sapply()</code>, <code>lapply()</code>, <code>tapply()</code> and
+<code>aggregate()</code></p>
+<p>Let’s install and load the <code>dplyr</code> package:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="manipulate-data-with-the-tidyverse.html#cb49-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(dplyr)) {</span>
+<span id="cb49-2"><a href="manipulate-data-with-the-tidyverse.html#cb49-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb49-3"><a href="manipulate-data-with-the-tidyverse.html#cb49-3"></a>}</span>
+<span id="cb49-4"><a href="manipulate-data-with-the-tidyverse.html#cb49-4"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<p>The <code>dplyr</code> package is built around a core set of “verbs” (or
+functions). We will start with the following 4 verbs because these
+operations are ubiquitous in data manipulation:</p>
+<ul>
+<li><code>select()</code>: select columns from a data frame</li>
+<li><code>filter()</code>: filter rows according to defined criteria</li>
+<li><code>arrange()</code>: re-order data based on criteria (e.g. ascending,
+descending)</li>
+<li><code>mutate()</code>: create or transform values in a column</li>
+</ul>
+</div>
+<div id="select-a-subset-of-columns-with-select" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Select a subset of columns with <code>select()</code></h3>
+<p><img src="images/select.png" width="600" /></p>
+<p>The general syntax for this function is
+<code>select(dataframe, column1, column2, ...)</code>. Most <code>dplyr</code> functions will
+follow a similarly simple syntax. <code>select()</code> requires at least 2
+arguments:</p>
+<ul>
+<li><strong>data</strong>: the dataset to manipulate</li>
+<li><strong>…</strong>: column names, positions, or complex expressions (separated
+by commas)</li>
+</ul>
+<p>For example:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manipulate-data-with-the-tidyverse.html#cb50-1"></a><span class="kw">select</span>(data, column1, column2) <span class="co"># select columns 1 and 2</span></span>
+<span id="cb50-2"><a href="manipulate-data-with-the-tidyverse.html#cb50-2"></a><span class="kw">select</span>(data, <span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">6</span>) <span class="co"># select columns 2 to 4 and 6</span></span>
+<span id="cb50-3"><a href="manipulate-data-with-the-tidyverse.html#cb50-3"></a><span class="kw">select</span>(data, <span class="op">-</span>column1) <span class="co"># select all columns except column 1</span></span>
+<span id="cb50-4"><a href="manipulate-data-with-the-tidyverse.html#cb50-4"></a><span class="kw">select</span>(data, <span class="kw">start_with</span>(x.)) <span class="co"># select all columns that start with &quot;x.&quot;</span></span></code></pre></div>
+<p>Here are more examples of how to use <code>select()</code>:</p>
+<p><img src="images/select.helper.png" width="400" /></p>
+<p>The <code>airquality</code> dataset contains several columns:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="manipulate-data-with-the-tidyverse.html#cb51-1"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(airquality)</span>
+<span id="cb51-2"><a href="manipulate-data-with-the-tidyverse.html#cb51-2"></a>  Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb51-3"><a href="manipulate-data-with-the-tidyverse.html#cb51-3"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">190</span>  <span class="fl">7.4</span>   <span class="dv">67</span>     <span class="dv">5</span>   <span class="dv">1</span></span>
+<span id="cb51-4"><a href="manipulate-data-with-the-tidyverse.html#cb51-4"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">118</span>  <span class="fl">8.0</span>   <span class="dv">72</span>     <span class="dv">5</span>   <span class="dv">2</span></span>
+<span id="cb51-5"><a href="manipulate-data-with-the-tidyverse.html#cb51-5"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">149</span> <span class="fl">12.6</span>   <span class="dv">74</span>     <span class="dv">5</span>   <span class="dv">3</span></span>
+<span id="cb51-6"><a href="manipulate-data-with-the-tidyverse.html#cb51-6"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">313</span> <span class="fl">11.5</span>   <span class="dv">62</span>     <span class="dv">5</span>   <span class="dv">4</span></span>
+<span id="cb51-7"><a href="manipulate-data-with-the-tidyverse.html#cb51-7"></a><span class="dv">5</span>    <span class="ot">NA</span>      <span class="ot">NA</span> <span class="fl">14.3</span>   <span class="dv">56</span>     <span class="dv">5</span>   <span class="dv">5</span></span>
+<span id="cb51-8"><a href="manipulate-data-with-the-tidyverse.html#cb51-8"></a><span class="dv">6</span>    <span class="dv">28</span>      <span class="ot">NA</span> <span class="fl">14.9</span>   <span class="dv">66</span>     <span class="dv">5</span>   <span class="dv">6</span></span></code></pre></div>
+<p>For example, suppose we are only interested in the variation of
+“Ozone” over time within the <code>airquality</code> dataset, then we can select
+the subset of required columns for further analysis:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manipulate-data-with-the-tidyverse.html#cb52-1"></a><span class="op">&gt;</span><span class="st"> </span>ozone &lt;-<span class="st"> </span><span class="kw">select</span>(airquality, Ozone, Month, Day)</span>
+<span id="cb52-2"><a href="manipulate-data-with-the-tidyverse.html#cb52-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(ozone)</span>
+<span id="cb52-3"><a href="manipulate-data-with-the-tidyverse.html#cb52-3"></a>  Ozone Month Day</span>
+<span id="cb52-4"><a href="manipulate-data-with-the-tidyverse.html#cb52-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">5</span>   <span class="dv">1</span></span>
+<span id="cb52-5"><a href="manipulate-data-with-the-tidyverse.html#cb52-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">5</span>   <span class="dv">2</span></span>
+<span id="cb52-6"><a href="manipulate-data-with-the-tidyverse.html#cb52-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">5</span>   <span class="dv">3</span></span>
+<span id="cb52-7"><a href="manipulate-data-with-the-tidyverse.html#cb52-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">5</span>   <span class="dv">4</span></span>
+<span id="cb52-8"><a href="manipulate-data-with-the-tidyverse.html#cb52-8"></a><span class="dv">5</span>    <span class="ot">NA</span>     <span class="dv">5</span>   <span class="dv">5</span></span>
+<span id="cb52-9"><a href="manipulate-data-with-the-tidyverse.html#cb52-9"></a><span class="dv">6</span>    <span class="dv">28</span>     <span class="dv">5</span>   <span class="dv">6</span></span></code></pre></div>
+</div>
+<div id="select-a-subset-of-rows-with-filter" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Select a subset of rows with <code>filter()</code></h3>
+<p>A common operation in data manipulation is the extraction of a subset
+based on specific conditions. The general syntax for this function is
+<code>filter(dataframe, logical statement 1, logical statement 2, ...)</code>.</p>
+<p><img src="images/filter.png" width="600" /></p>
+<p>Remember that logical statements provide a TRUE or FALSE answer. The
+<code>filter()</code> function retains all the data for which the statement is
+TRUE. This can also be applied on characters and factors. Here is a
+useful reminder of how logic works in R.
+<img src="images/logic.helper.png" width="500" /></p>
+<p>For example, in the <code>airquality</code> dataset, suppose we are interested in
+analyses that focus on the month of August during high temperature
+events:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="manipulate-data-with-the-tidyverse.html#cb53-1"></a><span class="op">&gt;</span><span class="st"> </span>august &lt;-<span class="st"> </span><span class="kw">filter</span>(airquality, Month <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, Temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">90</span>)</span>
+<span id="cb53-2"><a href="manipulate-data-with-the-tidyverse.html#cb53-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(august)</span>
+<span id="cb53-3"><a href="manipulate-data-with-the-tidyverse.html#cb53-3"></a>  Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb53-4"><a href="manipulate-data-with-the-tidyverse.html#cb53-4"></a><span class="dv">1</span>    <span class="dv">89</span>     <span class="dv">229</span> <span class="fl">10.3</span>   <span class="dv">90</span>     <span class="dv">8</span>   <span class="dv">8</span></span>
+<span id="cb53-5"><a href="manipulate-data-with-the-tidyverse.html#cb53-5"></a><span class="dv">2</span>   <span class="dv">110</span>     <span class="dv">207</span>  <span class="fl">8.0</span>   <span class="dv">90</span>     <span class="dv">8</span>   <span class="dv">9</span></span>
+<span id="cb53-6"><a href="manipulate-data-with-the-tidyverse.html#cb53-6"></a><span class="dv">3</span>    <span class="ot">NA</span>     <span class="dv">222</span>  <span class="fl">8.6</span>   <span class="dv">92</span>     <span class="dv">8</span>  <span class="dv">10</span></span>
+<span id="cb53-7"><a href="manipulate-data-with-the-tidyverse.html#cb53-7"></a><span class="dv">4</span>    <span class="dv">76</span>     <span class="dv">203</span>  <span class="fl">9.7</span>   <span class="dv">97</span>     <span class="dv">8</span>  <span class="dv">28</span></span>
+<span id="cb53-8"><a href="manipulate-data-with-the-tidyverse.html#cb53-8"></a><span class="dv">5</span>   <span class="dv">118</span>     <span class="dv">225</span>  <span class="fl">2.3</span>   <span class="dv">94</span>     <span class="dv">8</span>  <span class="dv">29</span></span>
+<span id="cb53-9"><a href="manipulate-data-with-the-tidyverse.html#cb53-9"></a><span class="dv">6</span>    <span class="dv">84</span>     <span class="dv">237</span>  <span class="fl">6.3</span>   <span class="dv">96</span>     <span class="dv">8</span>  <span class="dv">30</span></span></code></pre></div>
+</div>
+<div id="sorting-rows-with-arrange" class="section level3">
+<h3><span class="header-section-number">7.1.4</span> Sorting rows with <code>arrange()</code></h3>
+<p>In data manipulation, we sometimes need to sort our data (e.g.
+numerically or alphabetically) for subsequent operations. A common
+example of this is a time series.</p>
+<p>The <code>arrange()</code> function re-orders rows by one or multiple columns,
+using the following syntax: <code>arrange(data, variable1, variable2, ...)</code>.</p>
+<p>By default, rows are sorted in ascending order. Note that we can also
+sort in descending order by placing the target column in <code>desc()</code> inside
+the <code>arrange()</code> function as follows:
+<code>arrange(data, variable1, desc(variable2), ...)</code>.</p>
+<p>Example: Let’s use the following code to create a scrambled version of
+the airquality dataset</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="manipulate-data-with-the-tidyverse.html#cb54-1"></a><span class="op">&gt;</span><span class="st"> </span>air_mess &lt;-<span class="st"> </span><span class="kw">sample_frac</span>(airquality, <span class="dv">1</span>)</span>
+<span id="cb54-2"><a href="manipulate-data-with-the-tidyverse.html#cb54-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(air_mess)</span>
+<span id="cb54-3"><a href="manipulate-data-with-the-tidyverse.html#cb54-3"></a>    Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb54-4"><a href="manipulate-data-with-the-tidyverse.html#cb54-4"></a><span class="dv">21</span>      <span class="dv">1</span>       <span class="dv">8</span>  <span class="fl">9.7</span>   <span class="dv">59</span>     <span class="dv">5</span>  <span class="dv">21</span></span>
+<span id="cb54-5"><a href="manipulate-data-with-the-tidyverse.html#cb54-5"></a><span class="dv">42</span>     <span class="ot">NA</span>     <span class="dv">259</span> <span class="fl">10.9</span>   <span class="dv">93</span>     <span class="dv">6</span>  <span class="dv">11</span></span>
+<span id="cb54-6"><a href="manipulate-data-with-the-tidyverse.html#cb54-6"></a><span class="dv">151</span>    <span class="dv">14</span>     <span class="dv">191</span> <span class="fl">14.3</span>   <span class="dv">75</span>     <span class="dv">9</span>  <span class="dv">28</span></span>
+<span id="cb54-7"><a href="manipulate-data-with-the-tidyverse.html#cb54-7"></a><span class="dv">108</span>    <span class="dv">22</span>      <span class="dv">71</span> <span class="fl">10.3</span>   <span class="dv">77</span>     <span class="dv">8</span>  <span class="dv">16</span></span>
+<span id="cb54-8"><a href="manipulate-data-with-the-tidyverse.html#cb54-8"></a><span class="dv">8</span>      <span class="dv">19</span>      <span class="dv">99</span> <span class="fl">13.8</span>   <span class="dv">59</span>     <span class="dv">5</span>   <span class="dv">8</span></span>
+<span id="cb54-9"><a href="manipulate-data-with-the-tidyverse.html#cb54-9"></a><span class="dv">104</span>    <span class="dv">44</span>     <span class="dv">192</span> <span class="fl">11.5</span>   <span class="dv">86</span>     <span class="dv">8</span>  <span class="dv">12</span></span></code></pre></div>
+<p>Now, let’s arrange the data frame back into chronological order,
+sorting by <code>Month</code>, and then by <code>Day</code>:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="manipulate-data-with-the-tidyverse.html#cb55-1"></a><span class="op">&gt;</span><span class="st"> </span>air_chron &lt;-<span class="st"> </span><span class="kw">arrange</span>(air_mess, Month, Day)</span>
+<span id="cb55-2"><a href="manipulate-data-with-the-tidyverse.html#cb55-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(air_chron)</span>
+<span id="cb55-3"><a href="manipulate-data-with-the-tidyverse.html#cb55-3"></a>  Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb55-4"><a href="manipulate-data-with-the-tidyverse.html#cb55-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">190</span>  <span class="fl">7.4</span>   <span class="dv">67</span>     <span class="dv">5</span>   <span class="dv">1</span></span>
+<span id="cb55-5"><a href="manipulate-data-with-the-tidyverse.html#cb55-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">118</span>  <span class="fl">8.0</span>   <span class="dv">72</span>     <span class="dv">5</span>   <span class="dv">2</span></span>
+<span id="cb55-6"><a href="manipulate-data-with-the-tidyverse.html#cb55-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">149</span> <span class="fl">12.6</span>   <span class="dv">74</span>     <span class="dv">5</span>   <span class="dv">3</span></span>
+<span id="cb55-7"><a href="manipulate-data-with-the-tidyverse.html#cb55-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">313</span> <span class="fl">11.5</span>   <span class="dv">62</span>     <span class="dv">5</span>   <span class="dv">4</span></span>
+<span id="cb55-8"><a href="manipulate-data-with-the-tidyverse.html#cb55-8"></a><span class="dv">5</span>    <span class="ot">NA</span>      <span class="ot">NA</span> <span class="fl">14.3</span>   <span class="dv">56</span>     <span class="dv">5</span>   <span class="dv">5</span></span>
+<span id="cb55-9"><a href="manipulate-data-with-the-tidyverse.html#cb55-9"></a><span class="dv">6</span>    <span class="dv">28</span>      <span class="ot">NA</span> <span class="fl">14.9</span>   <span class="dv">66</span>     <span class="dv">5</span>   <span class="dv">6</span></span></code></pre></div>
+<p>Try to see the difference when we change the order of the target
+columns:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manipulate-data-with-the-tidyverse.html#cb56-1"></a><span class="kw">arrange</span>(air_mess, Day, Month)</span></code></pre></div>
+</div>
+<div id="create-and-populate-columns-with-mutate" class="section level3">
+<h3><span class="header-section-number">7.1.5</span> Create and populate columns with <code>mutate()</code></h3>
+<p>Besides subsetting or sorting your data frame, you will often require
+tools to transform your existing data or generate some additional data
+based on existing variables. We can use the function <code>mutate()</code> to
+compute and add new columns in your dataset.</p>
+<p>The <code>mutate()</code> function follows this syntax:
+<code>mutate(data, newVar1 = expression1, newVar2 = expression2, ...)</code>.</p>
+<p><img src="images/mutate.png" width="600" /></p>
+<p>Let’s create a new column using <code>mutate()</code>. For example, suppose we
+would like to convert the temperature variable from degrees Fahrenheit
+to degrees Celsius:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="manipulate-data-with-the-tidyverse.html#cb57-1"></a><span class="op">&gt;</span><span class="st"> </span>airquality_C &lt;-<span class="st"> </span><span class="kw">mutate</span>(airquality, <span class="dt">Temp_C =</span> (Temp<span class="dv">-32</span>)<span class="op">*</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span>
+<span id="cb57-2"><a href="manipulate-data-with-the-tidyverse.html#cb57-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(airquality_C)</span>
+<span id="cb57-3"><a href="manipulate-data-with-the-tidyverse.html#cb57-3"></a>  Ozone Solar.R Wind Temp Month Day   Temp_C</span>
+<span id="cb57-4"><a href="manipulate-data-with-the-tidyverse.html#cb57-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">190</span>  <span class="fl">7.4</span>   <span class="dv">67</span>     <span class="dv">5</span>   <span class="dv">1</span> <span class="fl">19.44444</span></span>
+<span id="cb57-5"><a href="manipulate-data-with-the-tidyverse.html#cb57-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">118</span>  <span class="fl">8.0</span>   <span class="dv">72</span>     <span class="dv">5</span>   <span class="dv">2</span> <span class="fl">22.22222</span></span>
+<span id="cb57-6"><a href="manipulate-data-with-the-tidyverse.html#cb57-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">149</span> <span class="fl">12.6</span>   <span class="dv">74</span>     <span class="dv">5</span>   <span class="dv">3</span> <span class="fl">23.33333</span></span>
+<span id="cb57-7"><a href="manipulate-data-with-the-tidyverse.html#cb57-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">313</span> <span class="fl">11.5</span>   <span class="dv">62</span>     <span class="dv">5</span>   <span class="dv">4</span> <span class="fl">16.66667</span></span>
+<span id="cb57-8"><a href="manipulate-data-with-the-tidyverse.html#cb57-8"></a><span class="dv">5</span>    <span class="ot">NA</span>      <span class="ot">NA</span> <span class="fl">14.3</span>   <span class="dv">56</span>     <span class="dv">5</span>   <span class="dv">5</span> <span class="fl">13.33333</span></span>
+<span id="cb57-9"><a href="manipulate-data-with-the-tidyverse.html#cb57-9"></a><span class="dv">6</span>    <span class="dv">28</span>      <span class="ot">NA</span> <span class="fl">14.9</span>   <span class="dv">66</span>     <span class="dv">5</span>   <span class="dv">6</span> <span class="fl">18.88889</span></span></code></pre></div>
+<p>Note that the syntax here is quite simple, but within a single call of
+the <code>mutate()</code> function, we can replace existing columns, we can create
+multiple new columns, and each new column can be created using newly
+created columns within the same function call.</p>
+<hr />
+</div>
+</div>
+<div id="dplyr-and-magrittr-a-match-made-in-heaven" class="section level2">
+<h2><span class="header-section-number">7.2</span> dplyr and magrittr, a match made in heaven</h2>
+<p><img src="images/magrittrsticker.png" width="200" /></p>
+<p>The <code>magrittr</code> package brings a new and exciting tool to the table: a
+pipe operator. Pipe operators provide ways of linking functions together
+so that the output of a function flows into the input of next function
+in the chain. The syntax for the <code>magrittr</code> pipe operator is <code>%&gt;%</code>. The
+<code>magrittr</code> pipe operator truly unleashes the full power and potential of
+<code>dplyr</code>, and we will be using it for the remainder of the workshop.
+First, let’s install and load it:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="manipulate-data-with-the-tidyverse.html#cb58-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(magrittr)) {</span>
+<span id="cb58-2"><a href="manipulate-data-with-the-tidyverse.html#cb58-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
+<span id="cb58-3"><a href="manipulate-data-with-the-tidyverse.html#cb58-3"></a>}</span>
+<span id="cb58-4"><a href="manipulate-data-with-the-tidyverse.html#cb58-4"></a><span class="kw">require</span>(magrittr)</span></code></pre></div>
+<p>Using it is quite simple, and we will demonstrate that by combining some
+of the examples used above. Suppose we wanted to <code>filter()</code> rows to
+limit our analysis to the month of June, then convert the temperature
+variable to degrees Celsius. We can tackle this problem step by step, as
+before:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="manipulate-data-with-the-tidyverse.html#cb59-1"></a>june_C &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">filter</span>(airquality, Month <span class="op">==</span><span class="st"> </span><span class="dv">6</span>), <span class="dt">Temp_C =</span> (Temp <span class="op">-</span></span>
+<span id="cb59-2"><a href="manipulate-data-with-the-tidyverse.html#cb59-2"></a><span class="st">    </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span></code></pre></div>
+<p>This code can be difficult to decipher because we start on the inside
+and work our way out. As we add more operations, the resulting code
+becomes increasingly illegible. Instead of wrapping each function one
+inside the other, we can accomplish these 2 operations by linking both
+functions together:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="manipulate-data-with-the-tidyverse.html#cb60-1"></a>june_C &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb60-2"><a href="manipulate-data-with-the-tidyverse.html#cb60-2"></a><span class="st">    </span><span class="kw">filter</span>(Month <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
+<span id="cb60-3"><a href="manipulate-data-with-the-tidyverse.html#cb60-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Temp_C =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span></code></pre></div>
+<p>Notice that within each function, we have removed the first argument
+which specifies the dataset. Instead, we specify our dataset first, then
+“pipe” into the next function in the chain.</p>
+<p>The advantages of this approach are that our code is less redundant and
+functions are executed in the same order we read and write them, which
+makes its easier and quicker to both translate our thoughts into code
+and read someone else’s code and grasp what is being accomplished. As
+the complexity of your data manipulations increases, it becomes quickly
+apparent why this is a powerful and elegant approach to writing your
+<code>dplyr</code> code.</p>
+<p><strong>Quick tip:</strong> In RStudio we can insert this pipe quickly using the
+following hotkey: <code>Ctrl</code> (or <code>Cmd</code> for Mac) +<code>Shift</code>+<code>M</code>.</p>
+</div>
+<div id="dplyr---grouped-operations-and-summaries" class="section level2">
+<h2><span class="header-section-number">7.3</span> dplyr - grouped operations and summaries</h2>
+<p>The <code>dplyr</code> verbs we have explored so far can be useful on their own,
+but they become especially powerful when we link them with each other
+using the pipe operator (<code>%&gt;%</code>) and by applying them to groups of
+observations. The following functions allow us to split our data frame
+into distinct groups on which we can then perform operations
+individually, such as aggregating/summarising:</p>
+<ul>
+<li><code>group_by()</code>: group data frame by a factor for downstream commands
+(usually summarise)</li>
+<li><code>summarise()</code>: summarise values in a data frame or in groups within
+the data frame with aggregation functions (e.g. <code>min()</code>, <code>max()</code>,
+<code>mean()</code>, etc…)</li>
+</ul>
+<p>These verbs provide the needed backbone for the Split-Apply-Combine
+strategy that was initially implemented in the <code>plyr</code> package on which
+<code>dplyr</code> is built.</p>
+<p><img src="images/split-apply-combine.png" width="600" /></p>
+<p>Let’s demonstrate the use of these with an example using the
+<code>airquality</code> dataset. Suppose we are interested in the mean temperature
+and standard deviation within each month:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="manipulate-data-with-the-tidyverse.html#cb61-1"></a><span class="op">&gt;</span><span class="st"> </span>month_sum &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="manipulate-data-with-the-tidyverse.html#cb61-2"></a><span class="st">      </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
+<span id="cb61-3"><a href="manipulate-data-with-the-tidyverse.html#cb61-3"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(Temp),</span>
+<span id="cb61-4"><a href="manipulate-data-with-the-tidyverse.html#cb61-4"></a>                <span class="dt">sd_temp =</span> <span class="kw">sd</span>(Temp))</span>
+<span id="cb61-5"><a href="manipulate-data-with-the-tidyverse.html#cb61-5"></a><span class="op">&gt;</span><span class="st"> </span>month_sum</span>
+<span id="cb61-6"><a href="manipulate-data-with-the-tidyverse.html#cb61-6"></a>Source<span class="op">:</span><span class="st"> </span>local data frame [<span class="dv">5</span> x <span class="dv">3</span>]</span>
+<span id="cb61-7"><a href="manipulate-data-with-the-tidyverse.html#cb61-7"></a></span>
+<span id="cb61-8"><a href="manipulate-data-with-the-tidyverse.html#cb61-8"></a>  Month mean_temp  sd_temp</span>
+<span id="cb61-9"><a href="manipulate-data-with-the-tidyverse.html#cb61-9"></a>  (int)     (dbl)    (dbl)</span>
+<span id="cb61-10"><a href="manipulate-data-with-the-tidyverse.html#cb61-10"></a><span class="dv">1</span>     <span class="dv">5</span>  <span class="fl">65.54839</span> <span class="fl">6.854870</span></span>
+<span id="cb61-11"><a href="manipulate-data-with-the-tidyverse.html#cb61-11"></a><span class="dv">2</span>     <span class="dv">6</span>  <span class="fl">79.10000</span> <span class="fl">6.598589</span></span>
+<span id="cb61-12"><a href="manipulate-data-with-the-tidyverse.html#cb61-12"></a><span class="dv">3</span>     <span class="dv">7</span>  <span class="fl">83.90323</span> <span class="fl">4.315513</span></span>
+<span id="cb61-13"><a href="manipulate-data-with-the-tidyverse.html#cb61-13"></a><span class="dv">4</span>     <span class="dv">8</span>  <span class="fl">83.96774</span> <span class="fl">6.585256</span></span>
+<span id="cb61-14"><a href="manipulate-data-with-the-tidyverse.html#cb61-14"></a><span class="dv">5</span>     <span class="dv">9</span>  <span class="fl">76.90000</span> <span class="fl">8.355671</span></span></code></pre></div>
+</div>
+<div id="dplyr-magrittr-challenge" class="section level2">
+<h2><span class="header-section-number">7.4</span> dplyr &amp; magrittr CHALLENGE</h2>
+<p><em>Using the <code>ChickWeight</code> dataset, create a summary table which displays
+the difference in weight between the maximum and minimum weight of each
+chick in the study. Employ <code>dplyr</code> verbs and the <code>%&gt;%</code> operator.</em></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="manipulate-data-with-the-tidyverse.html#cb62-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(ChickWeight)</span>
+<span id="cb62-2"><a href="manipulate-data-with-the-tidyverse.html#cb62-2"></a><span class="kw">data</span>(ChickWeight)</span></code></pre></div>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="manipulate-data-with-the-tidyverse.html#cb63-1"></a><span class="co"># Use group_by() to divide the dataset by &quot;Chick&quot;</span></span>
+<span id="cb63-2"><a href="manipulate-data-with-the-tidyverse.html#cb63-2"></a><span class="co"># Use summarise() to calculate the weight gain within each group</span></span>
+<span id="cb63-3"><a href="manipulate-data-with-the-tidyverse.html#cb63-3"></a><span class="op">&gt;</span><span class="st"> </span>weight_diff &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span></span>
+<span id="cb63-4"><a href="manipulate-data-with-the-tidyverse.html#cb63-4"></a><span class="st">      </span><span class="kw">group_by</span>(Chick) <span class="op">%&gt;%</span></span>
+<span id="cb63-5"><a href="manipulate-data-with-the-tidyverse.html#cb63-5"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">weight_diff =</span> <span class="kw">max</span>(weight) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(weight))</span>
+<span id="cb63-6"><a href="manipulate-data-with-the-tidyverse.html#cb63-6"></a><span class="op">&gt;</span><span class="st"> </span>weight_diff</span>
+<span id="cb63-7"><a href="manipulate-data-with-the-tidyverse.html#cb63-7"></a>Source<span class="op">:</span><span class="st"> </span>local data frame [<span class="dv">50</span> x <span class="dv">2</span>]</span>
+<span id="cb63-8"><a href="manipulate-data-with-the-tidyverse.html#cb63-8"></a></span>
+<span id="cb63-9"><a href="manipulate-data-with-the-tidyverse.html#cb63-9"></a>    Chick weight_diff</span>
+<span id="cb63-10"><a href="manipulate-data-with-the-tidyverse.html#cb63-10"></a>   (fctr)       (dbl)</span>
+<span id="cb63-11"><a href="manipulate-data-with-the-tidyverse.html#cb63-11"></a><span class="dv">1</span>      <span class="dv">18</span>           <span class="dv">4</span></span>
+<span id="cb63-12"><a href="manipulate-data-with-the-tidyverse.html#cb63-12"></a><span class="dv">2</span>      <span class="dv">16</span>          <span class="dv">16</span></span>
+<span id="cb63-13"><a href="manipulate-data-with-the-tidyverse.html#cb63-13"></a><span class="dv">3</span>      <span class="dv">15</span>          <span class="dv">27</span></span>
+<span id="cb63-14"><a href="manipulate-data-with-the-tidyverse.html#cb63-14"></a><span class="dv">4</span>      <span class="dv">13</span>          <span class="dv">55</span></span>
+<span id="cb63-15"><a href="manipulate-data-with-the-tidyverse.html#cb63-15"></a><span class="dv">5</span>       <span class="dv">9</span>          <span class="dv">58</span></span>
+<span id="cb63-16"><a href="manipulate-data-with-the-tidyverse.html#cb63-16"></a><span class="dv">6</span>      <span class="dv">20</span>          <span class="dv">76</span></span>
+<span id="cb63-17"><a href="manipulate-data-with-the-tidyverse.html#cb63-17"></a><span class="dv">7</span>      <span class="dv">10</span>          <span class="dv">83</span></span>
+<span id="cb63-18"><a href="manipulate-data-with-the-tidyverse.html#cb63-18"></a><span class="dv">8</span>       <span class="dv">8</span>          <span class="dv">92</span></span>
+<span id="cb63-19"><a href="manipulate-data-with-the-tidyverse.html#cb63-19"></a><span class="dv">9</span>      <span class="dv">17</span>         <span class="dv">100</span></span>
+<span id="cb63-20"><a href="manipulate-data-with-the-tidyverse.html#cb63-20"></a><span class="dv">10</span>     <span class="dv">19</span>         <span class="dv">114</span></span>
+<span id="cb63-21"><a href="manipulate-data-with-the-tidyverse.html#cb63-21"></a>..    ...         ...</span></code></pre></div>
+<p>Note that we are only calculating the difference between max and min
+weight. This doesn’t necessarily correspond to the difference in mass
+between the beginning and the end of the trials. Closely inspect the
+data for chick # 18 to understand why this is the case:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="manipulate-data-with-the-tidyverse.html#cb64-1"></a><span class="op">&gt;</span><span class="st"> </span>chick_<span class="dv">18</span> &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Chick <span class="op">==</span><span class="st"> </span><span class="dv">18</span>)</span>
+<span id="cb64-2"><a href="manipulate-data-with-the-tidyverse.html#cb64-2"></a><span class="op">&gt;</span><span class="st"> </span>chick_<span class="dv">18</span></span>
+<span id="cb64-3"><a href="manipulate-data-with-the-tidyverse.html#cb64-3"></a>  weight Time Chick Diet</span>
+<span id="cb64-4"><a href="manipulate-data-with-the-tidyverse.html#cb64-4"></a><span class="dv">1</span>     <span class="dv">39</span>    <span class="dv">0</span>    <span class="dv">18</span>    <span class="dv">1</span></span>
+<span id="cb64-5"><a href="manipulate-data-with-the-tidyverse.html#cb64-5"></a><span class="dv">2</span>     <span class="dv">35</span>    <span class="dv">2</span>    <span class="dv">18</span>    <span class="dv">1</span></span></code></pre></div>
+<p>Here we notice that chick 18 has in fact lost weight (and probably died
+during the trial). From a scientific perspective, perhaps a more
+interesting question is which of the 4 diets results in the greatest
+weight gain in chicks. We could calculate this using 2 more useful
+<code>dplyr</code> functions: <code>first()</code> and <code>last()</code> allow us to access the (need I
+say respectively) first and last observation within a group. ++++</p>
+<hr />
+</div>
+<div id="ninja-hint" class="section level2">
+<h2><span class="header-section-number">7.5</span> Ninja hint</h2>
+<p>Note that we can group the data frame using more than one factor, using
+the general syntax as follows: <code>group_by(group1, group2, ...)</code></p>
+<p>Within <code>group_by()</code>, the multiple groups create a layered onion, and
+each subsequent single use of the <code>summarise()</code> function peels off the
+outer layer of the onion. In the above example, after we carried out a
+summary operation on <code>group2</code>, the resulting data set would remain
+grouped by <code>group1</code> for downstream operations.</p>
+</div>
+<div id="dplyr-magrittr-ninja-challenge" class="section level2">
+<h2><span class="header-section-number">7.6</span> dplyr &amp; magrittr NINJA CHALLENGE</h2>
+<p><em>Using the <code>ChickWeight</code> dataset, create a summary table which displays,
+for each diet, the average individual difference in weight between the
+end and the beginning of the study. Employ <code>dplyr</code> verbs and the <code>%&gt;%</code>
+operator. (Hint: <code>first()</code> and <code>last()</code> may be useful here.)</em></p>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="manipulate-data-with-the-tidyverse.html#cb65-1"></a><span class="op">&gt;</span><span class="st"> </span>diet_summ &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span></span>
+<span id="cb65-2"><a href="manipulate-data-with-the-tidyverse.html#cb65-2"></a><span class="st">      </span><span class="kw">group_by</span>(Diet, Chick) <span class="op">%&gt;%</span></span>
+<span id="cb65-3"><a href="manipulate-data-with-the-tidyverse.html#cb65-3"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">weight_gain =</span> <span class="kw">last</span>(weight) <span class="op">-</span><span class="st"> </span><span class="kw">first</span>(weight)) <span class="op">%&gt;%</span></span>
+<span id="cb65-4"><a href="manipulate-data-with-the-tidyverse.html#cb65-4"></a><span class="st">      </span><span class="kw">group_by</span>(Diet) <span class="op">%&gt;%</span></span>
+<span id="cb65-5"><a href="manipulate-data-with-the-tidyverse.html#cb65-5"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">mean_gain =</span> <span class="kw">mean</span>(weight_gain))</span>
+<span id="cb65-6"><a href="manipulate-data-with-the-tidyverse.html#cb65-6"></a><span class="op">&gt;</span><span class="st"> </span>diet_summ</span>
+<span id="cb65-7"><a href="manipulate-data-with-the-tidyverse.html#cb65-7"></a><span class="co"># A tibble: 4 × 2</span></span>
+<span id="cb65-8"><a href="manipulate-data-with-the-tidyverse.html#cb65-8"></a>    Diet mean_gain</span>
+<span id="cb65-9"><a href="manipulate-data-with-the-tidyverse.html#cb65-9"></a>  <span class="op">&lt;</span>fctr<span class="op">&gt;</span><span class="st">     </span><span class="er">&lt;</span>dbl<span class="op">&gt;</span></span>
+<span id="cb65-10"><a href="manipulate-data-with-the-tidyverse.html#cb65-10"></a><span class="dv">1</span>      <span class="dv">1</span>     <span class="fl">114.9</span></span>
+<span id="cb65-11"><a href="manipulate-data-with-the-tidyverse.html#cb65-11"></a><span class="dv">2</span>      <span class="dv">2</span>     <span class="fl">174.0</span></span>
+<span id="cb65-12"><a href="manipulate-data-with-the-tidyverse.html#cb65-12"></a><span class="dv">3</span>      <span class="dv">3</span>     <span class="fl">229.5</span></span>
+<span id="cb65-13"><a href="manipulate-data-with-the-tidyverse.html#cb65-13"></a><span class="dv">4</span>      <span class="dv">4</span>     <span class="fl">188.3</span></span></code></pre></div>
+<p>Given that the solution to the last challenge requires that we compute
+several operations in sequence, it provides a nice example to
+demonstrate why the syntax implemented by <code>dplyr</code> and <code>magrittr</code>. An
+additional challenge (if you are well versed in base <code>R</code> functions)
+would to reproduce the same operations using fewer key strokes. We
+tried, and failed… Perhaps we are too accustomed to <code>dplyr</code> now. ++++</p>
+<hr />
+</div>
+<div id="dplyr---merging-data-frames" class="section level2">
+<h2><span class="header-section-number">7.7</span> dplyr - Merging data frames</h2>
+<p>In addition to all the operations we have explored, <code>dplyr</code> also
+provides some functions that allow you to join two data frames together.
+The syntax in these functions is simple relative to alternatives in
+other <code>R</code> packages:</p>
+<ul>
+<li><code>left_join()</code></li>
+<li><code>right_join()</code></li>
+<li><code>inner_join()</code></li>
+<li><code>anti_join()</code></li>
+</ul>
+<p>These are beyond the scope of the current introductory workshop, but
+they provide extremely useful functionality you may eventually require
+for some more advanced data manipulation needs.</p>
+
+</div>
+</div>
+
+
+
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="repairing-a-broken-data-frame.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
