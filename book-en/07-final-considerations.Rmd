@@ -1,0 +1,30 @@
+# (PART\*) Final considerations {-}
+
+# Summary
+
+R is...
+
+In the next workshop, ...
+
+# Additional resources
+
+#### Cheat Sheets
+
+-   [The RStudio Data Wrangling Cheat
+    Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+------------------------------------------------------------------------
+
+#### A few books
+
+-   list here
+
+------------------------------------------------------------------------
+
+#### A few useful links
+
+-   [Learn more about `dplyr`](http://r4ds.had.co.nz/transform.html)
+-   [Sean Anderson's Intro to dplyr and
+    pipes](http://seananderson.ca/2014/09/13/dplyr-intro.html)
+-   [Bradley Boehmke's Intro to data
+    wrangling](https://rpubs.com/bradleyboehmke/data_wrangling)

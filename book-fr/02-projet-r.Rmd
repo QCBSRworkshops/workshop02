@@ -1,0 +1,82 @@
+# Les projets RStudio
+
+Qu-est-ce qu'un projet RStudio?
+
+-   Les projets RStudio permettent l'organisation de son travail et
+    l'accès facile à tous les fichiers requis pour une analyse.
+-   Tout fichier, script, et documentation utilisé pour une analyse sont
+    reliés et regroupés ensemble dans un même projet.
+
+L'utilisation de projets RStudio facilite aussi la reproducibilité et
+le partage de données, de scripts, et de leur documentation.
+
+## Créer un projet dans RStudio
+
+Pour créer un projet dans RStudio, allez dans le menu *Fichier* puis
+sélectionnez "Nouveau projet".
+
+![](images/0_create_a_new_project.png){width="400"}
+
+## Organiser ses fichiers
+
+Un projet = un dossier!
+
+![](images/0_folderdata1.png){width="400"}
+
+## Préparer des données pour l'importation dans R
+
+-   Vous devriez enregistrez les fichiers à importer dans R en tant que
+    fichiers **"comma separated values" (.csv)**
+-   Les fichiers .csv peuvent être créés par presque toutes les
+    applications (Excel, GoogleDocs, LibreOffice, etc.)
+-   Fichier -\> Enregistrer sous: .csv
+
+### Bien nommer les fichiers
+
+-   Oui:
+    -   rawDatasetAgo2017.csv
+    -   co2_concentrations_QB.csv
+    -   01_figIntro.R
+-   Non:
+    -   final.csv *(Pas informatif!)*
+    -   safnnejs.csv *(C'est n'importe quoi!)*
+    -   1-4.csv *(Éviter d'utiliser des chiffres!)*
+    -   Dont.separate.names.with.dots.csv *(Peut causer des erreurs de
+        lecture de fichier!)*
+
+### Bien nommer les variables
+
+-   Utilisez des noms de variables courts et informatifs (*i.e.*
+    "Temps_1" au lieu de "Temps de la premiere mesure")
+    -   Oui: "Mesure", "NomEspece", "Site"
+-   Les valeurs des colonnes doivent correspondre à l'usage prévu
+
+### Conseils pour la préparation de jeux de données
+
+-   Pas de texte dans les colonnes de mode numérique (ceci inclut les
+    espaces !)
+-   Identifiez les valeurs manquantes par NA ("not available") - notez
+    le majuscule!
+-   **Faites attention aux erreurs typographiques!**
+-   Évitez les valeurs numériques pour les variables n'ayant pas
+    vraiment de valeur numérique (*i.e.* individu, réplicat, traitement)
+    -   Par exemple, identifiez vos individus par "A,B,C" ou
+        "ind1,ind2,ind3" au lieu de "1,2,3"
+-   Utilisez un format uniforme pour les dates, les chiffres, etc.
+-   N'ajoutez pas de notes, d'en-têtes supplémentaires, ou de cellules
+    fusionnées!
+-   Seulement une variable par colonne!
+
+### Exemples de mauvaises habitudes
+
+![](images/excel_notes.png) ![](images/horribledata.png)
+
+Il est possible de faire toute la préparation des données dans R. Les
+avantages sont :
+
+-   On économise du temps pour les grosses bases de données
+-   On préserve les données d'origine
+-   On peut basculer entre les modes "long" et "large" très
+    facilement (plus de détails plus tard)
+-   Pour des informations complémentaires, consultez la page suivante :
+    <https://www.zoology.ubc.ca/~schluter/R/data/>

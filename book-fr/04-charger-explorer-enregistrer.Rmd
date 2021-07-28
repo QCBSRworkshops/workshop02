@@ -1,0 +1,314 @@
+# Charger, explorer et enregistrer des données
+
+### Répertoire de travail
+
+Vous devez indiquer à R le répertoire où se trouvent les fichiers de
+données afin de les charger. Vous pouvez voir quel répertoire R utilise
+avec la fonction `getwd()`"
+
+```{r, echo = TRUE, eval = FALSE}
+getwd() # Cette commande vous indique le répertoire dans lequel vous vous trouvez.
+```
+
+Lorsque vous chargez un script, R définit le répertoire de travail comme
+étant le dossier qui contient le script.
+
+Afin de spécifier le chemin d'accès du répertoire avec la fonction
+`setwd()`, utilisez le "/" pour séparer les dossiers, sous-dossiers et
+noms de fichiers. Vous pouvez aussi cliquer sur session / Définir le
+répertoire / Choisir le répertoire.
+
+### Afficher le contenu du répertoire de travail
+
+La fonction `dir()` affiche le contenu du répertoire de travail.
+
+```{r, echo = TRUE, eval = FALSE}
+dir() # Cette commande vous indique le contenu du répertoire dans lequel vous vous trouvez.
+```
+
+Vous pouvez vérifier:
+
+-   Si le fichier que vous voulez ouvrir se trouve dans le répertoire de
+    travail ou non
+-   L'orthographe du nom du fichier (*e.g.* 'monfichier.csv' au lieu
+    de 'MonFichier.csv')
+
+### Importer un jeu de données
+
+Utilisez la fonction `read.csv()` pour importer des données provenant
+d'un fichier .csv dans R.
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv("CO2_good.csv")
+# Cette commande crée un objet nommé CO2 en chargeant les données
+# du fichier nommé "CO2_good.csv".
+```
+
+Cette commande spécifie que vous créez un objet nommé "CO2" en lisant
+un fichier .csv nommé "CO2_good.csv". Ce fichier doit se trouver dans
+votre répertoire de travail.
+
+Il est aussi possible d'utiliser la fonction `file.choose()` pour
+charger un fichier de manière interactive.
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv(file.choose())
+```
+
+Rappelez-vous que le point d'interrogation peut être utilisé pour
+trouver de l'aide sur une fonction.
+
+```{r, echo = TRUE, eval = FALSE}
+?read.csv # Ceci fera apparaître la page d'aide pour la fonction read.csv().
+```
+
+La page d'aide permet de voir qu'il y a un argument `header` qui
+permet de spécifier si la première ligne du fichier contient le nom des
+colonnes. Inscrire `header=TRUE` indique à R que la première ligne du
+tableau contient les noms des colonnes.
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv("CO2_good.csv", header = TRUE)
+```
+
+NOTE : Si vous utilisez un système d'exploitation en français ou un
+éditeur CSV, il est possible que vous deviez utiliser la fonction
+`read.csv2()` au lieu de la fonction `read.csv()` pour importer
+correctement un fichier.
+
+![](images/5_importing_data_mod_arrow.png){width="900"}
+
+Prenez note que RStudio montre maintenant le jeu de donné CO2 dans ton
+espace de travail. L'espace de travail inclut tous les objets créés
+pendant ta session R.
+
+### Explorer le jeu de données
+
+Le jeu de données "CO2" contient des mesures répétées d'absorption de
+CO~2~ prises sur six plantes du Québec et six plantes du Mississippi à
+différentes concentrations de CO~2~ ambiant. La moitié des plantes de
+chaque région a subi un traitement de refroidissement la veille du début
+de l'expérience.
+
+Voici quelques fonctions utiles pour visualiser le jeu de données
+importé :
+
+  ----------------- ---------------------------------------------------------
+  CO2               Affiche le tableau de données complet dans la console
+  head(CO2)         Affiche les premières lignes du tableau de données
+  names(CO2)        Affiche le nom des colonnes du tableau de données
+  attributes(CO2)   Affiche les attributs du tableau de données
+  ncol(CO2)         Affiche le nombre de colonnes du tableau de données
+  nrow(CO2)         Affiche le nombre de lignes du tableau de données
+  summary(CO2)      Calcule quelques statistiques de base sur les variables
+  str(CO2)          Affiche la structure du tableau de données
+  ----------------- ---------------------------------------------------------
+
+La fonction `str()` est très utile pour identifier le type/mode de
+chaque colonne (*e.g.* afin de vérifier que les facteurs sont
+enregistrés comme facteurs et que les données numériques sont de type
+numérique ou nombre entier). Plusieurs problèmes sont fréquents lors de
+l'importation des données :
+
+-   Les facteurs apparaissent comme des chaînes de caractères (et vice
+    versa)
+-   Les facteurs ont trop de niveaux à cause d'une erreur de frappe
+-   Les données numériques sont stockées sous forme de chaînes de
+    caractères à cause d'une erreur de frappe (*e.g.* un espace de trop
+    ou utiliser la virgule au lieu du point pour indiquer les décimales)
+
+**Exercice**
+
+Chargez les données de nouveau en utilisant le script suivant :
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv("CO2_good.csv",header=FALSE)
+```
+
+Vérifiez la structure des données avec la fonction `str()`. Quel est le
+problème ? Chargez les données de nouveau, mais cette fois-ci avec
+l'argument `header=TRUE` avant de continuer.
+
+### Rappel de l'atelier 1 : Accéder aux données
+
+Les données peuvent être extraites d'un jeu de données de plusieurs
+façons. Considerons un jeu de données nommé *mydata*. Les crochets
+permettent d'extraire le contenu d'une cellule.
+
+![](images/table_reminder_from_workshop_1_accessing_data.png){width="500"}
+
+```{r, echo = TRUE, eval = FALSE}
+mydata[2,3] # extrait le contenu de la deuxième ligne / troisième colonne
+```
+
+Si le numéro de la colonne est omis, toute la ligne est extraite.
+
+```{r, echo = TRUE, eval = FALSE}
+mydata[1,] # extrait le contenu de la première ligne
+```
+
+Si le numéro de la ligne est omis, toute la colonne est extraite. De
+même, le symbôle `$` suivi d'un nom de colonne peut être utilisé.
+
+```{r, echo = TRUE, eval = FALSE}
+mydata[,1] # extrait le contenu de la première colonne
+mydata$Variable1 # extrait le contenu de la colonne "Variable1"
+```
+
+### Changer les noms de variables
+
+On peut changer le nom de variables (colonnes) dans R.
+
+```{r, echo = TRUE, eval = FALSE}
+# Créer une copie du jeu de données qu'on pourra modifier
+CO2copy <- CO2
+# names() donne les noms des variables présents dans le jeu de données
+names(CO2copy)
+
+# Changer des noms anglais à des noms français
+names(CO2copy) <- c("Plante","Categorie", "Traitement", "conc","absortion")
+```
+
+### Créer des nouvelles variables
+
+On peut facilement créer et produire des nouvelles variables. Par
+exemple, la fonction `paste()` permet la concaténation de chaînes de
+caractères et de variables.
+
+```{r, echo = TRUE, eval = FALSE}
+# Créer un ID unique pour les échantillons avec la fonction ''paste()''
+# Consultez ?paste et ?paste0
+# N'oubliez pas d'utiliser "" pour les chaînes de caractères
+CO2copy$uniqueID <- paste0(CO2copy$Plante,"_", CO2copy$Categorie, "_", CO2copy$Traitement)
+
+# Observer les résultats
+head(CO2copy$uniqueID)
+```
+
+On peut aussi créer des nouvelles variables à partir de chiffres et
+d'opérations mathématiques!
+
+```{r, echo = TRUE, eval = FALSE}
+# Standardizer la variable "absortion" en valeurs relatives
+CO2copy$absortionRel = CO2copy$absortion/max(CO2copy$absortion)
+
+# Observer les résultats
+head(CO2copy$absortionRel)
+```
+
+### Extraire un sous-ensemble d'un jeu de données
+
+Il y a plusieurs façons d'extraire un sous-ensemble d'un jeu de
+données.
+
+```{r, echo = TRUE, eval = FALSE}
+# Continuons avec notre trame de données "CO2copy"
+
+## Extraire un sous-ensemble par un nom de variable
+CO2copy[,c("Plante", "absortionRel")] # Extrait seulement les colonnes nommées "Plante" et "absortionRel". (N'oubliez pas ","!)
+
+## Extraire un sous-ensemble de rangées
+CO2copy[1:50,] # Extraite les rangées de 1 à 50
+
+### Extraire un sous-ensemble correspondant à un facteur
+CO2copy[CO2copy$Traitement == "nonchilled",] # Extraire les observations correspondant seulement au traitement "nonchilled".
+
+### Extraire un sous-ensemble correspondant à une condition numérique
+CO2copy[CO2copy$absortion >= 20, ] # Extraire les observations ayant une absortion plus grande ou égale à 20
+
+### Les conditions peuvent être complémentaires en utilisant "&"
+CO2copy[CO2copy$Traitement == "nonchilled" & CO2copy$absortion >= 20, ]
+
+# Nous avons fini de modifier la copie du jeu de données CO2copy. On peut alors l'effacer.
+CO2copy <- NULL
+```
+
+Consultez
+[here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html)
+pour voir les opérateurs logiques pouvant être utilisés pour extraire
+des sous-ensembles de données dans R.
+
+### Explorer les données
+
+Pour faire une première exploration de données, on peut rapidement
+calculer des statistiques de base avec la fonction `summary()`.
+
+```{r, echo = TRUE, eval = FALSE}
+summary(CO2) # calculer les statistiques sommaires du jeu de données
+```
+
+Plusieurs fonctions intégrées à R vous permettent d'obtenir de
+l'information supplémentaire sur vos données. Les fonctions `mean()`,
+`sd()`, `hist()`, et `print()` sont couramment utilisées.
+
+```{r, echo = TRUE, eval = FALSE}
+# Calculer la moyenne et l'écart type des données dans la colonne "conc" de l'objet CO2
+meanConc<-mean(CO2$conc) # Calcule la moyenne de la colonne "conc" de l'objet "CO2"
+sdConc<-sd(CO2$conc) # Calcule l'écart-type de la colonne "conc"
+```
+
+\# print() sort une valeure dans la console R print(paste("la
+concentration moyenne est:", meanConc)) print(paste("l'écart type de
+la concentration est:", sdConc))
+
+\# Produisez un histogramme to explore the distribution of "uptake"
+hist(CO2\$uptake)
+
+\# Augmenter le nombre de classes pour mieux observer la distribution
+hist(CO2\$uptake, breaks = 40) \</code\>
+
+La fonction `apply()` est utilisée pour appliquer une fonction à
+plusieurs colonnes en même temps. Utilisez `?apply` pour en apprendre
+plus.
+
+```{r, echo = TRUE, eval = FALSE}
+?apply
+```
+
+Pour utiliser la fonction `apply()`, trois arguments doivent être
+spécifiés. Le premier argument est le jeu de données sur lequel on veut
+appliquer une fonction. Le deuxième argument spécifie si la fonction est
+appliquée aux lignes (`MARGIN = 1`) ou aux colonnes (`MARGIN = 2`). Le
+dernier argument spécifie la fonction à appliquer. Par exemple :
+
+```{r, echo = TRUE, eval = FALSE}
+apply(CO2[,4:5], MARGIN = 2, FUN = mean) # Calcule la moyenne des colonnes 4 et 5 du jeu de données CO2
+```
+
+### Enregistrer son espace de travail
+
+En enregistrant votre espace de travail, vous pouvez enregistrer les
+scripts et les objets qui sont actuellement chargés dans R. Si vous
+enregistrez votre espace de travail, vous pouvez chargez tous les objets
+même si vous avez utilisé la commande `rm(list=ls())` afin de nettoyer
+tout ce qui se trouve dans l'espace de travail.
+
+Utilisez la fonction `save.image()` pour enregistrer l'espace de
+travail :
+
+```{r, echo = TRUE, eval = FALSE}
+save.image(file="CO2_project_Data.RData") # L'espace de travail est enregistré
+
+rm(list=ls())  # Nettoyer l'espace de travail
+
+load("CO2_project_Data.RData") # Charger tout ce qui se trouvait dans l'espace de travail
+
+head(CO2) # Ça fonctionne! :)
+```
+
+### Exporter le jeu de données
+
+Si vous voulez enregistrer des données que vous avez créées ou modifiées
+dans R, utilisez la fonction `write.csv()`. Le fichier ainsi créé sera
+enregistré dans le répertoire de travail.
+
+```{r, echo = TRUE, eval = FALSE}
+write.csv(CO2,file="CO2_new.csv") # L'objet CO2 est enregistré dans le fichier nommé CO2_new.csv
+```
+
+### DÉFI: Utilisez vos propres données
+
+Essayez de charger, explorer, et enregistrer vos propres données dans R.
+Est-ce que le chargement fonctionne ? Si ce n'est pas le cas, essayez
+d'arranger vos données dans Excel. Enregistrez vos données
+"arrangées" et essayez de les ouvrir dans R.

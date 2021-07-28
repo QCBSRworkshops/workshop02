@@ -1,0 +1,37 @@
+# (PART\*) Loading and manipulating data in `R` {-}
+
+# Learning objectives
+
+In this workshop, you will learn how to load, view, and
+manipulate your data in R. You will learn basic commands to inspect and
+visualize your data, and learn how to fix errors that may have occurred
+while loading your data into R. In addition, you will learn how to write
+an R script, which is a text file that contains your R commands and
+allows you to rerun your analyses in one simple touch of a key (or maybe
+two, or three...)! We have included an advance users section where we
+will introduce tidyr and dplyr, two powerful tools to manage and
+re-format your dataset, as well as apply simple or complex functions on
+subsets of your data. This workshop will be useful for those progressing
+through the entire workshop series, but also for those who already have
+some experience in R and would like to become proficient with new tools
+and packages. By the end of this workshop, we will have accomplished these objectives:
+
+1. Creating an R project
+2. Writing a script
+3. Loading, exploring and saving data
+4. Learn to manipulate data frames with tidyr, dplyr, maggritr
+
+
+# Preparing for the workshop
+
+All workshop materials are found at [github.com/QCBSRworkshops/workshop02](https://github.com/QCBSRworkshops/workshop04). This includes an [R script](https://qcbsrworkshops.github.io/workshop02/book-en/workshop02-script-en.R) which contains all code chunks shown in this book.
+
+For this workshop, we will be working with the following datasets:
+
+* list here
+
+> To download this data, do right click + save on the page that opens.
+
+You should also make sure you have downloaded, installed, and loaded these packages:
+
+* list here

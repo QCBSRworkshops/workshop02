@@ -1,0 +1,139 @@
+# Réparer un jeu de données
+
+Les jeux de données peuvent être désordonnés et incompatibles entre
+certains systèmes (Mac, Windows) ou entre ordinateurs.
+
+Pratiquons-nous à réparer certains problèmes communs.
+
+### DÉFI: Réparer un jeu de données "endommagé"
+
+Importez un jeu de données "endommagé" dans R et trouvez les
+problèmes.
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv("CO2_broken.csv") # On remplace l'ancien objet CO2 avec le contenu d'un nouveau jeu de données
+head(CO2) # C'est le désordre!
+CO2
+```
+
+-   Vos données ressemblent probablement à ça !
+-   Réparez le jeu de données dans R
+-   Faites un essai avant de regarder la solution
+-   Entraidez-vous entre voisins et amusez-vous :)
+
+Voici quelques fonctions qui peuvent vous aider :
+
+-   `read.csv()`
+-   `head()`
+-   `str()`
+-   `class()`
+-   `unique()`
+-   `levels()`
+-   `which()`
+-   `droplevels()`
+
+Note : Vous devez mettre le nom de l'objet entre parenthèses pour
+utiliser ces fonctions (*i.e.* `head(CO2)`). Rappelez-vous que vous
+pouvez obtenir de l'aide en utilisant "?" (*e.g.* `?str`).
+
+**Indice : Il y a quatre problèmes avec ce jeu de données!**
+
+Réponse \#1  Problème \#1 : On dirait que les données sont
+contenues dans une seule colonne\
+Solution :  Importez les données de nouveau, mais en
+spécifiant comment chaque valeur est séparée. L'argument "sep"
+indique à R quel type de caractère sépare les valeurs sur chaque ligne.
+Ici, une tabulation sépare les valeurs au lieu d'une virgule.
+
+```{r, echo = TRUE, eval = FALSE}
+CO2 <- read.csv("CO2_broken.csv",sep = "")
+?read.csv
+```
+
+ 
+
+Réponse \#2  Problème \#2 : Les données ne commencent pas
+avant la troisième ligne. Les en-têtes de colonnes sont remplacés par
+des notes.
+
+```{r, echo = TRUE, eval = FALSE}
+head(CO2) # La fonction head() permet de voir que les données n'ont pas été lues avec les bons en-têtes
+```
+
+Solution :  Pour régler ce problème, vous devez indiquer à R
+de sauter les deux premières lignes avec l'argument "skip".
+
+```{r, echo = TRUE, eval = FALSE}
+CO2<-read.csv("CO2_broken.csv",sep = "",skip=2)  # En ajoutant l'argument skip, R ignore les deux premières lignes.
+head(CO2) # Le tableau a maintenant des en-têtes appropriés.
+```
+
+ 
+
+Réponse \#3  Problème \#3 : Les variables "conc" et
+"uptake" sont considérées commes des facteurs au lieu de nombres, car
+il y a du texte dans ces colonnes.
+
+```{r, echo = TRUE, eval = FALSE}
+str(CO2) # La fonction str() montre que les colonnes 'conc' et 'uptake' sont considérées comme facteurs.
+class(CO2$conc)
+unique(CO2$conc) # En examinant les valeurs uniques de cette colonne,
+                 # on voit que ces deux colonnes contiennent la valeur "cannot_read_notes".
+unique(CO2$uptake)
+?unique
+```
+
+Solution : 
+
+```{r, echo = TRUE, eval = FALSE}
+?read.csv
+```
+
+![](images/read_table_help1.png) ![](images/read_table_help2.png)
+
+```{r, echo = TRUE, eval = FALSE}
+CO2 <- read.csv("CO2_broken.csv",sep = "",skip = 2,na.strings = c("NA","na","cannot_read_notes"))
+```
+
+En identifiant "cannot_read_notes" comme valeur manquante (*i.e.* NA),
+R peut maintenant ces colonnes correctement. Rappelez-vous que NA
+signifie "Not available".
+
+```{r, echo = TRUE, eval = FALSE}
+head(CO2)
+str(CO2) # La variable 'conc' est maintenant de type 'integer' (nombre entier) et la variable 'uptake' est maintenant de type numérique.
+```
+
+ 
+
+Réponse \#4  Problème \#4 : En réalité, il n'y a seulement
+que deux traitements (chilled & non chilled), mais des erreurs
+d'orthographe créent deux autres traitements.
+
+```{r, echo = TRUE, eval = FALSE}
+str(CO2) # Vous voyez qu'il y a quatre niveaux de traitement
+levels(CO2$Treatment)
+unique(CO2$Treatment) # Les quatre différents traitements sont "nonchilled", "nnchilled", "chilled" et "chiled"
+```
+
+Solution : 
+
+```{r, echo = TRUE, eval = FALSE}
+# Vous pouvez utiliser la fonction which() afin de trouver les lignes avec l'erreur "nnchilled"
+which(CO2$Treatment=="nnchilled") # Cette commande nous indique que l'erreur se trouve à la ligne 10
+# Vous pouvez corriger l'erreur par indexation (voir atelier 1) :
+CO2$Treatment[10] <- "nonchilled"
+# Vous pouvez faire ces deux étapes en une seule commande :
+CO2$Treatment[which(CO2$Treatment=="nnchilled")] <- "nonchilled"
+# Faisons la même chose pour "chiled" :
+CO2$Treatment[which(CO2$Treatment=="chiled")] <- "chilled"
+```
+
+Est-ce que les problèmes sont réglés ?
+
+```{r, echo = TRUE, eval = FALSE}
+str(CO2)  # La fonction str() identifie toujours quatre niveaux de facteur pour la variable traitement
+unique(CO2$Treatment) # Cependant, la fonction unique() indique que seulement deux niveaux sont utilisés
+CO2<-droplevels(CO2) # La fonction droplevels() supprime les niveaux inutilisés de tous les facteurs du tableau de données
+str(CO2) # C'est réparé !
+```

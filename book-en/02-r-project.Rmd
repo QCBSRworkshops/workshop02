@@ -1,0 +1,86 @@
+# RStudio Projects
+
+What is this?
+
+1.  Projects make it easy to keep your work organized.
+2.  All files, scripts, documentation related to a specific project are
+    bound together with a .Rproj file
+
+Encourages reproducibility and easy sharing
+
+## Create a new project
+
+Use the **Create project** command (available in the Projects menu and
+the global toolbar)
+
+![](images/0_create_a_new_project.png){width="400"}
+
+## Keep your files organized
+
+One project = one folder
+
+Place similar files inside of their own folders
+
+Keep track of versions
+
+![](images/0_folderdata1.png){width="400"}
+
+## Preparing data for R
+
+-   Datasets should be stored as **comma separated files (.csv)** in
+    Data folder.
+-   comma separated files (.csv) can be created from almost all
+    applications (Excel, LibreOffice, GoogleDocs)
+-   file -\> save as .csv
+
+### Naming files
+
+-   Good:
+    -   rawDatasetAgo2017.csv
+    -   co2_concentrations_QB.csv
+    -   01_figIntro.R
+-   Bad:
+    -   final.csv *(Uninformative!)*
+    -   safnnejs.csv *(Random!)*
+    -   1-4.csv *(Avoid using numbers!)*
+    -   Dont.separate.names.with.dots.csv *(Can lead to reading file
+        errors!)*
+
+### Naming variables
+
+-   Use short informative titles (i.e. "Time_1" not "First time
+    measurement")
+    -   Good: "Measurements", "SpeciesNames", "Site"
+    -   Bad: "a", "3", "supercomplicatedverylongname"
+-   Column values must match their intended use
+
+### Common data preparation mistakes
+
+-   No text in numeric columns
+-   Do not include spaces!
+-   NA (not available) can be used for missing values, and blank entries
+    will automatically be replaced with NA
+-   Name your variables informatively
+-   **Look for typos!**
+-   Avoid numeric values for data that do not have a numeric meaning
+    (i.e. subject, replicate, treatment)
+    -   For example, if subjects are "1,2,3" change to "A,B,C" or
+        "S1,S2,S3"
+-   Use CONSISTENT formats for dates, numbers, metrics, etc.
+-   Do not include notes, additional headings, or merged cells!
+-   One variable per column!
+
+### Bad data examples
+
+![](images/excel_notes.png)
+
+It is possible to do all your data preparation work within R. This has
+several benefits:
+
+-   Saves time for large datasets
+-   Keeps original data intact
+-   Keeps track of the manipulation and transformation you did
+-   Can switch between long and wide format data very easily (more on
+    this later and in workshop 4)
+-   For a useful resource, see
+    <https://www.zoology.ubc.ca/~schluter/R/data/>
