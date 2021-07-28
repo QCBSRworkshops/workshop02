@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 7 Manipuler ses données avec tidyr, dyplr, maggritr | Atelier 2: Charger et manipuler des données</title>
+  <meta name="description" content="Charger et manipuler des données" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 7 Manipuler ses données avec tidyr, dyplr, maggritr | Atelier 2: Charger et manipuler des données" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Charger et manipuler des données" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop02" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 7 Manipuler ses données avec tidyr, dyplr, maggritr | Atelier 2: Charger et manipuler des données" />
+  
+  <meta name="twitter:description" content="Charger et manipuler des données" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Développé et entretenu par les contributeurs et les contributrices de la Série d’ateliers R du CSBQ." />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="réparer-un-jeu-de-données.html"/>
+<link rel="next" href="résumé.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>Série d’ateliers R du CSBQ</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-de-conduite"><i class="fa fa-check"></i><b>0.1</b> Code de conduite</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!</a></li>
+</ul></li>
+<li class="part"><span><b>Modèles linéaires en <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage</a></li>
+<li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier</a></li>
+<li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio</a><ul>
+<li class="chapter" data-level="3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#créer-un-projet-dans-rstudio"><i class="fa fa-check"></i><b>3.1</b> Créer un projet dans RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>3.2</b> Organiser ses fichiers</a></li>
+<li class="chapter" data-level="3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#préparer-des-données-pour-limportation-dans-r"><i class="fa fa-check"></i><b>3.3</b> Préparer des données pour l’importation dans R</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-fichiers"><i class="fa fa-check"></i><b>3.3.1</b> Bien nommer les fichiers</a></li>
+<li class="chapter" data-level="3.3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-variables"><i class="fa fa-check"></i><b>3.3.2</b> Bien nommer les variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#conseils-pour-la-préparation-de-jeux-de-données"><i class="fa fa-check"></i><b>3.3.3</b> Conseils pour la préparation de jeux de données</a></li>
+<li class="chapter" data-level="3.3.4" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#exemples-de-mauvaises-habitudes"><i class="fa fa-check"></i><b>3.3.4</b> Exemples de mauvaises habitudes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html"><i class="fa fa-check"></i><b>4</b> Écrire un script dans R</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#commandes-commentaires"><i class="fa fa-check"></i><b>4.0.1</b> Commandes &amp; Commentaires</a></li>
+<li class="chapter" data-level="4.0.2" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes"><i class="fa fa-check"></i><b>4.0.2</b> En-têtes</a></li>
+<li class="chapter" data-level="4.0.3" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes-de-section"><i class="fa fa-check"></i><b>4.0.3</b> En-têtes de section</a></li>
+<li class="chapter" data-level="4.0.4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#nettoyage"><i class="fa fa-check"></i><b>4.0.4</b> Nettoyage</a></li>
+<li class="chapter" data-level="4.0.5" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#petit-rappel-important"><i class="fa fa-check"></i><b>4.0.5</b> Petit rappel important</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html"><i class="fa fa-check"></i><b>5</b> Charger, explorer et enregistrer des données</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.1</b> Répertoire de travail</a></li>
+<li class="chapter" data-level="5.0.2" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.2</b> Afficher le contenu du répertoire de travail</a></li>
+<li class="chapter" data-level="5.0.3" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données"><i class="fa fa-check"></i><b>5.0.3</b> Importer un jeu de données</a></li>
+<li class="chapter" data-level="5.0.4" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.4</b> Explorer le jeu de données</a></li>
+<li class="chapter" data-level="5.0.5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données"><i class="fa fa-check"></i><b>5.0.5</b> Rappel de l’atelier 1 : Accéder aux données</a></li>
+<li class="chapter" data-level="5.0.6" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables"><i class="fa fa-check"></i><b>5.0.6</b> Changer les noms de variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables"><i class="fa fa-check"></i><b>5.0.7</b> Créer des nouvelles variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données"><i class="fa fa-check"></i><b>5.0.8</b> Extraire un sous-ensemble d’un jeu de données</a></li>
+<li class="chapter" data-level="5.0.9" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données"><i class="fa fa-check"></i><b>5.0.9</b> Explorer les données</a></li>
+<li class="chapter" data-level="5.0.10" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail"><i class="fa fa-check"></i><b>5.0.10</b> Enregistrer son espace de travail</a></li>
+<li class="chapter" data-level="5.0.11" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.11</b> Exporter le jeu de données</a></li>
+<li class="chapter" data-level="5.0.12" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données"><i class="fa fa-check"></i><b>5.0.12</b> DÉFI: Utilisez vos propres données</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html"><i class="fa fa-check"></i><b>6</b> Réparer un jeu de données</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé"><i class="fa fa-check"></i><b>6.0.1</b> DÉFI: Réparer un jeu de données “endommagé”</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><i class="fa fa-check"></i><b>7</b> Manipuler ses données avec tidyr, dyplr, maggritr</a><ul>
+<li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur</a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#gather-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> gather(): Rassembler les données en longueur</a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#spread-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> spread(): Disperser les données en largeur</a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.5</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes</a></li>
+<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.6</b> Récapitulatif: tidyr</a></li>
+<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.7</b> DÉFI: Utiliser tidyr pour convertir le format long en format large</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr</a></li>
+<li class="chapter" data-level="7.2.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#select-sélection-de-colonnes"><i class="fa fa-check"></i><b>7.2.2</b> select(): Sélection de colonnes</a></li>
+<li class="chapter" data-level="7.2.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#filter-sélection-de-rangées"><i class="fa fa-check"></i><b>7.2.3</b> filter(): Sélection de rangées</a></li>
+<li class="chapter" data-level="7.2.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#arrange-triage-de-rangées"><i class="fa fa-check"></i><b>7.2.4</b> arrange(): Triage de rangées</a></li>
+<li class="chapter" data-level="7.2.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#mutate-créer-des-nouvelles-colonnes"><i class="fa fa-check"></i><b>7.2.5</b> mutate(): Créer des nouvelles colonnes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel</a></li>
+<li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr</a></li>
+<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.2</b> Indice pour les ninjas</a></li>
+<li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr</a></li>
+</ul></li>
+<li class="part"><span><b>Considérations finales</b></span></li>
+<li class="chapter" data-level="8" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i><b>8</b> Résumé</a></li>
+<li class="chapter" data-level="9" data-path="resources-additionnels.html"><a href="resources-additionnels.html"><i class="fa fa-check"></i><b>9</b> Resources additionnels</a></li>
+<li class="chapter" data-level="10" data-path="réferences.html"><a href="réferences.html"><i class="fa fa-check"></i><b>10</b> Réferences</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Atelier 2: Charger et manipuler des données</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+<div id="manipuler-ses-données-avec-tidyr-dyplr-maggritr" class="section level1">
+<h1><span class="header-section-number">Chapitre 7</span> Manipuler ses données avec tidyr, dyplr, maggritr</h1>
+<div id="utiliser-tidyr-pour-réorganiser-ses-données" class="section level2">
+<h2><span class="header-section-number">7.1</span> Utiliser “tidyr” pour réorganiser ses données</h2>
+<p><img src="images/tidyrsticker.png" width="200" /></p>
+<div id="pourquoi-réorganiser-ses-données" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Pourquoi réorganiser ses données?</h3>
+<p>La réorganisation permet de modifier la structure des données tout en
+préservant l’information contenue dans le jeu de données. Plusieurs
+fonctions dans R exigent ou fonctionnent mieux avec une structure de
+données qui n’est pas nécessairement propice à la lecture par l’oeil
+humain.</p>
+<p>En comparaison à l’agrégation, où plusieurs cellules sont regroupées
+pour créer un nouveau jeu de données (e.g. tableau des moyennes de
+plusieurs variables), la réorganisation maintient le même nombre de
+cellules. Le paquet <code>tidyr</code> permet de réorganiser nos jeu de données
+dans un format idéal pour nos tâches en aval, et ce à l’aide d’une
+syntaxe simple et logique.</p>
+<p>Commençons par installer et charger le paquet <code>tidyr</code> :</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb38-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(tidyr)) {</span>
+<span id="cb38-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb38-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;tidyr&quot;</span>)</span>
+<span id="cb38-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb38-3"></a>}</span>
+<span id="cb38-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb38-4"></a><span class="kw">library</span>(tidyr)</span></code></pre></div>
+</div>
+<div id="données-en-longueur-vs.-en-largeur" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Données en longueur vs. en largeur</h3>
+<p>Un jeu de données <strong>en largeur</strong> contient une colonne pour chaque
+variable ou facteur inclus dans les données. Une rangée peut alors
+comprendre plusieurs observations différentes.</p>
+<p>Un jeu de données <strong>en longueur</strong> contient une colonne par variable, où
+chaque rangée s’agit d’une observation unique. Le format “long” est
+plus “propre” (<em>tidy</em> en anglais), parce que les données sont plus
+facilement interprétées par <code>R</code> pour nos visualisations et nos analyses.</p>
+<p>Le format de vos données dépend de vos besoins d’analyse et de
+visualisation, mais certains paquets et fonctions, incluant <code>dplyr</code>,
+<code>lm()</code>, <code>glm()</code>, et <code>gam()</code>, nécessitent des données en longueur. Le
+paquet <code>ggplot2</code> peut utiliser des données en largeur pour des
+visualisations simples, mais fonctionne mieux avec des données en
+longueur pour des visualisations plus complexes (exemple à venir).</p>
+<p>De plus, les données en format long peuvent être agrégées et
+réorganisées en format large afin de produire des résumés ou de vérifier
+si un jeu de données est équilibré (i.e. avec le même nombre
+d’observations par traitement).</p>
+<p>On peut utiliser le paquet <code>tidyr</code> pour manipuler la structure d’un jeu
+de données en préservant toutes les informations d’origine à l’aide
+des fonctions suivantes:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>“rassembler” les données (<em>gather data</em> en anglais; large
+--&gt; long)</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>“disperser” les données (<em>spread data</em> en anglais; long --&gt;
+large)</li>
+</ol></li>
+</ul>
+<p><img src="images/gather-spread.png" width="600" /></p>
+<p>Supposons que vous envoyez votre assistant de terrain pour faire la
+collecte de données des dimensions de plusieurs arbres sur un site de
+recherche, soit le diamètre à la hauteur de la poitrine (DHP) et la
+hauteur. Il/elle revient avec un jeu de donnés en format “dégât”
+(format large):</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-1"></a><span class="op">&gt;</span><span class="st"> </span>large &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Species =</span> <span class="kw">c</span>(<span class="st">&quot;Chêne&quot;, &quot;</span>Orme<span class="st">&quot;, &quot;</span>Frêne&quot;),</span>
+<span id="cb39-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-2"></a>                          <span class="dt">DHP =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">20</span>, <span class="dv">13</span>),</span>
+<span id="cb39-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-3"></a>                         <span class="dt">Haut =</span> <span class="kw">c</span>(<span class="dv">56</span>, <span class="dv">85</span>, <span class="dv">55</span>))</span>
+<span id="cb39-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-4"></a><span class="op">&gt;</span><span class="st"> </span>large</span>
+<span id="cb39-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-5"></a>  Species DHP Haut</span>
+<span id="cb39-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-6"></a><span class="dv">1</span>   Chêne  <span class="dv">12</span>   <span class="dv">56</span></span>
+<span id="cb39-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-7"></a><span class="dv">2</span>    Orme  <span class="dv">20</span>   <span class="dv">85</span></span>
+<span id="cb39-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb39-8"></a><span class="dv">3</span>   Frêne  <span class="dv">13</span>   <span class="dv">55</span></span></code></pre></div>
+</div>
+<div id="gather-rassembler-les-données-en-longueur" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> gather(): Rassembler les données en longueur</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb40-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(gather)</span></code></pre></div>
+<p>La plupart des paquets dans le “Hadleyverse” requièrent un format
+long, c’est-à-dire où chaque rangée est une observation unique, et
+chaque colonne est une variable. Utilisons la fonction <code>gather()</code> pour
+“rassembler” nos données en longueur. <code>gather()</code> prend plusieurs
+colonnes et les empile dans deux colonnes: une colonne spécifiant la
+variable mesurée, et l’autre spécifiant la mesure associée.</p>
+<p>La fonction <code>gather()</code> prend au moins 3 arguments:</p>
+<ul>
+<li><strong>data</strong>: le jeu de données (e.g. “large”)</li>
+<li><strong>key</strong>: le nom de la nouvelle colonne spécifiant la variable
+mesurée (e.g. “dimension”)</li>
+<li><strong>value</strong>: le nom de la nouvelle colonne spécifiant la mesure
+associée (e.g. “cm”)</li>
+<li><strong>…</strong>: les colonnes qu’on veut empiler dans le jeu de données
+(e.g. “DBH”, “Haut”)</li>
+</ul>
+<p>Voici une démonstration avec le jeu de données <code>large</code> utilisé
+précédemment, contenant les dimensions d’arbres:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-1"></a><span class="co"># Rassembler les colonnes en rangées d&#39;observations uniques</span></span>
+<span id="cb41-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-2"></a></span>
+<span id="cb41-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-3"></a><span class="op">&gt;</span><span class="st"> </span>long &lt;-<span class="st"> </span><span class="kw">gather</span>(large, dimension, cm, DHP, Haut)</span>
+<span id="cb41-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-4"></a><span class="op">&gt;</span><span class="st"> </span>long</span>
+<span id="cb41-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-5"></a>  Species dimension cm</span>
+<span id="cb41-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-6"></a><span class="dv">1</span>   Chêne       DHP <span class="dv">12</span></span>
+<span id="cb41-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-7"></a><span class="dv">2</span>    Orme       DHP <span class="dv">20</span></span>
+<span id="cb41-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-8"></a><span class="dv">3</span>   Frêne       DHP <span class="dv">13</span></span>
+<span id="cb41-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-9"></a><span class="dv">4</span>   Chêne      Haut <span class="dv">56</span></span>
+<span id="cb41-10"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-10"></a><span class="dv">5</span>    Orme      Haut <span class="dv">85</span></span>
+<span id="cb41-11"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb41-11"></a><span class="dv">6</span>   Frêne      Haut <span class="dv">55</span></span></code></pre></div>
+<p>Essayons également avec le jeu de données <code>CO2</code>. On peut “rassembler”
+les colonnes contant la concentration de CO2 (<code>conc</code>) et le CO2 absorbé
+(<code>uptake</code>) :</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb42-1"></a>CO2.long &lt;-<span class="st"> </span><span class="kw">gather</span>(CO2, response, value, conc, uptake)</span>
+<span id="cb42-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb42-2"></a><span class="kw">head</span>(CO2)</span>
+<span id="cb42-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb42-3"></a><span class="kw">head</span>(CO2.long)</span>
+<span id="cb42-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb42-4"></a><span class="kw">tail</span>(CO2.long)</span></code></pre></div>
+</div>
+<div id="spread-disperser-les-données-en-largeur" class="section level3">
+<h3><span class="header-section-number">7.1.4</span> spread(): Disperser les données en largeur</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb43-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(spread)</span></code></pre></div>
+<p>La fonction <code>spread()</code> est l’inverse de <code>gather()</code>: elle nous permet de
+transformer nos données en format large, en utilisant la même syntaxe.
+<code>spread()</code> prend 3 arguments principaux:</p>
+<ul>
+<li><strong>data</strong>: le jeu de données (e.g. “long”)</li>
+<li><strong>key</strong>: nom de la colonne contenant les noms des variables (e.g.
+“dimension”)</li>
+<li><strong>value</strong>: nom de la colonne contenant les mesures associées aux
+variables (e.g. “cm”)</li>
+</ul>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-1"></a><span class="op">&gt;</span><span class="st"> </span>large2 &lt;-<span class="st"> </span><span class="kw">spread</span>(long, dimension, cm)</span>
+<span id="cb44-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-2"></a><span class="op">&gt;</span><span class="st"> </span>large2</span>
+<span id="cb44-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-3"></a>  Species DHP Haut</span>
+<span id="cb44-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-4"></a><span class="dv">1</span>   Chêne  <span class="dv">12</span>   <span class="dv">56</span></span>
+<span id="cb44-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-5"></a><span class="dv">2</span>   Frêne  <span class="dv">13</span>   <span class="dv">55</span></span>
+<span id="cb44-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb44-6"></a><span class="dv">3</span>    Orme  <span class="dv">20</span>   <span class="dv">85</span></span></code></pre></div>
+</div>
+<div id="separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes" class="section level3">
+<h3><span class="header-section-number">7.1.5</span> separate(): séparer une colonne en deux (ou plusieurs) colonnes</h3>
+<p>Il arrive parfois qu’un jeu de données contient plusieurs variables
+réunies dans une même colonne. Dans ces situations, la fonction
+<code>separate()</code> sépare la colonne pour que chacune des variables ait sa
+propre colonne.</p>
+<p>La fonction <code>separate()</code> prend 4 arguments, et sépare une colonne à
+partir d’une chaîne de caractères:</p>
+<ul>
+<li><strong>data</strong>: le jeu de données (e.g. “long”)</li>
+<li><strong>col</strong>: nom de la colonne que nous voulons séparer</li>
+<li><strong>into</strong>: nom des nouvelles colonnes crées par la séparation</li>
+<li><strong>sep</strong>: le caractère ou la chaîne de caractères identifiant où
+séparer le contenu (e.g. " ")</li>
+</ul>
+<p>À titre d’exemple, créons un jeu de données fictif sur les poissons et
+le zooplancton qui est mal organisé:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb45-1"></a><span class="kw">set.seed</span>(<span class="dv">8</span>)</span>
+<span id="cb45-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb45-2"></a>degat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">trt =</span> <span class="kw">sample</span>(<span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;controle&quot;</span>,</span>
+<span id="cb45-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb45-3"></a>    <span class="st">&quot;culture&quot;</span>), <span class="dt">each =</span> <span class="dv">2</span>)), <span class="dt">zooplancton.T1 =</span> <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">poisson.T1 =</span> <span class="kw">runif</span>(<span class="dv">4</span>),</span>
+<span id="cb45-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb45-4"></a>    <span class="dt">zooplancton.T2 =</span> <span class="kw">runif</span>(<span class="dv">4</span>), <span class="dt">poisson.T2 =</span> <span class="kw">runif</span>(<span class="dv">4</span>))</span></code></pre></div>
+<p>Dans ce cas, on commence par “rassembler” ce jeu de données en largeur
+en format long.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb46-1"></a><span class="op">&gt;</span><span class="st"> </span>degat.long &lt;-<span class="st"> </span><span class="kw">gather</span>(degat, taxa, count, <span class="op">-</span>id, <span class="op">-</span>trt)</span>
+<span id="cb46-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb46-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(degat.long)</span></code></pre></div>
+<p>Petit rappel rapide: ici, nous utilisons <code>-id</code> et <code>-trt</code>, qui est
+interprété par la fonction comme étant TOUTES les colonnes sauf <code>id</code> et
+<code>trt</code>. Nous pourrions également énumérer chaque colonne comme ceci:
+<code>zooplancton.T1, poisson.T1, zooplancton.T2, poisson.T2</code>.</p>
+<p>Le défi principal de <code>separate()</code> est de formuler une expression qui
+identifie le caractère sur lequel séparer la colonne. Dans notre
+exemple, nous voulons séparer le contenu de la colonne “taxa” au point
+(<code>.</code>). Il faut donc utiliser un petit truc provenant des outils
+d’expressions régulières pour travailler avec les chaînes de caractères
+(<em>strings</em> en anglais):</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-1"></a><span class="op">&gt;</span><span class="st"> </span>degat.long.sep &lt;-<span class="st"> </span><span class="kw">separate</span>(degat.long, taxa, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;especes&quot;</span>, <span class="st">&quot;temps&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;\.&quot;</span>)</span>
+<span id="cb47-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(degat.long.sep)</span>
+<span id="cb47-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-3"></a>  id      trt     especes temps     count</span>
+<span id="cb47-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-4"></a><span class="dv">1</span>  <span class="dv">1</span> controle zooplancton    T1 <span class="fl">0.3215092</span></span>
+<span id="cb47-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-5"></a><span class="dv">2</span>  <span class="dv">2</span> controle zooplancton    T1 <span class="fl">0.7189275</span></span>
+<span id="cb47-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-6"></a><span class="dv">3</span>  <span class="dv">3</span>  culture zooplancton    T1 <span class="fl">0.2908734</span></span>
+<span id="cb47-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-7"></a><span class="dv">4</span>  <span class="dv">4</span>  culture zooplancton    T1 <span class="fl">0.9322698</span></span>
+<span id="cb47-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-8"></a><span class="dv">5</span>  <span class="dv">1</span> controle     poisson    T1 <span class="fl">0.7691470</span></span>
+<span id="cb47-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb47-9"></a><span class="dv">6</span>  <span class="dv">2</span> controle     poisson    T1 <span class="fl">0.6444911</span></span></code></pre></div>
+<p>Ici, notons que la syntaxe <code>\.</code> est requise parce qu’un point seul
+(<code>.</code>) est une carte frime (un joker) pour plusieurs fonctions dans le
+langage <code>R</code>. Les <code>\\</code> servent donc à indiquer qu’on fait référence au
+caractère “<code>.</code>”.</p>
+</div>
+<div id="récapitulatif-tidyr" class="section level3">
+<h3><span class="header-section-number">7.1.6</span> Récapitulatif: tidyr</h3>
+<p><code>tidyr</code> est un paquet qui réorganise la structure de jeux de données.</p>
+<ul>
+<li>Convertir de <strong>format large en format long</strong> à l’aide de <code>gather()</code></li>
+<li>Convertir de <strong>format long en format large</strong> à l’aide de <code>spread()</code></li>
+<li>Séparer et regrouper des colonnes à l’aide de <code>separate()</code> et de
+son inverse, <code>unite()</code></li>
+</ul>
+<p>Voici un aide-mémoire (<em>en anglais</em>) pour faciliter la manipulation de
+jeux de données avec <code>tidyr</code> et <code>dplyr</code>:
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
+</div>
+<div id="défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large" class="section level3">
+<h3><span class="header-section-number">7.1.7</span> DÉFI: Utiliser tidyr pour convertir le format long en format large</h3>
+<p><em>Réorganisez le jeu de données <code>airquality</code> en format long (en
+rassemblant toutes les colonnes sauf “Month” et “Day”). Ensuite,
+dispersez-le en format large pour retrouver le format original de
+<code>airquality</code>:</em></p>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-1"></a>air.long &lt;-<span class="st"> </span><span class="kw">gather</span>(airquality, variable, value, <span class="op">-</span>Month, <span class="op">-</span>Day)</span>
+<span id="cb48-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-2"></a><span class="co"># Notez que la syntaxe ici indique qu&#39;on veut &#39;rassembler&#39;</span></span>
+<span id="cb48-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-3"></a><span class="co"># toutes les colonnes sauf &#39;Month&#39; et &#39;Day&#39;</span></span>
+<span id="cb48-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-4"></a><span class="kw">head</span>(air.long)</span>
+<span id="cb48-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-5"></a>air.wide &lt;-<span class="st"> </span><span class="kw">spread</span>(air.long, variable, value)</span>
+<span id="cb48-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb48-6"></a><span class="kw">head</span>(air.wide)</span></code></pre></div>
+<p>Le tableau <code>air.wide</code> a le même format que le jeu de données d’origine
+<code>airquality</code> (bien que l’ordre des colonnes ne soit pas le même). ++++</p>
+<hr />
+</div>
+</div>
+<div id="utiliser-dplyr-pour-manipuler-les-données" class="section level2">
+<h2><span class="header-section-number">7.2</span> Utiliser “dplyr” pour manipuler les données</h2>
+<p><img src="images/dplyrsticker.png" width="200" /></p>
+<div id="introduction-à-dplyr" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Introduction à dplyr</h3>
+<p>Souvent, on doit faire appel à une gamme d’outils complexes pour
+manipuler nos jeux de données. La mission de <code>dplyr</code> est de simplifier
+nos tâches de manipulation en regroupant toutes les opérations communes
+sous un même toit. Le résultat est une collection de fonctions ayant une
+syntaxe simple qu’on peut exécuter à l’aide de “verbes” (ou
+fonctions) intuitifs.</p>
+<p>En plus d’être facile à utiliser, le paquet <code>dplyr</code> est exceptionnel
+pour les raisons suivantes:</p>
+<ul>
+<li>il peut traiter des grands jeux de données rapidement (écrit en
+langage <code>Cpp</code>)</li>
+<li>sa fonctionnalité est bien intégrée dans RStudio et dans les autres
+paquets du Hadleyverse</li>
+<li>il peut établir des connections à des bases de données SQL, et
+traduire votre code en requête SQL</li>
+<li>c’est le Batman des paquets <code>R</code> (maîtrise la peur des données et
+adopte des technologies avancées)</li>
+</ul>
+<p>Certaines fonctions de base dans R ressemblent à des fonctions dans
+<code>dplyr</code>, incluant: <code>split()</code>, <code>subset()</code>, <code>apply()</code>, <code>sapply()</code>,
+<code>lapply()</code>, <code>tapply()</code> and <code>aggregate()</code>.</p>
+<p>Commençons par installer et charger le paquet <code>dplyr</code>:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb49-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(dplyr)) {</span>
+<span id="cb49-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb49-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb49-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb49-3"></a>}</span>
+<span id="cb49-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb49-4"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<p>Au coeur du paquet <code>dplyr</code>, on retrouve des “verbes” essentiels qui
+nous permettent d’accomplir la manipulation de données. Voici 4 verbes
+qui exécutent les opérations les plus communes:</p>
+<ul>
+<li><code>select()</code> : sélectionne des colonnes dans un jeu de données</li>
+<li><code>filter()</code> : filtre des rangées suivant les critères spécifiés</li>
+<li><code>arrange()</code> : trie les données d’une colonne en ordre croissant ou
+décroissant</li>
+<li><code>mutate()</code> : crée une nouvelle colonne de données (ou transforme une
+colonne existante)</li>
+</ul>
+<p>Dans les exemples et les défis qui suivent, nous utiliserons les jeux de
+données <code>airquality</code> et <code>ChickWeight</code>, qui sont inclus dans R:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb50-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(airquality)</span>
+<span id="cb50-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb50-2"></a><span class="kw">data</span>(airquality)</span>
+<span id="cb50-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb50-3"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(ChickWeight)</span>
+<span id="cb50-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb50-4"></a><span class="kw">data</span>(ChickWeight)</span></code></pre></div>
+</div>
+<div id="select-sélection-de-colonnes" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> select(): Sélection de colonnes</h3>
+<p><img src="images/select.png" width="600" /></p>
+<p>La syntaxe de la fonction <code>select()</code> est:
+<code>select(données, colonne1, colonne2, ...)</code>. La majorité de fonctions
+<code>dplyr</code> suivent cette même syntaxe. <code>select()</code> prend alors au moins 2
+arguments:</p>
+<ul>
+<li><strong>data</strong>: le jeu de données</li>
+<li><strong>…</strong>: noms ou positions de colonnes, ou expressions complexes
+(séparés par des virgules pour désigner les colonnes que l’on veut
+sélectionner</li>
+</ul>
+<p>Par exemple:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb51-1"></a><span class="kw">select</span>(données, colonne1, colonne2) <span class="co"># sélectionne colonne1 et colonne2</span></span>
+<span id="cb51-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb51-2"></a><span class="kw">select</span>(données, <span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>,<span class="dv">6</span>) <span class="co"># sélectionne les colonnes 2 à 4, plus la 6ème colonne</span></span>
+<span id="cb51-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb51-3"></a><span class="kw">select</span>(données, <span class="op">-</span>colonne1) <span class="co"># sélectionne toutes les colonnes sauf la 1ère</span></span>
+<span id="cb51-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb51-4"></a><span class="kw">select</span>(données, <span class="kw">start_with</span>(x.)) <span class="co"># sélectionne les colonnes ayant un nom qui commence par &quot;x.&quot;</span></span></code></pre></div>
+<p>Voici d’autres arguments utiles pour <code>select()</code>:</p>
+<p><img src="images/select.helper.png" width="400" /></p>
+<p>À titre d’exemple, supposons qu’on s’intéresse à la variation de la
+variable <code>Ozone</code> avec le temps. À l’aide de la fonction <code>select()</code>, on
+peut retenir uniquement les colonnes requises pour nos analyses :</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-1"></a><span class="op">&gt;</span><span class="st"> </span>ozone &lt;-<span class="st"> </span><span class="kw">select</span>(airquality, Ozone, Month, Day)</span>
+<span id="cb52-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(ozone)</span>
+<span id="cb52-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-3"></a>  Ozone Month Day</span>
+<span id="cb52-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">5</span>   <span class="dv">1</span></span>
+<span id="cb52-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">5</span>   <span class="dv">2</span></span>
+<span id="cb52-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">5</span>   <span class="dv">3</span></span>
+<span id="cb52-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">5</span>   <span class="dv">4</span></span>
+<span id="cb52-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-8"></a><span class="dv">5</span>    <span class="ot">NA</span>     <span class="dv">5</span>   <span class="dv">5</span></span>
+<span id="cb52-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb52-9"></a><span class="dv">6</span>    <span class="dv">28</span>     <span class="dv">5</span>   <span class="dv">6</span></span></code></pre></div>
+</div>
+<div id="filter-sélection-de-rangées" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> filter(): Sélection de rangées</h3>
+<p>Souvent, on s’intéresse seulement à un sous-ensemble de notre jeu de
+données. Pour extraire un sous-ensemble de rangées selon une condition,
+on peut utiliser la fonction <code>filter()</code> avec la syntaxe suivante:
+<code>filter(dataframe, proposition logique 1, proposition logique 2, ...)</code>.</p>
+<p><img src="images/filter.png" width="600" /></p>
+<p>On se rappelle que la réponse à une proposition logique est VRAI ou FAUX
+(TRUE or FALSE). La fonction <code>filter()</code> retient uniquement les rangées
+pour lesquelles la réponse à la proposition logique est VRAI. On peut
+aussi utiliser cette fonction sur des chaînes de caractères (<em>strings</em>)
+et des facteurs (<em>factors</em>).</p>
+<p>Voici un petit rappel du fonctionnement des propositions logiques dans
+R: <img src="images/logic.helper.png" width="500" /></p>
+<p>Par exemple, supposons qu’on s’intéresse aux périodes de canicules du
+mois d’août dans le jeu de données <code>airquality</code> :</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-1"></a><span class="op">&gt;</span><span class="st"> </span>aout &lt;-<span class="st"> </span><span class="kw">filter</span>(airquality, Month <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, Temp <span class="op">&gt;=</span><span class="st"> </span><span class="dv">90</span>)</span>
+<span id="cb53-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(aout)</span>
+<span id="cb53-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-3"></a>  Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb53-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-4"></a><span class="dv">1</span>    <span class="dv">89</span>     <span class="dv">229</span> <span class="fl">10.3</span>   <span class="dv">90</span>     <span class="dv">8</span>   <span class="dv">8</span></span>
+<span id="cb53-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-5"></a><span class="dv">2</span>   <span class="dv">110</span>     <span class="dv">207</span>  <span class="fl">8.0</span>   <span class="dv">90</span>     <span class="dv">8</span>   <span class="dv">9</span></span>
+<span id="cb53-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-6"></a><span class="dv">3</span>    <span class="ot">NA</span>     <span class="dv">222</span>  <span class="fl">8.6</span>   <span class="dv">92</span>     <span class="dv">8</span>  <span class="dv">10</span></span>
+<span id="cb53-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-7"></a><span class="dv">4</span>    <span class="dv">76</span>     <span class="dv">203</span>  <span class="fl">9.7</span>   <span class="dv">97</span>     <span class="dv">8</span>  <span class="dv">28</span></span>
+<span id="cb53-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-8"></a><span class="dv">5</span>   <span class="dv">118</span>     <span class="dv">225</span>  <span class="fl">2.3</span>   <span class="dv">94</span>     <span class="dv">8</span>  <span class="dv">29</span></span>
+<span id="cb53-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb53-9"></a><span class="dv">6</span>    <span class="dv">84</span>     <span class="dv">237</span>  <span class="fl">6.3</span>   <span class="dv">96</span>     <span class="dv">8</span>  <span class="dv">30</span></span></code></pre></div>
+</div>
+<div id="arrange-triage-de-rangées" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> arrange(): Triage de rangées</h3>
+<p>Parfois, on travaille avec des jeux de données qui doivent être analysés
+et/ou visualisés dans un ordre en particulier (<em>e.g.</em> série temporelle).</p>
+<p>La fonction <code>arrange()</code> permet de trier les rangées d’un jeu de données
+selon une ou plusieurs colonnes, suivant cette syntaxe:
+<code>arrange(données, variable1, variable2, ...)</code>.</p>
+<p>Par défaut, les rangées sont réordonnées en ordre croissant
+(alphabétiquement ou numériquement). On peut également réordonner les
+rangées en ordre décroissant en enveloppant la variable d’intérêt par
+la fonction <code>desc()</code> au sein de la fonction <code>arrange()</code>, comme ceci:
+<code>arrange(données, variable1, desc(variable2), ...)</code>.</p>
+<p>Commençons par créer une version désordonnée de <code>airquality</code>:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-1"></a><span class="op">&gt;</span><span class="st"> </span>air_degat &lt;-<span class="st"> </span><span class="kw">sample_frac</span>(airquality, <span class="dv">1</span>)</span>
+<span id="cb54-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(air_degat)</span>
+<span id="cb54-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-3"></a>    Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb54-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-4"></a><span class="dv">21</span>      <span class="dv">1</span>       <span class="dv">8</span>  <span class="fl">9.7</span>   <span class="dv">59</span>     <span class="dv">5</span>  <span class="dv">21</span></span>
+<span id="cb54-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-5"></a><span class="dv">42</span>     <span class="ot">NA</span>     <span class="dv">259</span> <span class="fl">10.9</span>   <span class="dv">93</span>     <span class="dv">6</span>  <span class="dv">11</span></span>
+<span id="cb54-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-6"></a><span class="dv">151</span>    <span class="dv">14</span>     <span class="dv">191</span> <span class="fl">14.3</span>   <span class="dv">75</span>     <span class="dv">9</span>  <span class="dv">28</span></span>
+<span id="cb54-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-7"></a><span class="dv">108</span>    <span class="dv">22</span>      <span class="dv">71</span> <span class="fl">10.3</span>   <span class="dv">77</span>     <span class="dv">8</span>  <span class="dv">16</span></span>
+<span id="cb54-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-8"></a><span class="dv">8</span>      <span class="dv">19</span>      <span class="dv">99</span> <span class="fl">13.8</span>   <span class="dv">59</span>     <span class="dv">5</span>   <span class="dv">8</span></span>
+<span id="cb54-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb54-9"></a><span class="dv">104</span>    <span class="dv">44</span>     <span class="dv">192</span> <span class="fl">11.5</span>   <span class="dv">86</span>     <span class="dv">8</span>  <span class="dv">12</span></span></code></pre></div>
+<p>Maintenant, voici comment réarranger le jeu de données en ordre
+chronologique, soit en ordre croissant de <code>Month</code> et ensuite en ordre
+croissant de <code>Day</code> :</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-1"></a><span class="op">&gt;</span><span class="st"> </span>air_chron &lt;-<span class="st"> </span><span class="kw">arrange</span>(air_degat, Month, Day)</span>
+<span id="cb55-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(air_chron)</span>
+<span id="cb55-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-3"></a>  Ozone Solar.R Wind Temp Month Day</span>
+<span id="cb55-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">190</span>  <span class="fl">7.4</span>   <span class="dv">67</span>     <span class="dv">5</span>   <span class="dv">1</span></span>
+<span id="cb55-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">118</span>  <span class="fl">8.0</span>   <span class="dv">72</span>     <span class="dv">5</span>   <span class="dv">2</span></span>
+<span id="cb55-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">149</span> <span class="fl">12.6</span>   <span class="dv">74</span>     <span class="dv">5</span>   <span class="dv">3</span></span>
+<span id="cb55-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">313</span> <span class="fl">11.5</span>   <span class="dv">62</span>     <span class="dv">5</span>   <span class="dv">4</span></span>
+<span id="cb55-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-8"></a><span class="dv">5</span>    <span class="ot">NA</span>      <span class="ot">NA</span> <span class="fl">14.3</span>   <span class="dv">56</span>     <span class="dv">5</span>   <span class="dv">5</span></span>
+<span id="cb55-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb55-9"></a><span class="dv">6</span>    <span class="dv">28</span>      <span class="ot">NA</span> <span class="fl">14.9</span>   <span class="dv">66</span>     <span class="dv">5</span>   <span class="dv">6</span></span></code></pre></div>
+<p>Quelle est la différence quand on change l’ordre des colonnes ciblées
+par la fonction?</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb56-1"></a><span class="kw">arrange</span>(air_mess, Day, Month)</span></code></pre></div>
+</div>
+<div id="mutate-créer-des-nouvelles-colonnes" class="section level3">
+<h3><span class="header-section-number">7.2.5</span> mutate(): Créer des nouvelles colonnes</h3>
+<p>Avant même de passer au triage ou à l’extraction d’un sous-ensemble de
+données, il faut souvent générer des nouvelles variables ou transformer
+des variables existantes. On peut utiliser la fonction <code>mutate()</code> pour
+créer et transformer des variables.</p>
+<p>La fonction <code>mutate()</code> suit la syntaxe suivante:
+<code>mutate(données, newVar1 = expression1, newVar2 = expression2, ...)</code>.</p>
+<p><img src="images/mutate.png" width="600" /></p>
+<p>Utilisons <code>mutate()</code> pour créer une nouvelle colonne. Par exemple, la
+température est en degrés Fahrenheit dans le jeu de données
+<code>airquality</code>, et nous voulons transformer la variable <code>Temp</code> en degrés
+Celsius:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-1"></a><span class="op">&gt;</span><span class="st"> </span>airquality_C &lt;-<span class="st"> </span><span class="kw">mutate</span>(airquality, <span class="dt">Temp_C =</span> (Temp<span class="dv">-32</span>)<span class="op">*</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span>
+<span id="cb57-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="kw">head</span>(airquality_C)</span>
+<span id="cb57-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-3"></a>  Ozone Solar.R Wind Temp Month Day   Temp_C</span>
+<span id="cb57-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-4"></a><span class="dv">1</span>    <span class="dv">41</span>     <span class="dv">190</span>  <span class="fl">7.4</span>   <span class="dv">67</span>     <span class="dv">5</span>   <span class="dv">1</span> <span class="fl">19.44444</span></span>
+<span id="cb57-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-5"></a><span class="dv">2</span>    <span class="dv">36</span>     <span class="dv">118</span>  <span class="fl">8.0</span>   <span class="dv">72</span>     <span class="dv">5</span>   <span class="dv">2</span> <span class="fl">22.22222</span></span>
+<span id="cb57-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-6"></a><span class="dv">3</span>    <span class="dv">12</span>     <span class="dv">149</span> <span class="fl">12.6</span>   <span class="dv">74</span>     <span class="dv">5</span>   <span class="dv">3</span> <span class="fl">23.33333</span></span>
+<span id="cb57-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-7"></a><span class="dv">4</span>    <span class="dv">18</span>     <span class="dv">313</span> <span class="fl">11.5</span>   <span class="dv">62</span>     <span class="dv">5</span>   <span class="dv">4</span> <span class="fl">16.66667</span></span>
+<span id="cb57-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-8"></a><span class="dv">5</span>    <span class="ot">NA</span>      <span class="ot">NA</span> <span class="fl">14.3</span>   <span class="dv">56</span>     <span class="dv">5</span>   <span class="dv">5</span> <span class="fl">13.33333</span></span>
+<span id="cb57-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb57-9"></a><span class="dv">6</span>    <span class="dv">28</span>      <span class="ot">NA</span> <span class="fl">14.9</span>   <span class="dv">66</span>     <span class="dv">5</span>   <span class="dv">6</span> <span class="fl">18.88889</span></span></code></pre></div>
+<p>Notez que dans notre exemple, la syntaxe est très simple. Cependant, à
+l’intérieur d’un seul appel de la fonction <code>mutate()</code> on peut:</p>
+<ul>
+<li>remplacer le contenu de colonnes existantes (en conservant le même
+nom)</li>
+<li>créer plusieurs nouvelles colonnes</li>
+<li>créer des nouvelles colonnes calculées à partir de variables créés
+en amont</li>
+</ul>
+</div>
+</div>
+<div id="dplyr-et-magrittr-un-don-du-ciel" class="section level2">
+<h2><span class="header-section-number">7.3</span> dplyr et magrittr, un don du ciel</h2>
+<p><img src="images/magrittrsticker.png" width="200" /></p>
+<p>Le paquet <code>magrittr</code> introduit un nouvel outil commun dans plusieurs
+langages informatiques : le <strong>pipe</strong>. Le “pipe” (un tuyau en français)
+permet de relier nos fonctions en redirigeant la sortie (<em>output</em>)
+d’une fonction en amont vers l’entrée (<em>input</em>) d’une fonction en
+aval. Le “pipe” fournit par le paquet <code>magrittr</code> s’écrit come ceci :
+<code>%&gt;%</code>. Lorsqu’on l’utilise en combo avec <code>dplyr</code>, le “pipe” de
+<code>magrittr</code> nous permet d’accéder à la flexibilité et à toutes les
+fonctionnalités intéressantes du paquet. Pour vous familiariser avec ce
+type de flux de travail, nous utiliserons <code>dplyr</code> avec <code>magrittr</code> pour
+le restant de l’atelier.</p>
+<p>Commençons par installer et charger le paquet :</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb58-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(magrittr)) {</span>
+<span id="cb58-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb58-2"></a>    <span class="kw">install.packages</span>(<span class="st">&quot;magrittr&quot;</span>)</span>
+<span id="cb58-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb58-3"></a>}</span>
+<span id="cb58-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb58-4"></a><span class="kw">library</span>(magrittr)</span></code></pre></div>
+<p>L’utilisation de <code>magrittr</code> est très intuitif. Nous allons démontrer
+son fonctionnement en combinant les exemples ci-haut. Supposons qu’on
+veut créer un sous-ensemble de <code>airquality</code> pour le mois de juin, et
+ensuite convertir la variable de la température en degrés Celsius. Si on
+procède sans le “pipe”, soit une étape à la fois, notre code lirait
+comme suit :</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb59-1"></a>juin_C &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="kw">filter</span>(airquality, Month <span class="op">==</span><span class="st"> </span><span class="dv">6</span>), <span class="dt">Temp_C =</span> (Temp <span class="op">-</span></span>
+<span id="cb59-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb59-2"></a><span class="st">    </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span></code></pre></div>
+<p>Ce code est plus difficile à lire parce que l’ordre des opérations
+exécutées commence au centre et se lit vers l’extérieur, jusqu’à la
+fonction enveloppant le tout. Plus on ajoute des opérations, plus le
+code devient illisible. Au lieu d’envelopper tous les fonctions, on
+peut écrire les opérations en ordre d’exécutions et les relier à
+l’aide du “pipe” <code>%&gt;%</code> :</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb60-1"></a>juin_C &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb60-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb60-2"></a><span class="st">    </span><span class="kw">filter</span>(Month <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
+<span id="cb60-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb60-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">Temp_C =</span> (Temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>))</span></code></pre></div>
+<p>Notez qu’au lieu de spécifier le jeu de données au sein de chaque
+fonction, on inscrit le jeu de données avant les opérations et on le
+“pipe” jusqu’à la prochaine fonction à l’aide de <code>%&gt;%</code>.</p>
+<p>En utilisant le “pipe”, le code est moins redondant. De plus, il se
+lit et s’écrit dans le même ordre que l’exécution des opérations, ce
+qui facilite et accélère la traduction de nos pensées en code, ainsi que
+la lecture et la compréhension du code écrit par nos collègues. Lorsque
+nos opérations de manipulation de données deviennent plus complexes et
+requièrent plusieurs étapes, on s’aperçoit rapidement que <code>magrittr</code>
+offre une approche puissante et élégante pour la rédaction de notre code
+<code>dplyr</code>.</p>
+<p><strong>BONUS :</strong> Dans RStudio, on peut insérer le “pipe” rapidement avec la
+combinaison des touches suivantes: <code>Ctrl</code> (or <code>Cmd</code> sur Mac)
++<code>Shift</code>+<code>M</code>.</p>
+</div>
+<div id="regroupement-dopérations-et-sommaires-avec-dplyr" class="section level2">
+<h2><span class="header-section-number">7.4</span> Regroupement d’opérations et sommaires avec “dplyr”</h2>
+<p>Les verbes <code>dplyr</code> que nous avons utilisés dans cet atelier sont utiles
+individuellement, mais deviennent particulièrement puissants quand ils
+sont reliés par le “pipe” (<code>%&gt;%</code>), et lorsqu’on les applique sur des
+sous-ensembles de données. Les fonctions <code>dplyr</code> suivantes nous
+permettent de séparer nos jeu de données en groupes distincts sur
+lesquels on peut exécuter des opérations individuelles, comme des
+fonctions d’aggrégation et de sommaire:</p>
+<ul>
+<li><code>group_by()</code>: regrouper le jeu de données par un facteur pour les
+opérations en aval (comme <code>summarise</code>)</li>
+<li><code>summarise()</code>: créer un sommaire de variables au sein de groupes
+distincts dans un jeu de données en utilisant des fonctions
+d’aggrégation (<em>e.g.</em> <code>min()</code>, <code>max()</code>, <code>mean()</code>, etc…)</li>
+</ul>
+<p>Ces deux verbes fournissent la structure requise pour la stratégie
+Séparer-Appliquer-Combiner (“Split-Apply-Combine”) originalement
+introduite dans le paquet <code>plyr</code>, l’ancêtre de <code>dplyr</code>.</p>
+<p><img src="images/split-apply-combine.png" width="600" /></p>
+<p>Utilisons ces deux fonctions pour générer un sommaire du jeu de données
+<code>airquality</code> qui montre la température moyenne et l’écart type pour
+chaque mois:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-1"></a><span class="op">&gt;</span><span class="st"> </span>mois_moy &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb61-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-2"></a><span class="st">      </span><span class="kw">group_by</span>(Month) <span class="op">%&gt;%</span></span>
+<span id="cb61-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-3"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(Temp),</span>
+<span id="cb61-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-4"></a>                <span class="dt">sd_temp =</span> <span class="kw">sd</span>(Temp))</span>
+<span id="cb61-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-5"></a>mois_moy</span>
+<span id="cb61-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-6"></a>Source<span class="op">:</span><span class="st"> </span>local data frame [<span class="dv">5</span> x <span class="dv">3</span>]</span>
+<span id="cb61-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-7"></a></span>
+<span id="cb61-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-8"></a>  Month mean_temp  sd_temp</span>
+<span id="cb61-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-9"></a>  (int)     (dbl)    (dbl)</span>
+<span id="cb61-10"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-10"></a><span class="dv">1</span>     <span class="dv">5</span>  <span class="fl">65.54839</span> <span class="fl">6.854870</span></span>
+<span id="cb61-11"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-11"></a><span class="dv">2</span>     <span class="dv">6</span>  <span class="fl">79.10000</span> <span class="fl">6.598589</span></span>
+<span id="cb61-12"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-12"></a><span class="dv">3</span>     <span class="dv">7</span>  <span class="fl">83.90323</span> <span class="fl">4.315513</span></span>
+<span id="cb61-13"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-13"></a><span class="dv">4</span>     <span class="dv">8</span>  <span class="fl">83.96774</span> <span class="fl">6.585256</span></span>
+<span id="cb61-14"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb61-14"></a><span class="dv">5</span>     <span class="dv">9</span>  <span class="fl">76.90000</span> <span class="fl">8.355671</span></span></code></pre></div>
+<hr />
+<div id="défi-dplyr-et-magrittr" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> DÉFI: dplyr et magrittr</h3>
+<p><em>En utilisant le jeu de données <code>ChickWeight</code>, créez un tableau sommaire
+dans lequel on retrouve la différence de masse entre le maximum et le
+minimum de la masse enregistré pour chaque poussin dans l’étude.
+Utilisez les verbes <code>dplyr</code> et le “pipe” <code>%&gt;%</code>.</em></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb62-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(ChickWeight)</span>
+<span id="cb62-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb62-2"></a><span class="kw">data</span>(ChickWeight)</span></code></pre></div>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-1"></a><span class="op">&gt;</span><span class="st"> </span>mass_diff &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span></span>
+<span id="cb63-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-2"></a><span class="st">     </span><span class="kw">group_by</span>(Chick) <span class="op">%&gt;%</span></span>
+<span id="cb63-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-3"></a><span class="st">     </span><span class="kw">summarise</span>(<span class="dt">mass_diff =</span> <span class="kw">max</span>(weight) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(weight))</span>
+<span id="cb63-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-4"></a><span class="op">&gt;</span><span class="st"> </span>mass_diff</span>
+<span id="cb63-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-5"></a>Source<span class="op">:</span><span class="st"> </span>local data frame [<span class="dv">50</span> x <span class="dv">2</span>]</span>
+<span id="cb63-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-6"></a></span>
+<span id="cb63-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-7"></a>    Chick weight_diff</span>
+<span id="cb63-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-8"></a>   (fctr)       (dbl)</span>
+<span id="cb63-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-9"></a><span class="dv">1</span>      <span class="dv">18</span>           <span class="dv">4</span></span>
+<span id="cb63-10"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-10"></a><span class="dv">2</span>      <span class="dv">16</span>          <span class="dv">16</span></span>
+<span id="cb63-11"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-11"></a><span class="dv">3</span>      <span class="dv">15</span>          <span class="dv">27</span></span>
+<span id="cb63-12"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-12"></a><span class="dv">4</span>      <span class="dv">13</span>          <span class="dv">55</span></span>
+<span id="cb63-13"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-13"></a><span class="dv">5</span>       <span class="dv">9</span>          <span class="dv">58</span></span>
+<span id="cb63-14"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-14"></a><span class="dv">6</span>      <span class="dv">20</span>          <span class="dv">76</span></span>
+<span id="cb63-15"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-15"></a><span class="dv">7</span>      <span class="dv">10</span>          <span class="dv">83</span></span>
+<span id="cb63-16"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-16"></a><span class="dv">8</span>       <span class="dv">8</span>          <span class="dv">92</span></span>
+<span id="cb63-17"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-17"></a><span class="dv">9</span>      <span class="dv">17</span>         <span class="dv">100</span></span>
+<span id="cb63-18"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-18"></a><span class="dv">10</span>     <span class="dv">19</span>         <span class="dv">114</span></span>
+<span id="cb63-19"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb63-19"></a>..    ...         ...</span></code></pre></div>
+<p>Notez qu’ici on mesure simplement la différence de masse entre le
+maximum et le minimum. Il ne s’agit donc pas de la différence de masse
+entre le début et la fin de l’étude (différence en ordre chronologique
+de la masse). Inspectez de plus près les observations liées au poussin
+# 18 :</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb64-1"></a><span class="op">&gt;</span><span class="st"> </span>poussin_<span class="dv">18</span> &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Chick <span class="op">==</span><span class="st"> </span><span class="dv">18</span>)</span>
+<span id="cb64-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb64-2"></a><span class="op">&gt;</span><span class="st"> </span>poussin_<span class="dv">18</span></span>
+<span id="cb64-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb64-3"></a>  weight Time Chick Diet</span>
+<span id="cb64-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb64-4"></a><span class="dv">1</span>     <span class="dv">39</span>    <span class="dv">0</span>    <span class="dv">18</span>    <span class="dv">1</span></span>
+<span id="cb64-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb64-5"></a><span class="dv">2</span>     <span class="dv">35</span>    <span class="dv">2</span>    <span class="dv">18</span>    <span class="dv">1</span></span></code></pre></div>
+<p>On s’aperçoit que le poussin a perdu de la masse (il est probablement
+décédé, puisqu’il a seulement 2 observations). D’un point de vue
+scientifique, on pourrait s’intéresser davantage à la question: quelle
+alimentation engendre un gain de masse plus important chez les poussins
+individuels? On pourrait donc calculer la différence de masse entre le
+début et la fin avec deux autres fonctions utiles dans <code>dplyr</code> :
+<code>first()</code> et <code>last()</code> nous permettent d’accéder à la première et la
+deuxième observation d’un sous-groupe, respectivement. ++++</p>
+</div>
+<div id="indice-pour-les-ninjas" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Indice pour les ninjas</h3>
+<p>Notez qu’on peut regrouper un jeu de données par plus qu’un facteur,
+en suivant la syntaxe suivante :</p>
+<p><code>group_by(groupe1, groupe2, ...)</code></p>
+<p>Au sein de “group_by()”, on peut regrouper par plusieurs variables
+pour créer un “oignon” de sous-groupes. Chaque fois qu’on utilise la
+fonction <code>summarise()</code>, elle élimine une couche de l’oignon en
+commençant par la couche extérieure, donc la dernière variable dans
+<code>group_by()</code> qui s’agit de <code>groupe2</code> dans cet exemple. Ainsi, dans
+l’exemple ci-haut, si on utilise la fonction <code>summarise()</code> une seule
+fois en aval:</p>
+<p><code>group_by(groupe1, groupe2) %&gt;% summarise(x = mean(y))</code></p>
+<p>Le <code>groupe2</code> est éliminé, et le jeu de données devient ensuite groupé
+par <code>groupe1</code>.</p>
+</div>
+<div id="ninja-défi-dplyr-magrittr" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> NINJA DÉFI: dplyr &amp; magrittr</h3>
+<p>// En utilisant le jeu de données <code>ChickWeight</code>, créez un tableau
+sommaire qui indique pour chaque <code>Diet</code>, la moyenne de la différence de
+masse entre la fin et le début de l’étude pour chaque poussin. Utilisez
+les verbes <code>dplyr</code> et le pipe <code>%&gt;%</code>. (Indice : les fonctions <code>first()</code>
+et <code>last()</code> pourraient s’avérer utiles).//</p>
+<p>++++Solution|</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-1"></a><span class="op">&gt;</span><span class="st"> </span>diet_mass &lt;-<span class="st"> </span>ChickWeight <span class="op">%&gt;%</span></span>
+<span id="cb65-2"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-2"></a><span class="st">      </span><span class="kw">group_by</span>(Diet, Chick) <span class="op">%&gt;%</span></span>
+<span id="cb65-3"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-3"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">gain_masse =</span> <span class="kw">last</span>(weight) <span class="op">-</span><span class="st"> </span><span class="kw">first</span>(weight)) <span class="op">%&gt;%</span></span>
+<span id="cb65-4"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-4"></a><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">gain_moyen =</span> <span class="kw">mean</span>(gain_masse))</span>
+<span id="cb65-5"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-5"></a><span class="op">&gt;</span><span class="st"> </span>diet_mass</span>
+<span id="cb65-6"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-6"></a>Source<span class="op">:</span><span class="st"> </span>local data frame [<span class="dv">4</span> x <span class="dv">2</span>]</span>
+<span id="cb65-7"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-7"></a></span>
+<span id="cb65-8"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-8"></a>    Diet gain_moyen</span>
+<span id="cb65-9"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-9"></a>  (fctr)      (dbl)</span>
+<span id="cb65-10"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-10"></a><span class="dv">1</span>      <span class="dv">1</span>      <span class="fl">114.9</span></span>
+<span id="cb65-11"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-11"></a><span class="dv">2</span>      <span class="dv">2</span>      <span class="fl">174.0</span></span>
+<span id="cb65-12"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-12"></a><span class="dv">3</span>      <span class="dv">3</span>      <span class="fl">229.5</span></span>
+<span id="cb65-13"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#cb65-13"></a><span class="dv">4</span>      <span class="dv">4</span>      <span class="fl">188.3</span></span></code></pre></div>
+<p>Cette solution démontre bien la simplicité et l’élégance de la syntaxe
+de <code>dplyr</code> et <code>magrittr</code> quand nous devons manipuler nos données en
+plusieurs étapes consécutives. Un défi encore plus difficile, même pour
+ceux qui sont experts en <code>R</code> de base, serait de reproduire les mêmes
+opérations avec moins de code. Nous avons essayé et nous avons
+échoué… Peut-être nous sommes trop habitués à <code>dplyr</code> maintenant!</p>
+<p>++++</p>
+</div>
+</div>
+<div id="fusionner-des-tableaux-de-données-avec-dplyr" class="section level2">
+<h2><span class="header-section-number">7.5</span> Fusionner des tableaux de données avec dplyr</h2>
+<p>En plus des fonctions que nous avons explorées aujourd’hui, <code>dplyr</code>
+offre d’autres fonctions forts utiles nous permettant de fusionner des
+tableau de données, avec une syntaxe relativement simple :</p>
+<ul>
+<li><code>left_join()</code></li>
+<li><code>right_join()</code></li>
+<li><code>inner_join()</code></li>
+<li><code>anti_join()</code></li>
+</ul>
+<p>Ces fonctions vont au-delà du matériel d’introduction dans cet atelier,
+mais ils offrent des fonctionnalités pouvant être très utiles pour des
+manipulations de données plus complexes.</p>
+
+</div>
+</div>
+
+
+
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="réparer-un-jeu-de-données.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="résumé.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
