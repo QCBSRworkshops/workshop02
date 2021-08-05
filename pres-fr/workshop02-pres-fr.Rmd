@@ -987,7 +987,7 @@ Le paquet `tidyr` permet de manipuler la structure d'un data frame en préservan
 ---
 # Installation du paquet `tidyr`
 
-```{r}
+```{r, eval=FALSE}
 install.packages("tidyr")
 library(tidyr)
 ```
