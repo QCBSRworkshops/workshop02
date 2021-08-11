@@ -1,7 +1,5 @@
 # RStudio Projects
 
-** test!!! ** test 2!
-
 What is this?
 
 1.  Projects make it easy to keep your work organized.
