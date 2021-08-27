@@ -48,8 +48,7 @@ if(length(new.packages) > 0) {
 
 # About this workshop
 
-[![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-en/workshop02-pres-en.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-en/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.R) | 
-[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-en/workshop02-pres-en.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-en/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/book-en/workshop02-script-en.R) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
 
 ---
 
