@@ -1242,7 +1242,8 @@ Examples :
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
 select(données, c(2:4,6) # sélectionne les colonnes 2 à 4, plus la 6ème colonne
 select(données, -colonne1) # sélectionne toutes les colonnes sauf la 1ère
-select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui commence par "x."
+select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui 
+                                # commence par "x."
 ```
 
 ---
