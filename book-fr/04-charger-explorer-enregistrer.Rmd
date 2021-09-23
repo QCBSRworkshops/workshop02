@@ -152,6 +152,7 @@ même, le symbôle `$` suivi d'un nom de colonne peut être utilisé.
 
 ```{r, echo = TRUE, eval = FALSE}
 mydata[,1] # extrait le contenu de la première colonne
+mydata[,1][2] # [...] peut être utilisé récursivement
 mydata$Variable1 # extrait le contenu de la colonne "Variable1"
 ```
 
@@ -220,7 +221,7 @@ CO2copy[CO2copy$absortion >= 20, ] # Extraire les observations ayant une absorti
 CO2copy[CO2copy$Traitement == "nonchilled" & CO2copy$absortion >= 20, ]
 
 # Nous avons fini de modifier la copie du jeu de données CO2copy. On peut alors l'effacer.
-CO2copy <- NULL
+rm(CO2copy)
 ```
 
 Consultez
@@ -245,17 +246,16 @@ l'information supplémentaire sur vos données. Les fonctions `mean()`,
 # Calculer la moyenne et l'écart type des données dans la colonne "conc" de l'objet CO2
 meanConc<-mean(CO2$conc) # Calcule la moyenne de la colonne "conc" de l'objet "CO2"
 sdConc<-sd(CO2$conc) # Calcule l'écart-type de la colonne "conc"
+
+# print() sort une valeure dans la console R 
+print(paste("la concentration moyenne est:", meanConc)) print(paste("l'écart type de la concentration est:", sdConc))
+
+# Produisez un histogramme to explore the distribution of "uptake"
+hist(CO2$uptake)
+
+# Augmenter le nombre de classes pour mieux observer la distribution
+hist(CO2$uptake, breaks = 40)
 ```
-
-\# print() sort une valeure dans la console R print(paste("la
-concentration moyenne est:", meanConc)) print(paste("l'écart type de
-la concentration est:", sdConc))
-
-\# Produisez un histogramme to explore the distribution of "uptake"
-hist(CO2\$uptake)
-
-\# Augmenter le nombre de classes pour mieux observer la distribution
-hist(CO2\$uptake, breaks = 40) \</code\>
 
 La fonction `apply()` est utilisée pour appliquer une fonction à
 plusieurs colonnes en même temps. Utilisez `?apply` pour en apprendre
