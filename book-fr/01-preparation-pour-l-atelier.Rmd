@@ -29,7 +29,7 @@ Tout le matériel de l'atelier se trouve sur [github.com/QCBSRworkshops/workshop
 
 Pour cet atelier, nous travaillerons avec les jeux de données suivants :
 
-* Jeux de données CO2
+* Jeux de données CO2, airquality et ChickWeight
 
 > Pour télécharger ces données, faites un clic droit + enregistrer sur la page qui s'ouvre.
 
