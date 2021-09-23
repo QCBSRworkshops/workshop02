@@ -50,8 +50,6 @@ CO2 <- read.csv("CO2_broken.csv",sep = "")
 ?read.csv
 ```
 
- 
-
 Réponse \#2  Problème \#2 : Les données ne commencent pas
 avant la troisième ligne. Les en-têtes de colonnes sont remplacés par
 des notes.
@@ -67,8 +65,6 @@ de sauter les deux premières lignes avec l'argument "skip".
 CO2<-read.csv("CO2_broken.csv",sep = "",skip=2)  # En ajoutant l'argument skip, R ignore les deux premières lignes.
 head(CO2) # Le tableau a maintenant des en-têtes appropriés.
 ```
-
- 
 
 Réponse \#3  Problème \#3 : Les variables "conc" et
 "uptake" sont considérées commes des facteurs au lieu de nombres, car
@@ -103,8 +99,6 @@ signifie "Not available".
 head(CO2)
 str(CO2) # La variable 'conc' est maintenant de type 'integer' (nombre entier) et la variable 'uptake' est maintenant de type numérique.
 ```
-
- 
 
 Réponse \#4  Problème \#4 : En réalité, il n'y a seulement
 que deux traitements (chilled & non chilled), mais des erreurs

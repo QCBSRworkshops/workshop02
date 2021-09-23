@@ -76,7 +76,7 @@ NOTE : Si vous utilisez un système d'exploitation en français ou un
 `read.csv2()` au lieu de la fonction `read.csv()` pour importer
 correctement un fichier.
 
-![](images/5_importing_data_mod_arrow.png){width="900"}
+![](images/5_Importing_data_Mod_arrow.png){width="900"}
 
 Prenez note que RStudio montre maintenant le jeu de donné CO2 dans ton
 espace de travail. L'espace de travail inclut tous les objets créés
@@ -135,7 +135,7 @@ Les données peuvent être extraites d'un jeu de données de plusieurs
 façons. Considerons un jeu de données nommé *mydata*. Les crochets
 permettent d'extraire le contenu d'une cellule.
 
-![](images/table_reminder_from_workshop_1_accessing_data.png){width="500"}
+![](images/Table_Reminder_from_Workshop_1_Accessing_data.png){width="500"}
 
 ```{r, echo = TRUE, eval = FALSE}
 mydata[2,3] # extrait le contenu de la deuxième ligne / troisième colonne

@@ -2,7 +2,7 @@
 
 ## Utiliser "tidyr" pour réorganiser ses données
 
-![](images/tidyrsticker.png){width="200"}
+![](images/tidyr_logo.png){width="200"}
 
 ### Pourquoi réorganiser ses données?
 
@@ -170,6 +170,8 @@ Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisée
 
 ### separate(): séparer une colonne en deux (ou plusieurs) colonnes
 
+![](images/separate.png){width="600"}
+
 Il arrive parfois qu'un jeu de données contient plusieurs variables
 réunies dans une même colonne. Dans ces situations, la fonction
 `separate()` sépare la colonne pour que chacune des variables ait sa
@@ -259,7 +261,7 @@ rassemblant toutes les colonnes sauf "Month" et "Day"). Ensuite,
 dispersez-le en format large pour retrouver le format original de
 `airquality`:*
 
-++++Solution\|
+### Solution
 
 ```{r, echo = TRUE, eval = FALSE}
 air.long <- pivot_longer(airquality,
@@ -280,7 +282,7 @@ Le tableau `air.wide` a le même format que le jeu de données d'origine
 
 ## Utiliser "dplyr" pour manipuler les données
 
-![](images/dplyrsticker.png){width="200"}
+![](images/dplyr_logo.png){width="200"}
 
 ### Introduction à dplyr
 
@@ -503,7 +505,7 @@ l'intérieur d'un seul appel de la fonction `mutate()` on peut:
 
 ## dplyr et magrittr, un don du ciel
 
-![](images/magrittrsticker.png){width="200"}
+![](images/magrittr.png){width="200"}
 
 Le paquet `magrittr` introduit un nouvel outil commun dans plusieurs
 langages informatiques : le **pipe**. Le "pipe" (un tuyau en français)
@@ -585,6 +587,8 @@ Séparer-Appliquer-Combiner ("Split-Apply-Combine") originalement
 introduite dans le paquet `plyr`, l'ancêtre de `dplyr`.
 
 ![](images/split-apply-combine.png){width="600"}
+
+![](images/summarise.png){width="600"}
 
 Utilisons ces deux fonctions pour générer un sommaire du jeu de données
 `airquality` qui montre la température moyenne et l'écart type pour
@@ -670,11 +674,11 @@ deuxième observation d'un sous-groupe, respectivement. ++++
 
 ### NINJA DÉFI: dplyr & magrittr
 
-// En utilisant le jeu de données `ChickWeight`, créez un tableau
+En utilisant le jeu de données `ChickWeight`, créez un tableau
 sommaire qui indique pour chaque `Diet`, la moyenne de la différence de
 masse entre la fin et le début de l'étude pour chaque poussin. Utilisez
 les verbes `dplyr` et le pipe `%>%`. (Indice : les fonctions `first()`
-et `last()` pourraient s'avérer utiles).//
+et `last()` pourraient s'avérer utiles).
 
 ### Indice pour les ninjas
 
