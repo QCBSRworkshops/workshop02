@@ -35,4 +35,6 @@ Pour cet atelier, nous travaillerons avec les jeux de données suivants :
 
 Vous devriez également vous assurer que vous avez téléchargé, installé et chargé les librairies R suivantes:
 
-* list here
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)

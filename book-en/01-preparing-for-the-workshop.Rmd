@@ -34,4 +34,6 @@ For this workshop, we will be working with the following datasets:
 
 You should also make sure you have downloaded, installed, and loaded these packages:
 
-* list here
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)
