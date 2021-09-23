@@ -17,7 +17,8 @@ In the next workshop, ...
 
 #### A few books
 
--   list here
+-   Myers RH - Classical and Modern Regression with Application
+-   Gotelli NJ - A Primer of Ecological Statistics
 
 ------------------------------------------------------------------------
 
