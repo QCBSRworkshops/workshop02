@@ -1,4 +1,4 @@
-# (PART\*) Modèles linéaires en `R` {-}
+# (PART\*) Charger et manipuler des données {-}
 
 # Objectifs d'apprentissage
 
