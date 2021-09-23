@@ -28,7 +28,7 @@ All workshop materials are found at [github.com/QCBSRworkshops/workshop02](https
 
 For this workshop, we will be working with the following datasets:
 
-* list here
+* CO2 dataset
 
 > To download this data, do right click + save on the page that opens.
 
