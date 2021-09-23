@@ -63,7 +63,7 @@ CO2 <- read.csv("co2_good.csv", header = TRUE)
 NOTE: If your operating system or CSV editor is in French, you may need
 to use `read.csv2()` instead of `read.csv()`
 
-![](images/5_importing_data_mod_arrow.png){width="900"}
+![](images/5_Importing_data_Mod_arrow.png){width="900"}
 
 Notice that RStudio now provides information on the CO2 data in your
 workspace. The workspace refers to all the objects that you create
@@ -117,7 +117,7 @@ Data within a data frame can be extracted by several means. Let's
 consider a data frame called *mydata*. Use square brackets to extract
 the content of a cell.
 
-![](images/table_reminder_from_workshop_1_accessing_data.png){width="500"}
+![](images/Table_Reminder_from_Workshop_1_Accessing_data.png){width="500"}
 
 ```{r, echo = TRUE, eval = FALSE}
 mydata[2,3] # extracts the content of row 2 / column 3
@@ -207,7 +207,7 @@ CO2copy[CO2copy$absortion >= 20, ] # Select observations with absortion higher o
 CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absortion >= 20, ]
 
 # We are done playing with the dataset copy. Let's erase it.
-CO2copy <- NULL
+rm(CO2copy)
 ```
 
 Go
