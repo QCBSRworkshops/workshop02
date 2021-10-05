@@ -24,15 +24,19 @@ rm(list=ls())  # Efface ce qui se trouve dans l'espace de travail
 ?rm
 ?ls
 
-A<-"Test"     # On crée un objet "A".
-A <- "Test"   # C'est préférable de mettre des espaces avant et après "<-".
-A = "Test"    # = peut aussi être utilisé comme opérateur d'assignation
-
-#Tel que vu au premier atelier, il est préférable d'utiliser "<-" comme opérateur d'assignation plutôt que "=".
-
+A<-"Test" # On crée un objet "A".
+A <- "Test" # Utilisez des espaces - plus facile à lire
+A = "Test"
+# Note: il est recommandé d'utiliser "<-" pour l'assigment au lieu de "="
+# Visualiser des objets en mémoire
+ls()
+# [1] "A"
 A
+# [1] "Test"
+# Nettoyer la mémoire
 rm(list=ls())
 A
+# Error in eval(expr, envir, enclos): object 'A' not found
 
 a<-10
 A<-5
@@ -65,6 +69,7 @@ mydata[2,3] # extrait le contenu de la deuxième ligne / troisième colonne
 mydata[1,] # extrait le contenu de la première ligne
 
 mydata[,1] # extrait le contenu de la première colonne
+mydata[,1][2] # [...] peut être utilisé récursivement
 mydata$Variable1 # extrait le contenu de la colonne "Variable1"
 
 # Créer une copie du jeu de données qu'on pourra modifier
@@ -107,13 +112,22 @@ CO2copy[CO2copy$absortion >= 20, ] # Extraire les observations ayant une absorti
 CO2copy[CO2copy$Traitement == "nonchilled" & CO2copy$absortion >= 20, ]
 
 # Nous avons fini de modifier la copie du jeu de données CO2copy. On peut alors l'effacer.
-CO2copy <- NULL
+rm(CO2copy)
 
 summary(CO2) # calculer les statistiques sommaires du jeu de données
 
 # Calculer la moyenne et l'écart type des données dans la colonne "conc" de l'objet CO2
 meanConc<-mean(CO2$conc) # Calcule la moyenne de la colonne "conc" de l'objet "CO2"
 sdConc<-sd(CO2$conc) # Calcule l'écart-type de la colonne "conc"
+
+# print() sort une valeure dans la console R
+print(paste("la concentration moyenne est:", meanConc)) print(paste("l'écart type de la concentration est:", sdConc))
+
+# Produisez un histogramme to explore the distribution of "uptake"
+hist(CO2$uptake)
+
+# Augmenter le nombre de classes pour mieux observer la distribution
+hist(CO2$uptake, breaks = 40)
 
 ?apply
 
@@ -186,16 +200,20 @@ library(tidyr)
                           DHP = c(12, 20, 13),
                          Haut = c(56, 85, 55))
 > large
+
   Species DHP Haut
 1   Chêne  12   56
 2    Orme  20   85
 3   Frêne  13   55
 
-?gather
+?pivot_longer
 
 # Rassembler les colonnes en rangées d'observations uniques
 
-> long <- gather(large, dimension, cm, DHP, Haut)
+> long <- pivot_longer(data      = large,
+                       cols      = c("DHP", "Haut"),
+                       names_to  = "dimension",
+                       values_to = "cm")
 > long
   Species dimension cm
 1   Chêne       DHP 12
@@ -205,19 +223,24 @@ library(tidyr)
 5    Orme      Haut 85
 6   Frêne      Haut 55
 
-CO2.long <- gather(CO2, response, value, conc, uptake)
+CO2.long <- pivot_longer(CO2, cols = c("conc", "uptake"),
+                         "response", "value")
 head(CO2)
 head(CO2.long)
 tail(CO2.long)
 
-?spread
+?pivot_wider
 
-> large2 <- spread(long, dimension, cm)
+> large2 <- pivot_wider(data        = long,
+                        names_from  = "dimension",
+                        values_from = "cm")
 > large2
   Species DHP Haut
 1   Chêne  12   56
 2   Frêne  13   55
 3    Orme  20   85
+
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
 
 set.seed(8)
 degat <- data.frame(id = 1:4,
@@ -227,7 +250,12 @@ degat <- data.frame(id = 1:4,
          zooplancton.T2 = runif(4),
              poisson.T2 = runif(4))
 
-> degat.long <- gather(degat, taxa, count, -id, -trt)
+> degat.long <- pivot_longer(degat,
+                             names_to = "taxa",
+                             cols     = c("zooplancton.T1",
+                                          "poisson.T1",
+                                          "zooplancton.T2",
+                                          "poisson.T2"))
 > head(degat.long)
 
 > degat.long.sep <- separate(degat.long, taxa, into = c("especes", "temps"), sep = "\.")
@@ -240,10 +268,14 @@ degat <- data.frame(id = 1:4,
 5  1 controle     poisson    T1 0.7691470
 6  2 controle     poisson    T1 0.6444911
 
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- pivot_longer(airquality,
+                         cols     = c("Ozone", "Solar.R", "Wind", "Temp"),
+                         names_to = c("variable"))
 # Notez que la syntaxe ici indique qu'on veut "rassembler" toutes les colonnes sauf "Month" et "Day"
 head(air.long)
-air.wide <- spread(air.long , variable, value)
+air.wide <- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from  = "variable")
 head(air.wide)
 
 if(!require(dplyr)){install.packages("dplyr")}
@@ -377,6 +409,18 @@ Source: local data frame [4 x 2]
 2      2      174.0
 3      3      229.5
 4      4      188.3
+
+
+mass_diff_rbase <- aggregate(formula = weight ~ Chick,
+                             data    = ChickWeight,
+                             FUN     = function(x) weight_diff = max(x) - min(x))
+names(mass_diff_rbase) <- c("Chick", "weight_diff")
+
+
+# Est ce que les deux résultats sont identiques (c-a-d avec et sans dplyr)
+
+table(mass_diff_rbase ==  as.data.frame(mass_diff))
+
 
 
 ##Section: 07-considerations-finales.R 

@@ -145,7 +145,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices</a></li>
 <li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!</a></li>
 </ul></li>
-<li class="part"><span><b>Modèles linéaires en <code>R</code></b></span></li>
+<li class="part"><span><b>Charger et manipuler des données</b></span></li>
 <li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage</a></li>
 <li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier</a></li>
 <li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio</a><ul>
@@ -186,11 +186,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur</a></li>
-<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#gather-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> gather(): Rassembler les données en longueur</a></li>
-<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#spread-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> spread(): Disperser les données en largeur</a></li>
-<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.5</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes</a></li>
-<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.6</b> Récapitulatif: tidyr</a></li>
-<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.7</b> DÉFI: Utiliser tidyr pour convertir le format long en format large</a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_longer-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> pivot_longer(): Rassembler les données en longueur</a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_wider-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> pivot_wider(): Disperser les données en largeur</a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#la-structure-tibble-pour-des-tables-de-données"><i class="fa fa-check"></i><b>7.1.5</b> La structure <code>tibble</code> pour des tables de données</a></li>
+<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.6</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes</a></li>
+<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.7</b> Récapitulatif: tidyr</a></li>
+<li class="chapter" data-level="7.1.8" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.8</b> DÉFI: Utiliser tidyr pour convertir le format long en format large</a></li>
+<li class="chapter" data-level="7.1.9" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution"><i class="fa fa-check"></i><b>7.1.9</b> Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr</a></li>
@@ -202,8 +204,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel</a></li>
 <li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”</a><ul>
 <li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr</a></li>
-<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.2</b> Indice pour les ninjas</a></li>
+<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-1"><i class="fa fa-check"></i><b>7.4.2</b> Solution:</a></li>
 <li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr</a></li>
+<li class="chapter" data-level="7.4.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.4</b> Indice pour les ninjas</a></li>
+<li class="chapter" data-level="7.4.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-2"><i class="fa fa-check"></i><b>7.4.5</b> Solution</a></li>
+<li class="chapter" data-level="7.4.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base"><i class="fa fa-check"></i><b>7.4.6</b> Défi R base</a></li>
+<li class="chapter" data-level="7.4.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base---solution"><i class="fa fa-check"></i><b>7.4.7</b> Défi R base - Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr</a></li>
 </ul></li>
@@ -261,12 +267,12 @@ le partage de données, de scripts, et de leur documentation.</p>
 <h2><span class="header-section-number">3.1</span> Créer un projet dans RStudio</h2>
 <p>Pour créer un projet dans RStudio, allez dans le menu <em>Fichier</em> puis
 sélectionnez “Nouveau projet”.</p>
-<p><img src="images/0_create_a_new_project.png" width="400" /></p>
+<p><img src="images/0_Create_a_new_project.png" width="400" /></p>
 </div>
 <div id="organiser-ses-fichiers" class="section level2">
 <h2><span class="header-section-number">3.2</span> Organiser ses fichiers</h2>
 <p>Un projet = un dossier!</p>
-<p><img src="images/0_folderdata1.png" width="400" /></p>
+<p><img src="images/0_folderData1.png" width="400" /></p>
 </div>
 <div id="préparer-des-données-pour-limportation-dans-r" class="section level2">
 <h2><span class="header-section-number">3.3</span> Préparer des données pour l’importation dans R</h2>
@@ -329,7 +335,7 @@ fusionnées!</li>
 </div>
 <div id="exemples-de-mauvaises-habitudes" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Exemples de mauvaises habitudes</h3>
-<p><img src="images/excel_notes.png" /> <img src="images/horribledata.png" /></p>
+<p><img src="images/excel_notes.png" /> <img src="images/HorribleData.png" /></p>
 <p>Il est possible de faire toute la préparation des données dans R. Les
 avantages sont :</p>
 <ul>
