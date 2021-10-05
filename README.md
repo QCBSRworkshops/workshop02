@@ -43,12 +43,34 @@ pour l'analyse et la visualisation de vos données.
 
 # Workshop materials
 
-Language | Slides | Bookdown | Wiki | Script | GitHub 
-:--------|:-------|:-----|:-----|:------ |:-------
-EN | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-en/workshop02-pres-en.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-en/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/book-en/workshop02-script-en.R) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
-FR | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Diapos&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-fr/workshop02-pres-fr.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-fr/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/book-fr/workshop02-script-fr.R) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
+Language | Slides | Bookdown | Script | 
+:--------|:-------|:-----|:-----|
+EN | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-en/workshop02-pres-en.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-en/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/book-en/workshop02-script-en.R) |
+FR | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Diapos&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-fr/workshop02-pres-fr.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-fr/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/book-fr/workshop02-script-fr.R)|
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+> *Note: The wiki for this workshop was converted to Bookdown in September 2021. <br> The wiki pages for this workshop will no longer be updated (Archive: [EN](https://wiki.qcbs.ca/r_workshop2), [FR](https://wiki.qcbs.ca/r_atelier2)).* 
+
+# License
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+# Contributors | Contributeurs et contributrices 
+
+This workshop was originally developed by Johanna Bradie, Vincent Fugère, and Thomas Lamy.
+
+Since 2014, several QCBS members contributed to consistently and collaboratively develop and update this workshop, as part of the *Learning and Development Award* from the Québec Centre for Biodiversity Science. They were:
+
+|      2022 - 2021 - 2020     |      2019 - 2018 - 2017     |      2016 - 2015 - 2014      |
+|:---------------------------:|:---------------------------:|:----------------------------:|
+| Valentin Lucet | Gabriel Muñoz | Johanna Bradie |
+| Kevin Cazelles | Katherine Hébert | Vincent Fugère |
+| Pedro Henrique P. Braga | Marie-Hélène Brice | Thomas Lamy |
+| Marie-Hélène Brice |  | Sebastien Portalier |
+| Gabriel Muñoz |  | Zofia Taranu |
+| Hassen Allegue |  | Cédric Frenette Dussault |
+| Willian Vieira |  | |
 
 # Development status
 
