@@ -24,13 +24,15 @@ rm(list=ls())  # Clears R workspace
 ?rm
 ?ls
 
-A<-"Test"     # Put some data into workspace, to see how rm(list=ls()) removes it
-A <- "Test"   # Note that you can use a space before or after <-
-A = "Test"    # <- or = can be used equally
-
-# Note that it is best practice to use "<-" for assignment instead of "="
-
+A<-"Test" # Put some data in workspace
+A <- "Test" # Add some spaces to organize your data!
+A = "Test" # You can do this, but it does not mean you should
+# Check objects in the workspace
+ls()
+# [1] "A"
 A
+# [1] "Test"
+# Clean Workspace
 rm(list=ls())
 A
 
@@ -105,7 +107,7 @@ CO2copy[CO2copy$absortion >= 20, ] # Select observations with absortion higher o
 CO2copy[CO2copy$Traitement  == "nonchilled" & CO2copy$absortion >= 20, ]
 
 # We are done playing with the dataset copy. Let's erase it.
-CO2copy <- NULL
+rm(CO2copy)
 
 summary(CO2) # Get summary statistics of your dataset
 
@@ -198,32 +200,46 @@ library(tidyr)
 2     Elm  20     85
 3     Ash  13     55
 
-?gather
+?pivot_longer
 
 # Gathering columns into rows
 
-> long <- gather(wide, Measurement, Value, DBH, Height)
-> long
-  Species Measurement Value
-1     Oak         DBH 12
-2     Elm         DBH 20
-3     Ash         DBH 13
-4     Oak      Height 56
-5     Elm      Height 85
-6     Ash      Height 55
+> long <- pivot_longer(data      = wide,
+                       cols      = c("DBH", "Height"),
+                       names_to  = "dimension",
+                       values_to = "cm")
 
-CO2.long <- gather(CO2, response, value, conc, uptake)
+> long
+  Species dimension    cm
+  <chr>   <chr>     <dbl>
+1 Chene   DHP          12
+2 Chene   Haut         56
+3 Orme    DHP          20
+4 Orme    Haut         85
+5 Frene   DHP          13
+6 Frene   Haut         55
+
+CO2.long <- pivot_longer(CO2, cols = c("conc", "uptake"),
+                                       "response", "value")
 head(CO2)
 head(CO2.long)
 tail(CO2.long)
 
 # Spreading rows into columns
-> wide2 <- spread(long, Measurement, Value)
+> wide2 <- ivot_wider(data        = long,
+                      names_from  = "dimension",
+                      values_from = "cm")
 > wide2
-  Species DBH Height
-1     Ash  13     55
-2     Elm  20     85
-3     Oak  12     56
+  Species   DBH Height
+  <chr>   <dbl>  <dbl>
+1 Oak        12     56
+2 Elm        20     85
+3 Ash        13     55
+
+tibble(x = 1:3, y = c("a","b","c"))
+
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+
 
 set.seed(8)
 messy <- data.frame(id = 1:4,
@@ -234,11 +250,34 @@ messy <- data.frame(id = 1:4,
                       fish.T2 = runif(4))
 messy
 
-messy.long <- gather(messy, taxa, count, -id, -trt)
+messy.long <- pivot_longer(messy,
+                           names_to = "taxa",
+                           cols     = c("zooplankton.T1",
+                                        "fish.T1",
+                                        "zooplankton.T2",
+                                        "fish.T2"))
 head(messy.long)
+     id trt   taxa           value
+  <int> <chr> <chr>          <dbl>
+1     1 farm  zooplankton.T1 0.719
+2     1 farm  fish.T1        0.644
+3     1 farm  zooplankton.T2 0.545
+4     1 farm  fish.T2        0.264
+5     2 farm  zooplankton.T1 0.291
+6     2 farm  fish.T1        0.457
 
-messy.long.sep <- separate(messy.long, taxa, into = c("species", "time"), sep = "\.")
+messy.long.sep <- separate(messy.long, taxa, into = c("species", "time"), sep = "\\.")
+
 head(messy.long.sep)
+
+     id trt   species     time  value
+  <int> <chr> <chr>       <chr> <dbl>
+1     1 farm  zooplankton T1    0.719
+2     1 farm  fish        T1    0.644
+3     1 farm  zooplankton T2    0.545
+4     1 farm  fish        T2    0.264
+5     2 farm  zooplankton T1    0.291
+6     2 farm  fish        T1    0.457
 
 ?air.quality
 data(airquality)
@@ -250,6 +289,11 @@ head(air.long)
 
 # Then, use spread() to convert the dataset back to wide format
 air.wide <- spread(air.long , variable, value)
+head(air.wide)
+
+air.wide <- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from  = "variable")
 head(air.wide)
 
 if(!require(dplyr)){install.packages("dplyr")}

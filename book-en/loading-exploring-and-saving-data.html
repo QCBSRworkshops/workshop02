@@ -187,11 +187,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
 <li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
 <li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
-<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#gather-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> gather(): Making your data long</a></li>
-<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#spread-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> spread(): Making your data wide</a></li>
-<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.6</b> separate(): Separate two (or more) variables in a single column</a></li>
-<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.7</b> Recap: tidyr</a></li>
-<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.8</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
 <li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
@@ -200,11 +204,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
-<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a></li>
-<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.4</b> dplyr &amp; magrittr CHALLENGE</a></li>
-<li class="chapter" data-level="7.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.5</b> Ninja hint</a></li>
-<li class="chapter" data-level="7.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.6</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
-<li class="chapter" data-level="7.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.7</b> dplyr - Merging data frames</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
 </ul></li>
 <li class="part"><span><b>Final considerations</b></span></li>
 <li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
@@ -289,7 +296,7 @@ not data.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="loading-exploring-and-saving-data.html#cb11-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_good.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>NOTE: If your operating system or CSV editor is in French, you may need
 to use <code>read.csv2()</code> instead of <code>read.csv()</code></p>
-<p><img src="images/5_importing_data_mod_arrow.png" width="900" /></p>
+<p><img src="images/5_Importing_data_Mod_arrow.png" width="900" /></p>
 <p>Notice that RStudio now provides information on the CO2 data in your
 workspace. The workspace refers to all the objects that you create
 during an R session.</p>
@@ -365,7 +372,7 @@ header=TRUE before continuing.</p>
 <p>Data within a data frame can be extracted by several means. Let’s
 consider a data frame called <em>mydata</em>. Use square brackets to extract
 the content of a cell.</p>
-<p><img src="images/table_reminder_from_workshop_1_accessing_data.png" width="500" /></p>
+<p><img src="images/Table_Reminder_from_Workshop_1_Accessing_data.png" width="500" /></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="loading-exploring-and-saving-data.html#cb13-1"></a>mydata[<span class="dv">2</span>, <span class="dv">3</span>]  <span class="co"># extracts the content of row 2 / column 3</span></span></code></pre></div>
 <p>If column number is omitted, the whole row is extracted.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="loading-exploring-and-saving-data.html#cb14-1"></a>mydata[<span class="dv">1</span>, ]  <span class="co"># extracts the content of the first row</span></span></code></pre></div>
@@ -434,7 +441,7 @@ well!</p>
 <span id="cb20-18"><a href="loading-exploring-and-saving-data.html#cb20-18"></a></span>
 <span id="cb20-19"><a href="loading-exploring-and-saving-data.html#cb20-19"></a><span class="co"># We are done playing with the dataset copy. Let&#39;s erase</span></span>
 <span id="cb20-20"><a href="loading-exploring-and-saving-data.html#cb20-20"></a><span class="co"># it.</span></span>
-<span id="cb20-21"><a href="loading-exploring-and-saving-data.html#cb20-21"></a>CO2copy &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
+<span id="cb20-21"><a href="loading-exploring-and-saving-data.html#cb20-21"></a><span class="kw">rm</span>(CO2copy)</span></code></pre></div>
 <p>Go
 <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html">here</a>
 to check all the logical operators you can use to subset a data frame in

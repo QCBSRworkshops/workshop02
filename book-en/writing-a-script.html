@@ -187,11 +187,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
 <li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
 <li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
-<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#gather-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> gather(): Making your data long</a></li>
-<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#spread-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> spread(): Making your data wide</a></li>
-<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.6</b> separate(): Separate two (or more) variables in a single column</a></li>
-<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.7</b> Recap: tidyr</a></li>
-<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.8</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
 <li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
 <li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
@@ -200,11 +204,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
-<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a></li>
-<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.4</b> dplyr &amp; magrittr CHALLENGE</a></li>
-<li class="chapter" data-level="7.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.5</b> Ninja hint</a></li>
-<li class="chapter" data-level="7.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.6</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
-<li class="chapter" data-level="7.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.7</b> dplyr - Merging data frames</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
 </ul></li>
 <li class="part"><span><b>Final considerations</b></span></li>
 <li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
@@ -254,8 +261,8 @@ changes and re-run analyses with little effort.</p>
 command-enter (Mac) or ctrl-enter (PC).</p>
 <div id="creating-an-r-script" class="section level3">
 <h3><span class="header-section-number">4.0.1</span> Creating an R script</h3>
-<p><img src="images/1_create_an_r_script.png" width="500" />
-<img src="images/2_create_an_r_script2.mod_arrow.png" width="600" /></p>
+<p><img src="images/1_Create_an_R_script.png" width="500" />
+<img src="images/2_Create_an_R_script2.Mod_arrow.png" width="600" /></p>
 </div>
 <div id="commands-comments" class="section level3">
 <h3><span class="header-section-number">4.0.2</span> Commands &amp; Comments</h3>
@@ -289,7 +296,7 @@ heading was created. If you click on the arrow, you will hide this
 section of the script.</p>
 <p>You can also move quickly between sections using the drop-down menu at
 the bottom of the script window.</p>
-<p><img src="images/4_section_headings_mod_arrow_2.png" width="600" /></p>
+<p><img src="images/4_Section_headings_Mod_arrow_2.png" width="600" /></p>
 </div>
 <div id="housekeeping" class="section level3">
 <h3><span class="header-section-number">4.0.5</span> Housekeeping</h3>
@@ -301,14 +308,14 @@ old data that has been left in your workspace.</p>
 <span id="cb4-3"><a href="writing-a-script.html#cb4-3"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(ls)</span></code></pre></div>
 <p>We can test this command by adding data to the workspace and seeing how
 <code>rm(list=ls())</code> will remove it.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="writing-a-script.html#cb5-1"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Put some data into workspace, to see how rm(list=ls()) removes it</span></span>
-<span id="cb5-2"><a href="writing-a-script.html#cb5-2"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Note that you can use a space before or after &lt;-</span></span>
-<span id="cb5-3"><a href="writing-a-script.html#cb5-3"></a>A =<span class="st"> &quot;Test&quot;</span>  <span class="co"># &lt;- or = can be used equally</span></span>
-<span id="cb5-4"><a href="writing-a-script.html#cb5-4"></a></span>
-<span id="cb5-5"><a href="writing-a-script.html#cb5-5"></a><span class="co"># Note that it is best practice to use &#39;&lt;-&#39; for assignment</span></span>
-<span id="cb5-6"><a href="writing-a-script.html#cb5-6"></a><span class="co"># instead of &#39;=&#39;</span></span>
-<span id="cb5-7"><a href="writing-a-script.html#cb5-7"></a></span>
-<span id="cb5-8"><a href="writing-a-script.html#cb5-8"></a>A</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="writing-a-script.html#cb5-1"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Put some data in workspace</span></span>
+<span id="cb5-2"><a href="writing-a-script.html#cb5-2"></a>A &lt;-<span class="st"> &quot;Test&quot;</span>  <span class="co"># Add some spaces to organize your data!</span></span>
+<span id="cb5-3"><a href="writing-a-script.html#cb5-3"></a>A =<span class="st"> &quot;Test&quot;</span>  <span class="co"># You can do this, but it does not mean you should</span></span>
+<span id="cb5-4"><a href="writing-a-script.html#cb5-4"></a><span class="co"># Check objects in the workspace</span></span>
+<span id="cb5-5"><a href="writing-a-script.html#cb5-5"></a><span class="kw">ls</span>()</span>
+<span id="cb5-6"><a href="writing-a-script.html#cb5-6"></a><span class="co"># [1] &#39;A&#39;</span></span>
+<span id="cb5-7"><a href="writing-a-script.html#cb5-7"></a>A</span>
+<span id="cb5-8"><a href="writing-a-script.html#cb5-8"></a><span class="co"># [1] &#39;Test&#39; Clean Workspace</span></span>
 <span id="cb5-9"><a href="writing-a-script.html#cb5-9"></a><span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())</span>
 <span id="cb5-10"><a href="writing-a-script.html#cb5-10"></a>A</span></code></pre></div>
 </div>
