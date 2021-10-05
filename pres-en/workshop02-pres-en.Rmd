@@ -48,11 +48,8 @@ if(length(new.packages) > 0) {
 
 # About this workshop
 
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.html)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=Slides&message=02&color=red&logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.pdf)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-en/workshop02-pres-en.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-en/index.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.R) 
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
 
 ---
 
@@ -332,6 +329,9 @@ You can make a section heading in R Studio with four `#` signs
 
 ```
 
+---
+# Section Headings
+
 This allows you to move quickly between sections and hide sections
 
 .center[
@@ -569,8 +569,8 @@ Imagine a data frame called `mydata`:
 ]
 
 ```{r, eval = FALSE}
-mydata[1,] # Extracts the first row
 mydata[2,3] # Extracts the content of row 2 / column 3
+mydata[1,] # Extracts the first row
 mydata[,1] # Extracts the first column
 mydata[,1][2] # [...] can be also be used recursively
 mydata$Variable1 # Also extracts the first column
@@ -663,7 +663,7 @@ CO2copy[CO2copy$Traitement  == "nonchilled" &
           CO2copy$absortion >= 20, ]
 
 # We are done playing with the Dataset copy, lets erase it.
-CO2copy <- NULL
+rm(CO2copy)
 ```
 
 Go [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html) to check all the logical operators you can use
@@ -716,6 +716,28 @@ hist(CO2$uptake)
 ```{r, eval = TRUE, fig.width=6, fig.height=6}
 # Increasing the number of bins to observe better the pattern
 hist(CO2$uptake, breaks = 40)
+```
+
+---
+# The `apply()` function
+
+The function `apply()` can be used to apply a function to multiple
+columns of your data simultaneously. Use the `?apply` command to get
+more information about `apply()`.
+
+```{r, echo = TRUE, eval = FALSE}
+?apply
+```
+
+To use apply, you have to specify three arguments. The first argument is
+the data you would like to apply the function to; the second argument is
+whether you would like to calculate based on rows (1) or columns (2) of
+your dataset; the third argument is the function you would like to
+apply. For example:
+
+```{r, echo = TRUE, eval = FALSE}
+# Calculate mean of the two columns in the data frame that contain continuous data
+apply(CO2[,4:5], MARGIN = 2, FUN = mean)
 ```
 
 
@@ -1153,7 +1175,7 @@ tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
 
 ```
 
-you can use with a tibble all the functions applied to a data.frame 
+You can use with a tibble all the functions applied to a data.frame. 
 
 ---
 # `separate` columns
@@ -1528,7 +1550,6 @@ Employ `dplyr` verbs and the `%>%` operator.
 data(ChickWeight)
 ```
 
-
 ---
 # Solution
 
@@ -1546,14 +1567,51 @@ head(weight_diff)
 ```
 
 ---
+
+# Ninja challenge ![:cube]()
+
+- Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
+
+- Employ `dplyr` verbs and the `%>%` operator.
+
+.alert[Hint]: `first()` and `last()` may be useful here
+
+---
+
+#  Ninja hint
+
+Note that we can group the data frame using more than one factor, using
+the general syntax as follows: `group_by(group1, group2, ...)`
+
+Within `group_by()`, the multiple groups create a layered onion, and
+each subsequent single use of the `summarise()` function peels off the
+outer layer of the onion. In the above example, after we carried out a
+summary operation on `group2`, the resulting data set would remain
+grouped by `group1` for downstream operations.
+
+---
+
+# Ninja solution
+
+```{r}
+diet_summ <- ChickWeight %>%
+             group_by(Diet, Chick) %>%
+             summarise(weight_gain = last(weight) - first(weight)) %>%
+             group_by(Diet) %>%
+             summarise(mean_gain = mean(weight_gain))
+```
+
+```{r}
+diet_summ
+```
+
+---
 # R base challenge ![:cube]()
-<br>
+
 Now try to redo the previous challenge **only with functions from the R base!** 
-<br>
-<br>
+
 Note that several solutions are possible.
-<br>
-<br>
+
 .alert[Hint]: the function `?aggregate()` or `?by()` may be useful here.
 
 ---
@@ -1578,35 +1636,21 @@ table(weight_diff_rbase ==  as.data.frame(weight_diff))
 
 ---
 
-exclude: true
+# dplyr - Merging data frames
 
-# Ninja challenge ![:cube]()
+In addition to all the operations we have explored, `dplyr` also
+provides some functions that allow you to join two data frames together.
+The syntax in these functions is simple relative to alternatives in
+other `R` packages:
 
-- Using the `ChickWeight` dataset, create a summary table which displays, for each diet, the average individual difference in weight between the end and the beginning of the study.
+-   `left_join()`
+-   `right_join()`
+-   `inner_join()`
+-   `anti_join()`
 
-- Employ `dplyr` verbs and the `%>%` operator.
-
-<br>
-.alert[Hint]: `first()` and `last()` may be useful here
-
-
----
-
-exclude: true
-
-# Ninja solution
-
-```{r}
-diet_summ <- ChickWeight %>%
-             group_by(Diet, Chick) %>%
-             summarise(weight_gain = last(weight) - first(weight)) %>%
-             group_by(Diet) %>%
-             summarise(mean_gain = mean(weight_gain))
-```
-
-```{r}
-diet_summ
-```
+These are beyond the scope of the current introductory workshop, but
+they provide extremely useful functionality you may eventually require
+for some more advanced data manipulation needs.
 
 ---
 # More on data manipulation
@@ -1614,7 +1658,6 @@ diet_summ
 [Learn more on dplyr](http://r4ds.had.co.nz/transform.html)
 
 [dplyr and tidyr cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
-
 
 ---
 class: inverse, center, bottom
