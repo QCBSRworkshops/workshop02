@@ -29,11 +29,8 @@ class: inverse, center, middle
 
 # À propos de cet atelier
 
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop02)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=wiki&amp;message=02&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_workshop2)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=02&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.html)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=Slides&amp;message=02&amp;color=red&amp;logo=adobe-acrobat-reader)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.pdf)
-[![badge](https://img.shields.io/static/v1?style=for-the-badge&amp;label=script&amp;message=02&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-en/workshop02-en.R)
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=Diapos&amp;message=02&amp;color=red&amp;logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-fr/workshop02-pres-fr.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=livre&amp;message=02&amp;logo=github)](https://qcbsrworkshops.github.io/workshop02/book-fr/index.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=wiki&amp;message=02&amp;logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2)  [![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=script&amp;message=02&amp;color=2a50b8&amp;logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.R) 
+[![badge](https://img.shields.io/static/v1?style=flat-square&amp;label=repo&amp;message=dev&amp;color=6f42c1&amp;logo=github)](https://github.com/QCBSRworkshops/workshop02) 
 
 ---
 
@@ -305,7 +302,7 @@ On peut tester cette commande en ajoutant des objets dans l'espace de travail po
 
 
 ```r
-A&lt;-"Test" # On crée un objet "A".
+A &lt;-"Test"  # On crée un objet "A".
 A &lt;- "Test" # Utilisez des espaces - plus facile à lire
 A = "Test"
 
@@ -397,9 +394,9 @@ La fonction `dir()` affiche le contenu du répertoire de travail.
 
 ```r
 dir()
-# [1] "data"                   "images"                 "qcbsR-fonts.css"       
-# [4] "qcbsR-header.html"      "qcbsR-macros.js"        "qcbsR.css"             
-# [7] "workshop02-pres-fr.Rmd"
+# [1] "assets"                 "data"                   "images"                
+# [4] "pres-fr.Rproj"          "qcbsR-fonts.css"        "qcbsR-header.html"     
+# [7] "qcbsR-macros.js"        "qcbsR.css"              "workshop02-pres-fr.Rmd"
 ```
 
 Vous pouvez vérifier:
@@ -422,6 +419,13 @@ CO2 &lt;- read.csv("data/co2_good.csv", header=TRUE)
 - Le nom du fichier est écrit entre guillemets (`'file'` ou `"file"`)
 - Si vous voulez charger un fichier d'un autre répertoire, vous devrez écrire l'extension complète: `read.csv("C:/Users/Mario/Downloads/co2_good.csv")`
 - `header = TRUE` permet de spécifier que la première ligne du fichier contient le nom des colonnes
+
+Il est aussi possible d’utiliser la fonction file.choose() pour charger un fichier de manière interactive.
+
+
+```r
+CO2 &lt;- read.csv(file.choose())
+```
 
 ---
 # Importer un jeu de données
@@ -528,8 +532,8 @@ Plusieurs façons d'extraire les données avec les crochets. Considérons un jeu
 
 
 ```r
-mydata[1,] # Extrait la 1ère ligne
 mydata[2,3] # Extrait la 2ème ligne / 3ème colonne
+mydata[1,] # Extrait la 1ère ligne
 mydata[,1] # Extrait la 1ère colonne
 mydata[,1][2] # [...] peut être utilisé récursivement
 mydata$Variable1 # Extrait la colonne "Variable1"
@@ -674,7 +678,7 @@ print(paste("the standard deviation of concentration is:", sdConc))
 hist(CO2$uptake)
 ```
 
-&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-24-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-25-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ---
 # Explorer les données
@@ -685,7 +689,27 @@ hist(CO2$uptake)
 hist(CO2$uptake, breaks = 40) # breaks permet de changer le nombre de classes
 ```
 
-&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-25-1.png" width="432" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-26-1.png" width="432" style="display: block; margin: auto;" /&gt;
+
+---
+# La fonction `apply`
+
+La fonction `apply()` est utilisée pour appliquer une fonction à plusieurs colonnes en même temps. Utilisez ?apply pour en apprendre plus.
+
+
+```r
+?apply
+```
+
+Pour utiliser la fonction `apply()`, trois arguments doivent être spécifiés. Le premier argument est le jeu de données sur lequel on veut appliquer une fonction. Le deuxième argument spécifie si la fonction est appliquée aux lignes `(MARGIN = 1)` ou aux colonnes `(MARGIN = 2)`. Le dernier argument spécifie la fonction à appliquer. Par exemple :
+
+
+```r
+# Calcule la moyenne des colonnes 4 et 5 du jeu de données CO2
+apply(CO2[,4:5], MARGIN = 2, FUN = mean) 
+#     conc   uptake 
+# 435.0000  27.2131
+```
 
 ---
 # Enregistrer son espace de travail
@@ -771,7 +795,7 @@ Lire le ficher `co2_broken.csv`
 
 ```r
 CO2 &lt;- read.csv("data/co2_broken.csv")
-head(CO2) # C'est le bordel!
+head(CO2) # C'est le chaos!
 #               NOTE..It.rain.a.lot.in.Quebec.during.sampling due.to.excessive  X
 # 1 falling on my notebook numerous values can't be read rain               NA NA
 # 2                      Plant\tType\tTreatment\tconc\tuptake               NA NA
@@ -904,6 +928,8 @@ str(CO2)
 #  $ Treatment: chr  "nonchilled" "nonchilled" "nonchilled" "nonchilled" ...
 #  $ conc     : chr  "95" "175" "250" "350" ...
 #  $ uptake   : chr  "16" "30.4" "cannot_read_notes" "37.2" ...
+class(CO2$conc)
+# [1] "character"
 ```
 
 
@@ -970,11 +996,17 @@ unique(CO2$Treatment)
 
 
 ```r
-# Identifier toutes les lignes contenant "nnchilled" et remplacer par "nonchilled"
-CO2$Treatment[which(CO2$Treatment=="nnchilled")] &lt;- "nonchilled"
-
-# Faisons la même chose pour "chiled" :
-CO2$Treatment[which(CO2$Treatment=="chiled")] &lt;- "chilled"
+# Vous pouvez utiliser la fonction which() afin de trouver
+# les lignes avec l'erreur 'nnchilled'
+# Cette commande nous indique que l'erreur se trouve à la ligne 10
+which(CO2$Treatment == "nnchilled")  
+# [1] 10 11 15
+# Vous pouvez corriger l'erreur par indexation (voir atelier 1) :
+CO2$Treatment[10] &lt;- "nonchilled"
+# Vous pouvez faire ces deux étapes en une seule commande :
+CO2$Treatment[which(CO2$Treatment == "nnchilled")] &lt;- "nonchilled"
+# Faisons la même chose pour 'chiled' :
+CO2$Treatment[which(CO2$Treatment == "chiled")] &lt;- "chilled"
 ```
 
 ---
@@ -991,7 +1023,7 @@ Sinon :
 boxplot(uptake ~ Treatment, data = CO2)
 ```
 
-&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-40-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-43-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 ---
 # Jeu de données "endommagé"
@@ -1017,7 +1049,7 @@ boxplot(uptake ~ Treatment, data = CO2)
 ```
 ]
 .pull-right[
-&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-43-1.png" width="360" style="display: block; margin: auto;" /&gt;
+&lt;img src="workshop02-pres-fr_files/figure-html/unnamed-chunk-46-1.png" width="360" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1472,7 +1504,8 @@ Examples :
 select(données, colonne1, colonne2) # sélectionne colonne1 et colonne2
 select(données, c(2:4,6) # sélectionne les colonnes 2 à 4, plus la 6ème colonne
 select(données, -colonne1) # sélectionne toutes les colonnes sauf la 1ère
-select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui commence par "x."
+select(données, start_with(x.)) # sélectionne les colonnes ayant un nom qui 
+                                # commence par "x."
 ```
 
 ---
@@ -1752,14 +1785,45 @@ head(mass_diff)
 ```
 
 ---
+
+# NINJA Défi - `dplyr` et `magrittr` ![:cube]()
+
+&lt;br&gt;
+
+- En utilisant le jeu de données `ChickWeight`, créez un tableau sommaire qui indique pour chaque `diet`, la moyenne de la différence de masse entre la fin et le début de l'étude pour chaque poussin.
+
+- Utilisez les verbes `dplyr` et la "pipe" `%&gt;%`.
+
+&lt;br&gt;
+
+.alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
+
+---
+
+# Solution ninja
+
+
+```r
+diet_mass &lt;- ChickWeight %&gt;%
+      group_by(Diet, Chick) %&gt;%
+      summarise(gain_masse = last(weight) - first(weight)) %&gt;%
+      summarise(gain_moyen = mean(gain_masse))
+diet_mass
+# # A tibble: 4 × 2
+#   Diet  gain_moyen
+#   &lt;fct&gt;      &lt;dbl&gt;
+# 1 1           115.
+# 2 2           174 
+# 3 3           230.
+# 4 4           188.
+```
+
+---
 # Défi R base ![:cube]()
-&lt;br&gt;
-Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R !** 
-&lt;br&gt;
-&lt;br&gt;
+
+Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R 
 Prenez note qu'il existe plusieurs solutions.
-&lt;br&gt;
-&lt;br&gt;
+
 .alert[Indice]: Les fonction `?aggregate()` ou `?by()` pourraient s'avérer utiles.
 
 ---
@@ -1786,40 +1850,20 @@ table(mass_diff_rbase ==  as.data.frame(mass_diff))
 ```
 
 ---
-exclude: true
+# Fusionner des tableaux de données avec dplyr
 
-# NINJA Défi - `dplyr` et `magrittr` ![:cube]()
+En plus des fonctions que nous avons explorées aujourd'hui, `dplyr`
+offre d'autres fonctions forts utiles nous permettant de fusionner des
+tableau de données, avec une syntaxe relativement simple :
 
-&lt;br&gt;
+-   `left_join()`
+-   `right_join()`
+-   `inner_join()`
+-   `anti_join()`
 
-- En utilisant le jeu de données `ChickWeight`, créez un tableau sommaire qui indique pour chaque `diet`, la moyenne de la différence de masse entre la fin et le début de l'étude pour chaque poussin.
-
-- Utilisez les verbes `dplyr` et la "pipe" `%&gt;%`.
-
-&lt;br&gt;
-
-.alert[Indice] les fonctions `first()` et `last()` pourraient s'avérer utiles
-
----
-exclude: true
-
-# Solution ninja
-
-
-```r
-diet_mass &lt;- ChickWeight %&gt;%
-      group_by(Diet, Chick) %&gt;%
-      summarise(gain_masse = last(weight) - first(weight)) %&gt;%
-      summarise(gain_moyen = mean(gain_masse))
-diet_mass
-# # A tibble: 4 × 2
-#   Diet  gain_moyen
-#   &lt;fct&gt;      &lt;dbl&gt;
-# 1 1           115.
-# 2 2           174 
-# 3 3           230.
-# 4 4           188.
-```
+Ces fonctions vont au-delà du matériel d'introduction dans cet atelier,
+mais ils offrent des fonctionnalités pouvant être très utiles pour des
+manipulations de données plus complexes.
 
 ---
 # Ressources supplémentaires
