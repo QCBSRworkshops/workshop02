@@ -2,7 +2,7 @@
 
 ## Utiliser "tidyr" pour réorganiser ses données
 
-![](images/tidyrsticker.png){width="200"}
+![](images/tidyr_logo.png){width="200"}
 
 ### Pourquoi réorganiser ses données?
 
@@ -71,34 +71,34 @@ hauteur. Il/elle revient avec un jeu de donnés en format "dégât"
                           DHP = c(12, 20, 13),
                          Haut = c(56, 85, 55))
 > large
+
   Species DHP Haut
 1   Chêne  12   56
 2    Orme  20   85
 3   Frêne  13   55
 ```
 
-### gather(): Rassembler les données en longueur
+### pivot_longer(): Rassembler les données en longueur
 
 ```{r, echo = TRUE, eval = FALSE}
-?gather
+?pivot_longer
 ```
 
 La plupart des paquets dans le "Hadleyverse" requièrent un format
 long, c'est-à-dire où chaque rangée est une observation unique, et
-chaque colonne est une variable. Utilisons la fonction `gather()` pour
-"rassembler" nos données en longueur. `gather()` prend plusieurs
+chaque colonne est une variable. Utilisons la fonction `pivot_longer()` pour
+"rassembler" nos données en longueur. `pivot_longer()` prend plusieurs
 colonnes et les empile dans deux colonnes: une colonne spécifiant la
 variable mesurée, et l'autre spécifiant la mesure associée.
 
-La fonction `gather()` prend au moins 3 arguments:
+La fonction `pivot_longer()` prend au moins 3 arguments:
 
 -   **data**: le jeu de données (e.g. "large")
--   **key**: le nom de la nouvelle colonne spécifiant la variable
+-   **cols**: les colonnes qu'on veut empiler dans le jeu de données (e.g. "DBH", "Haut")
+-   **names_to**: le nom de la nouvelle colonne spécifiant la variable
     mesurée (e.g. "dimension")
--   **value**: le nom de la nouvelle colonne spécifiant la mesure
+-   **values_to**: le nom de la nouvelle colonne spécifiant la mesure
     associée (e.g. "cm")
--   **...**: les colonnes qu'on veut empiler dans le jeu de données
-    (e.g. "DBH", "Haut")
 
 Voici une démonstration avec le jeu de données `large` utilisé
 précédemment, contenant les dimensions d'arbres:
@@ -106,7 +106,10 @@ précédemment, contenant les dimensions d'arbres:
 ```{r, echo = TRUE, eval = FALSE}
 # Rassembler les colonnes en rangées d'observations uniques
 
-> long <- gather(large, dimension, cm, DHP, Haut)
+> long <- pivot_longer(data      = large, 
+                       cols      = c("DHP", "Haut"),
+                       names_to  = "dimension", 
+                       values_to = "cm")
 > long
   Species dimension cm
 1   Chêne       DHP 12
@@ -122,30 +125,31 @@ les colonnes contant la concentration de CO2 (`conc`) et le CO2 absorbé
 (`uptake`) :
 
 ```{r, echo = TRUE, eval = FALSE}
-CO2.long <- gather(CO2, response, value, conc, uptake)
+CO2.long <- pivot_longer(CO2, cols = c("conc", "uptake"), 
+                         "response", "value")
 head(CO2)
 head(CO2.long)
 tail(CO2.long)
 ```
 
-### spread(): Disperser les données en largeur
+### pivot_wider(): Disperser les données en largeur
 
 ```{r, echo = TRUE, eval = FALSE}
-?spread
+?pivot_wider
 ```
 
-La fonction `spread()` est l'inverse de `gather()`: elle nous permet de
+La fonction `pivot_wider()` est l'inverse de `pivot_wider()`: elle nous permet de
 transformer nos données en format large, en utilisant la même syntaxe.
-`spread()` prend 3 arguments principaux:
+`pivot_wider()` prend 3 arguments principaux:
 
 -   **data**: le jeu de données (e.g. "long")
--   **key**: nom de la colonne contenant les noms des variables (e.g.
-    "dimension")
--   **value**: nom de la colonne contenant les mesures associées aux
-    variables (e.g. "cm")
+-   **names_from**: nom de la colonne contenant les noms des variables (e.g. "dimension")
+-   **values_from**: nom de la colonne contenant les mesures associées aux variables (e.g. "cm")
 
 ```{r, echo = TRUE, eval = FALSE}
-> large2 <- spread(long, dimension, cm)
+> large2 <- pivot_wider(data        = long, 
+                        names_from  = "dimension", 
+                        values_from = "cm")
 > large2
   Species DHP Haut
 1   Chêne  12   56
@@ -153,7 +157,20 @@ transformer nos données en format large, en utilisant la même syntaxe.
 3    Orme  20   85
 ```
 
+###  La structure `tibble` pour des tables de données
+
+En plus, `tibble` simplifie l'utilisation de lists imbriqués dans la table de données.
+
+Exemple: 
+```{r, eval = FALSE}
+tibble(x = 1:3, y = list(1:5, 1:10, 1:20))
+```
+
+Toutes les fonctions appliquées sur un data frame peuvent aussi être utilisées sur un tibble 
+
 ### separate(): séparer une colonne en deux (ou plusieurs) colonnes
+
+![](images/separate.png){width="600"}
 
 Il arrive parfois qu'un jeu de données contient plusieurs variables
 réunies dans une même colonne. Dans ces situations, la fonction
@@ -186,7 +203,12 @@ Dans ce cas, on commence par "rassembler" ce jeu de données en largeur
 en format long.
 
 ```{r, echo = TRUE, eval = FALSE}
-> degat.long <- gather(degat, taxa, count, -id, -trt)
+> degat.long <- pivot_longer(degat,
+                             names_to = "taxa",
+                             cols     = c("zooplancton.T1", 
+                                          "poisson.T1",
+                                          "zooplancton.T2",
+                                          "poisson.T2"))
 > head(degat.long)
 ```
 
@@ -223,8 +245,8 @@ caractère "`.`".
 
 `tidyr` est un paquet qui réorganise la structure de jeux de données.
 
--   Convertir de **format large en format long** à l'aide de `gather()`
--   Convertir de **format long en format large** à l'aide de `spread()`
+-   Convertir de **format large en format long** à l'aide de `pivot_longer()`
+-   Convertir de **format long en format large** à l'aide de `pivot_wider()`
 -   Séparer et regrouper des colonnes à l'aide de `separate()` et de
     son inverse, `unite()`
 
@@ -239,13 +261,17 @@ rassemblant toutes les colonnes sauf "Month" et "Day"). Ensuite,
 dispersez-le en format large pour retrouver le format original de
 `airquality`:*
 
-++++Solution\|
+### Solution
 
 ```{r, echo = TRUE, eval = FALSE}
-air.long <- gather(airquality, variable, value, -Month, -Day)
+air.long <- pivot_longer(airquality,
+                         cols     = c("Ozone", "Solar.R", "Wind", "Temp"), 
+                         names_to = c("variable"))
 # Notez que la syntaxe ici indique qu'on veut "rassembler" toutes les colonnes sauf "Month" et "Day"
 head(air.long)
-air.wide <- spread(air.long , variable, value)
+air.wide <- pivot_wider(air.long,
+                        values_from = "value",
+                        names_from  = "variable")
 head(air.wide)
 ```
 
@@ -256,7 +282,7 @@ Le tableau `air.wide` a le même format que le jeu de données d'origine
 
 ## Utiliser "dplyr" pour manipuler les données
 
-![](images/dplyrsticker.png){width="200"}
+![](images/dplyr_logo.png){width="200"}
 
 ### Introduction à dplyr
 
@@ -479,7 +505,7 @@ l'intérieur d'un seul appel de la fonction `mutate()` on peut:
 
 ## dplyr et magrittr, un don du ciel
 
-![](images/magrittrsticker.png){width="200"}
+![](images/magrittr.png){width="200"}
 
 Le paquet `magrittr` introduit un nouvel outil commun dans plusieurs
 langages informatiques : le **pipe**. Le "pipe" (un tuyau en français)
@@ -562,6 +588,8 @@ introduite dans le paquet `plyr`, l'ancêtre de `dplyr`.
 
 ![](images/split-apply-combine.png){width="600"}
 
+![](images/summarise.png){width="600"}
+
 Utilisons ces deux fonctions pour générer un sommaire du jeu de données
 `airquality` qui montre la température moyenne et l'écart type pour
 chaque mois:
@@ -597,7 +625,7 @@ Utilisez les verbes `dplyr` et le "pipe" `%>%`.*
 data(ChickWeight)
 ```
 
-++++Solution\|
+### Solution:
 
 ```{r, echo = TRUE, eval = FALSE}
 > mass_diff <- ChickWeight %>%
@@ -644,6 +672,14 @@ début et la fin avec deux autres fonctions utiles dans `dplyr` :
 `first()` et `last()` nous permettent d'accéder à la première et la
 deuxième observation d'un sous-groupe, respectivement. ++++
 
+### NINJA DÉFI: dplyr & magrittr
+
+En utilisant le jeu de données `ChickWeight`, créez un tableau
+sommaire qui indique pour chaque `Diet`, la moyenne de la différence de
+masse entre la fin et le début de l'étude pour chaque poussin. Utilisez
+les verbes `dplyr` et le pipe `%>%`. (Indice : les fonctions `first()`
+et `last()` pourraient s'avérer utiles).
+
 ### Indice pour les ninjas
 
 Notez qu'on peut regrouper un jeu de données par plus qu'un facteur,
@@ -664,15 +700,7 @@ fois en aval:
 Le `groupe2` est éliminé, et le jeu de données devient ensuite groupé
 par `groupe1`.
 
-### NINJA DÉFI: dplyr & magrittr
-
-// En utilisant le jeu de données `ChickWeight`, créez un tableau
-sommaire qui indique pour chaque `Diet`, la moyenne de la différence de
-masse entre la fin et le début de l'étude pour chaque poussin. Utilisez
-les verbes `dplyr` et le pipe `%>%`. (Indice : les fonctions `first()`
-et `last()` pourraient s'avérer utiles).//
-
-++++Solution\|
+### Solution
 
 ```{r, echo = TRUE, eval = FALSE}
 > diet_mass <- ChickWeight %>%
@@ -697,7 +725,30 @@ ceux qui sont experts en `R` de base, serait de reproduire les mêmes
 opérations avec moins de code. Nous avons essayé et nous avons
 échoué... Peut-être nous sommes trop habitués à `dplyr` maintenant!
 
-++++
+### Défi R base
+
+Maintenant essayez de refaire le même exercice mais **seulement avec les fonctions de bases de R 
+Prenez note qu'il existe plusieurs solutions.
+
+.alert[Indice]: Les fonction `?aggregate()` ou `?by()` pourraient s'avérer utiles.
+
+### Défi R base - Solution
+
+```{r, eval = FALSE}
+
+mass_diff_rbase <- aggregate(formula = weight ~ Chick, 
+                             data    = ChickWeight,
+                             FUN     = function(x) weight_diff = max(x) - min(x))
+names(mass_diff_rbase) <- c("Chick", "weight_diff")
+
+```
+
+```{r, eval = FALSE}
+# Est ce que les deux résultats sont identiques (c-a-d avec et sans dplyr)
+
+table(mass_diff_rbase ==  as.data.frame(mass_diff))
+
+```
 
 ## Fusionner des tableaux de données avec dplyr
 

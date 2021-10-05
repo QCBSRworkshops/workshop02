@@ -9,8 +9,8 @@ Afin d'utiliser un script dans RStudio, il suffi simplement de
 surligner une commande et appuyer sur "Run" ou appuyer sur
 "command-enter" (Mac) ou "ctrl-enter" (PC).
 
-![](images/1_create_an_r_script.png){width="500"}
-![](images/2_create_an_r_script2.mod_arrow.png){width="600"}
+![](images/1_Create_an_R_script.png){width="500"}
+![](images/2_Create_an_R_script2.Mod_arrow_FR.png){width="600"}
 
 ### Commandes & Commentaires
 
@@ -60,7 +60,7 @@ partie du script sera cachée.
 Vous pouvez aussi naviguer entre sections en utilisant le menu trouvé en
 bas de la fenêtre du script.
 
-![](images/4_section_headings_mod_arrow_2.png){width="600"}
+![](images/4_Section_headings_Mod_arrow 2.png){width="600"}
 
 ### Nettoyage
 
@@ -80,15 +80,19 @@ On peut tester cette commande en ajoutant des objets dans l'espace de
 travail pour mieux comprendre comment `rm(list=ls())` fonctionne.
 
 ```{r, echo = TRUE, eval = FALSE}
-A<-"Test"     # On crée un objet "A".
-A <- "Test"   # C'est préférable de mettre des espaces avant et après "<-".
-A = "Test"    # = peut aussi être utilisé comme opérateur d'assignation
-
-#Tel que vu au premier atelier, il est préférable d'utiliser "<-" comme opérateur d'assignation plutôt que "=".
-
+A<-"Test" # On crée un objet "A".
+A <- "Test" # Utilisez des espaces - plus facile à lire
+A = "Test"
+# Note: il est recommandé d'utiliser "<-" pour l'assigment au lieu de "="
+# Visualiser des objets en mémoire
+ls()
+# [1] "A"
 A
+# [1] "Test"
+# Nettoyer la mémoire
 rm(list=ls())
 A
+# Error in eval(expr, envir, enclos): object 'A' not found
 ```
 
 ### Petit rappel important

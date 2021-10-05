@@ -15,13 +15,13 @@ le partage de données, de scripts, et de leur documentation.
 Pour créer un projet dans RStudio, allez dans le menu *Fichier* puis
 sélectionnez "Nouveau projet".
 
-![](images/0_create_a_new_project.png){width="400"}
+![](images/0_Create_a_new_project.png){width="400"}
 
 ## Organiser ses fichiers
 
 Un projet = un dossier!
 
-![](images/0_folderdata1.png){width="400"}
+![](images/0_folderData1.png){width="400"}
 
 ## Préparer des données pour l'importation dans R
 
@@ -69,7 +69,7 @@ Un projet = un dossier!
 
 ### Exemples de mauvaises habitudes
 
-![](images/excel_notes.png) ![](images/horribledata.png)
+![](images/excel_notes.png) ![](images/HorribleData.png)
 
 Il est possible de faire toute la préparation des données dans R. Les
 avantages sont :

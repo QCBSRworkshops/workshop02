@@ -9,8 +9,8 @@ command-enter (Mac) or ctrl-enter (PC).
 
 ### Creating an R script
 
-![](images/1_create_an_r_script.png){width="500"}
-![](images/2_create_an_r_script2.mod_arrow.png){width="600"}
+![](images/1_Create_an_R_script.png){width="500"}
+![](images/2_Create_an_R_script2.Mod_arrow.png){width="600"}
 
 ### Commands & Comments
 
@@ -59,7 +59,7 @@ section of the script.
 You can also move quickly between sections using the drop-down menu at
 the bottom of the script window.
 
-![](images/4_section_headings_mod_arrow_2.png){width="600"}
+![](images/4_Section_headings_Mod_arrow_2.png){width="600"}
 
 ### Housekeeping
 
@@ -77,13 +77,15 @@ We can test this command by adding data to the workspace and seeing how
 `rm(list=ls())` will remove it.
 
 ```{r, echo = TRUE, eval = FALSE}
-A<-"Test"     # Put some data into workspace, to see how rm(list=ls()) removes it
-A <- "Test"   # Note that you can use a space before or after <-
-A = "Test"    # <- or = can be used equally
-
-# Note that it is best practice to use "<-" for assignment instead of "="
-
+A<-"Test" # Put some data in workspace
+A <- "Test" # Add some spaces to organize your data!
+A = "Test" # You can do this, but it does not mean you should
+# Check objects in the workspace
+ls()
+# [1] "A"
 A
+# [1] "Test"
+# Clean Workspace
 rm(list=ls())
 A
 ```

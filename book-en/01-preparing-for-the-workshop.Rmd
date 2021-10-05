@@ -28,10 +28,12 @@ All workshop materials are found at [github.com/QCBSRworkshops/workshop02](https
 
 For this workshop, we will be working with the following datasets:
 
-* list here
+* CO2, airquality and ChickWeight datasets
 
 > To download this data, do right click + save on the page that opens.
 
 You should also make sure you have downloaded, installed, and loaded these packages:
 
-* list here
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)

@@ -68,8 +68,6 @@ CO2<-read.csv("co2_broken.csv",sep = "",skip=2)  # By adding the skip argument i
 head(CO2) # You can now see that the CO2 object has the appropriate headings
 ```
 
-Answer \#3
-
 Problem \#3: "conc" and "uptake" variables are considered factors
 instead of numbers, because there are comments/text in the numeric
 columns.

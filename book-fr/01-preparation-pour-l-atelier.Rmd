@@ -1,4 +1,4 @@
-# (PART\*) Modèles linéaires en `R` {-}
+# (PART\*) Charger et manipuler des données {-}
 
 # Objectifs d'apprentissage
 
@@ -29,10 +29,12 @@ Tout le matériel de l'atelier se trouve sur [github.com/QCBSRworkshops/workshop
 
 Pour cet atelier, nous travaillerons avec les jeux de données suivants :
 
-* list here
+* Jeux de données CO2, airquality et ChickWeight
 
 > Pour télécharger ces données, faites un clic droit + enregistrer sur la page qui s'ouvre.
 
 Vous devriez également vous assurer que vous avez téléchargé, installé et chargé les librairies R suivantes:
 
-* list here
+* [dplyr](https://cran.r-project.org/package=dplyr)
+* [tidyr](https://cran.r-project.org/package=tidyr)
+* [magrittr](https://cran.r-project.org/package=magrittr)
