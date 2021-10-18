@@ -43,8 +43,8 @@ pour l'analyse et la visualisation de vos données.
 
 # Workshop materials
 
-Language | Slides | Bookdown | Script | 
-:--------|:-------|:-----|:-----|
+Language | Slides | Bookdown | Script | Github
+:--------|:-------|:-----|:-----|:------ 
 EN | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Slides&message=02&color=red&logo=html5)](https://r.qcbs.ca/workshop02/pres-en/workshop02-pres-en.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=book&message=02&logo=github)](https://r.qcbs.ca/workshop02/book-en/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop02/book-en/workshop02-script-en.R) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) |
 FR | [![badge](https://img.shields.io/static/v1?style=flat-square&label=Diapos&message=02&color=red&logo=html5)](https://r.qcbs.ca/workshop02/pres-fr/workshop02-pres-fr.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=02&logo=github)](https://r.qcbs.ca/workshop02/book-fr/index.html) | [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop02/book-fr/workshop02-script-fr.R)| [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
 
