@@ -25,7 +25,7 @@ visualisation de vos données.
 
 # Préparez-vous pour cet atelier
 
-Tout le matériel de l'atelier se trouve sur [github.com/QCBSRworkshops/workshop02](https://github.com/QCBSRworkshops/workshop02). Cela inclut un [script R](https://qcbsrworkshops.github.io/workshop02/book-fr/workshop02-script-fr.R) qui rassemble tous les morceaux de code présentés dans ce livre.
+Tout le matériel de l'atelier se trouve sur [github.com/QCBSRworkshops/workshop02](https://github.com/QCBSRworkshops/workshop02). Cela inclut un [script R](https://r.qcbs.ca/workshop02/book-fr/workshop02-script-fr.R) qui rassemble tous les morceaux de code présentés dans ce livre.
 
 Pour cet atelier, nous travaillerons avec les jeux de données suivants :
 

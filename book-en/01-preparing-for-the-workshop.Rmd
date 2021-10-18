@@ -24,7 +24,7 @@ and packages. By the end of this workshop, we will have accomplished these objec
 
 # Preparing for the workshop
 
-All workshop materials are found at [github.com/QCBSRworkshops/workshop02](https://github.com/QCBSRworkshops/workshop04). This includes an [R script](https://qcbsrworkshops.github.io/workshop02/book-en/workshop02-script-en.R) which contains all code chunks shown in this book.
+All workshop materials are found at [github.com/QCBSRworkshops/workshop02](https://github.com/QCBSRworkshops/workshop02). This includes an [R script](https://r.qcbs.ca/workshop02/book-en/workshop02-script-en.R) which contains all code chunks shown in this book.
 
 For this workshop, we will be working with the following datasets:
 
