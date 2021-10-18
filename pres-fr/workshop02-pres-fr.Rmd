@@ -46,8 +46,7 @@ if(length(new.packages) > 0) {
 
 # À propos de cet atelier
 
-[![badge](https://img.shields.io/static/v1?style=flat-square&label=Diapos&message=02&color=red&logo=html5)](https://qcbsrworkshops.github.io/workshop02/pres-fr/workshop02-pres-fr.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=02&logo=github)](https://qcbsrworkshops.github.io/workshop02/book-fr/index.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=wiki&message=02&logo=wikipedia)](https://wiki.qcbs.ca/r_atelier2)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://qcbsrworkshops.github.io/workshop02/workshop02-fr/workshop02-fr.R) 
-[![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
+[![badge](https://img.shields.io/static/v1?style=flat-square&label=Diapos&message=02&color=red&logo=html5)](https://r.qcbs.ca/workshop02/pres-fr/workshop02-pres-fr.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=livre&message=02&logo=github)](https://r.qcbs.cao/workshop02/book-fr/index.html)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=script&message=02&color=2a50b8&logo=r)](https://r.qcbs.ca/workshop02/book-fr/workshop02-script-fr.R)  [![badge](https://img.shields.io/static/v1?style=flat-square&label=repo&message=dev&color=6f42c1&logo=github)](https://github.com/QCBSRworkshops/workshop02) 
 
 ---
 
@@ -357,9 +356,13 @@ class: inverse, center, middle
 ---
 # Télécharger les données
 
-Vous pouvez télécharger les données et le script depuis :
+Vous pouvez télécharger les données depuis :
 
-.center[http://qcbs.ca/wiki/r/workshop2]
+.center[https://github.com/QCBSRworkshops/workshop02/tree/main/pres-fr/data]
+
+Et le script depuis :
+
+.center[https://r.qcbs.ca/workshop02/book-fr/workshop02-script-fr.R]
 
 Enregistrez les fichiers dans le dossier où vous avez crée votre projet R.
 
