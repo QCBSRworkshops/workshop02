@@ -1,14 +1,15 @@
 # [QCBS R Workshop Series](https://r.qcbs.ca/)
 
-This series of 10 workshops walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.
+This series of 10 workshops serves as a guide to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.
 
-The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed [here](https://r.qcbs.ca/about/) or open a pull request (see contributing guidelines at <https://r.qcbs.ca/presenter-developer-protocol/developing-en.html>).
+The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current coordination team, listed [here](https://r.qcbs.ca/about/) or open a pull request (see contributing guidelines at <https://r.qcbs.ca/presenter-developer-protocol/developing-en.html>).
 
 # [Série d'ateliers R du CSBQ](https://r.qcbs.ca/fr/)
 
-Cette série de 10 ateliers guide les participants à travers les étapes requises afin de maîtriser le logiciel R pour une grande variété d'analyses statistiques pertinentes en recherche en biologie et en écologie. Ces ateliers en libre accès ont été créés par des membres du CSBQ à la fois pour les membres du CSBQ et pour la grande communauté d'utilisateurs de R.
+Cette série de 10 ateliers servent de guide afin de maîtriser le logiciel R pour une grande variété d'analyses statistiques pertinentes en recherche en biologie et en écologie. Ces ateliers en libre accès ont été créés par des membres du CSBQ à la fois pour les membres du CSBQ et pour la grande communauté d'utilisateurs de `R`.
 
-Le contenu de cet atelier a été révisé par plusieurs membres du CSBQ. Si vous souhaitez y apporter des modifications, veuillez SVP contacter les coordonnateurs actuels de la série, listés [ici](https://r.qcbs.ca/fr/about/) ou ouvrez un pull request (voir les instructions <https://r.qcbs.ca/presenter-developer-protocol/developper-fr.html>).
+Le contenu de cet atelier a été révisé par plusieurs membres du CSBQ. Si vous souhaitez y apporter des modifications, veuillez SVP contacter l'équipe de coordination de la série, listé [ici](https://r.qcbs.ca/fr/about/) ou ouvrez un pull request (voir les instructions <https://r.qcbs.ca/presenter-developer-protocol/developper-fr.html>).
+
 
 # Workshop 2: Loading and manipulating data
 
@@ -36,9 +37,9 @@ et permettant de refaire toutes vos analyses en appuyant sur une seule touche
 (ou deux, ou trois peut-être…). Ensuite, nous présenterons `tidyr` et `dplyr`
 pour vous aider à transformer et à gérer le format de vos données ainsi que pour
 appliquer des fonctions simples ou complexes sur des sous-groupes de vos jeux de
-données. Cet atelier s’avérera utile non seulement pour les participants suivant
-notre série d’ateliers, mais également pour ceux et celles d’entre vous
-connaissant déjà le langage R et cherchant à maîtriser des outils plus avancés
+données. Cet atelier s’avérera utile non seulement si vous suivez
+notre série d’ateliers, mais également si vous
+connaissez déjà le langage R et cherchant à maîtriser des outils plus avancés
 pour l'analyse et la visualisation de vos données.
 
 # Workshop materials
@@ -56,7 +57,7 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-# Contributors | Contributeurs et contributrices 
+# Contributions 
 
 This workshop was originally developed by Johanna Bradie, Vincent Fugère, and Thomas Lamy.
 
