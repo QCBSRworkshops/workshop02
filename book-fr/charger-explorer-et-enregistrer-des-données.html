@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 5 Charger, explorer et enregistrer des données | Atelier 2: Charger et manipuler des données</title>
   <meta name="description" content="Charger et manipuler des données" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 5 Charger, explorer et enregistrer des données | Atelier 2: Charger et manipuler des données" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Charger et manipuler des données" />
   <meta name="github-repo" content="qcbsRworkshops/workshop02" />
@@ -50,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -136,87 +136,87 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 
 <li class="divider"></li>
-<li class="part"><span><b>Série d’ateliers R du CSBQ</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-de-conduite"><i class="fa fa-check"></i><b>0.1</b> Code de conduite</a><ul>
-<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu</a></li>
-<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables</a></li>
+<li class="part"><span><b>Série d’ateliers R du CSBQ<span></span></b></span></li>
+<li><a href="index.html#préface">Préface<span></span></a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>0.1</b> Code de conduite<span></span></a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu<span></span></a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices<span></span></a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Charger et manipuler des données</b></span></li>
-<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage</a></li>
-<li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier</a></li>
-<li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio</a><ul>
-<li class="chapter" data-level="3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#créer-un-projet-dans-rstudio"><i class="fa fa-check"></i><b>3.1</b> Créer un projet dans RStudio</a></li>
-<li class="chapter" data-level="3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>3.2</b> Organiser ses fichiers</a></li>
-<li class="chapter" data-level="3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#préparer-des-données-pour-limportation-dans-r"><i class="fa fa-check"></i><b>3.3</b> Préparer des données pour l’importation dans R</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-fichiers"><i class="fa fa-check"></i><b>3.3.1</b> Bien nommer les fichiers</a></li>
-<li class="chapter" data-level="3.3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-variables"><i class="fa fa-check"></i><b>3.3.2</b> Bien nommer les variables</a></li>
-<li class="chapter" data-level="3.3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#conseils-pour-la-préparation-de-jeux-de-données"><i class="fa fa-check"></i><b>3.3.3</b> Conseils pour la préparation de jeux de données</a></li>
-<li class="chapter" data-level="3.3.4" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#exemples-de-mauvaises-habitudes"><i class="fa fa-check"></i><b>3.3.4</b> Exemples de mauvaises habitudes</a></li>
+<li class="part"><span><b>Charger et manipuler des données<span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage<span></span></a></li>
+<li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier<span></span></a></li>
+<li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio<span></span></a><ul>
+<li class="chapter" data-level="3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#créer-un-projet-dans-rstudio"><i class="fa fa-check"></i><b>3.1</b> Créer un projet dans RStudio<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>3.2</b> Organiser ses fichiers<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#préparer-des-données-pour-limportation-dans-r"><i class="fa fa-check"></i><b>3.3</b> Préparer des données pour l’importation dans R<span></span></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-fichiers"><i class="fa fa-check"></i><b>3.3.1</b> Bien nommer les fichiers<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-variables"><i class="fa fa-check"></i><b>3.3.2</b> Bien nommer les variables<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#conseils-pour-la-préparation-de-jeux-de-données"><i class="fa fa-check"></i><b>3.3.3</b> Conseils pour la préparation de jeux de données<span></span></a></li>
+<li class="chapter" data-level="3.3.4" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#exemples-de-mauvaises-habitudes"><i class="fa fa-check"></i><b>3.3.4</b> Exemples de mauvaises habitudes<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html"><i class="fa fa-check"></i><b>4</b> Écrire un script dans R</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#commandes-commentaires"><i class="fa fa-check"></i><b>4.0.1</b> Commandes &amp; Commentaires</a></li>
-<li class="chapter" data-level="4.0.2" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes"><i class="fa fa-check"></i><b>4.0.2</b> En-têtes</a></li>
-<li class="chapter" data-level="4.0.3" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes-de-section"><i class="fa fa-check"></i><b>4.0.3</b> En-têtes de section</a></li>
-<li class="chapter" data-level="4.0.4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#nettoyage"><i class="fa fa-check"></i><b>4.0.4</b> Nettoyage</a></li>
-<li class="chapter" data-level="4.0.5" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#petit-rappel-important"><i class="fa fa-check"></i><b>4.0.5</b> Petit rappel important</a></li>
+<li class="chapter" data-level="4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html"><i class="fa fa-check"></i><b>4</b> Écrire un script dans R<span></span></a><ul>
+<li class="chapter" data-level="4.0.1" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#commandes-commentaires"><i class="fa fa-check"></i><b>4.0.1</b> Commandes &amp; Commentaires<span></span></a></li>
+<li class="chapter" data-level="4.0.2" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes"><i class="fa fa-check"></i><b>4.0.2</b> En-têtes<span></span></a></li>
+<li class="chapter" data-level="4.0.3" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes-de-section"><i class="fa fa-check"></i><b>4.0.3</b> En-têtes de section<span></span></a></li>
+<li class="chapter" data-level="4.0.4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#nettoyage"><i class="fa fa-check"></i><b>4.0.4</b> Nettoyage<span></span></a></li>
+<li class="chapter" data-level="4.0.5" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#petit-rappel-important"><i class="fa fa-check"></i><b>4.0.5</b> Petit rappel important<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html"><i class="fa fa-check"></i><b>5</b> Charger, explorer et enregistrer des données</a><ul>
-<li class="chapter" data-level="5.0.1" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.1</b> Répertoire de travail</a></li>
-<li class="chapter" data-level="5.0.2" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.2</b> Afficher le contenu du répertoire de travail</a></li>
-<li class="chapter" data-level="5.0.3" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données"><i class="fa fa-check"></i><b>5.0.3</b> Importer un jeu de données</a></li>
-<li class="chapter" data-level="5.0.4" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.4</b> Explorer le jeu de données</a></li>
-<li class="chapter" data-level="5.0.5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données"><i class="fa fa-check"></i><b>5.0.5</b> Rappel de l’atelier 1 : Accéder aux données</a></li>
-<li class="chapter" data-level="5.0.6" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables"><i class="fa fa-check"></i><b>5.0.6</b> Changer les noms de variables</a></li>
-<li class="chapter" data-level="5.0.7" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables"><i class="fa fa-check"></i><b>5.0.7</b> Créer des nouvelles variables</a></li>
-<li class="chapter" data-level="5.0.8" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données"><i class="fa fa-check"></i><b>5.0.8</b> Extraire un sous-ensemble d’un jeu de données</a></li>
-<li class="chapter" data-level="5.0.9" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données"><i class="fa fa-check"></i><b>5.0.9</b> Explorer les données</a></li>
-<li class="chapter" data-level="5.0.10" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail"><i class="fa fa-check"></i><b>5.0.10</b> Enregistrer son espace de travail</a></li>
-<li class="chapter" data-level="5.0.11" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.11</b> Exporter le jeu de données</a></li>
-<li class="chapter" data-level="5.0.12" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données"><i class="fa fa-check"></i><b>5.0.12</b> DÉFI: Utilisez vos propres données</a></li>
+<li class="chapter" data-level="5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html"><i class="fa fa-check"></i><b>5</b> Charger, explorer et enregistrer des données<span></span></a><ul>
+<li class="chapter" data-level="5.0.1" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.1</b> Répertoire de travail<span></span></a></li>
+<li class="chapter" data-level="5.0.2" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.2</b> Afficher le contenu du répertoire de travail<span></span></a></li>
+<li class="chapter" data-level="5.0.3" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données"><i class="fa fa-check"></i><b>5.0.3</b> Importer un jeu de données<span></span></a></li>
+<li class="chapter" data-level="5.0.4" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.4</b> Explorer le jeu de données<span></span></a></li>
+<li class="chapter" data-level="5.0.5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données"><i class="fa fa-check"></i><b>5.0.5</b> Rappel de l’atelier 1 : Accéder aux données<span></span></a></li>
+<li class="chapter" data-level="5.0.6" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables"><i class="fa fa-check"></i><b>5.0.6</b> Changer les noms de variables<span></span></a></li>
+<li class="chapter" data-level="5.0.7" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables"><i class="fa fa-check"></i><b>5.0.7</b> Créer des nouvelles variables<span></span></a></li>
+<li class="chapter" data-level="5.0.8" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données"><i class="fa fa-check"></i><b>5.0.8</b> Extraire un sous-ensemble d’un jeu de données<span></span></a></li>
+<li class="chapter" data-level="5.0.9" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données"><i class="fa fa-check"></i><b>5.0.9</b> Explorer les données<span></span></a></li>
+<li class="chapter" data-level="5.0.10" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail"><i class="fa fa-check"></i><b>5.0.10</b> Enregistrer son espace de travail<span></span></a></li>
+<li class="chapter" data-level="5.0.11" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.11</b> Exporter le jeu de données<span></span></a></li>
+<li class="chapter" data-level="5.0.12" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données"><i class="fa fa-check"></i><b>5.0.12</b> DÉFI: Utilisez vos propres données<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html"><i class="fa fa-check"></i><b>6</b> Réparer un jeu de données</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé"><i class="fa fa-check"></i><b>6.0.1</b> DÉFI: Réparer un jeu de données “endommagé”</a></li>
+<li class="chapter" data-level="6" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html"><i class="fa fa-check"></i><b>6</b> Réparer un jeu de données<span></span></a><ul>
+<li class="chapter" data-level="6.0.1" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé"><i class="fa fa-check"></i><b>6.0.1</b> DÉFI: Réparer un jeu de données “endommagé”<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><i class="fa fa-check"></i><b>7</b> Manipuler ses données avec tidyr, dyplr, maggritr</a><ul>
-<li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?</a></li>
-<li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur</a></li>
-<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_longer-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> pivot_longer(): Rassembler les données en longueur</a></li>
-<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_wider-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> pivot_wider(): Disperser les données en largeur</a></li>
-<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#la-structure-tibble-pour-des-tables-de-données"><i class="fa fa-check"></i><b>7.1.5</b> La structure <code>tibble</code> pour des tables de données</a></li>
-<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.6</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes</a></li>
-<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.7</b> Récapitulatif: tidyr</a></li>
-<li class="chapter" data-level="7.1.8" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.8</b> DÉFI: Utiliser tidyr pour convertir le format long en format large</a></li>
-<li class="chapter" data-level="7.1.9" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution"><i class="fa fa-check"></i><b>7.1.9</b> Solution</a></li>
+<li class="chapter" data-level="7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><i class="fa fa-check"></i><b>7</b> Manipuler ses données avec tidyr, dyplr, maggritr<span></span></a><ul>
+<li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données<span></span></a><ul>
+<li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur<span></span></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_longer-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> pivot_longer(): Rassembler les données en longueur<span></span></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_wider-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> pivot_wider(): Disperser les données en largeur<span></span></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#la-structure-tibble-pour-des-tables-de-données"><i class="fa fa-check"></i><b>7.1.5</b> La structure <code>tibble</code> pour des tables de données<span></span></a></li>
+<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.6</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes<span></span></a></li>
+<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.7</b> Récapitulatif: tidyr<span></span></a></li>
+<li class="chapter" data-level="7.1.8" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.8</b> DÉFI: Utiliser tidyr pour convertir le format long en format large<span></span></a></li>
+<li class="chapter" data-level="7.1.9" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution"><i class="fa fa-check"></i><b>7.1.9</b> Solution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr</a></li>
-<li class="chapter" data-level="7.2.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#select-sélection-de-colonnes"><i class="fa fa-check"></i><b>7.2.2</b> select(): Sélection de colonnes</a></li>
-<li class="chapter" data-level="7.2.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#filter-sélection-de-rangées"><i class="fa fa-check"></i><b>7.2.3</b> filter(): Sélection de rangées</a></li>
-<li class="chapter" data-level="7.2.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#arrange-triage-de-rangées"><i class="fa fa-check"></i><b>7.2.4</b> arrange(): Triage de rangées</a></li>
-<li class="chapter" data-level="7.2.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#mutate-créer-des-nouvelles-colonnes"><i class="fa fa-check"></i><b>7.2.5</b> mutate(): Créer des nouvelles colonnes</a></li>
+<li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données<span></span></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#select-sélection-de-colonnes"><i class="fa fa-check"></i><b>7.2.2</b> select(): Sélection de colonnes<span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#filter-sélection-de-rangées"><i class="fa fa-check"></i><b>7.2.3</b> filter(): Sélection de rangées<span></span></a></li>
+<li class="chapter" data-level="7.2.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#arrange-triage-de-rangées"><i class="fa fa-check"></i><b>7.2.4</b> arrange(): Triage de rangées<span></span></a></li>
+<li class="chapter" data-level="7.2.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#mutate-créer-des-nouvelles-colonnes"><i class="fa fa-check"></i><b>7.2.5</b> mutate(): Créer des nouvelles colonnes<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel</a></li>
-<li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr</a></li>
-<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-1"><i class="fa fa-check"></i><b>7.4.2</b> Solution:</a></li>
-<li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr</a></li>
-<li class="chapter" data-level="7.4.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.4</b> Indice pour les ninjas</a></li>
-<li class="chapter" data-level="7.4.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-2"><i class="fa fa-check"></i><b>7.4.5</b> Solution</a></li>
-<li class="chapter" data-level="7.4.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base"><i class="fa fa-check"></i><b>7.4.6</b> Défi R base</a></li>
-<li class="chapter" data-level="7.4.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base---solution"><i class="fa fa-check"></i><b>7.4.7</b> Défi R base - Solution</a></li>
+<li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”<span></span></a><ul>
+<li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr<span></span></a></li>
+<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-1"><i class="fa fa-check"></i><b>7.4.2</b> Solution:<span></span></a></li>
+<li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr<span></span></a></li>
+<li class="chapter" data-level="7.4.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.4</b> Indice pour les ninjas<span></span></a></li>
+<li class="chapter" data-level="7.4.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-2"><i class="fa fa-check"></i><b>7.4.5</b> Solution<span></span></a></li>
+<li class="chapter" data-level="7.4.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base"><i class="fa fa-check"></i><b>7.4.6</b> Défi R base<span></span></a></li>
+<li class="chapter" data-level="7.4.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base---solution"><i class="fa fa-check"></i><b>7.4.7</b> Défi R base - Solution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr</a></li>
+<li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Considérations finales</b></span></li>
-<li class="chapter" data-level="8" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i><b>8</b> Résumé</a></li>
-<li class="chapter" data-level="9" data-path="resources-additionnels.html"><a href="resources-additionnels.html"><i class="fa fa-check"></i><b>9</b> Resources additionnels</a></li>
-<li class="chapter" data-level="10" data-path="réferences.html"><a href="réferences.html"><i class="fa fa-check"></i><b>10</b> Réferences</a></li>
+<li class="part"><span><b>Considérations finales<span></span></b></span></li>
+<li class="chapter" data-level="8" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i><b>8</b> Résumé<span></span></a></li>
+<li class="chapter" data-level="9" data-path="resources-additionnels.html"><a href="resources-additionnels.html"><i class="fa fa-check"></i><b>9</b> Resources additionnels<span></span></a></li>
+<li class="chapter" data-level="10" data-path="réferences.html"><a href="réferences.html"><i class="fa fa-check"></i><b>10</b> Réferences<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
 
@@ -252,10 +252,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="charger-explorer-et-enregistrer-des-données" class="section level1">
-<h1><span class="header-section-number">Chapitre 5</span> Charger, explorer et enregistrer des données</h1>
-<div id="répertoire-de-travail" class="section level3">
-<h3><span class="header-section-number">5.0.1</span> Répertoire de travail</h3>
+<div id="charger-explorer-et-enregistrer-des-données" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapitre 5</span> Charger, explorer et enregistrer des données<a href="charger-explorer-et-enregistrer-des-données.html#charger-explorer-et-enregistrer-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="répertoire-de-travail" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.1</span> Répertoire de travail<a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Vous devez indiquer à R le répertoire où se trouvent les fichiers de
 données afin de les charger. Vous pouvez voir quel répertoire R utilise
 avec la fonction <code>getwd()</code>"</p>
@@ -267,8 +267,8 @@ avec la fonction <code>getwd()</code>"</p>
 noms de fichiers. Vous pouvez aussi cliquer sur session / Définir le
 répertoire / Choisir le répertoire.</p>
 </div>
-<div id="afficher-le-contenu-du-répertoire-de-travail" class="section level3">
-<h3><span class="header-section-number">5.0.2</span> Afficher le contenu du répertoire de travail</h3>
+<div id="afficher-le-contenu-du-répertoire-de-travail" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.2</span> Afficher le contenu du répertoire de travail<a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La fonction <code>dir()</code> affiche le contenu du répertoire de travail.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb8-1"></a><span class="kw">dir</span>()  <span class="co"># Cette commande vous indique le contenu du répertoire dans lequel vous vous trouvez.</span></span></code></pre></div>
 <p>Vous pouvez vérifier:</p>
@@ -279,8 +279,8 @@ travail ou non</li>
 de ‘MonFichier.csv’)</li>
 </ul>
 </div>
-<div id="importer-un-jeu-de-données" class="section level3">
-<h3><span class="header-section-number">5.0.3</span> Importer un jeu de données</h3>
+<div id="importer-un-jeu-de-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.3</span> Importer un jeu de données<a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Utilisez la fonction <code>read.csv()</code> pour importer des données provenant
 d’un fichier .csv dans R.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb9-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;CO2_good.csv&quot;</span>)</span>
@@ -310,8 +310,8 @@ correctement un fichier.</p>
 espace de travail. L’espace de travail inclut tous les objets créés
 pendant ta session R.</p>
 </div>
-<div id="explorer-le-jeu-de-données" class="section level3">
-<h3><span class="header-section-number">5.0.4</span> Explorer le jeu de données</h3>
+<div id="explorer-le-jeu-de-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.4</span> Explorer le jeu de données<a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le jeu de données “CO2” contient des mesures répétées d’absorption de
 CO<sub>2</sub> prises sur six plantes du Québec et six plantes du Mississippi à
 différentes concentrations de CO<sub>2</sub> ambiant. La moitié des plantes de
@@ -375,8 +375,8 @@ ou utiliser la virgule au lieu du point pour indiquer les décimales)</li>
 problème ? Chargez les données de nouveau, mais cette fois-ci avec
 l’argument <code>header=TRUE</code> avant de continuer.</p>
 </div>
-<div id="rappel-de-latelier-1-accéder-aux-données" class="section level3">
-<h3><span class="header-section-number">5.0.5</span> Rappel de l’atelier 1 : Accéder aux données</h3>
+<div id="rappel-de-latelier-1-accéder-aux-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.5</span> Rappel de l’atelier 1 : Accéder aux données<a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Les données peuvent être extraites d’un jeu de données de plusieurs
 façons. Considerons un jeu de données nommé <em>mydata</em>. Les crochets
 permettent d’extraire le contenu d’une cellule.</p>
@@ -390,8 +390,8 @@ même, le symbôle <code>$</code> suivi d’un nom de colonne peut être utilis�
 <span id="cb16-2"><a href="charger-explorer-et-enregistrer-des-données.html#cb16-2"></a>mydata[, <span class="dv">1</span>][<span class="dv">2</span>]  <span class="co"># [...] peut être utilisé récursivement</span></span>
 <span id="cb16-3"><a href="charger-explorer-et-enregistrer-des-données.html#cb16-3"></a>mydata<span class="op">$</span>Variable1  <span class="co"># extrait le contenu de la colonne &#39;Variable1&#39;</span></span></code></pre></div>
 </div>
-<div id="changer-les-noms-de-variables" class="section level3">
-<h3><span class="header-section-number">5.0.6</span> Changer les noms de variables</h3>
+<div id="changer-les-noms-de-variables" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.6</span> Changer les noms de variables<a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On peut changer le nom de variables (colonnes) dans R.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb17-1"></a><span class="co"># Créer une copie du jeu de données qu&#39;on pourra modifier</span></span>
 <span id="cb17-2"><a href="charger-explorer-et-enregistrer-des-données.html#cb17-2"></a>CO2copy &lt;-<span class="st"> </span>CO2</span>
@@ -403,8 +403,8 @@ même, le symbôle <code>$</code> suivi d’un nom de colonne peut être utilis�
 <span id="cb17-8"><a href="charger-explorer-et-enregistrer-des-données.html#cb17-8"></a><span class="kw">names</span>(CO2copy) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Plante&quot;</span>, <span class="st">&quot;Categorie&quot;</span>, <span class="st">&quot;Traitement&quot;</span>, <span class="st">&quot;conc&quot;</span>,</span>
 <span id="cb17-9"><a href="charger-explorer-et-enregistrer-des-données.html#cb17-9"></a>    <span class="st">&quot;absortion&quot;</span>)</span></code></pre></div>
 </div>
-<div id="créer-des-nouvelles-variables" class="section level3">
-<h3><span class="header-section-number">5.0.7</span> Créer des nouvelles variables</h3>
+<div id="créer-des-nouvelles-variables" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.7</span> Créer des nouvelles variables<a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On peut facilement créer et produire des nouvelles variables. Par
 exemple, la fonction <code>paste()</code> permet la concaténation de chaînes de
 caractères et de variables.</p>
@@ -424,8 +424,8 @@ d’opérations mathématiques!</p>
 <span id="cb19-4"><a href="charger-explorer-et-enregistrer-des-données.html#cb19-4"></a><span class="co"># Observer les résultats</span></span>
 <span id="cb19-5"><a href="charger-explorer-et-enregistrer-des-données.html#cb19-5"></a><span class="kw">head</span>(CO2copy<span class="op">$</span>absortionRel)</span></code></pre></div>
 </div>
-<div id="extraire-un-sous-ensemble-dun-jeu-de-données" class="section level3">
-<h3><span class="header-section-number">5.0.8</span> Extraire un sous-ensemble d’un jeu de données</h3>
+<div id="extraire-un-sous-ensemble-dun-jeu-de-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.8</span> Extraire un sous-ensemble d’un jeu de données<a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Il y a plusieurs façons d’extraire un sous-ensemble d’un jeu de
 données.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb20-1"></a><span class="co"># Continuons avec notre trame de données &#39;CO2copy&#39;</span></span>
@@ -456,8 +456,8 @@ données.</p>
 pour voir les opérateurs logiques pouvant être utilisés pour extraire
 des sous-ensembles de données dans R.</p>
 </div>
-<div id="explorer-les-données" class="section level3">
-<h3><span class="header-section-number">5.0.9</span> Explorer les données</h3>
+<div id="explorer-les-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.9</span> Explorer les données<a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pour faire une première exploration de données, on peut rapidement
 calculer des statistiques de base avec la fonction <code>summary()</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb21-1"></a><span class="kw">summary</span>(CO2)  <span class="co"># calculer les statistiques sommaires du jeu de données</span></span></code></pre></div>
@@ -487,8 +487,8 @@ appliquée aux lignes (<code>MARGIN = 1</code>) ou aux colonnes (<code>MARGIN = 
 dernier argument spécifie la fonction à appliquer. Par exemple :</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb24-1"></a><span class="kw">apply</span>(CO2[, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean)  <span class="co"># Calcule la moyenne des colonnes 4 et 5 du jeu de données CO2</span></span></code></pre></div>
 </div>
-<div id="enregistrer-son-espace-de-travail" class="section level3">
-<h3><span class="header-section-number">5.0.10</span> Enregistrer son espace de travail</h3>
+<div id="enregistrer-son-espace-de-travail" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.10</span> Enregistrer son espace de travail<a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En enregistrant votre espace de travail, vous pouvez enregistrer les
 scripts et les objets qui sont actuellement chargés dans R. Si vous
 enregistrez votre espace de travail, vous pouvez chargez tous les objets
@@ -504,15 +504,15 @@ travail :</p>
 <span id="cb25-6"><a href="charger-explorer-et-enregistrer-des-données.html#cb25-6"></a></span>
 <span id="cb25-7"><a href="charger-explorer-et-enregistrer-des-données.html#cb25-7"></a><span class="kw">head</span>(CO2)  <span class="co"># Ça fonctionne! :)</span></span></code></pre></div>
 </div>
-<div id="exporter-le-jeu-de-données" class="section level3">
-<h3><span class="header-section-number">5.0.11</span> Exporter le jeu de données</h3>
+<div id="exporter-le-jeu-de-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.11</span> Exporter le jeu de données<a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Si vous voulez enregistrer des données que vous avez créées ou modifiées
 dans R, utilisez la fonction <code>write.csv()</code>. Le fichier ainsi créé sera
 enregistré dans le répertoire de travail.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="charger-explorer-et-enregistrer-des-données.html#cb26-1"></a><span class="kw">write.csv</span>(CO2, <span class="dt">file =</span> <span class="st">&quot;CO2_new.csv&quot;</span>)  <span class="co"># L&#39;objet CO2 est enregistré dans le fichier nommé CO2_new.csv</span></span></code></pre></div>
 </div>
-<div id="défi-utilisez-vos-propres-données" class="section level3">
-<h3><span class="header-section-number">5.0.12</span> DÉFI: Utilisez vos propres données</h3>
+<div id="défi-utilisez-vos-propres-données" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.12</span> DÉFI: Utilisez vos propres données<a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Essayez de charger, explorer, et enregistrer vos propres données dans R.
 Est-ce que le chargement fonctionne ? Si ce n’est pas le cas, essayez
 d’arranger vos données dans Excel. Enregistrez vos données
