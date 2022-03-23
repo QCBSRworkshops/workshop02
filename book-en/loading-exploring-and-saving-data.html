@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Loading, exploring and saving data | Workshop 2: Loading and Manipulating Data</title>
   <meta name="description" content="Loading and Manipulating Data" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Loading, exploring and saving data | Workshop 2: Loading and Manipulating Data" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://github.com/qcbsRworkshops/" />
   <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
   <meta property="og:description" content="Loading and Manipulating Data" />
   <meta name="github-repo" content="qcbsRworkshops/workshop02" />
@@ -50,8 +49,9 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -136,87 +136,87 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 
 <li class="divider"></li>
-<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a><ul>
-<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
-<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+<li class="part"><span><b>QCBS R Workshop Series<span></span></b></span></li>
+<li><a href="index.html#preface">Preface<span></span></a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>0.1</b> Code of conduct<span></span></a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour<span></span></a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors<span></span></a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Loading and manipulating data in <code>R</code></b></span></li>
-<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
-<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a></li>
-<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects</a><ul>
-<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project</a></li>
-<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized</a></li>
-<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files</a></li>
-<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables</a></li>
-<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes</a></li>
-<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples</a></li>
+<li class="part"><span><b>Loading and manipulating data in <code>R</code><span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives<span></span></a></li>
+<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop<span></span></a></li>
+<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects<span></span></a><ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R<span></span></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes<span></span></a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples<span></span></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script</a></li>
-<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments</a></li>
-<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header</a></li>
-<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading</a></li>
-<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping</a></li>
-<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders</a></li>
+<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script<span></span></a><ul>
+<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script<span></span></a></li>
+<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments<span></span></a></li>
+<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header<span></span></a></li>
+<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading<span></span></a></li>
+<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data</a><ul>
-<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory</a></li>
-<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory</a></li>
-<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data</a></li>
-<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data</a></li>
-<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data</a></li>
-<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables</a></li>
-<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables</a></li>
-<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data</a></li>
-<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration</a></li>
-<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace</a></li>
-<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data</a></li>
-<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE</a></li>
+<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data<span></span></a><ul>
+<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory<span></span></a></li>
+<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory<span></span></a></li>
+<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data<span></span></a></li>
+<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data<span></span></a></li>
+<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data<span></span></a></li>
+<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables<span></span></a></li>
+<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables<span></span></a></li>
+<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data<span></span></a></li>
+<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration<span></span></a></li>
+<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace<span></span></a></li>
+<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data<span></span></a></li>
+<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame</a><ul>
-<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe</a></li>
+<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame<span></span></a><ul>
+<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse</a><ul>
-<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
-<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
-<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
-<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
-<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
-<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
-<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
-<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
-<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
-<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
-<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
-<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
-<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
-<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
-<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code></a></li>
-<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code></a></li>
-<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse<span></span></a><ul>
+<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames<span></span></a></li>
+<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?<span></span></a></li>
+<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data<span></span></a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long<span></span></a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide<span></span></a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data<span></span></a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column<span></span></a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr<span></span></a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE<span></span></a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution<span></span></a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2<span></span></a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution<span></span></a></li>
+<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr<span></span></a><ul>
+<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code><span></span></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code><span></span></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code><span></span></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code><span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
-<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
-<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
-<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
-<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
-<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries<span></span></a><ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE<span></span></a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution<span></span></a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE<span></span></a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint<span></span></a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Final considerations</b></span></li>
-<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
-<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources</a></li>
-<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="part"><span><b>Final considerations<span></span></b></span></li>
+<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary<span></span></a></li>
+<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources<span></span></a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
 
@@ -252,10 +252,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="loading-exploring-and-saving-data" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Loading, exploring and saving data</h1>
-<div id="working-directory" class="section level3">
-<h3><span class="header-section-number">5.0.1</span> Working directory</h3>
+<div id="loading-exploring-and-saving-data" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Chapter 5</span> Loading, exploring and saving data<a href="loading-exploring-and-saving-data.html#loading-exploring-and-saving-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="working-directory" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.1</span> Working directory<a href="loading-exploring-and-saving-data.html#working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R needs to know the directory where your data and files are stored in
 order to load them. You can see which directory you are currently
 working in by using the <code>getwd()</code> command.</p>
@@ -267,8 +267,8 @@ working directory’s path using a “/” to separate folders, subfolders
 and file names. You can also click Session &gt; Set working directory &gt;
 Choose directory…</p>
 </div>
-<div id="display-the-content-of-the-working-directory" class="section level3">
-<h3><span class="header-section-number">5.0.2</span> Display the content of the working directory</h3>
+<div id="display-the-content-of-the-working-directory" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.2</span> Display the content of the working directory<a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The command <code>dir()</code> displays the content of the working directory.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="loading-exploring-and-saving-data.html#cb8-1"></a><span class="kw">dir</span>()  <span class="co"># This command shows the content of the directory you are currently working in</span></span></code></pre></div>
 <p>You can check:</p>
@@ -279,8 +279,8 @@ directory</li>
 of ‘MyFile.csv’)</li>
 </ul>
 </div>
-<div id="importing-data" class="section level3">
-<h3><span class="header-section-number">5.0.3</span> Importing data</h3>
+<div id="importing-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.3</span> Importing data<a href="loading-exploring-and-saving-data.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Use the <code>read.csv()</code> command to import data in R.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="loading-exploring-and-saving-data.html#cb9-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;co2_good.csv&quot;</span>)  <span class="co"># Creates an object called CO2 by loading data from a file called &#39;co2_good.csv&#39;</span></span></code></pre></div>
 <p>This command specifies that you will be creating an R object named
@@ -301,8 +301,8 @@ to use <code>read.csv2()</code> instead of <code>read.csv()</code></p>
 workspace. The workspace refers to all the objects that you create
 during an R session.</p>
 </div>
-<div id="looking-at-data" class="section level3">
-<h3><span class="header-section-number">5.0.4</span> Looking at data</h3>
+<div id="looking-at-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.4</span> Looking at data<a href="loading-exploring-and-saving-data.html#looking-at-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The CO2 dataset consists of repeated measurements of CO2 uptake from six
 plants from Quebec and six plants from Mississippi at several levels of
 ambient CO2 concentration. Half of the plants of each type were chilled
@@ -367,8 +367,8 @@ stored as an integer or numeric. There are many common problems:</p>
 <p>Check the <code>str()</code> of CO2. What is wrong here? Reload the data with
 header=TRUE before continuing.</p>
 </div>
-<div id="reminder-from-workshop-1-accessing-data" class="section level3">
-<h3><span class="header-section-number">5.0.5</span> Reminder from workshop 1: Accessing data</h3>
+<div id="reminder-from-workshop-1-accessing-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.5</span> Reminder from workshop 1: Accessing data<a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data within a data frame can be extracted by several means. Let’s
 consider a data frame called <em>mydata</em>. Use square brackets to extract
 the content of a cell.</p>
@@ -382,8 +382,8 @@ the content of a cell.</p>
 <code>$</code> sign followed by the corresponding header can be used.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="loading-exploring-and-saving-data.html#cb16-1"></a>mydata<span class="op">$</span>Variable1  <span class="co"># extracts a specific column by its name (&#39;Variable1&#39;)</span></span></code></pre></div>
 </div>
-<div id="renaming-variables" class="section level3">
-<h3><span class="header-section-number">5.0.6</span> Renaming variables</h3>
+<div id="renaming-variables" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.6</span> Renaming variables<a href="loading-exploring-and-saving-data.html#renaming-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Variable names (i.e. column names) can be changed within R.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="loading-exploring-and-saving-data.html#cb17-1"></a><span class="co"># First let&#39;s make a copy of the dataset to play with!</span></span>
 <span id="cb17-2"><a href="loading-exploring-and-saving-data.html#cb17-2"></a>CO2copy &lt;-<span class="st"> </span>CO2</span>
@@ -396,8 +396,8 @@ the content of a cell.</p>
 <span id="cb17-9"><a href="loading-exploring-and-saving-data.html#cb17-9"></a><span class="kw">names</span>(CO2copy) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Plante&quot;</span>, <span class="st">&quot;Categorie&quot;</span>, <span class="st">&quot;Traitement&quot;</span>, <span class="st">&quot;conc&quot;</span>,</span>
 <span id="cb17-10"><a href="loading-exploring-and-saving-data.html#cb17-10"></a>    <span class="st">&quot;absortion&quot;</span>)</span></code></pre></div>
 </div>
-<div id="creating-new-variables" class="section level3">
-<h3><span class="header-section-number">5.0.7</span> Creating new variables</h3>
+<div id="creating-new-variables" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.7</span> Creating new variables<a href="loading-exploring-and-saving-data.html#creating-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>New variables can be easily created and populated. For example,
 variables and strings can be concatenated together using the function
 <code>paste()</code>.</p>
@@ -418,8 +418,8 @@ well!</p>
 <span id="cb19-5"><a href="loading-exploring-and-saving-data.html#cb19-5"></a><span class="co"># Observe the results</span></span>
 <span id="cb19-6"><a href="loading-exploring-and-saving-data.html#cb19-6"></a><span class="kw">head</span>(CO2copy<span class="op">$</span>absortionRel)</span></code></pre></div>
 </div>
-<div id="subsetting-data" class="section level3">
-<h3><span class="header-section-number">5.0.8</span> Subsetting data</h3>
+<div id="subsetting-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.8</span> Subsetting data<a href="loading-exploring-and-saving-data.html#subsetting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are many ways to subset a data frame.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="loading-exploring-and-saving-data.html#cb20-1"></a><span class="co"># Let&#39;s keep working with our CO2copy data frame</span></span>
 <span id="cb20-2"><a href="loading-exploring-and-saving-data.html#cb20-2"></a></span>
@@ -447,8 +447,8 @@ well!</p>
 to check all the logical operators you can use to subset a data frame in
 R</p>
 </div>
-<div id="data-exploration" class="section level3">
-<h3><span class="header-section-number">5.0.9</span> Data exploration</h3>
+<div id="data-exploration" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.9</span> Data exploration<a href="loading-exploring-and-saving-data.html#data-exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A good way to start your data exploration is to look at some basic
 statistics of your dataset using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="loading-exploring-and-saving-data.html#cb21-1"></a><span class="kw">summary</span>(CO2)  <span class="co"># Get summary statistics of your dataset</span></span></code></pre></div>
@@ -482,8 +482,8 @@ your dataset; the third argument is the function you would like to
 apply. For example:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="loading-exploring-and-saving-data.html#cb24-1"></a><span class="kw">apply</span>(CO2[, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>], <span class="dt">MARGIN =</span> <span class="dv">2</span>, <span class="dt">FUN =</span> mean)  <span class="co"># Calculate mean of the two columns in the data frame that contain continuous data</span></span></code></pre></div>
 </div>
-<div id="save-your-workspace" class="section level3">
-<h3><span class="header-section-number">5.0.10</span> Save your workspace</h3>
+<div id="save-your-workspace" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.10</span> Save your workspace<a href="loading-exploring-and-saving-data.html#save-your-workspace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>By saving your workspace, you can save the script and the objects
 currently loaded into R. If you save your workspace, you can reload all
 of the objects even after you use the <code>rm(list=ls())</code> command to delete
@@ -497,15 +497,15 @@ everything in the workspace.</p>
 <span id="cb25-6"><a href="loading-exploring-and-saving-data.html#cb25-6"></a></span>
 <span id="cb25-7"><a href="loading-exploring-and-saving-data.html#cb25-7"></a><span class="kw">head</span>(CO2)  <span class="co"># Looking good! :)</span></span></code></pre></div>
 </div>
-<div id="exporting-data" class="section level3">
-<h3><span class="header-section-number">5.0.11</span> Exporting data</h3>
+<div id="exporting-data" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.11</span> Exporting data<a href="loading-exploring-and-saving-data.html#exporting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you want to save a data file that you have created or edited in R,
 you can do so using the <code>write.csv()</code> command. Note that the file will
 be written into the current working directory.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="loading-exploring-and-saving-data.html#cb26-1"></a><span class="kw">write.csv</span>(CO2, <span class="dt">file =</span> <span class="st">&quot;co2_new.csv&quot;</span>)  <span class="co"># Save object CO2 to a file named co2_new.csv</span></span></code></pre></div>
 </div>
-<div id="use-your-data-challenge" class="section level3">
-<h3><span class="header-section-number">5.0.12</span> Use your data CHALLENGE</h3>
+<div id="use-your-data-challenge" class="section level3 hasAnchor">
+<h3><span class="header-section-number">5.0.12</span> Use your data CHALLENGE<a href="loading-exploring-and-saving-data.html#use-your-data-challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Try to load, explore, plot and save your own data in R. Does it load
 properly? If not, try fixing it in R. Save your fixed data and then try
 opening it in Excel.</p>
