@@ -1625,7 +1625,7 @@ Note that several solutions are possible.
 
 ```{r}
 
-weight_diff_rbase <- aggregate(formula = weight ~ Chick, 
+weight_diff_rbase <- aggregate(weight ~ Chick, 
                                data    = ChickWeight,
                                FUN     = function(x) weight_diff = max(x) - min(x))
 names(weight_diff_rbase) <- c("Chick", "weight_diff")
