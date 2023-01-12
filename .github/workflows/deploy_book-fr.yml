@@ -1,9 +1,11 @@
 on:
   push:
-     branches:
+    branches:
        - main
-     paths:
+    paths:
        - book-fr/**
+       - .github/workflows/deploy_book-en.yml
+       
   repository_dispatch: 
     types: [pong_book]
 
