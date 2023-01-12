@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 6 Réparer un jeu de données | Atelier 2: Charger et manipuler des données</title>
   <meta name="description" content="Charger et manipuler des données" />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 6 Réparer un jeu de données | Atelier 2: Charger et manipuler des données" />
   <meta property="og:type" content="book" />
@@ -48,25 +48,24 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,87 +135,98 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
 
 <li class="divider"></li>
-<li class="part"><span><b>Série d’ateliers R du CSBQ<span></span></b></span></li>
-<li><a href="index.html#préface">Préface<span></span></a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>0.1</b> Code de conduite<span></span></a><ul>
-<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu<span></span></a></li>
-<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables<span></span></a></li>
+<li class="part"><span><b>Série d’ateliers R du CSBQ</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Préface</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-de-conduite"><i class="fa fa-check"></i><b>0.1</b> Code de conduite</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#comportement-attendu"><i class="fa fa-check"></i><b>0.1.1</b> Comportement attendu</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#comportements-inacceptables"><i class="fa fa-check"></i><b>0.1.2</b> Comportements inacceptables</a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices<span></span></a></li>
-<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!<span></span></a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributeurs-et-contributrices"><i class="fa fa-check"></i><b>0.2</b> Contributeurs et contributrices</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contribuez-à-la-série"><i class="fa fa-check"></i><b>0.3</b> Contribuez à la série!</a></li>
 </ul></li>
-<li class="part"><span><b>Charger et manipuler des données<span></span></b></span></li>
-<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage<span></span></a></li>
-<li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier<span></span></a></li>
-<li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio<span></span></a><ul>
-<li class="chapter" data-level="3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#créer-un-projet-dans-rstudio"><i class="fa fa-check"></i><b>3.1</b> Créer un projet dans RStudio<span></span></a></li>
-<li class="chapter" data-level="3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>3.2</b> Organiser ses fichiers<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#préparer-des-données-pour-limportation-dans-r"><i class="fa fa-check"></i><b>3.3</b> Préparer des données pour l’importation dans R<span></span></a><ul>
-<li class="chapter" data-level="3.3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-fichiers"><i class="fa fa-check"></i><b>3.3.1</b> Bien nommer les fichiers<span></span></a></li>
-<li class="chapter" data-level="3.3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-variables"><i class="fa fa-check"></i><b>3.3.2</b> Bien nommer les variables<span></span></a></li>
-<li class="chapter" data-level="3.3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#conseils-pour-la-préparation-de-jeux-de-données"><i class="fa fa-check"></i><b>3.3.3</b> Conseils pour la préparation de jeux de données<span></span></a></li>
-<li class="chapter" data-level="3.3.4" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#exemples-de-mauvaises-habitudes"><i class="fa fa-check"></i><b>3.3.4</b> Exemples de mauvaises habitudes<span></span></a></li>
+<li class="part"><span><b>Charger et manipuler des données</b></span></li>
+<li class="chapter" data-level="1" data-path="objectifs-dapprentissage.html"><a href="objectifs-dapprentissage.html"><i class="fa fa-check"></i><b>1</b> Objectifs d’apprentissage</a></li>
+<li class="chapter" data-level="2" data-path="préparez-vous-pour-cet-atelier.html"><a href="préparez-vous-pour-cet-atelier.html"><i class="fa fa-check"></i><b>2</b> Préparez-vous pour cet atelier</a></li>
+<li class="chapter" data-level="3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html"><i class="fa fa-check"></i><b>3</b> Les projets RStudio</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#créer-un-projet-dans-rstudio"><i class="fa fa-check"></i><b>3.1</b> Créer un projet dans RStudio</a></li>
+<li class="chapter" data-level="3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#organiser-ses-fichiers"><i class="fa fa-check"></i><b>3.2</b> Organiser ses fichiers</a></li>
+<li class="chapter" data-level="3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#préparer-des-données-pour-limportation-dans-r"><i class="fa fa-check"></i><b>3.3</b> Préparer des données pour l’importation dans R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-fichiers"><i class="fa fa-check"></i><b>3.3.1</b> Bien nommer les fichiers</a></li>
+<li class="chapter" data-level="3.3.2" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#bien-nommer-les-variables"><i class="fa fa-check"></i><b>3.3.2</b> Bien nommer les variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#conseils-pour-la-préparation-de-jeux-de-données"><i class="fa fa-check"></i><b>3.3.3</b> Conseils pour la préparation de jeux de données</a></li>
+<li class="chapter" data-level="3.3.4" data-path="les-projets-rstudio.html"><a href="les-projets-rstudio.html#exemples-de-mauvaises-habitudes"><i class="fa fa-check"></i><b>3.3.4</b> Exemples de mauvaises habitudes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html"><i class="fa fa-check"></i><b>4</b> Écrire un script dans R<span></span></a><ul>
-<li class="chapter" data-level="4.0.1" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#commandes-commentaires"><i class="fa fa-check"></i><b>4.0.1</b> Commandes &amp; Commentaires<span></span></a></li>
-<li class="chapter" data-level="4.0.2" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes"><i class="fa fa-check"></i><b>4.0.2</b> En-têtes<span></span></a></li>
-<li class="chapter" data-level="4.0.3" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes-de-section"><i class="fa fa-check"></i><b>4.0.3</b> En-têtes de section<span></span></a></li>
-<li class="chapter" data-level="4.0.4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#nettoyage"><i class="fa fa-check"></i><b>4.0.4</b> Nettoyage<span></span></a></li>
-<li class="chapter" data-level="4.0.5" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#petit-rappel-important"><i class="fa fa-check"></i><b>4.0.5</b> Petit rappel important<span></span></a></li>
+<li class="chapter" data-level="4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html"><i class="fa fa-check"></i><b>4</b> Écrire un script dans R</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#commandes-commentaires"><i class="fa fa-check"></i><b>4.0.1</b> Commandes &amp; Commentaires</a></li>
+<li class="chapter" data-level="4.0.2" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes"><i class="fa fa-check"></i><b>4.0.2</b> En-têtes</a></li>
+<li class="chapter" data-level="4.0.3" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#en-têtes-de-section"><i class="fa fa-check"></i><b>4.0.3</b> En-têtes de section</a></li>
+<li class="chapter" data-level="4.0.4" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#nettoyage"><i class="fa fa-check"></i><b>4.0.4</b> Nettoyage</a></li>
+<li class="chapter" data-level="4.0.5" data-path="écrire-un-script-dans-r.html"><a href="écrire-un-script-dans-r.html#petit-rappel-important"><i class="fa fa-check"></i><b>4.0.5</b> Petit rappel important</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html"><i class="fa fa-check"></i><b>5</b> Charger, explorer et enregistrer des données<span></span></a><ul>
-<li class="chapter" data-level="5.0.1" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.1</b> Répertoire de travail<span></span></a></li>
-<li class="chapter" data-level="5.0.2" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.2</b> Afficher le contenu du répertoire de travail<span></span></a></li>
-<li class="chapter" data-level="5.0.3" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données"><i class="fa fa-check"></i><b>5.0.3</b> Importer un jeu de données<span></span></a></li>
-<li class="chapter" data-level="5.0.4" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.4</b> Explorer le jeu de données<span></span></a></li>
-<li class="chapter" data-level="5.0.5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données"><i class="fa fa-check"></i><b>5.0.5</b> Rappel de l’atelier 1 : Accéder aux données<span></span></a></li>
-<li class="chapter" data-level="5.0.6" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables"><i class="fa fa-check"></i><b>5.0.6</b> Changer les noms de variables<span></span></a></li>
-<li class="chapter" data-level="5.0.7" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables"><i class="fa fa-check"></i><b>5.0.7</b> Créer des nouvelles variables<span></span></a></li>
-<li class="chapter" data-level="5.0.8" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données"><i class="fa fa-check"></i><b>5.0.8</b> Extraire un sous-ensemble d’un jeu de données<span></span></a></li>
-<li class="chapter" data-level="5.0.9" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données"><i class="fa fa-check"></i><b>5.0.9</b> Explorer les données<span></span></a></li>
-<li class="chapter" data-level="5.0.10" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail"><i class="fa fa-check"></i><b>5.0.10</b> Enregistrer son espace de travail<span></span></a></li>
-<li class="chapter" data-level="5.0.11" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.11</b> Exporter le jeu de données<span></span></a></li>
-<li class="chapter" data-level="5.0.12" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données"><i class="fa fa-check"></i><b>5.0.12</b> DÉFI: Utilisez vos propres données<span></span></a></li>
+<li class="chapter" data-level="5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html"><i class="fa fa-check"></i><b>5</b> Charger, explorer et enregistrer des données</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.1</b> Répertoire de travail</a></li>
+<li class="chapter" data-level="5.0.2" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#afficher-le-contenu-du-répertoire-de-travail"><i class="fa fa-check"></i><b>5.0.2</b> Afficher le contenu du répertoire de travail</a></li>
+<li class="chapter" data-level="5.0.3" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#importer-un-jeu-de-données"><i class="fa fa-check"></i><b>5.0.3</b> Importer un jeu de données</a></li>
+<li class="chapter" data-level="5.0.4" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.4</b> Explorer le jeu de données</a></li>
+<li class="chapter" data-level="5.0.5" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#rappel-de-latelier-1-accéder-aux-données"><i class="fa fa-check"></i><b>5.0.5</b> Rappel de l’atelier 1 : Accéder aux données</a></li>
+<li class="chapter" data-level="5.0.6" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#changer-les-noms-de-variables"><i class="fa fa-check"></i><b>5.0.6</b> Changer les noms de variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#créer-des-nouvelles-variables"><i class="fa fa-check"></i><b>5.0.7</b> Créer des nouvelles variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#extraire-un-sous-ensemble-dun-jeu-de-données"><i class="fa fa-check"></i><b>5.0.8</b> Extraire un sous-ensemble d’un jeu de données</a></li>
+<li class="chapter" data-level="5.0.9" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#explorer-les-données"><i class="fa fa-check"></i><b>5.0.9</b> Explorer les données</a></li>
+<li class="chapter" data-level="5.0.10" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#enregistrer-son-espace-de-travail"><i class="fa fa-check"></i><b>5.0.10</b> Enregistrer son espace de travail</a></li>
+<li class="chapter" data-level="5.0.11" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#exporter-le-jeu-de-données"><i class="fa fa-check"></i><b>5.0.11</b> Exporter le jeu de données</a></li>
+<li class="chapter" data-level="5.0.12" data-path="charger-explorer-et-enregistrer-des-données.html"><a href="charger-explorer-et-enregistrer-des-données.html#défi-utilisez-vos-propres-données"><i class="fa fa-check"></i><b>5.0.12</b> DÉFI: Utilisez vos propres données</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html"><i class="fa fa-check"></i><b>6</b> Réparer un jeu de données<span></span></a><ul>
-<li class="chapter" data-level="6.0.1" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé"><i class="fa fa-check"></i><b>6.0.1</b> DÉFI: Réparer un jeu de données “endommagé”<span></span></a></li>
+<li class="chapter" data-level="6" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html"><i class="fa fa-check"></i><b>6</b> Réparer un jeu de données</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="réparer-un-jeu-de-données.html"><a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé"><i class="fa fa-check"></i><b>6.0.1</b> DÉFI: Réparer un jeu de données “endommagé”</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><i class="fa fa-check"></i><b>7</b> Manipuler ses données avec tidyr, dyplr, maggritr<span></span></a><ul>
-<li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données<span></span></a><ul>
-<li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?<span></span></a></li>
-<li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur<span></span></a></li>
-<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_longer-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> pivot_longer(): Rassembler les données en longueur<span></span></a></li>
-<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_wider-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> pivot_wider(): Disperser les données en largeur<span></span></a></li>
-<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#la-structure-tibble-pour-des-tables-de-données"><i class="fa fa-check"></i><b>7.1.5</b> La structure <code>tibble</code> pour des tables de données<span></span></a></li>
-<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.6</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes<span></span></a></li>
-<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.7</b> Récapitulatif: tidyr<span></span></a></li>
-<li class="chapter" data-level="7.1.8" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.8</b> DÉFI: Utiliser tidyr pour convertir le format long en format large<span></span></a></li>
-<li class="chapter" data-level="7.1.9" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution"><i class="fa fa-check"></i><b>7.1.9</b> Solution<span></span></a></li>
+<li class="chapter" data-level="7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><i class="fa fa-check"></i><b>7</b> Manipuler ses données avec tidyr, dyplr, maggritr</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-tidyr-pour-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1</b> Utiliser “tidyr” pour réorganiser ses données</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pourquoi-réorganiser-ses-données"><i class="fa fa-check"></i><b>7.1.1</b> Pourquoi réorganiser ses données?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#données-en-longueur-vs.-en-largeur"><i class="fa fa-check"></i><b>7.1.2</b> Données en longueur vs. en largeur</a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_longer-rassembler-les-données-en-longueur"><i class="fa fa-check"></i><b>7.1.3</b> pivot_longer(): Rassembler les données en longueur</a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#pivot_wider-disperser-les-données-en-largeur"><i class="fa fa-check"></i><b>7.1.4</b> pivot_wider(): Disperser les données en largeur</a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#la-structure-tibble-pour-des-tables-de-données"><i class="fa fa-check"></i><b>7.1.5</b> La structure <code>tibble</code> pour des tables de données</a></li>
+<li class="chapter" data-level="7.1.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#separate-séparer-une-colonne-en-deux-ou-plusieurs-colonnes"><i class="fa fa-check"></i><b>7.1.6</b> separate(): séparer une colonne en deux (ou plusieurs) colonnes</a></li>
+<li class="chapter" data-level="7.1.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#récapitulatif-tidyr"><i class="fa fa-check"></i><b>7.1.7</b> Récapitulatif: tidyr</a></li>
+<li class="chapter" data-level="7.1.8" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-utiliser-tidyr-pour-convertir-le-format-long-en-format-large"><i class="fa fa-check"></i><b>7.1.8</b> DÉFI: Utiliser tidyr pour convertir le format long en format large</a></li>
+<li class="chapter" data-level="7.1.9" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution"><i class="fa fa-check"></i><b>7.1.9</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données<span></span></a><ul>
-<li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr<span></span></a></li>
-<li class="chapter" data-level="7.2.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#select-sélection-de-colonnes"><i class="fa fa-check"></i><b>7.2.2</b> select(): Sélection de colonnes<span></span></a></li>
-<li class="chapter" data-level="7.2.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#filter-sélection-de-rangées"><i class="fa fa-check"></i><b>7.2.3</b> filter(): Sélection de rangées<span></span></a></li>
-<li class="chapter" data-level="7.2.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#arrange-triage-de-rangées"><i class="fa fa-check"></i><b>7.2.4</b> arrange(): Triage de rangées<span></span></a></li>
-<li class="chapter" data-level="7.2.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#mutate-créer-des-nouvelles-colonnes"><i class="fa fa-check"></i><b>7.2.5</b> mutate(): Créer des nouvelles colonnes<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#utiliser-dplyr-pour-manipuler-les-données"><i class="fa fa-check"></i><b>7.2</b> Utiliser “dplyr” pour manipuler les données</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#introduction-à-dplyr"><i class="fa fa-check"></i><b>7.2.1</b> Introduction à dplyr</a></li>
+<li class="chapter" data-level="7.2.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#select-sélection-de-colonnes"><i class="fa fa-check"></i><b>7.2.2</b> select(): Sélection de colonnes</a></li>
+<li class="chapter" data-level="7.2.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#filter-sélection-de-rangées"><i class="fa fa-check"></i><b>7.2.3</b> filter(): Sélection de rangées</a></li>
+<li class="chapter" data-level="7.2.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#arrange-triage-de-rangées"><i class="fa fa-check"></i><b>7.2.4</b> arrange(): Triage de rangées</a></li>
+<li class="chapter" data-level="7.2.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#mutate-créer-des-nouvelles-colonnes"><i class="fa fa-check"></i><b>7.2.5</b> mutate(): Créer des nouvelles colonnes</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel<span></span></a></li>
-<li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”<span></span></a><ul>
-<li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr<span></span></a></li>
-<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-1"><i class="fa fa-check"></i><b>7.4.2</b> Solution:<span></span></a></li>
-<li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr<span></span></a></li>
-<li class="chapter" data-level="7.4.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.4</b> Indice pour les ninjas<span></span></a></li>
-<li class="chapter" data-level="7.4.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-2"><i class="fa fa-check"></i><b>7.4.5</b> Solution<span></span></a></li>
-<li class="chapter" data-level="7.4.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base"><i class="fa fa-check"></i><b>7.4.6</b> Défi R base<span></span></a></li>
-<li class="chapter" data-level="7.4.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base---solution"><i class="fa fa-check"></i><b>7.4.7</b> Défi R base - Solution<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#dplyr-et-magrittr-un-don-du-ciel"><i class="fa fa-check"></i><b>7.3</b> dplyr et magrittr, un don du ciel</a></li>
+<li class="chapter" data-level="7.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#regroupement-dopérations-et-sommaires-avec-dplyr"><i class="fa fa-check"></i><b>7.4</b> Regroupement d’opérations et sommaires avec “dplyr”</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-dplyr-et-magrittr"><i class="fa fa-check"></i><b>7.4.1</b> DÉFI: dplyr et magrittr</a></li>
+<li class="chapter" data-level="7.4.2" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-1"><i class="fa fa-check"></i><b>7.4.2</b> Solution:</a></li>
+<li class="chapter" data-level="7.4.3" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#ninja-défi-dplyr-magrittr"><i class="fa fa-check"></i><b>7.4.3</b> NINJA DÉFI: dplyr &amp; magrittr</a></li>
+<li class="chapter" data-level="7.4.4" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#indice-pour-les-ninjas"><i class="fa fa-check"></i><b>7.4.4</b> Indice pour les ninjas</a></li>
+<li class="chapter" data-level="7.4.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#solution-2"><i class="fa fa-check"></i><b>7.4.5</b> Solution</a></li>
+<li class="chapter" data-level="7.4.6" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base"><i class="fa fa-check"></i><b>7.4.6</b> Défi R base</a></li>
+<li class="chapter" data-level="7.4.7" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#défi-r-base---solution"><i class="fa fa-check"></i><b>7.4.7</b> Défi R base - Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html"><a href="manipuler-ses-données-avec-tidyr-dyplr-maggritr.html#fusionner-des-tableaux-de-données-avec-dplyr"><i class="fa fa-check"></i><b>7.5</b> Fusionner des tableaux de données avec dplyr</a></li>
 </ul></li>
-<li class="part"><span><b>Considérations finales<span></span></b></span></li>
-<li class="chapter" data-level="8" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i><b>8</b> Résumé<span></span></a></li>
-<li class="chapter" data-level="9" data-path="resources-additionnels.html"><a href="resources-additionnels.html"><i class="fa fa-check"></i><b>9</b> Resources additionnels<span></span></a></li>
-<li class="chapter" data-level="10" data-path="réferences.html"><a href="réferences.html"><i class="fa fa-check"></i><b>10</b> Réferences<span></span></a></li>
+<li class="part"><span><b>Considérations finales</b></span></li>
+<li class="chapter" data-level="8" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i><b>8</b> Résumé</a></li>
+<li class="chapter" data-level="9" data-path="resources-additionnels.html"><a href="resources-additionnels.html"><i class="fa fa-check"></i><b>9</b> Resources additionnels</a></li>
+<li class="chapter" data-level="10" data-path="réferences.html"><a href="réferences.html"><i class="fa fa-check"></i><b>10</b> Réferences</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
 
@@ -252,18 +262,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
 </div>
 --!>
-<div id="réparer-un-jeu-de-données" class="section level1 hasAnchor">
+<div id="réparer-un-jeu-de-données" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapitre 6</span> Réparer un jeu de données<a href="réparer-un-jeu-de-données.html#réparer-un-jeu-de-données" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Les jeux de données peuvent être désordonnés et incompatibles entre
 certains systèmes (Mac, Windows) ou entre ordinateurs.</p>
 <p>Pratiquons-nous à réparer certains problèmes communs.</p>
-<div id="défi-réparer-un-jeu-de-données-endommagé" class="section level3 hasAnchor">
+<div id="défi-réparer-un-jeu-de-données-endommagé" class="section level3 hasAnchor" number="6.0.1">
 <h3><span class="header-section-number">6.0.1</span> DÉFI: Réparer un jeu de données “endommagé”<a href="réparer-un-jeu-de-données.html#défi-réparer-un-jeu-de-données-endommagé" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Importez un jeu de données “endommagé” dans R et trouvez les
 problèmes.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="réparer-un-jeu-de-données.html#cb27-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>)  <span class="co"># On remplace l&#39;ancien objet CO2 avec le contenu d&#39;un nouveau jeu de données</span></span>
-<span id="cb27-2"><a href="réparer-un-jeu-de-données.html#cb27-2"></a><span class="kw">head</span>(CO2)  <span class="co"># C&#39;est le désordre!</span></span>
-<span id="cb27-3"><a href="réparer-un-jeu-de-données.html#cb27-3"></a>CO2</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="réparer-un-jeu-de-données.html#cb27-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>)  <span class="co"># On remplace l&#39;ancien objet CO2 avec le contenu d&#39;un nouveau jeu de données</span></span>
+<span id="cb27-2"><a href="réparer-un-jeu-de-données.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2)  <span class="co"># C&#39;est le désordre!</span></span>
+<span id="cb27-3"><a href="réparer-un-jeu-de-données.html#cb27-3" aria-hidden="true" tabindex="-1"></a>CO2</span></code></pre></div>
 <ul>
 <li>Vos données ressemblent probablement à ça !</li>
 <li>Réparez le jeu de données dans R</li>
@@ -291,58 +301,58 @@ Solution : Importez les données de nouveau, mais en
 spécifiant comment chaque valeur est séparée. L’argument “sep”
 indique à R quel type de caractère sépare les valeurs sur chaque ligne.
 Ici, une tabulation sépare les valeurs au lieu d’une virgule.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="réparer-un-jeu-de-données.html#cb28-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb28-2"><a href="réparer-un-jeu-de-données.html#cb28-2"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="réparer-un-jeu-de-données.html#cb28-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb28-2"><a href="réparer-un-jeu-de-données.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
 <p>Réponse #2 Problème #2 : Les données ne commencent pas
 avant la troisième ligne. Les en-têtes de colonnes sont remplacés par
 des notes.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="réparer-un-jeu-de-données.html#cb29-1"></a><span class="kw">head</span>(CO2)  <span class="co"># La fonction head() permet de voir que les données n&#39;ont pas été lues avec les bons en-têtes</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="réparer-un-jeu-de-données.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2)  <span class="co"># La fonction head() permet de voir que les données n&#39;ont pas été lues avec les bons en-têtes</span></span></code></pre></div>
 <p>Solution : Pour régler ce problème, vous devez indiquer à R
 de sauter les deux premières lignes avec l’argument “skip”.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="réparer-un-jeu-de-données.html#cb30-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>)  <span class="co"># En ajoutant l&#39;argument skip, R ignore les deux premières lignes.</span></span>
-<span id="cb30-2"><a href="réparer-un-jeu-de-données.html#cb30-2"></a><span class="kw">head</span>(CO2)  <span class="co"># Le tableau a maintenant des en-têtes appropriés.</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="réparer-un-jeu-de-données.html#cb30-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">skip =</span> <span class="dv">2</span>)  <span class="co"># En ajoutant l&#39;argument skip, R ignore les deux premières lignes.</span></span>
+<span id="cb30-2"><a href="réparer-un-jeu-de-données.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2)  <span class="co"># Le tableau a maintenant des en-têtes appropriés.</span></span></code></pre></div>
 <p>Réponse #3 Problème #3 : Les variables “conc” et
 “uptake” sont considérées commes des facteurs au lieu de nombres, car
 il y a du texte dans ces colonnes.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="réparer-un-jeu-de-données.html#cb31-1"></a><span class="kw">str</span>(CO2)  <span class="co"># La fonction str() montre que les colonnes &#39;conc&#39; et &#39;uptake&#39; sont considérées comme facteurs.</span></span>
-<span id="cb31-2"><a href="réparer-un-jeu-de-données.html#cb31-2"></a><span class="kw">class</span>(CO2<span class="op">$</span>conc)</span>
-<span id="cb31-3"><a href="réparer-un-jeu-de-données.html#cb31-3"></a><span class="kw">unique</span>(CO2<span class="op">$</span>conc)  <span class="co"># En examinant les valeurs uniques de cette colonne,</span></span>
-<span id="cb31-4"><a href="réparer-un-jeu-de-données.html#cb31-4"></a><span class="co"># on voit que ces deux colonnes contiennent la valeur</span></span>
-<span id="cb31-5"><a href="réparer-un-jeu-de-données.html#cb31-5"></a><span class="co"># &#39;cannot_read_notes&#39;.</span></span>
-<span id="cb31-6"><a href="réparer-un-jeu-de-données.html#cb31-6"></a><span class="kw">unique</span>(CO2<span class="op">$</span>uptake)</span>
-<span id="cb31-7"><a href="réparer-un-jeu-de-données.html#cb31-7"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(unique)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="réparer-un-jeu-de-données.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># La fonction str() montre que les colonnes &#39;conc&#39; et &#39;uptake&#39; sont considérées comme facteurs.</span></span>
+<span id="cb31-2"><a href="réparer-un-jeu-de-données.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(CO2<span class="sc">$</span>conc)</span>
+<span id="cb31-3"><a href="réparer-un-jeu-de-données.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(CO2<span class="sc">$</span>conc)  <span class="co"># En examinant les valeurs uniques de cette colonne,</span></span>
+<span id="cb31-4"><a href="réparer-un-jeu-de-données.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># on voit que ces deux colonnes contiennent la valeur</span></span>
+<span id="cb31-5"><a href="réparer-un-jeu-de-données.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;cannot_read_notes&#39;.</span></span>
+<span id="cb31-6"><a href="réparer-un-jeu-de-données.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(CO2<span class="sc">$</span>uptake)</span>
+<span id="cb31-7"><a href="réparer-un-jeu-de-données.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(unique)</span></code></pre></div>
 <p>Solution :</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="réparer-un-jeu-de-données.html#cb32-1"></a><span class="st">`</span><span class="dt">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="réparer-un-jeu-de-données.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(read.csv)</span></code></pre></div>
 <p><img src="images/read_table_help1.png" /> <img src="images/read_table_help2.png" /></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="réparer-un-jeu-de-données.html#cb33-1"></a>CO2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">skip =</span> <span class="dv">2</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;NA&quot;</span>,</span>
-<span id="cb33-2"><a href="réparer-un-jeu-de-données.html#cb33-2"></a>    <span class="st">&quot;na&quot;</span>, <span class="st">&quot;cannot_read_notes&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="réparer-un-jeu-de-données.html#cb33-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;CO2_broken.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">skip =</span> <span class="dv">2</span>, <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">&quot;NA&quot;</span>,</span>
+<span id="cb33-2"><a href="réparer-un-jeu-de-données.html#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;na&quot;</span>, <span class="st">&quot;cannot_read_notes&quot;</span>))</span></code></pre></div>
 <p>En identifiant “cannot_read_notes” comme valeur manquante (<em>i.e.</em> NA),
 R peut maintenant ces colonnes correctement. Rappelez-vous que NA
 signifie “Not available”.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="réparer-un-jeu-de-données.html#cb34-1"></a><span class="kw">head</span>(CO2)</span>
-<span id="cb34-2"><a href="réparer-un-jeu-de-données.html#cb34-2"></a><span class="kw">str</span>(CO2)  <span class="co"># La variable &#39;conc&#39; est maintenant de type &#39;integer&#39; (nombre entier) et la variable &#39;uptake&#39; est maintenant de type numérique.</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="réparer-un-jeu-de-données.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2)</span>
+<span id="cb34-2"><a href="réparer-un-jeu-de-données.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># La variable &#39;conc&#39; est maintenant de type &#39;integer&#39; (nombre entier) et la variable &#39;uptake&#39; est maintenant de type numérique.</span></span></code></pre></div>
 <p>Réponse #4 Problème #4 : En réalité, il n’y a seulement
 que deux traitements (chilled &amp; non chilled), mais des erreurs
 d’orthographe créent deux autres traitements.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="réparer-un-jeu-de-données.html#cb35-1"></a><span class="kw">str</span>(CO2)  <span class="co"># Vous voyez qu&#39;il y a quatre niveaux de traitement</span></span>
-<span id="cb35-2"><a href="réparer-un-jeu-de-données.html#cb35-2"></a><span class="kw">levels</span>(CO2<span class="op">$</span>Treatment)</span>
-<span id="cb35-3"><a href="réparer-un-jeu-de-données.html#cb35-3"></a><span class="kw">unique</span>(CO2<span class="op">$</span>Treatment)  <span class="co"># Les quatre différents traitements sont &#39;nonchilled&#39;, &#39;nnchilled&#39;, &#39;chilled&#39; et &#39;chiled&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="réparer-un-jeu-de-données.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># Vous voyez qu&#39;il y a quatre niveaux de traitement</span></span>
+<span id="cb35-2"><a href="réparer-un-jeu-de-données.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(CO2<span class="sc">$</span>Treatment)</span>
+<span id="cb35-3"><a href="réparer-un-jeu-de-données.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(CO2<span class="sc">$</span>Treatment)  <span class="co"># Les quatre différents traitements sont &#39;nonchilled&#39;, &#39;nnchilled&#39;, &#39;chilled&#39; et &#39;chiled&#39;</span></span></code></pre></div>
 <p>Solution :</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="réparer-un-jeu-de-données.html#cb36-1"></a><span class="co"># Vous pouvez utiliser la fonction which() afin de trouver</span></span>
-<span id="cb36-2"><a href="réparer-un-jeu-de-données.html#cb36-2"></a><span class="co"># les lignes avec l&#39;erreur &#39;nnchilled&#39;</span></span>
-<span id="cb36-3"><a href="réparer-un-jeu-de-données.html#cb36-3"></a><span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;nnchilled&quot;</span>)  <span class="co"># Cette commande nous indique que l&#39;erreur se trouve à la ligne 10</span></span>
-<span id="cb36-4"><a href="réparer-un-jeu-de-données.html#cb36-4"></a><span class="co"># Vous pouvez corriger l&#39;erreur par indexation (voir</span></span>
-<span id="cb36-5"><a href="réparer-un-jeu-de-données.html#cb36-5"></a><span class="co"># atelier 1) :</span></span>
-<span id="cb36-6"><a href="réparer-un-jeu-de-données.html#cb36-6"></a>CO2<span class="op">$</span>Treatment[<span class="dv">10</span>] &lt;-<span class="st"> &quot;nonchilled&quot;</span></span>
-<span id="cb36-7"><a href="réparer-un-jeu-de-données.html#cb36-7"></a><span class="co"># Vous pouvez faire ces deux étapes en une seule commande :</span></span>
-<span id="cb36-8"><a href="réparer-un-jeu-de-données.html#cb36-8"></a>CO2<span class="op">$</span>Treatment[<span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;nnchilled&quot;</span>)] &lt;-<span class="st"> &quot;nonchilled&quot;</span></span>
-<span id="cb36-9"><a href="réparer-un-jeu-de-données.html#cb36-9"></a><span class="co"># Faisons la même chose pour &#39;chiled&#39; :</span></span>
-<span id="cb36-10"><a href="réparer-un-jeu-de-données.html#cb36-10"></a>CO2<span class="op">$</span>Treatment[<span class="kw">which</span>(CO2<span class="op">$</span>Treatment <span class="op">==</span><span class="st"> &quot;chiled&quot;</span>)] &lt;-<span class="st"> &quot;chilled&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="réparer-un-jeu-de-données.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vous pouvez utiliser la fonction which() afin de trouver</span></span>
+<span id="cb36-2"><a href="réparer-un-jeu-de-données.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># les lignes avec l&#39;erreur &#39;nnchilled&#39;</span></span>
+<span id="cb36-3"><a href="réparer-un-jeu-de-données.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(CO2<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;nnchilled&quot;</span>)  <span class="co"># Cette commande nous indique que l&#39;erreur se trouve à la ligne 10</span></span>
+<span id="cb36-4"><a href="réparer-un-jeu-de-données.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vous pouvez corriger l&#39;erreur par indexation (voir</span></span>
+<span id="cb36-5"><a href="réparer-un-jeu-de-données.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># atelier 1) :</span></span>
+<span id="cb36-6"><a href="réparer-un-jeu-de-données.html#cb36-6" aria-hidden="true" tabindex="-1"></a>CO2<span class="sc">$</span>Treatment[<span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="st">&quot;nonchilled&quot;</span></span>
+<span id="cb36-7"><a href="réparer-un-jeu-de-données.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vous pouvez faire ces deux étapes en une seule commande :</span></span>
+<span id="cb36-8"><a href="réparer-un-jeu-de-données.html#cb36-8" aria-hidden="true" tabindex="-1"></a>CO2<span class="sc">$</span>Treatment[<span class="fu">which</span>(CO2<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;nnchilled&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;nonchilled&quot;</span></span>
+<span id="cb36-9"><a href="réparer-un-jeu-de-données.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Faisons la même chose pour &#39;chiled&#39; :</span></span>
+<span id="cb36-10"><a href="réparer-un-jeu-de-données.html#cb36-10" aria-hidden="true" tabindex="-1"></a>CO2<span class="sc">$</span>Treatment[<span class="fu">which</span>(CO2<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;chiled&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;chilled&quot;</span></span></code></pre></div>
 <p>Est-ce que les problèmes sont réglés ?</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="réparer-un-jeu-de-données.html#cb37-1"></a><span class="kw">str</span>(CO2)  <span class="co"># La fonction str() identifie toujours quatre niveaux de facteur pour la variable traitement</span></span>
-<span id="cb37-2"><a href="réparer-un-jeu-de-données.html#cb37-2"></a><span class="kw">unique</span>(CO2<span class="op">$</span>Treatment)  <span class="co"># Cependant, la fonction unique() indique que seulement deux niveaux sont utilisés</span></span>
-<span id="cb37-3"><a href="réparer-un-jeu-de-données.html#cb37-3"></a>CO2 &lt;-<span class="st"> </span><span class="kw">droplevels</span>(CO2)  <span class="co"># La fonction droplevels() supprime les niveaux inutilisés de tous les facteurs du tableau de données</span></span>
-<span id="cb37-4"><a href="réparer-un-jeu-de-données.html#cb37-4"></a><span class="kw">str</span>(CO2)  <span class="co"># C&#39;est réparé !</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="réparer-un-jeu-de-données.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># La fonction str() identifie toujours quatre niveaux de facteur pour la variable traitement</span></span>
+<span id="cb37-2"><a href="réparer-un-jeu-de-données.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(CO2<span class="sc">$</span>Treatment)  <span class="co"># Cependant, la fonction unique() indique que seulement deux niveaux sont utilisés</span></span>
+<span id="cb37-3"><a href="réparer-un-jeu-de-données.html#cb37-3" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(CO2)  <span class="co"># La fonction droplevels() supprime les niveaux inutilisés de tous les facteurs du tableau de données</span></span>
+<span id="cb37-4"><a href="réparer-un-jeu-de-données.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(CO2)  <span class="co"># C&#39;est réparé !</span></span></code></pre></div>
 
 </div>
 </div>
