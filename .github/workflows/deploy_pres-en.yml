@@ -96,8 +96,8 @@ jobs:
       - name: 💎 Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: pres-en/
-          TARGET_FOLDER: pres-en # The folder the action should deploy
-          CLEAN: true
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: pres-en/
+          target-folder: pres-en # The folder the action should deploy
+          clean: true
