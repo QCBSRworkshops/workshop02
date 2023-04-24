@@ -125,3 +125,4 @@ jobs:
           folder: book-fr/_book/
           target-folder: book-fr # The folder the action should deploy
           clean: true
+
