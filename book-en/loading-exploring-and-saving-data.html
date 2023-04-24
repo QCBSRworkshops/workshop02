@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Loading, exploring and saving data | Workshop 2: Loading and Manipulating Data</title>
+  <meta name="description" content="Loading and Manipulating Data" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Loading, exploring and saving data | Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Loading and Manipulating Data" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop02" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Loading, exploring and saving data | Workshop 2: Loading and Manipulating Data" />
+  
+  <meta name="twitter:description" content="Loading and Manipulating Data" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="writing-a-script.html"/>
+<link rel="next" href="repairing-a-broken-data-frame.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+</ul></li>
+<li class="part"><span><b>Loading and manipulating data in <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a></li>
+<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script</a></li>
+<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments</a></li>
+<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header</a></li>
+<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading</a></li>
+<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping</a></li>
+<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory</a></li>
+<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory</a></li>
+<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data</a></li>
+<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data</a></li>
+<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data</a></li>
+<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration</a></li>
+<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace</a></li>
+<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data</a></li>
+<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
+<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
+<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
+<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
+</ul></li>
+<li class="part"><span><b>Final considerations</b></span></li>
+<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
+<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop 2: Loading and Manipulating Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+<!-- 
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+--!>
+<div id="loading-exploring-and-saving-data" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Loading, exploring and saving data<a href="loading-exploring-and-saving-data.html#loading-exploring-and-saving-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="working-directory" class="section level3 hasAnchor" number="5.0.1">
+<h3><span class="header-section-number">5.0.1</span> Working directory<a href="loading-exploring-and-saving-data.html#working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R needs to know the directory where your data and files are stored in
+order to load them. You can see which directory you are currently
+working in by using the <code>getwd()</code> command.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="loading-exploring-and-saving-data.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()  <span class="co"># This commands shows the directory you are currently working in</span></span></code></pre></div>
+<p>When you load a script, R automatically sets the working directory to
+the folder containing the script.</p>
+<p>To change working directories using the <code>setwd()</code> function, specify the
+working directory’s path using a “/” to separate folders, subfolders
+and file names. You can also click Session &gt; Set working directory &gt;
+Choose directory…</p>
+</div>
+<div id="display-the-content-of-the-working-directory" class="section level3 hasAnchor" number="5.0.2">
+<h3><span class="header-section-number">5.0.2</span> Display the content of the working directory<a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The command <code>dir()</code> displays the content of the working directory.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="loading-exploring-and-saving-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir</span>()  <span class="co"># This command shows the content of the directory you are currently working in</span></span></code></pre></div>
+<p>You can check:</p>
+<ul>
+<li>Whether or not the file you plan to open is present in the current
+directory</li>
+<li>The correct spelling of the file name (<em>e.g.</em> ‘myfile.csv’ instead
+of ‘MyFile.csv’)</li>
+</ul>
+</div>
+<div id="importing-data" class="section level3 hasAnchor" number="5.0.3">
+<h3><span class="header-section-number">5.0.3</span> Importing data<a href="loading-exploring-and-saving-data.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the <code>read.csv()</code> command to import data in R.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="loading-exploring-and-saving-data.html#cb9-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;co2_good.csv&quot;</span>)  <span class="co"># Creates an object called CO2 by loading data from a file called &#39;co2_good.csv&#39;</span></span></code></pre></div>
+<p>This command specifies that you will be creating an R object named
+“CO2” by reading a csv file called “co2_good.csv”. This file must be
+located in your current working directory.</p>
+<p>Recall that the question mark can be used to find out what arguments the
+function requires.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="loading-exploring-and-saving-data.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(read.csv  <span class="co"># Use the question mark to pull up the help page for a command</span></span>
+<span id="cb10-2"><a href="loading-exploring-and-saving-data.html#cb10-2" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>In the help file you will note that adding the argument header=TRUE
+tells R that the first line of the spreadsheet contains column names and
+not data.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="loading-exploring-and-saving-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;co2_good.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>NOTE: If your operating system or CSV editor is in French, you may need
+to use <code>read.csv2()</code> instead of <code>read.csv()</code></p>
+<p><img src="images/5_Importing_data_Mod_arrow.png" width="900" /></p>
+<p>Notice that RStudio now provides information on the CO2 data in your
+workspace. The workspace refers to all the objects that you create
+during an R session.</p>
+</div>
+<div id="looking-at-data" class="section level3 hasAnchor" number="5.0.4">
+<h3><span class="header-section-number">5.0.4</span> Looking at data<a href="loading-exploring-and-saving-data.html#looking-at-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CO2 dataset consists of repeated measurements of CO2 uptake from six
+plants from Quebec and six plants from Mississippi at several levels of
+ambient CO2 concentration. Half of the plants of each type were chilled
+overnight before the experiment began.</p>
+<p>There are some common commands that are useful to look at imported data:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">CO2</td>
+<td align="left">Look at the whole data frame</td>
+</tr>
+<tr class="even">
+<td align="left">head(CO2)</td>
+<td align="left">Look at the first few rows</td>
+</tr>
+<tr class="odd">
+<td align="left">tail(CO2)</td>
+<td align="left">Look at the last few rows</td>
+</tr>
+<tr class="even">
+<td align="left">names(CO2)</td>
+<td align="left">Names of the columns in the data frame</td>
+</tr>
+<tr class="odd">
+<td align="left">attributes(CO2)</td>
+<td align="left">Attributes of the data frame</td>
+</tr>
+<tr class="even">
+<td align="left">dim(CO2)</td>
+<td align="left">Dimensions of the data frame</td>
+</tr>
+<tr class="odd">
+<td align="left">ncol(CO2)</td>
+<td align="left">Number of columns</td>
+</tr>
+<tr class="even">
+<td align="left">nrow(CO2)</td>
+<td align="left">Number of rows</td>
+</tr>
+<tr class="odd">
+<td align="left">summary(CO2)</td>
+<td align="left">Summary statistics</td>
+</tr>
+<tr class="even">
+<td align="left">str(CO2)</td>
+<td align="left">Structure of the data frame</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>str()</code> command is very useful to check the data type/mode for each
+column (i.e. to check that all factors are factors, and numeric data is
+stored as an integer or numeric. There are many common problems:</p>
+<ul>
+<li>Factors loaded as text (character) and vice versa</li>
+<li>Factors including too many levels because of a typo</li>
+<li>Numeric or integer data being loaded as a character due to a typo
+(including space or using a comma instead of a “.” for a decimal)</li>
+</ul>
+<p><strong>Exercise</strong></p>
+<p>Try to reload the data using:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="loading-exploring-and-saving-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a>CO2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;co2_good.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Check the <code>str()</code> of CO2. What is wrong here? Reload the data with
+header=TRUE before continuing.</p>
+</div>
+<div id="reminder-from-workshop-1-accessing-data" class="section level3 hasAnchor" number="5.0.5">
+<h3><span class="header-section-number">5.0.5</span> Reminder from workshop 1: Accessing data<a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Data within a data frame can be extracted by several means. Let’s
+consider a data frame called <em>mydata</em>. Use square brackets to extract
+the content of a cell.</p>
+<p><img src="images/Table_Reminder_from_Workshop_1_Accessing_data.png" width="500" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="loading-exploring-and-saving-data.html#cb13-1" aria-hidden="true" tabindex="-1"></a>mydata[<span class="dv">2</span>, <span class="dv">3</span>]  <span class="co"># extracts the content of row 2 / column 3</span></span></code></pre></div>
+<p>If column number is omitted, the whole row is extracted.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="loading-exploring-and-saving-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a>mydata[<span class="dv">1</span>, ]  <span class="co"># extracts the content of the first row</span></span></code></pre></div>
+<p>The squared brackets can also be used recursively</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="loading-exploring-and-saving-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a>mydata[, <span class="dv">1</span>][<span class="dv">2</span>]  <span class="co"># this extracts the second content of the first column</span></span></code></pre></div>
+<p>If row number is omitted, the whole column is extracted. Similarly, the
+<code>$</code> sign followed by the corresponding header can be used.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="loading-exploring-and-saving-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a>mydata<span class="sc">$</span>Variable1  <span class="co"># extracts a specific column by its name (&#39;Variable1&#39;)</span></span></code></pre></div>
+</div>
+<div id="renaming-variables" class="section level3 hasAnchor" number="5.0.6">
+<h3><span class="header-section-number">5.0.6</span> Renaming variables<a href="loading-exploring-and-saving-data.html#renaming-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variable names (i.e. column names) can be changed within R.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="loading-exploring-and-saving-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First let&#39;s make a copy of the dataset to play with!</span></span>
+<span id="cb17-2"><a href="loading-exploring-and-saving-data.html#cb17-2" aria-hidden="true" tabindex="-1"></a>CO2copy <span class="ot">&lt;-</span> CO2</span>
+<span id="cb17-3"><a href="loading-exploring-and-saving-data.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># names() gives you the names of the variables present in</span></span>
+<span id="cb17-4"><a href="loading-exploring-and-saving-data.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the data frame</span></span>
+<span id="cb17-5"><a href="loading-exploring-and-saving-data.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(CO2copy)</span>
+<span id="cb17-6"><a href="loading-exploring-and-saving-data.html#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="loading-exploring-and-saving-data.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing from English to French names (make sure you have</span></span>
+<span id="cb17-8"><a href="loading-exploring-and-saving-data.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the same levels!)</span></span>
+<span id="cb17-9"><a href="loading-exploring-and-saving-data.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(CO2copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Plante&quot;</span>, <span class="st">&quot;Categorie&quot;</span>, <span class="st">&quot;Traitement&quot;</span>, <span class="st">&quot;conc&quot;</span>,</span>
+<span id="cb17-10"><a href="loading-exploring-and-saving-data.html#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;absortion&quot;</span>)</span></code></pre></div>
+</div>
+<div id="creating-new-variables" class="section level3 hasAnchor" number="5.0.7">
+<h3><span class="header-section-number">5.0.7</span> Creating new variables<a href="loading-exploring-and-saving-data.html#creating-new-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>New variables can be easily created and populated. For example,
+variables and strings can be concatenated together using the function
+<code>paste()</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="loading-exploring-and-saving-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s create an unique id for our samples using the</span></span>
+<span id="cb18-2"><a href="loading-exploring-and-saving-data.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># function paste() see ?paste and ?paste0 Don&#39;t forget to</span></span>
+<span id="cb18-3"><a href="loading-exploring-and-saving-data.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use &#39;&#39; for strings</span></span>
+<span id="cb18-4"><a href="loading-exploring-and-saving-data.html#cb18-4" aria-hidden="true" tabindex="-1"></a>CO2copy<span class="sc">$</span>uniqueID <span class="ot">&lt;-</span> <span class="fu">paste0</span>(CO2copy<span class="sc">$</span>Plante, <span class="st">&quot;_&quot;</span>, CO2copy<span class="sc">$</span>Categorie,</span>
+<span id="cb18-5"><a href="loading-exploring-and-saving-data.html#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_&quot;</span>, CO2copy<span class="sc">$</span>Traitement)</span>
+<span id="cb18-6"><a href="loading-exploring-and-saving-data.html#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="loading-exploring-and-saving-data.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe the results</span></span>
+<span id="cb18-8"><a href="loading-exploring-and-saving-data.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2copy<span class="sc">$</span>uniqueID)</span></code></pre></div>
+<p>Creating new variables works for numbers and mathematical operations as
+well!</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="loading-exploring-and-saving-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s standardize our variable &#39;absortion&#39; to relative</span></span>
+<span id="cb19-2"><a href="loading-exploring-and-saving-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># values</span></span>
+<span id="cb19-3"><a href="loading-exploring-and-saving-data.html#cb19-3" aria-hidden="true" tabindex="-1"></a>CO2copy<span class="sc">$</span>absortionRel <span class="ot">=</span> CO2copy<span class="sc">$</span>absortion<span class="sc">/</span><span class="fu">max</span>(CO2copy<span class="sc">$</span>absortion)  <span class="co"># Changing to relative values</span></span>
+<span id="cb19-4"><a href="loading-exploring-and-saving-data.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="loading-exploring-and-saving-data.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Observe the results</span></span>
+<span id="cb19-6"><a href="loading-exploring-and-saving-data.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2copy<span class="sc">$</span>absortionRel)</span></code></pre></div>
+</div>
+<div id="subsetting-data" class="section level3 hasAnchor" number="5.0.8">
+<h3><span class="header-section-number">5.0.8</span> Subsetting data<a href="loading-exploring-and-saving-data.html#subsetting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are many ways to subset a data frame.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="loading-exploring-and-saving-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s keep working with our CO2copy data frame</span></span>
+<span id="cb20-2"><a href="loading-exploring-and-saving-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="loading-exploring-and-saving-data.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Subsetting by variable name</span></span>
+<span id="cb20-4"><a href="loading-exploring-and-saving-data.html#cb20-4" aria-hidden="true" tabindex="-1"></a>CO2copy[, <span class="fu">c</span>(<span class="st">&quot;Plante&quot;</span>, <span class="st">&quot;absortionRel&quot;</span>)]  <span class="co"># Selects only &#39;Plante&#39; and &#39;absortionRel&#39; columns. (Don&#39;t forget the &#39;,&#39;!)</span></span>
+<span id="cb20-5"><a href="loading-exploring-and-saving-data.html#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="loading-exploring-and-saving-data.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Subsetting by row</span></span>
+<span id="cb20-7"><a href="loading-exploring-and-saving-data.html#cb20-7" aria-hidden="true" tabindex="-1"></a>CO2copy[<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, ]  <span class="co"># Subset data frame from rows from 1 to 50</span></span>
+<span id="cb20-8"><a href="loading-exploring-and-saving-data.html#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="loading-exploring-and-saving-data.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="do">### Subsetting by matching with a factor level</span></span>
+<span id="cb20-10"><a href="loading-exploring-and-saving-data.html#cb20-10" aria-hidden="true" tabindex="-1"></a>CO2copy[CO2copy<span class="sc">$</span>Traitement <span class="sc">==</span> <span class="st">&quot;nonchilled&quot;</span>, ]  <span class="co"># Select observations matching only the nonchilled Traitement.</span></span>
+<span id="cb20-11"><a href="loading-exploring-and-saving-data.html#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="loading-exploring-and-saving-data.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="do">### Subsetting according to a numeric condition</span></span>
+<span id="cb20-13"><a href="loading-exploring-and-saving-data.html#cb20-13" aria-hidden="true" tabindex="-1"></a>CO2copy[CO2copy<span class="sc">$</span>absortion <span class="sc">&gt;=</span> <span class="dv">20</span>, ]  <span class="co"># Select observations with absortion higher or equal to 20</span></span>
+<span id="cb20-14"><a href="loading-exploring-and-saving-data.html#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="loading-exploring-and-saving-data.html#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="do">### Conditions can be complimentary -The &amp; (and) argument-</span></span>
+<span id="cb20-16"><a href="loading-exploring-and-saving-data.html#cb20-16" aria-hidden="true" tabindex="-1"></a>CO2copy[CO2copy<span class="sc">$</span>Traitement <span class="sc">==</span> <span class="st">&quot;nonchilled&quot;</span> <span class="sc">&amp;</span> CO2copy<span class="sc">$</span>absortion <span class="sc">&gt;=</span></span>
+<span id="cb20-17"><a href="loading-exploring-and-saving-data.html#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">20</span>, ]</span>
+<span id="cb20-18"><a href="loading-exploring-and-saving-data.html#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="loading-exploring-and-saving-data.html#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># We are done playing with the dataset copy. Let&#39;s erase</span></span>
+<span id="cb20-20"><a href="loading-exploring-and-saving-data.html#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># it.</span></span>
+<span id="cb20-21"><a href="loading-exploring-and-saving-data.html#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(CO2copy)</span></code></pre></div>
+<p>Go
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Logic.html">here</a>
+to check all the logical operators you can use to subset a data frame in
+R</p>
+</div>
+<div id="data-exploration" class="section level3 hasAnchor" number="5.0.9">
+<h3><span class="header-section-number">5.0.9</span> Data exploration<a href="loading-exploring-and-saving-data.html#data-exploration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A good way to start your data exploration is to look at some basic
+statistics of your dataset using the <code>summary()</code> function.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="loading-exploring-and-saving-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CO2)  <span class="co"># Get summary statistics of your dataset</span></span></code></pre></div>
+<p>You can also use some other functions to calculate basic statistics
+about specific parts of your data frame, using <code>mean()</code>, <code>sd()</code>,
+<code>hist()</code>, and <code>print()</code>.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="loading-exploring-and-saving-data.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean and standard deviation of the</span></span>
+<span id="cb22-2"><a href="loading-exploring-and-saving-data.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># concentration, and assign them to new variables</span></span>
+<span id="cb22-3"><a href="loading-exploring-and-saving-data.html#cb22-3" aria-hidden="true" tabindex="-1"></a>meanConc <span class="ot">&lt;-</span> <span class="fu">mean</span>(CO2<span class="sc">$</span>conc)</span>
+<span id="cb22-4"><a href="loading-exploring-and-saving-data.html#cb22-4" aria-hidden="true" tabindex="-1"></a>sdConc <span class="ot">&lt;-</span> <span class="fu">sd</span>(CO2<span class="sc">$</span>conc)</span>
+<span id="cb22-5"><a href="loading-exploring-and-saving-data.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="loading-exploring-and-saving-data.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print() prints any given value to the R console</span></span>
+<span id="cb22-7"><a href="loading-exploring-and-saving-data.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;the mean of concentration is:&quot;</span>, meanConc))</span>
+<span id="cb22-8"><a href="loading-exploring-and-saving-data.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;the standard deviation of concentration is:&quot;</span>, sdConc))</span>
+<span id="cb22-9"><a href="loading-exploring-and-saving-data.html#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="loading-exploring-and-saving-data.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s plot a histogram to explore the distribution of</span></span>
+<span id="cb22-11"><a href="loading-exploring-and-saving-data.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;uptake&#39;</span></span>
+<span id="cb22-12"><a href="loading-exploring-and-saving-data.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>uptake)</span>
+<span id="cb22-13"><a href="loading-exploring-and-saving-data.html#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="loading-exploring-and-saving-data.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Increasing the number of bins to observe better the</span></span>
+<span id="cb22-15"><a href="loading-exploring-and-saving-data.html#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># pattern</span></span>
+<span id="cb22-16"><a href="loading-exploring-and-saving-data.html#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(CO2<span class="sc">$</span>uptake, <span class="at">breaks =</span> <span class="dv">40</span>)</span></code></pre></div>
+<p>The function <code>apply()</code> can be used to apply a function to multiple
+columns of your data simultaneously. Use the <code>?apply</code> command to get
+more information about <code>apply()</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="loading-exploring-and-saving-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(apply)</span></code></pre></div>
+<p>To use apply, you have to specify three arguments. The first argument is
+the data you would like to apply the function to; the second argument is
+whether you would like to calculate based on rows (1) or columns (2) of
+your dataset; the third argument is the function you would like to
+apply. For example:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="loading-exploring-and-saving-data.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(CO2[, <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">MARGIN =</span> <span class="dv">2</span>, <span class="at">FUN =</span> mean)  <span class="co"># Calculate mean of the two columns in the data frame that contain continuous data</span></span></code></pre></div>
+</div>
+<div id="save-your-workspace" class="section level3 hasAnchor" number="5.0.10">
+<h3><span class="header-section-number">5.0.10</span> Save your workspace<a href="loading-exploring-and-saving-data.html#save-your-workspace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>By saving your workspace, you can save the script and the objects
+currently loaded into R. If you save your workspace, you can reload all
+of the objects even after you use the <code>rm(list=ls())</code> command to delete
+everything in the workspace.</p>
+<p>Use <code>save.image()</code> to save the workplace:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="loading-exploring-and-saving-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&quot;co2_project_Data.RData&quot;</span>)  <span class="co"># Save workspace</span></span>
+<span id="cb25-2"><a href="loading-exploring-and-saving-data.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="loading-exploring-and-saving-data.html#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co"># Clears R workspace</span></span>
+<span id="cb25-4"><a href="loading-exploring-and-saving-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="loading-exploring-and-saving-data.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;co2_project_Data.RData&quot;</span>)  <span class="co">#Reload everything that was in your workspace</span></span>
+<span id="cb25-6"><a href="loading-exploring-and-saving-data.html#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="loading-exploring-and-saving-data.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CO2)  <span class="co"># Looking good! :)</span></span></code></pre></div>
+</div>
+<div id="exporting-data" class="section level3 hasAnchor" number="5.0.11">
+<h3><span class="header-section-number">5.0.11</span> Exporting data<a href="loading-exploring-and-saving-data.html#exporting-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you want to save a data file that you have created or edited in R,
+you can do so using the <code>write.csv()</code> command. Note that the file will
+be written into the current working directory.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="loading-exploring-and-saving-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(CO2, <span class="at">file =</span> <span class="st">&quot;co2_new.csv&quot;</span>)  <span class="co"># Save object CO2 to a file named co2_new.csv</span></span></code></pre></div>
+</div>
+<div id="use-your-data-challenge" class="section level3 hasAnchor" number="5.0.12">
+<h3><span class="header-section-number">5.0.12</span> Use your data CHALLENGE<a href="loading-exploring-and-saving-data.html#use-your-data-challenge" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Try to load, explore, plot and save your own data in R. Does it load
+properly? If not, try fixing it in R. Save your fixed data and then try
+opening it in Excel.</p>
+
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="writing-a-script.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="repairing-a-broken-data-frame.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

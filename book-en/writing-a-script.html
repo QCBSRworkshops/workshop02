@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data</title>
+  <meta name="description" content="Loading and Manipulating Data" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Loading and Manipulating Data" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop02" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Writing a script | Workshop 2: Loading and Manipulating Data" />
+  
+  <meta name="twitter:description" content="Loading and Manipulating Data" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="rstudio-projects.html"/>
+<link rel="next" href="loading-exploring-and-saving-data.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+</ul></li>
+<li class="part"><span><b>Loading and manipulating data in <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a></li>
+<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script</a></li>
+<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments</a></li>
+<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header</a></li>
+<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading</a></li>
+<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping</a></li>
+<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory</a></li>
+<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory</a></li>
+<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data</a></li>
+<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data</a></li>
+<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data</a></li>
+<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration</a></li>
+<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace</a></li>
+<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data</a></li>
+<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
+<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
+<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
+<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
+</ul></li>
+<li class="part"><span><b>Final considerations</b></span></li>
+<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
+<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop 2: Loading and Manipulating Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+<!-- 
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+--!>
+<div id="writing-a-script" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Writing a script<a href="writing-a-script.html#writing-a-script" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>An R script is a text file that contains all of the commands you will
+use. Once written and saved, your R script will allow you to make
+changes and re-run analyses with little effort.</p>
+<p>To use a script, just highlight commands and press “Run” or press
+command-enter (Mac) or ctrl-enter (PC).</p>
+<div id="creating-an-r-script" class="section level3 hasAnchor" number="4.0.1">
+<h3><span class="header-section-number">4.0.1</span> Creating an R script<a href="writing-a-script.html#creating-an-r-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="images/1_Create_an_R_script.png" width="500" />
+<img src="images/2_Create_an_R_script2.Mod_arrow.png" width="600" /></p>
+</div>
+<div id="commands-comments" class="section level3 hasAnchor" number="4.0.2">
+<h3><span class="header-section-number">4.0.2</span> Commands &amp; Comments<a href="writing-a-script.html#commands-comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use the ‘# symbol’ to denote comments in scripts. The ‘# symbol’
+tells R to ignore anything remaining on a given line of the script when
+running commands.</p>
+<p>Since comments are ignored when running script, they allow you to leave
+yourself notes in your code or tell collaborators what you did. A script
+with comments is a good step towards reproducible science, and
+annotating someone’s script is a good way to learn. Try to be as
+detailed as possible!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="writing-a-script.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment, not a command</span></span></code></pre></div>
+</div>
+<div id="header" class="section level3 hasAnchor" number="4.0.3">
+<h3><span class="header-section-number">4.0.3</span> Header<a href="writing-a-script.html#header" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>It is recommended that you use comments to put a header at the beginning
+of your script with essential information: project name, author, date,
+version of R</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="writing-a-script.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## QCBS R Workshop ## Workshop 2 - Loading and manipulating</span></span>
+<span id="cb2-2"><a href="writing-a-script.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## data Author: Quebec Center for Biodiversity Science</span></span>
+<span id="cb2-3"><a href="writing-a-script.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Date: Fall 2014 R version 2.15.0</span></span></code></pre></div>
+</div>
+<div id="section-heading" class="section level3 hasAnchor" number="4.0.4">
+<h3><span class="header-section-number">4.0.4</span> Section Heading<a href="writing-a-script.html#section-heading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You can use four # signs in a row to create section headings to help
+organize your script. This allows you to move quickly between sections
+and hide sections. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="writing-a-script.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Housekeeping ####</span></span></code></pre></div>
+<p>RStudio displays a small arrow next to the line number where the section
+heading was created. If you click on the arrow, you will hide this
+section of the script.</p>
+<p>You can also move quickly between sections using the drop-down menu at
+the bottom of the script window.</p>
+<p><img src="images/4_Section_headings_Mod_arrow_2.png" width="600" /></p>
+</div>
+<div id="housekeeping" class="section level3 hasAnchor" number="4.0.5">
+<h3><span class="header-section-number">4.0.5</span> Housekeeping<a href="writing-a-script.html#housekeeping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first command at the top of all scripts should be <code>rm(list=ls())</code>.
+This will clear R’s memory, and will help prevent errors such as using
+old data that has been left in your workspace.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="writing-a-script.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co"># Clears R workspace</span></span>
+<span id="cb4-2"><a href="writing-a-script.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(rm)</span>
+<span id="cb4-3"><a href="writing-a-script.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(ls)</span></code></pre></div>
+<p>We can test this command by adding data to the workspace and seeing how
+<code>rm(list=ls())</code> will remove it.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="writing-a-script.html#cb5-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="st">&quot;Test&quot;</span>  <span class="co"># Put some data in workspace</span></span>
+<span id="cb5-2"><a href="writing-a-script.html#cb5-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="st">&quot;Test&quot;</span>  <span class="co"># Add some spaces to organize your data!</span></span>
+<span id="cb5-3"><a href="writing-a-script.html#cb5-3" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span> <span class="st">&quot;Test&quot;</span>  <span class="co"># You can do this, but it does not mean you should</span></span>
+<span id="cb5-4"><a href="writing-a-script.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check objects in the workspace</span></span>
+<span id="cb5-5"><a href="writing-a-script.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb5-6"><a href="writing-a-script.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &#39;A&#39;</span></span>
+<span id="cb5-7"><a href="writing-a-script.html#cb5-7" aria-hidden="true" tabindex="-1"></a>A</span>
+<span id="cb5-8"><a href="writing-a-script.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &#39;Test&#39; Clean Workspace</span></span>
+<span id="cb5-9"><a href="writing-a-script.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb5-10"><a href="writing-a-script.html#cb5-10" aria-hidden="true" tabindex="-1"></a>A</span></code></pre></div>
+</div>
+<div id="important-reminders" class="section level3 hasAnchor" number="4.0.6">
+<h3><span class="header-section-number">4.0.6</span> Important Reminders<a href="writing-a-script.html#important-reminders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>R is ready for commands when you see the chevron ‘&gt;’ displayed in
+the terminal. If the chevron isn’t displayed, it means you typed an
+incomplete command and R is waiting for more input. Press ESC to
+exit and get R ready for a new command.</li>
+<li>R is case sensitive. i.e. “A” is a different object than “a”</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="writing-a-script.html#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-2"><a href="writing-a-script.html#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-3"><a href="writing-a-script.html#cb6-3" aria-hidden="true" tabindex="-1"></a>a</span>
+<span id="cb6-4"><a href="writing-a-script.html#cb6-4" aria-hidden="true" tabindex="-1"></a>A</span>
+<span id="cb6-5"><a href="writing-a-script.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="writing-a-script.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())  <span class="co"># Clears R workspace again</span></span></code></pre></div>
+
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rstudio-projects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loading-exploring-and-saving-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

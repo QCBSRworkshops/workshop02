@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Workshop 2: Loading and Manipulating Data</title>
+  <meta name="description" content="Loading and Manipulating Data" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Workshop 2: Loading and Manipulating Data" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+  <meta property="og:description" content="Loading and Manipulating Data" />
+  <meta name="github-repo" content="qcbsRworkshops/workshop02" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Workshop 2: Loading and Manipulating Data" />
+  
+  <meta name="twitter:description" content="Loading and Manipulating Data" />
+  <meta name="twitter:image" content="https://github.com/qcbsRworkshops//assets/images/logo/csbq_logo_accueil.png" />
+
+<meta name="author" content="Developed and maintained by the contributors of the QCBS R Workshop Series" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+
+<link rel="next" href="learning-objectives.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/qcbs-style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo"><a href="./"><img src="assets/images/csbq_logo_gray_accueil.png"></a></li>
+<link rel="icon" type="image/png" href="assets/images/favicon.ico"/>
+
+<li class="divider"></li>
+<li class="part"><span><b>QCBS R Workshop Series</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>0.1</b> Code of conduct</a>
+<ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#expected-behaviour"><i class="fa fa-check"></i><b>0.1.1</b> Expected behaviour</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#unacceptable-behaviour"><i class="fa fa-check"></i><b>0.1.2</b> Unacceptable behaviour</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#contributors"><i class="fa fa-check"></i><b>0.2</b> Contributors</a></li>
+<li class="chapter" data-level="0.3" data-path="index.html"><a href="index.html#contributing"><i class="fa fa-check"></i><b>0.3</b> Contributing</a></li>
+</ul></li>
+<li class="part"><span><b>Loading and manipulating data in <code>R</code></b></span></li>
+<li class="chapter" data-level="1" data-path="learning-objectives.html"><a href="learning-objectives.html"><i class="fa fa-check"></i><b>1</b> Learning objectives</a></li>
+<li class="chapter" data-level="2" data-path="preparing-for-the-workshop.html"><a href="preparing-for-the-workshop.html"><i class="fa fa-check"></i><b>2</b> Preparing for the workshop</a></li>
+<li class="chapter" data-level="3" data-path="rstudio-projects.html"><a href="rstudio-projects.html"><i class="fa fa-check"></i><b>3</b> RStudio Projects</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#create-a-new-project"><i class="fa fa-check"></i><b>3.1</b> Create a new project</a></li>
+<li class="chapter" data-level="3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#keep-your-files-organized"><i class="fa fa-check"></i><b>3.2</b> Keep your files organized</a></li>
+<li class="chapter" data-level="3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#preparing-data-for-r"><i class="fa fa-check"></i><b>3.3</b> Preparing data for R</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-files"><i class="fa fa-check"></i><b>3.3.1</b> Naming files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rstudio-projects.html"><a href="rstudio-projects.html#naming-variables"><i class="fa fa-check"></i><b>3.3.2</b> Naming variables</a></li>
+<li class="chapter" data-level="3.3.3" data-path="rstudio-projects.html"><a href="rstudio-projects.html#common-data-preparation-mistakes"><i class="fa fa-check"></i><b>3.3.3</b> Common data preparation mistakes</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rstudio-projects.html"><a href="rstudio-projects.html#bad-data-examples"><i class="fa fa-check"></i><b>3.3.4</b> Bad data examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-a-script.html"><a href="writing-a-script.html"><i class="fa fa-check"></i><b>4</b> Writing a script</a>
+<ul>
+<li class="chapter" data-level="4.0.1" data-path="writing-a-script.html"><a href="writing-a-script.html#creating-an-r-script"><i class="fa fa-check"></i><b>4.0.1</b> Creating an R script</a></li>
+<li class="chapter" data-level="4.0.2" data-path="writing-a-script.html"><a href="writing-a-script.html#commands-comments"><i class="fa fa-check"></i><b>4.0.2</b> Commands &amp; Comments</a></li>
+<li class="chapter" data-level="4.0.3" data-path="writing-a-script.html"><a href="writing-a-script.html#header"><i class="fa fa-check"></i><b>4.0.3</b> Header</a></li>
+<li class="chapter" data-level="4.0.4" data-path="writing-a-script.html"><a href="writing-a-script.html#section-heading"><i class="fa fa-check"></i><b>4.0.4</b> Section Heading</a></li>
+<li class="chapter" data-level="4.0.5" data-path="writing-a-script.html"><a href="writing-a-script.html#housekeeping"><i class="fa fa-check"></i><b>4.0.5</b> Housekeeping</a></li>
+<li class="chapter" data-level="4.0.6" data-path="writing-a-script.html"><a href="writing-a-script.html#important-reminders"><i class="fa fa-check"></i><b>4.0.6</b> Important Reminders</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html"><i class="fa fa-check"></i><b>5</b> Loading, exploring and saving data</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#working-directory"><i class="fa fa-check"></i><b>5.0.1</b> Working directory</a></li>
+<li class="chapter" data-level="5.0.2" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#display-the-content-of-the-working-directory"><i class="fa fa-check"></i><b>5.0.2</b> Display the content of the working directory</a></li>
+<li class="chapter" data-level="5.0.3" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#importing-data"><i class="fa fa-check"></i><b>5.0.3</b> Importing data</a></li>
+<li class="chapter" data-level="5.0.4" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#looking-at-data"><i class="fa fa-check"></i><b>5.0.4</b> Looking at data</a></li>
+<li class="chapter" data-level="5.0.5" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#reminder-from-workshop-1-accessing-data"><i class="fa fa-check"></i><b>5.0.5</b> Reminder from workshop 1: Accessing data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#renaming-variables"><i class="fa fa-check"></i><b>5.0.6</b> Renaming variables</a></li>
+<li class="chapter" data-level="5.0.7" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#creating-new-variables"><i class="fa fa-check"></i><b>5.0.7</b> Creating new variables</a></li>
+<li class="chapter" data-level="5.0.8" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#subsetting-data"><i class="fa fa-check"></i><b>5.0.8</b> Subsetting data</a></li>
+<li class="chapter" data-level="5.0.9" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#data-exploration"><i class="fa fa-check"></i><b>5.0.9</b> Data exploration</a></li>
+<li class="chapter" data-level="5.0.10" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#save-your-workspace"><i class="fa fa-check"></i><b>5.0.10</b> Save your workspace</a></li>
+<li class="chapter" data-level="5.0.11" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#exporting-data"><i class="fa fa-check"></i><b>5.0.11</b> Exporting data</a></li>
+<li class="chapter" data-level="5.0.12" data-path="loading-exploring-and-saving-data.html"><a href="loading-exploring-and-saving-data.html#use-your-data-challenge"><i class="fa fa-check"></i><b>5.0.12</b> Use your data CHALLENGE</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html"><i class="fa fa-check"></i><b>6</b> Repairing a Broken Data Frame</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="repairing-a-broken-data-frame.html"><a href="repairing-a-broken-data-frame.html#fix-a-broken-dataframe"><i class="fa fa-check"></i><b>6.0.1</b> Fix a broken dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html"><i class="fa fa-check"></i><b>7</b> Manipulate data with the tidyverse</a>
+<ul>
+<li class="chapter" data-level="7.0.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#using-tidyr-to-reshape-data-frames"><i class="fa fa-check"></i><b>7.0.1</b> Using tidyr to reshape data frames</a></li>
+<li class="chapter" data-level="7.0.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#why-tidy-your-data"><i class="fa fa-check"></i><b>7.0.2</b> Why “tidy” your data?</a></li>
+<li class="chapter" data-level="7.0.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#wide-vs.-long-data"><i class="fa fa-check"></i><b>7.0.3</b> Wide vs. long data</a></li>
+<li class="chapter" data-level="7.0.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_longer-making-your-data-long"><i class="fa fa-check"></i><b>7.0.4</b> pivot_longer(): Making your data long</a></li>
+<li class="chapter" data-level="7.0.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#pivot_wider-making-your-data-wide"><i class="fa fa-check"></i><b>7.0.5</b> pivot_wider(): Making your data wide</a></li>
+<li class="chapter" data-level="7.0.6" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#a-tibble-structure-for-your-data"><i class="fa fa-check"></i><b>7.0.6</b> A <code>tibble</code> structure for your data</a></li>
+<li class="chapter" data-level="7.0.7" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#separate-separate-two-or-more-variables-in-a-single-column"><i class="fa fa-check"></i><b>7.0.7</b> separate(): Separate two (or more) variables in a single column</a></li>
+<li class="chapter" data-level="7.0.8" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#recap-tidyr"><i class="fa fa-check"></i><b>7.0.8</b> Recap: tidyr</a></li>
+<li class="chapter" data-level="7.0.9" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge"><i class="fa fa-check"></i><b>7.0.9</b> tidyr CHALLENGE</a></li>
+<li class="chapter" data-level="7.0.10" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution"><i class="fa fa-check"></i><b>7.0.10</b> Solution</a></li>
+<li class="chapter" data-level="7.0.11" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#tidyr-challenge-2"><i class="fa fa-check"></i><b>7.0.11</b> tidyr CHALLENGE 2</a></li>
+<li class="chapter" data-level="7.0.12" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-1"><i class="fa fa-check"></i><b>7.0.12</b> Solution</a></li>
+<li class="chapter" data-level="7.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#data-manipulation-with-dplyr"><i class="fa fa-check"></i><b>7.1</b> Data manipulation with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#intro-to-dplyr"><i class="fa fa-check"></i><b>7.1.1</b> Intro to dplyr</a></li>
+<li class="chapter" data-level="7.1.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-columns-with-select"><i class="fa fa-check"></i><b>7.1.2</b> Select a subset of columns with <code>select()</code></a></li>
+<li class="chapter" data-level="7.1.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#select-a-subset-of-rows-with-filter"><i class="fa fa-check"></i><b>7.1.3</b> Select a subset of rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="7.1.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#sorting-rows-with-arrange"><i class="fa fa-check"></i><b>7.1.4</b> Sorting rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="7.1.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#create-and-populate-columns-with-mutate"><i class="fa fa-check"></i><b>7.1.5</b> Create and populate columns with <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-and-magrittr-a-match-made-in-heaven"><i class="fa fa-check"></i><b>7.2</b> dplyr and magrittr, a match made in heaven</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---grouped-operations-and-summaries"><i class="fa fa-check"></i><b>7.3</b> dplyr - grouped operations and summaries</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-challenge"><i class="fa fa-check"></i><b>7.3.1</b> dplyr &amp; magrittr CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.2" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr-magrittr-ninja-challenge"><i class="fa fa-check"></i><b>7.3.3</b> dplyr &amp; magrittr NINJA CHALLENGE</a></li>
+<li class="chapter" data-level="7.3.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#ninja-hint"><i class="fa fa-check"></i><b>7.3.4</b> Ninja hint</a></li>
+<li class="chapter" data-level="7.3.5" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#solution-3"><i class="fa fa-check"></i><b>7.3.5</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="manipulate-data-with-the-tidyverse.html"><a href="manipulate-data-with-the-tidyverse.html#dplyr---merging-data-frames"><i class="fa fa-check"></i><b>7.4</b> dplyr - Merging data frames</a></li>
+</ul></li>
+<li class="part"><span><b>Final considerations</b></span></li>
+<li class="chapter" data-level="8" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>8</b> Summary</a></li>
+<li class="chapter" data-level="9" data-path="additional-resources.html"><a href="additional-resources.html"><i class="fa fa-check"></i><b>9</b> Additional resources</a></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/qcbsRworkshops" target="blank">QCBS R Workshop Series</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Workshop 2: Loading and Manipulating Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!------------------------ Hero Image Container --------------------------> 
+
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a26f47516.js"></script>
+  <script src="assets/qcbs-hideOutput.js"></script>
+  <link href="assets/qcbs-style.css" rel="stylesheet">
+</head>
+
+
+<!-- 
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/images/jean-philippe-delberghe-75xPHEQBmvA-unsplash_hero_image.jpg">
+</div>
+--!>
+<div id="header">
+<h1 class="title">Workshop 2: Loading and Manipulating Data</h1>
+<h2 class="subtitle"><em>QCBS R Workshop Series</em></h2>
+<p class="author"><em>Developed and maintained by the contributors of the QCBS R Workshop Series<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
+<p class="date"><em>2023-04-24 17:07:46.80286</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The <strong>QCBS R Workshop Series</strong> is a series of 10 workshops that walks participants through the steps required to use R for a wide array of statistical analyses relevant to research in biology and ecology. These open-access workshops were created by members of the QCBS both for members of the QCBS and the larger community.</p>
+<p>The content of this workshop has been peer-reviewed by several QCBS members. If you would like to suggest modifications, please contact the current series coordinators, listed on the main Github page.</p>
+<div id="code-of-conduct" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> Code of conduct<a href="index.html#code-of-conduct" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The QCBS R Workshop Series and the QCBS R Symposium are venues dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity.</p>
+<p>Participants, presenters and organizers of the workshop series and other related activities accept this Code of Conduct when being present at any workshop-related activities.</p>
+<p>We do not tolerate behaviour that is disrespectful or that excludes, intimidates, or causes discomfort to others.</p>
+<p>We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.</p>
+<p>It applies to all spaces managed by or affiliated with the workshop, including, but not limited to, workshops, email lists, and online forums such as GitHub, Slack and Twitter.</p>
+<div id="expected-behaviour" class="section level3 hasAnchor" number="0.1.1">
+<h3><span class="header-section-number">0.1.1</span> Expected behaviour<a href="index.html#expected-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All participants are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all workshop events and platforms:</p>
+<ul>
+<li>Use welcoming and inclusive language</li>
+<li>Be respectful of different viewpoints and experiences</li>
+<li>Gracefully accept constructive criticism</li>
+<li>Focus on what is best for the community</li>
+<li>Show courtesy and respect towards other community members</li>
+</ul>
+</div>
+<div id="unacceptable-behaviour" class="section level3 hasAnchor" number="0.1.2">
+<h3><span class="header-section-number">0.1.2</span> Unacceptable behaviour<a href="index.html#unacceptable-behaviour" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Examples of unacceptable behaviour by participants at any workshop event/platform include:</p>
+<ul>
+<li>written or verbal comments which have the effect of excluding people on the - basis of membership of any specific group;</li>
+<li>causing someone to fear for their safety, such as through stalking or intimidation;</li>
+<li>violent threats or language directed against another person;</li>
+<li>the display of sexual or violent images;</li>
+<li>unwelcome sexual attention;</li>
+<li>nonconsensual or unwelcome physical contact;</li>
+<li>insults or put-downs;</li>
+<li>sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes;</li>
+<li>incitement to violence, suicide, or self-harm;</li>
+<li>continuing to initiate interaction (including photography or recording) with - someone after being asked to stop;</li>
+<li>publication of private communication without consent.</li>
+</ul>
+</div>
+</div>
+<div id="contributors" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> Contributors<a href="index.html#contributors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Originally developed by: Johanna Bradie, Vincent Fugère, Thomas Lamy.</p>
+<p>Contributed with changes to the presentation:</p>
+<p>Contributed with changes to the written material:</p>
+<p>Contributed by reporting issues and suggesting modifications:</p>
+</div>
+<div id="contributing" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> Contributing<a href="index.html#contributing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Under construction.</p>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The QCBS R Workshop Series is part of the <a href="https://www.qcbs.ca">Québec Centre for Biodiversity Science</a>, and is maintained by the series coordinators and graduent student, postdoctoral, and research professional members. <strong>The contributors for this workshop can be accessed <a href="https://r.qcbs.ca/workshops/r-workshop-02/">here</a></strong>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All the content of the workshop series is under a <a href="https://creativecommons.org/licenses/by-nc/2.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="learning-objectives.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
